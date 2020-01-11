@@ -14,7 +14,7 @@ namespace situacaoChavesGolden
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
         PostgreSQL database = new PostgreSQL();
-        string código = "";
+        List<string> ListaCodigos = new List<string>();
 
 
         public Form1()
@@ -40,6 +40,7 @@ namespace situacaoChavesGolden
             foreach(DataRow row in usuarios.Rows)
             {
                 comboUsuarios.Items.Add(row[1].ToString());
+                ListaCodigos.Add(row[0].ToString());
             }
 
         }
@@ -56,6 +57,20 @@ namespace situacaoChavesGolden
         {
             //Muda cor do texto do botão
             btnEntrar.ForeColor = Color.FromArgb(0, 149, 255);
+        }
+
+        private void btnEntrar_Click(object sender, EventArgs e)
+        {
+            if(comboUsuarios.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selecione um usuário");
+            }
+            else
+            {
+                TelaPrincipal tela = new TelaPrincipal(ListaCodigos[comboUsuarios.SelectedIndex]);
+
+                tela.ShowDialog();
+            }
         }
     }
 }

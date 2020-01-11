@@ -48,6 +48,7 @@
             this.btnEntrar.TabIndex = 1;
             this.btnEntrar.Text = "Entrar";
             this.btnEntrar.UseVisualStyleBackColor = false;
+            this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click);
             this.btnEntrar.MouseEnter += new System.EventHandler(this.BtnEntrar_MouseEnter);
             this.btnEntrar.MouseLeave += new System.EventHandler(this.BtnEntrar_MouseLeave);
             // 
@@ -56,10 +57,10 @@
             this.comboUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboUsuarios.FontSize = MetroFramework.MetroLinkSize.Tall;
             this.comboUsuarios.FormattingEnabled = true;
-            this.comboUsuarios.ItemHeight = 23;
+            this.comboUsuarios.ItemHeight = 29;
             this.comboUsuarios.Location = new System.Drawing.Point(72, 88);
             this.comboUsuarios.Name = "comboUsuarios";
-            this.comboUsuarios.Size = new System.Drawing.Size(294, 29);
+            this.comboUsuarios.Size = new System.Drawing.Size(294, 35);
             this.comboUsuarios.Style = MetroFramework.MetroColorStyle.Blue;
             this.comboUsuarios.TabIndex = 2;
             // 
