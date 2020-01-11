@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnEntrar = new System.Windows.Forms.Button();
-            this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
+            this.comboUsuarios = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
@@ -51,16 +51,17 @@
             this.btnEntrar.MouseEnter += new System.EventHandler(this.BtnEntrar_MouseEnter);
             this.btnEntrar.MouseLeave += new System.EventHandler(this.BtnEntrar_MouseLeave);
             // 
-            // metroComboBox1
+            // comboUsuarios
             // 
-            this.metroComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.metroComboBox1.FormattingEnabled = true;
-            this.metroComboBox1.ItemHeight = 23;
-            this.metroComboBox1.Location = new System.Drawing.Point(72, 88);
-            this.metroComboBox1.Name = "metroComboBox1";
-            this.metroComboBox1.Size = new System.Drawing.Size(294, 29);
-            this.metroComboBox1.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroComboBox1.TabIndex = 2;
+            this.comboUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboUsuarios.FontSize = MetroFramework.MetroLinkSize.Tall;
+            this.comboUsuarios.FormattingEnabled = true;
+            this.comboUsuarios.ItemHeight = 23;
+            this.comboUsuarios.Location = new System.Drawing.Point(72, 88);
+            this.comboUsuarios.Name = "comboUsuarios";
+            this.comboUsuarios.Size = new System.Drawing.Size(294, 29);
+            this.comboUsuarios.Style = MetroFramework.MetroColorStyle.Blue;
+            this.comboUsuarios.TabIndex = 2;
             // 
             // metroLabel1
             // 
@@ -78,7 +79,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(422, 227);
             this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.metroComboBox1);
+            this.Controls.Add(this.comboUsuarios);
             this.Controls.Add(this.btnEntrar);
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -89,7 +90,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnEntrar;
-        private MetroFramework.Controls.MetroComboBox metroComboBox1;
+        private MetroFramework.Controls.MetroComboBox comboUsuarios;
         private MetroFramework.Controls.MetroLabel metroLabel1;
     }
 }

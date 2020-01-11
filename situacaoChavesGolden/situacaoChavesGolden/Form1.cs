@@ -13,27 +13,48 @@ namespace situacaoChavesGolden
 {
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
+        PostgreSQL database = new PostgreSQL();
+        string código = "";
+
+
         public Form1()
         {
             InitializeComponent();
+            
+            
         }
-
-
-       
+                      
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Cria tabela para preencher com os usuários
+            DataTable usuarios = new DataTable();
+
+            //Coloca os usuários cadastrados na tabela
+            usuarios = database.select(string.Format("SELECT * FROM usuario"));
+
+            //Apaga itens da ComboBox
+            comboUsuarios.Items.Clear();
+
+            //Percorre os resultados e coloca os nomes dentro do comboBox
+            foreach(DataRow row in usuarios.Rows)
+            {
+                comboUsuarios.Items.Add(row[1].ToString());
+            }
 
         }
 
+        //Evento no momento em que o mouse é colocado em cima do botão
         private void BtnEntrar_MouseEnter(object sender, EventArgs e)
         {
+            //Muda cor do texto do botão
             btnEntrar.ForeColor = Color.White;
 
         }
-
+        //Evento no momento em que o mouse é deixado decima do botão
         private void BtnEntrar_MouseLeave(object sender, EventArgs e)
         {
+            //Muda cor do texto do botão
             btnEntrar.ForeColor = Color.FromArgb(0, 149, 255);
         }
     }
