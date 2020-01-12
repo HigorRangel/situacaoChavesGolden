@@ -27,6 +27,7 @@ namespace situacaoChavesGolden
 
             //Deixa maximizado para evitar erros
             form.WindowState = FormWindowState.Maximized;
+            form.ShadowType = MetroFormShadowType.None;
 
             //Adiciona o form nos controles do painel
             painelPrincipal.Controls.Add(form);
@@ -51,6 +52,12 @@ namespace situacaoChavesGolden
         {
             cadastroChave telaCadastro = new cadastroChave();
             atualizarForm(telaCadastro);
+        }
+
+        private void btnChaves_Click(object sender, EventArgs e)
+        {
+            Chaves telaChaves = new Chaves();
+            atualizarForm(telaChaves);
         }
     }
 }

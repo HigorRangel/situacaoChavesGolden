@@ -31,12 +31,22 @@
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.btnInicio = new System.Windows.Forms.Button();
             this.painelPrincipal = new System.Windows.Forms.Panel();
+            this.btnChaves = new System.Windows.Forms.Button();
+            this.btnEmprestimos = new System.Windows.Forms.Button();
+            this.btnProprietarios = new System.Windows.Forms.Button();
+            this.btnReservas = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroPanel1
             // 
             this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.metroPanel1.Controls.Add(this.button1);
+            this.metroPanel1.Controls.Add(this.btnReservas);
+            this.metroPanel1.Controls.Add(this.btnProprietarios);
+            this.metroPanel1.Controls.Add(this.btnEmprestimos);
+            this.metroPanel1.Controls.Add(this.btnChaves);
             this.metroPanel1.Controls.Add(this.btnInicio);
             this.metroPanel1.CustomBackground = true;
             this.metroPanel1.HorizontalScrollbarBarColor = true;
@@ -74,6 +84,83 @@
             this.painelPrincipal.Size = new System.Drawing.Size(655, 430);
             this.painelPrincipal.TabIndex = 1;
             // 
+            // btnChaves
+            // 
+            this.btnChaves.FlatAppearance.BorderSize = 0;
+            this.btnChaves.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(16)))), ((int)(((byte)(20)))));
+            this.btnChaves.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(67)))), ((int)(((byte)(87)))));
+            this.btnChaves.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChaves.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChaves.ForeColor = System.Drawing.Color.White;
+            this.btnChaves.Location = new System.Drawing.Point(0, 134);
+            this.btnChaves.Name = "btnChaves";
+            this.btnChaves.Size = new System.Drawing.Size(146, 35);
+            this.btnChaves.TabIndex = 2;
+            this.btnChaves.Text = "Chaves";
+            this.btnChaves.UseVisualStyleBackColor = true;
+            this.btnChaves.Click += new System.EventHandler(this.btnChaves_Click);
+            // 
+            // btnEmprestimos
+            // 
+            this.btnEmprestimos.FlatAppearance.BorderSize = 0;
+            this.btnEmprestimos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(16)))), ((int)(((byte)(20)))));
+            this.btnEmprestimos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(67)))), ((int)(((byte)(87)))));
+            this.btnEmprestimos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmprestimos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmprestimos.ForeColor = System.Drawing.Color.White;
+            this.btnEmprestimos.Location = new System.Drawing.Point(0, 169);
+            this.btnEmprestimos.Name = "btnEmprestimos";
+            this.btnEmprestimos.Size = new System.Drawing.Size(146, 35);
+            this.btnEmprestimos.TabIndex = 3;
+            this.btnEmprestimos.Text = "Empréstimos";
+            this.btnEmprestimos.UseVisualStyleBackColor = true;
+            // 
+            // btnProprietarios
+            // 
+            this.btnProprietarios.FlatAppearance.BorderSize = 0;
+            this.btnProprietarios.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(16)))), ((int)(((byte)(20)))));
+            this.btnProprietarios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(67)))), ((int)(((byte)(87)))));
+            this.btnProprietarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProprietarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProprietarios.ForeColor = System.Drawing.Color.White;
+            this.btnProprietarios.Location = new System.Drawing.Point(0, 205);
+            this.btnProprietarios.Name = "btnProprietarios";
+            this.btnProprietarios.Size = new System.Drawing.Size(146, 35);
+            this.btnProprietarios.TabIndex = 4;
+            this.btnProprietarios.Text = "Proprietários";
+            this.btnProprietarios.UseVisualStyleBackColor = true;
+            // 
+            // btnReservas
+            // 
+            this.btnReservas.FlatAppearance.BorderSize = 0;
+            this.btnReservas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(16)))), ((int)(((byte)(20)))));
+            this.btnReservas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(67)))), ((int)(((byte)(87)))));
+            this.btnReservas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReservas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReservas.ForeColor = System.Drawing.Color.White;
+            this.btnReservas.Location = new System.Drawing.Point(0, 241);
+            this.btnReservas.Name = "btnReservas";
+            this.btnReservas.Size = new System.Drawing.Size(146, 35);
+            this.btnReservas.TabIndex = 5;
+            this.btnReservas.Text = "Reservas";
+            this.btnReservas.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(0, 408);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(146, 35);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Sair";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // TelaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -98,5 +185,10 @@
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private System.Windows.Forms.Button btnInicio;
         private System.Windows.Forms.Panel painelPrincipal;
+        private System.Windows.Forms.Button btnChaves;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnReservas;
+        private System.Windows.Forms.Button btnProprietarios;
+        private System.Windows.Forms.Button btnEmprestimos;
     }
 }

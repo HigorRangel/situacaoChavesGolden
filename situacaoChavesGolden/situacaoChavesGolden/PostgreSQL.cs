@@ -11,7 +11,7 @@ namespace situacaoChavesGolden
 {
     class PostgreSQL
     {
-        public string nomeDB = "postgres";
+        public string nomeDB = "chaves_golden";
 
         private NpgsqlConnection conectar()
         {
