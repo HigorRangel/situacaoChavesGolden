@@ -61,12 +61,15 @@ namespace situacaoChavesGolden
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
+            //Se não tiver usuário selecionado
             if(comboUsuarios.SelectedIndex == -1)
             {
                 MessageBox.Show("Selecione um usuário");
             }
+            //Se tiver
             else
             {
+                //Abre a tela principal
                 TelaPrincipal tela = new TelaPrincipal(ListaCodigos[comboUsuarios.SelectedIndex]);
 
                 tela.ShowDialog();

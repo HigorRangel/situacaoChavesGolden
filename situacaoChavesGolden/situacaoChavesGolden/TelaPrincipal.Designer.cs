@@ -30,6 +30,7 @@
         {
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.btnInicio = new System.Windows.Forms.Button();
+            this.painelPrincipal = new System.Windows.Forms.Panel();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,12 +64,22 @@
             this.btnInicio.TabIndex = 0;
             this.btnInicio.Text = "Início";
             this.btnInicio.UseVisualStyleBackColor = true;
+            this.btnInicio.Click += new System.EventHandler(this.BtnInicio_Click);
+            // 
+            // painelPrincipal
+            // 
+            this.painelPrincipal.BackColor = System.Drawing.Color.White;
+            this.painelPrincipal.Location = new System.Drawing.Point(146, 20);
+            this.painelPrincipal.Name = "painelPrincipal";
+            this.painelPrincipal.Size = new System.Drawing.Size(655, 430);
+            this.painelPrincipal.TabIndex = 1;
             // 
             // TelaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.painelPrincipal);
             this.Controls.Add(this.metroPanel1);
             this.DisplayHeader = false;
             this.Name = "TelaPrincipal";
@@ -86,5 +97,6 @@
 
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private System.Windows.Forms.Button btnInicio;
+        private System.Windows.Forms.Panel painelPrincipal;
     }
 }
