@@ -22,25 +22,30 @@ namespace situacaoChavesGolden
         {
             DataTable chaves = new DataTable();
 
-            chaves = database.select("SELECT cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel  FROM chave");
+            chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel  FROM chave");
 
 
             gridChaves.DataSource = chaves;
 
             gridChaves.Columns[0].HeaderText = "Código";
-            gridChaves.Columns[1].HeaderText = "Endereço";
-            gridChaves.Columns[2].HeaderText = "Bairro";
-            gridChaves.Columns[3].HeaderText = "Situação";
+            gridChaves.Columns[1].HeaderText = "Cód Imob";
+            gridChaves.Columns[2].HeaderText = "Endereço";
+            gridChaves.Columns[3].HeaderText = "Bairro";
+            gridChaves.Columns[4].HeaderText = "Situação";
 
             gridChaves.Columns[0].Width = 60;
-            gridChaves.Columns[1].Width = 315;
-            gridChaves.Columns[2].Width = 132;
-            gridChaves.Columns[3].Width = 100;
+            gridChaves.Columns[1].Width = 60;
+            gridChaves.Columns[2].Width = 275;
+            gridChaves.Columns[3].Width = 112;
+            gridChaves.Columns[4].Width = 100;
 
 
 
 
-
+            endereco.MaximumSize = new Size(520, 0);
+            endereco.AutoSize = true;
+            gridChaves.ClearSelection();
+            gridChaves.Rows[0].Selected = false;
 
 
         }
@@ -87,6 +92,55 @@ namespace situacaoChavesGolden
 
 
         }
-    
+
+        private void GridChaves_SelectionChanged(object sender, EventArgs e)
+        {
+            if(gridChaves.CurrentRow != null)
+            {
+
+                string codigoChave = gridChaves.CurrentRow.Cells[0].Value.ToString();
+
+                DataTable dadosChave = new DataTable();
+
+                dadosChave = database.select(string.Format("SELECT * FROM chave WHERE cod_chave = '{0}'", codigoChave));
+                
+
+                foreach(DataRow row in dadosChave.Rows)
+                {
+                    codigoImob.Text = row[11].ToString();
+                    finalidade.Text = row[13].ToString();
+                    sitImovel.Text = row[14].ToString();
+                    endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} ({5})", row[2].ToString(),
+                        row[3].ToString(), row[5].ToString(), row[6].ToString(), row[7].ToString(),
+                        row[1].ToString());
+                    proprietario.Text = row[10].ToString();
+                    tipoImovel.Text = row[12].ToString();
+                    sitChave.Text = row[8].ToString();
+                    localizacao.Text = row[9].ToString();
+                                                          
+                }
+
+                string codEmprestimo = "";
+                try
+                {
+                    codEmprestimo = database.selectScalar(string.Format("" +
+                                        " SELECT e.cod_emprestimo" +
+                                        " FROM emprestimo e" +
+                                        " INNER JOIN chave c ON c.cod_chave = e.cod_chave" +
+                                        " WHERE e.cod_chave = {0} AND e.data_entrega is null", codigoChave));
+                    emprestimo.Text = codEmprestimo;
+                    emprestimo.Cursor = Cursors.Hand;
+
+                }
+                catch (NullReferenceException)
+                {
+                    emprestimo.Text = "N/A";
+                    emprestimo.Cursor = Cursors.Default;
+                }
+                
+
+                
+            }
+        }
     }
 }

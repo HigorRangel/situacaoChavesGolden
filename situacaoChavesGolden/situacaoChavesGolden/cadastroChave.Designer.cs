@@ -28,14 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
             this.SuspendLayout();
+            // 
+            // metroTextBox1
+            // 
+            this.metroTextBox1.CustomBackground = true;
+            this.metroTextBox1.Location = new System.Drawing.Point(69, 83);
+            this.metroTextBox1.Name = "metroTextBox1";
+            this.metroTextBox1.Size = new System.Drawing.Size(241, 25);
+            this.metroTextBox1.TabIndex = 0;
+            this.metroTextBox1.Text = "metroTextBox1";
+            this.metroTextBox1.UseStyleColors = true;
             // 
             // cadastroChave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(655, 430);
+            this.ClientSize = new System.Drawing.Size(406, 430);
+            this.Controls.Add(this.metroTextBox1);
+            this.DisplayHeader = false;
             this.Name = "cadastroChave";
+            this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.None;
             this.Style = MetroFramework.MetroColorStyle.White;
             this.Text = "cadastroChave";
@@ -45,5 +59,7 @@
         }
 
         #endregion
+
+        private MetroFramework.Controls.MetroTextBox metroTextBox1;
     }
 }
