@@ -107,16 +107,16 @@ namespace situacaoChavesGolden
 
                 foreach(DataRow row in dadosChave.Rows)
                 {
-                    codigoImob.Text = row[11].ToString();
-                    finalidade.Text = row[13].ToString();
-                    sitImovel.Text = row[14].ToString();
-                    endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} ({5})", row[2].ToString(),
-                        row[3].ToString(), row[5].ToString(), row[6].ToString(), row[7].ToString(),
-                        row[1].ToString());
-                    proprietario.Text = row[10].ToString();
-                    tipoImovel.Text = row[12].ToString();
-                    sitChave.Text = row[8].ToString();
-                    localizacao.Text = row[9].ToString();
+                    codigoImob.Text = row[10].ToString();
+                    finalidade.Text = row[12].ToString();
+                    sitImovel.Text = row[13].ToString();
+                    endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} [{5}]", row[1].ToString(),
+                        row[2].ToString(), row[4].ToString(), row[5].ToString(), row[6].ToString(),
+                        row[4].ToString());
+                    proprietario.Text = row[9].ToString();
+                    tipoImovel.Text = row[11].ToString();
+                    sitChave.Text = row[7].ToString();
+                    localizacao.Text = row[7].ToString();
                                                           
                 }
 
@@ -141,6 +141,13 @@ namespace situacaoChavesGolden
 
                 
             }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            cadastroChave cadastro = new cadastroChave();
+
+            cadastro.ShowDialog();
         }
     }
 }

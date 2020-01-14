@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridChaves = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.excluirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,12 +55,13 @@
             this.emprestimo = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
-            this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton3 = new MetroFramework.Controls.MetroRadioButton();
+            this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
+            this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
+            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -73,14 +74,14 @@
             this.gridChaves.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
             this.gridChaves.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridChaves.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridChaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridChaves.ContextMenuStrip = this.contextMenuStrip1;
             this.gridChaves.GridColor = System.Drawing.Color.White;
@@ -89,14 +90,14 @@
             this.gridChaves.Name = "gridChaves";
             this.gridChaves.ReadOnly = true;
             this.gridChaves.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridChaves.RowHeadersVisible = false;
             this.gridChaves.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridChaves.RowTemplate.ReadOnly = true;
@@ -353,6 +354,39 @@
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             // 
+            // metroRadioButton3
+            // 
+            this.metroRadioButton3.AutoSize = true;
+            this.metroRadioButton3.Location = new System.Drawing.Point(139, 13);
+            this.metroRadioButton3.Name = "metroRadioButton3";
+            this.metroRadioButton3.Size = new System.Drawing.Size(55, 15);
+            this.metroRadioButton3.TabIndex = 3;
+            this.metroRadioButton3.TabStop = true;
+            this.metroRadioButton3.Text = "Venda";
+            this.metroRadioButton3.UseVisualStyleBackColor = true;
+            // 
+            // metroRadioButton2
+            // 
+            this.metroRadioButton2.AutoSize = true;
+            this.metroRadioButton2.Location = new System.Drawing.Point(66, 13);
+            this.metroRadioButton2.Name = "metroRadioButton2";
+            this.metroRadioButton2.Size = new System.Drawing.Size(67, 15);
+            this.metroRadioButton2.TabIndex = 2;
+            this.metroRadioButton2.TabStop = true;
+            this.metroRadioButton2.Text = "Locação";
+            this.metroRadioButton2.UseVisualStyleBackColor = true;
+            // 
+            // metroRadioButton1
+            // 
+            this.metroRadioButton1.AutoSize = true;
+            this.metroRadioButton1.Location = new System.Drawing.Point(6, 13);
+            this.metroRadioButton1.Name = "metroRadioButton1";
+            this.metroRadioButton1.Size = new System.Drawing.Size(54, 15);
+            this.metroRadioButton1.TabIndex = 1;
+            this.metroRadioButton1.TabStop = true;
+            this.metroRadioButton1.Text = "Todos";
+            this.metroRadioButton1.UseVisualStyleBackColor = true;
+            // 
             // metroTextBox1
             // 
             this.metroTextBox1.CustomBackground = true;
@@ -366,39 +400,6 @@
             this.metroTextBox1.Text = "Buscar";
             this.metroTextBox1.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroTextBox1.UseStyleColors = true;
-            // 
-            // metroRadioButton1
-            // 
-            this.metroRadioButton1.AutoSize = true;
-            this.metroRadioButton1.Location = new System.Drawing.Point(6, 13);
-            this.metroRadioButton1.Name = "metroRadioButton1";
-            this.metroRadioButton1.Size = new System.Drawing.Size(54, 15);
-            this.metroRadioButton1.TabIndex = 1;
-            this.metroRadioButton1.TabStop = true;
-            this.metroRadioButton1.Text = "Todos";
-            this.metroRadioButton1.UseVisualStyleBackColor = true;
-            // 
-            // metroRadioButton2
-            // 
-            this.metroRadioButton2.AutoSize = true;
-            this.metroRadioButton2.Location = new System.Drawing.Point(66, 13);
-            this.metroRadioButton2.Name = "metroRadioButton2";
-            this.metroRadioButton2.Size = new System.Drawing.Size(67, 15);
-            this.metroRadioButton2.TabIndex = 2;
-            this.metroRadioButton2.TabStop = true;
-            this.metroRadioButton2.Text = "Locação";
-            this.metroRadioButton2.UseVisualStyleBackColor = true;
-            // 
-            // metroRadioButton3
-            // 
-            this.metroRadioButton3.AutoSize = true;
-            this.metroRadioButton3.Location = new System.Drawing.Point(139, 13);
-            this.metroRadioButton3.Name = "metroRadioButton3";
-            this.metroRadioButton3.Size = new System.Drawing.Size(55, 15);
-            this.metroRadioButton3.TabIndex = 3;
-            this.metroRadioButton3.TabStop = true;
-            this.metroRadioButton3.Text = "Venda";
-            this.metroRadioButton3.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -420,11 +421,22 @@
             this.metroLabel1.Text = "Chaves";
             this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(491, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // Chaves
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 430);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tipoImovel);
@@ -492,5 +504,6 @@
         private MetroFramework.Controls.MetroTextBox metroTextBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private MetroFramework.Controls.MetroLabel metroLabel1;
+        private System.Windows.Forms.Button button1;
     }
 }

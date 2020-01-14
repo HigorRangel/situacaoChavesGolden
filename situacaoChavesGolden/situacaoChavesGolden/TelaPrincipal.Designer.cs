@@ -105,6 +105,7 @@
             this.btnProprietarios.TabIndex = 4;
             this.btnProprietarios.Text = "Proprietários";
             this.btnProprietarios.UseVisualStyleBackColor = true;
+            this.btnProprietarios.Click += new System.EventHandler(this.BtnProprietarios_Click);
             // 
             // btnEmprestimos
             // 

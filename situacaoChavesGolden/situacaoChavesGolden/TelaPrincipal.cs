@@ -59,5 +59,11 @@ namespace situacaoChavesGolden
             Chaves telaChaves = new Chaves();
             atualizarForm(telaChaves);
         }
+
+        private void BtnProprietarios_Click(object sender, EventArgs e)
+        {
+            cadastroProprietario proprietario = new cadastroProprietario();
+            atualizarForm(proprietario);
+        }
     }
 }

@@ -159,6 +159,12 @@
     <Compile Include="cadastroChave.Designer.cs">
       <DependentUpon>cadastroChave.cs</DependentUpon>
     </Compile>
+    <Compile Include="cadastroProprietario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cadastroProprietario.Designer.cs">
+      <DependentUpon>cadastroProprietario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Chaves.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +188,9 @@
     </Compile>
     <EmbeddedResource Include="cadastroChave.resx">
       <DependentUpon>cadastroChave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cadastroProprietario.resx">
+      <DependentUpon>cadastroProprietario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Chaves.resx">
       <DependentUpon>Chaves.cs</DependentUpon>
