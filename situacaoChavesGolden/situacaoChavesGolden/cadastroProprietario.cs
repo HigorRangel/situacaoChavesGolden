@@ -44,11 +44,12 @@ namespace situacaoChavesGolden
                 contErros++;
             }
             
-            if(emailBox.Text.Length == 0 || !emailBox.Text.Contains("@") || !emailBox.Text.Contains("."))
+            
+            if(contatoBox.Text.Length ==0)
             {
                 contErros++;
             }
-            if(contatoBox.Text.Length < 10)
+            if(emailBox.Text.Length == 0)
             {
                 contErros++;
             }
@@ -59,15 +60,31 @@ namespace situacaoChavesGolden
                 {
                     try
                     {
-                        database.insertInto("INSERT INTO proprietario (nome, contato, email)");
+
+                        database.insertInto(string.Format("INSERT INTO proprietario (nome, contato, email)" +
+                            " VALUES ('{0}', '{1}', '{2}')", nomeBox.Text.Trim(), contatoBox.Text.Trim(),
+                            emailBox.Text.Trim()));
+                      
 
                     }
-                    catch { }
+                    catch (Exception erro)
+                    {
+                        MessageBox.Show(erro.Message);
+                    }
                 }
 
             }
+            else
+            {
+                MessageBox.Show("Há campos preenchidos incorretamente! Por favor verifique.");
+            }
 
             
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

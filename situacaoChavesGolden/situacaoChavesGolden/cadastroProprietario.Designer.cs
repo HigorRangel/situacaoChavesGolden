@@ -123,6 +123,7 @@
             this.btnCancelar.TabIndex = 26;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // btnCadastrar
             // 
@@ -162,6 +163,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(355, 182);
             this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.btnCancelar);

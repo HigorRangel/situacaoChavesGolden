@@ -54,10 +54,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.emprestimo = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.metroRadioButton3 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
+            this.groupMenuSup = new System.Windows.Forms.GroupBox();
+            this.radioVenda = new MetroFramework.Controls.MetroRadioButton();
+            this.radioLocacao = new MetroFramework.Controls.MetroRadioButton();
+            this.radioTodos = new MetroFramework.Controls.MetroRadioButton();
             this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
@@ -65,12 +65,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupMenuSup.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridChaves
             // 
             this.gridChaves.AllowUserToAddRows = false;
+            this.gridChaves.AllowUserToDeleteRows = false;
+            this.gridChaves.AllowUserToResizeColumns = false;
+            this.gridChaves.AllowUserToResizeRows = false;
             this.gridChaves.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
             this.gridChaves.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridChaves.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -128,6 +131,7 @@
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
             this.editarToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.editarToolStripMenuItem.Text = "Editar";
+            this.editarToolStripMenuItem.Click += new System.EventHandler(this.EditarToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -341,51 +345,53 @@
             this.label.TabIndex = 9;
             this.label.Text = "Empréstimo:";
             // 
-            // groupBox1
+            // groupMenuSup
             // 
-            this.groupBox1.Controls.Add(this.metroRadioButton3);
-            this.groupBox1.Controls.Add(this.metroRadioButton2);
-            this.groupBox1.Controls.Add(this.metroRadioButton1);
-            this.groupBox1.Controls.Add(this.metroTextBox1);
-            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Location = new System.Drawing.Point(138, 20);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(494, 40);
-            this.groupBox1.TabIndex = 18;
-            this.groupBox1.TabStop = false;
+            this.groupMenuSup.Controls.Add(this.radioVenda);
+            this.groupMenuSup.Controls.Add(this.radioLocacao);
+            this.groupMenuSup.Controls.Add(this.radioTodos);
+            this.groupMenuSup.Controls.Add(this.metroTextBox1);
+            this.groupMenuSup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupMenuSup.Location = new System.Drawing.Point(138, 20);
+            this.groupMenuSup.Name = "groupMenuSup";
+            this.groupMenuSup.Size = new System.Drawing.Size(494, 40);
+            this.groupMenuSup.TabIndex = 18;
+            this.groupMenuSup.TabStop = false;
             // 
-            // metroRadioButton3
+            // radioVenda
             // 
-            this.metroRadioButton3.AutoSize = true;
-            this.metroRadioButton3.Location = new System.Drawing.Point(139, 13);
-            this.metroRadioButton3.Name = "metroRadioButton3";
-            this.metroRadioButton3.Size = new System.Drawing.Size(55, 15);
-            this.metroRadioButton3.TabIndex = 3;
-            this.metroRadioButton3.TabStop = true;
-            this.metroRadioButton3.Text = "Venda";
-            this.metroRadioButton3.UseVisualStyleBackColor = true;
+            this.radioVenda.AutoSize = true;
+            this.radioVenda.Location = new System.Drawing.Point(139, 13);
+            this.radioVenda.Name = "radioVenda";
+            this.radioVenda.Size = new System.Drawing.Size(55, 15);
+            this.radioVenda.TabIndex = 3;
+            this.radioVenda.Text = "Venda";
+            this.radioVenda.UseVisualStyleBackColor = true;
+            this.radioVenda.CheckedChanged += new System.EventHandler(this.RadioTodos_CheckedChanged);
             // 
-            // metroRadioButton2
+            // radioLocacao
             // 
-            this.metroRadioButton2.AutoSize = true;
-            this.metroRadioButton2.Location = new System.Drawing.Point(66, 13);
-            this.metroRadioButton2.Name = "metroRadioButton2";
-            this.metroRadioButton2.Size = new System.Drawing.Size(67, 15);
-            this.metroRadioButton2.TabIndex = 2;
-            this.metroRadioButton2.TabStop = true;
-            this.metroRadioButton2.Text = "Locação";
-            this.metroRadioButton2.UseVisualStyleBackColor = true;
+            this.radioLocacao.AutoSize = true;
+            this.radioLocacao.Location = new System.Drawing.Point(66, 13);
+            this.radioLocacao.Name = "radioLocacao";
+            this.radioLocacao.Size = new System.Drawing.Size(67, 15);
+            this.radioLocacao.TabIndex = 2;
+            this.radioLocacao.Text = "Locação";
+            this.radioLocacao.UseVisualStyleBackColor = true;
+            this.radioLocacao.CheckedChanged += new System.EventHandler(this.RadioTodos_CheckedChanged);
             // 
-            // metroRadioButton1
+            // radioTodos
             // 
-            this.metroRadioButton1.AutoSize = true;
-            this.metroRadioButton1.Location = new System.Drawing.Point(6, 13);
-            this.metroRadioButton1.Name = "metroRadioButton1";
-            this.metroRadioButton1.Size = new System.Drawing.Size(54, 15);
-            this.metroRadioButton1.TabIndex = 1;
-            this.metroRadioButton1.TabStop = true;
-            this.metroRadioButton1.Text = "Todos";
-            this.metroRadioButton1.UseVisualStyleBackColor = true;
+            this.radioTodos.AutoSize = true;
+            this.radioTodos.Checked = true;
+            this.radioTodos.Location = new System.Drawing.Point(6, 13);
+            this.radioTodos.Name = "radioTodos";
+            this.radioTodos.Size = new System.Drawing.Size(54, 15);
+            this.radioTodos.TabIndex = 1;
+            this.radioTodos.TabStop = true;
+            this.radioTodos.Text = "Todos";
+            this.radioTodos.UseVisualStyleBackColor = true;
+            this.radioTodos.CheckedChanged += new System.EventHandler(this.RadioTodos_CheckedChanged);
             // 
             // metroTextBox1
             // 
@@ -438,7 +444,7 @@
             this.ClientSize = new System.Drawing.Size(655, 430);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupMenuSup);
             this.Controls.Add(this.tipoImovel);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.sitImovel);
@@ -455,6 +461,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.DisplayHeader = false;
+            this.Movable = false;
             this.Name = "Chaves";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.None;
@@ -465,8 +472,8 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupMenuSup.ResumeLayout(false);
+            this.groupMenuSup.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -497,10 +504,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label emprestimo;
         private System.Windows.Forms.Label label;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton3;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
+        private System.Windows.Forms.GroupBox groupMenuSup;
+        private MetroFramework.Controls.MetroRadioButton radioVenda;
+        private MetroFramework.Controls.MetroRadioButton radioLocacao;
+        private MetroFramework.Controls.MetroRadioButton radioTodos;
         private MetroFramework.Controls.MetroTextBox metroTextBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private MetroFramework.Controls.MetroLabel metroLabel1;

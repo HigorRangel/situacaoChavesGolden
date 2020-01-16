@@ -13,6 +13,67 @@ namespace situacaoChavesGolden
     public partial class Chaves : MetroFramework.Forms.MetroForm
     {
         PostgreSQL database = new PostgreSQL();
+
+
+        public void atualizarGridChaves(string filtro)
+        {
+            DataTable chaves = new DataTable();
+
+            try
+            {
+                if (filtro == "Todos")
+                {
+                    chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel  FROM chave");
+
+                }
+                else if (filtro == "Locação")
+                {
+                    chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel " +
+                        " FROM chave" +
+                        " WHERE finalidade = 'LOCAÇÃO'");
+
+                }
+                else
+                {
+                    chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel " +
+                        " FROM chave" +
+                        " WHERE finalidade = 'VENDA'");
+                }
+
+
+
+
+                gridChaves.DataSource = chaves;
+
+                gridChaves.Columns[0].HeaderText = "Código";
+                gridChaves.Columns[1].HeaderText = "Cód Imob";
+                gridChaves.Columns[2].HeaderText = "Endereço";
+                gridChaves.Columns[3].HeaderText = "Bairro";
+                gridChaves.Columns[4].HeaderText = "Situação";
+
+                gridChaves.Columns[0].Width = 60;
+                gridChaves.Columns[1].Width = 60;
+                gridChaves.Columns[2].Width = 275;
+                gridChaves.Columns[3].Width = 112;
+                gridChaves.Columns[4].Width = 100;
+
+
+
+
+                endereco.MaximumSize = new Size(520, 0);
+                endereco.AutoSize = true;
+                gridChaves.ClearSelection();
+                gridChaves.Rows[0].Selected = false;
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message);
+            }
+
+
+        }
+
+
         public Chaves()
         {
             InitializeComponent();
@@ -20,66 +81,42 @@ namespace situacaoChavesGolden
 
         private void Chaves_Load(object sender, EventArgs e)
         {
-            DataTable chaves = new DataTable();
 
-            chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel  FROM chave");
-
-
-            gridChaves.DataSource = chaves;
-
-            gridChaves.Columns[0].HeaderText = "Código";
-            gridChaves.Columns[1].HeaderText = "Cód Imob";
-            gridChaves.Columns[2].HeaderText = "Endereço";
-            gridChaves.Columns[3].HeaderText = "Bairro";
-            gridChaves.Columns[4].HeaderText = "Situação";
-
-            gridChaves.Columns[0].Width = 60;
-            gridChaves.Columns[1].Width = 60;
-            gridChaves.Columns[2].Width = 275;
-            gridChaves.Columns[3].Width = 112;
-            gridChaves.Columns[4].Width = 100;
-
-
-
-
-            endereco.MaximumSize = new Size(520, 0);
-            endereco.AutoSize = true;
-            gridChaves.ClearSelection();
-            gridChaves.Rows[0].Selected = false;
-
+            atualizarGridChaves("Todos");
 
         }
 
         private void gridChaves_MouseClick(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void gridChaves_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //if (e.Button == MouseButtons.Right)
-            //{
+            if (e.Button == MouseButtons.Right)
+            {
 
-            //    if(gridChaves.CurrentCell != null)
-            //    {
-            //        DataGridView.HitTestInfo info;
-            //        info = gridChaves.HitTest(e.X, e.Y);
-            //        if (info.Type == DataGridViewHitTestType.Cell)
-            //        {
-            //            if (info.Type == DataGridViewHitTestType.Cell && info.ColumnIndex == 1)
-            //                gridChaves.CurrentCell.Selected = false;
-            //            gridChaves[info.ColumnIndex, info.RowIndex].Selected = true;
-            //            gridChaves.Refresh();
-            //            contextMenuStrip1.Show(gridChaves, new Point(e.X, e.Y));
-            //        }
-            //    }
+                if (gridChaves.CurrentCell != null)
+                {
+                    DataGridView.HitTestInfo info;
+                    info = gridChaves.HitTest(e.X, e.Y);
+                    if (info.Type == DataGridViewHitTestType.Cell)
+                    {
+                        if (info.Type == DataGridViewHitTestType.Cell && info.ColumnIndex == 1)
+                            gridChaves.CurrentCell.Selected = false;
+                        gridChaves[info.ColumnIndex, info.RowIndex].Selected = true;
+                        gridChaves.Refresh();
+                        contextMenuStrip1.Show(gridChaves, new Point(e.X, e.Y));
+                    }
+                }
 
 
 
-                //DataRowView rowView = gridChaves.SelectedRows[0].DataBoundItem as DataRowView;
+                DataRowView rowView = gridChaves.SelectedRows[0].DataBoundItem as DataRowView;
 
-                //DataRow dtRow = rowView.Row;
+                DataRow dtRow = rowView.Row;
             }
+        }
 
         private void ContextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
@@ -95,7 +132,7 @@ namespace situacaoChavesGolden
 
         private void GridChaves_SelectionChanged(object sender, EventArgs e)
         {
-            if(gridChaves.CurrentRow != null)
+            if (gridChaves.CurrentRow != null)
             {
 
                 string codigoChave = gridChaves.CurrentRow.Cells[0].Value.ToString();
@@ -103,21 +140,21 @@ namespace situacaoChavesGolden
                 DataTable dadosChave = new DataTable();
 
                 dadosChave = database.select(string.Format("SELECT * FROM chave WHERE cod_chave = '{0}'", codigoChave));
-                
 
-                foreach(DataRow row in dadosChave.Rows)
+
+                foreach (DataRow row in dadosChave.Rows)
                 {
                     codigoImob.Text = row[10].ToString();
                     finalidade.Text = row[12].ToString();
                     sitImovel.Text = row[13].ToString();
                     endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} [{5}]", row[1].ToString(),
                         row[2].ToString(), row[4].ToString(), row[5].ToString(), row[6].ToString(),
-                        row[4].ToString());
+                        row[3].ToString());
                     proprietario.Text = row[9].ToString();
                     tipoImovel.Text = row[11].ToString();
                     sitChave.Text = row[7].ToString();
-                    localizacao.Text = row[7].ToString();
-                                                          
+                    localizacao.Text = row[8].ToString();
+
                 }
 
                 string codEmprestimo = "";
@@ -137,9 +174,9 @@ namespace situacaoChavesGolden
                     emprestimo.Text = "N/A";
                     emprestimo.Cursor = Cursors.Default;
                 }
-                
 
-                
+
+
             }
         }
 
@@ -148,6 +185,30 @@ namespace situacaoChavesGolden
             cadastroChave cadastro = new cadastroChave();
 
             cadastro.ShowDialog();
+        }
+
+        private void RadioTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            string opcao = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
+
+            atualizarGridChaves(opcao);
+
+
+        }
+
+        private void EditarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (gridChaves.CurrentRow != null)
+            {
+
+                string codigoChave = gridChaves.CurrentRow.Cells[0].Value.ToString();
+
+
+                cadastroChave editarChave = new cadastroChave(codigoChave);
+
+                editarChave.ShowDialog();
+
+            }
         }
     }
 }
