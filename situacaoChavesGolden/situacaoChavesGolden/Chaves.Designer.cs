@@ -62,6 +62,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnCadastrarChave = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -105,7 +106,7 @@
             this.gridChaves.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridChaves.RowTemplate.ReadOnly = true;
             this.gridChaves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridChaves.Size = new System.Drawing.Size(609, 188);
+            this.gridChaves.Size = new System.Drawing.Size(609, 177);
             this.gridChaves.TabIndex = 0;
             this.gridChaves.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridChaves_CellMouseClick);
             this.gridChaves.SelectionChanged += new System.EventHandler(this.GridChaves_SelectionChanged);
@@ -437,11 +438,24 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
+            // btnCadastrarChave
+            // 
+            this.btnCadastrarChave.AutoSize = true;
+            this.btnCadastrarChave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCadastrarChave.Location = new System.Drawing.Point(511, 250);
+            this.btnCadastrarChave.Name = "btnCadastrarChave";
+            this.btnCadastrarChave.Size = new System.Drawing.Size(121, 13);
+            this.btnCadastrarChave.TabIndex = 22;
+            this.btnCadastrarChave.Text = "Cadastrar nova chave >";
+            this.btnCadastrarChave.Click += new System.EventHandler(this.BtnCadastrarChave_Click);
+            // 
             // Chaves
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 430);
+            this.ControlBox = false;
+            this.Controls.Add(this.btnCadastrarChave);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.groupMenuSup);
@@ -465,6 +479,7 @@
             this.Name = "Chaves";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.None;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Style = MetroFramework.MetroColorStyle.White;
             this.Text = "Chaves";
             this.Load += new System.EventHandler(this.Chaves_Load);
@@ -505,12 +520,13 @@
         private System.Windows.Forms.Label emprestimo;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.GroupBox groupMenuSup;
-        private MetroFramework.Controls.MetroRadioButton radioVenda;
-        private MetroFramework.Controls.MetroRadioButton radioLocacao;
-        private MetroFramework.Controls.MetroRadioButton radioTodos;
         private MetroFramework.Controls.MetroTextBox metroTextBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label btnCadastrarChave;
+        public MetroFramework.Controls.MetroRadioButton radioTodos;
+        public MetroFramework.Controls.MetroRadioButton radioVenda;
+        public MetroFramework.Controls.MetroRadioButton radioLocacao;
     }
 }

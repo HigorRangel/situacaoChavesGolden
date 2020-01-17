@@ -83,6 +83,9 @@ namespace situacaoChavesGolden
                     }
 
 
+                    MessageBox.Show(database.selectScalar(string.Format("" +
+                        "SELECT nome FROM proprietario WHERE cod_proprietario = '{0}'", row[9].ToString())));
+
                     comboProprietario.SelectedValue = database.selectScalar(string.Format("" +
                         "SELECT nome FROM proprietario WHERE cod_proprietario = '{0}'", row[9].ToString()));
 

@@ -182,9 +182,7 @@ namespace situacaoChavesGolden
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            cadastroChave cadastro = new cadastroChave();
-
-            cadastro.ShowDialog();
+           
         }
 
         private void RadioTodos_CheckedChanged(object sender, EventArgs e)
@@ -209,6 +207,13 @@ namespace situacaoChavesGolden
                 editarChave.ShowDialog();
 
             }
+        }
+
+        private void BtnCadastrarChave_Click(object sender, EventArgs e)
+        {
+            cadastroChave cadastro = new cadastroChave();
+
+            cadastro.ShowDialog();
         }
     }
 }

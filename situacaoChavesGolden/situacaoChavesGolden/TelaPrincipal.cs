@@ -16,6 +16,7 @@ namespace situacaoChavesGolden
         //Método para atualizar o form
         private void atualizarForm(MetroForm form)
         {
+            
             //Desativa o TopLevel
             form.TopLevel = false;
 
@@ -34,6 +35,9 @@ namespace situacaoChavesGolden
 
             //Mostra o form no painel
             form.Show();
+
+
+            
         }
 
 
@@ -58,10 +62,19 @@ namespace situacaoChavesGolden
         {
             Chaves telaChaves = new Chaves();
             atualizarForm(telaChaves);
+            telaChaves.radioTodos.Checked = true;
+            telaChaves.radioLocacao.Checked = false;
+            telaChaves.radioVenda.Checked = false;
         }
 
         private void BtnProprietarios_Click(object sender, EventArgs e)
         {
+            Message message = new Message("Nao foi possível realizar a operação no momento! Tente outra vez mais tarde", "Erro na Execução", "info", "");
+
+            message.ShowDialog();
+
+           
+
             cadastroProprietario proprietario = new cadastroProprietario();
             atualizarForm(proprietario);
         }
