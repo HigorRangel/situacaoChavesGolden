@@ -23,21 +23,33 @@ namespace situacaoChavesGolden
             {
                 if (filtro == "Todos")
                 {
-                    chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel  FROM chave");
-
+                    chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel  FROM chave ORDER BY situacao_imovel, rua, cod_imob");
+                    radioTodos.Checked = true;
+                    radioLocacao.Checked = false;
+                    radioVenda.Checked = false;
                 }
                 else if (filtro == "Locação")
                 {
                     chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel " +
                         " FROM chave" +
-                        " WHERE finalidade = 'LOCAÇÃO'");
+                        " WHERE finalidade = 'LOCAÇÃO'" +
+                        " ORDER BY situacao_imovel, rua, cod_imob");
+
+                    radioTodos.Checked = false;
+                    radioLocacao.Checked = true;
+                    radioVenda.Checked = false;
 
                 }
                 else
                 {
                     chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel " +
                         " FROM chave" +
-                        " WHERE finalidade = 'VENDA'");
+                        " WHERE finalidade = 'VENDA'" +
+                        " ORDER BY situacao_imovel, rua, cod_imob");
+
+                    radioTodos.Checked = false;
+                    radioLocacao.Checked = false;
+                    radioVenda.Checked = true;
                 }
 
 
@@ -88,11 +100,6 @@ namespace situacaoChavesGolden
 
         private void gridChaves_MouseClick(object sender, MouseEventArgs e)
         {
-
-        }
-
-        private void gridChaves_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
             if (e.Button == MouseButtons.Right)
             {
 
@@ -116,6 +123,11 @@ namespace situacaoChavesGolden
 
                 DataRow dtRow = rowView.Row;
             }
+        }
+
+        private void gridChaves_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            
         }
 
         private void ContextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -214,6 +226,11 @@ namespace situacaoChavesGolden
             cadastroChave cadastro = new cadastroChave();
 
             cadastro.ShowDialog();
+
+            if(cadastro.DialogResult == DialogResult.Yes)
+            {
+                atualizarGridChaves("Todos");
+            }
         }
     }
 }

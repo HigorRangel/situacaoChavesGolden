@@ -12,6 +12,8 @@ namespace situacaoChavesGolden
 {
     public partial class cadastroChave : MetroFramework.Forms.MetroForm
     {
+
+        
         PostgreSQL database = new PostgreSQL();
         bool seletorTela = false;
         List<string> codigosProprietarios = new List<string>();
@@ -239,30 +241,46 @@ namespace situacaoChavesGolden
                     localizacao = comboLocalizacao.SelectedItem.ToString();
                 }
 
+                try
+                {
+                    if (seletorTela == false)
+                    {
+                        database.insertInto(string.Format("" +
+                        "INSERT INTO chave (rua, numero, complemento, bairro, cidade, estado, situacao," +
+                        " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel)" +
+                        " VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}'," +
+                        " '{11}','{12}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
+                         localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel));
+
+                        this.Close();
+
+                        this.DialogResult = DialogResult.Yes;
+
+                    }
+                    else
+                    {
+                        database.update(string.Format("" +
+                            "UPDATE chave " +
+                            " SET rua = '{0}', numero = '{1}', complemento = '{2}', bairro = '{3}', " +
+                            " cidade = '{4}', estado = '{5}', situacao = '{6}', localizacao = '{7}', proprietario = '{8}', " +
+                            " cod_imob = '{9}', tipo_imovel = '{10}', finalidade = '{11}', situacao_imovel = '{12}' " +
+                            " WHERE cod_chave = {13}", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
+                            localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, codChave));
+
+                        this.Close();
+
+                        this.DialogResult = DialogResult.OK;
+                    }
+                }
+                catch (Exception erro)
+                {
+                    
+                }
+
                 
 
-                if (seletorTela == false)
-                {
-                    database.insertInto(string.Format("" +
-                    "INSERT INTO chave (rua, numero, complemento, bairro, cidade, estado, situacao," +
-                    " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel)" +
-                    " VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}'," +
-                    " '{11}','{12}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave ,
-                     localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel));
-                }
-                else
-                {
-                    database.update(string.Format("" +
-                        "UPDATE chave " +
-                        " SET rua = '{0}', numero = '{1}', complemento = '{2}', bairro = '{3}', " +
-                        " cidade = '{4}', estado = '{5}', situacao = '{6}', localizacao = '{7}', proprietario = '{8}', " +
-                        " cod_imob = '{9}', tipo_imovel = '{10}', finalidade = '{11}', situacao_imovel = '{12}' " +
-                        " WHERE cod_chave = {13}", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave, 
-                        localizacao,codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, codChave));
-                }
 
-
-                this.Close();
+                
             }
             else
             {

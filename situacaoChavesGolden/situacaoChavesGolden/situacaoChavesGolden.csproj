@@ -153,6 +153,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CadastrarEmprestimo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CadastrarEmprestimo.Designer.cs">
+      <DependentUpon>CadastrarEmprestimo.cs</DependentUpon>
+    </Compile>
     <Compile Include="cadastroChave.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,12 @@
     </Compile>
     <Compile Include="Chaves.Designer.cs">
       <DependentUpon>Chaves.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Emprestimo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Emprestimo.Designer.cs">
+      <DependentUpon>Emprestimo.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -198,6 +210,9 @@
     <Compile Include="TelaPrincipal.Designer.cs">
       <DependentUpon>TelaPrincipal.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CadastrarEmprestimo.resx">
+      <DependentUpon>CadastrarEmprestimo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="cadastroChave.resx">
       <DependentUpon>cadastroChave.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Chaves.resx">
       <DependentUpon>Chaves.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Emprestimo.resx">
+      <DependentUpon>Emprestimo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

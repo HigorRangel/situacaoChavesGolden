@@ -46,6 +46,10 @@ namespace situacaoChavesGolden
             InitializeComponent();
         }
 
+        public TelaPrincipal()
+        {
+        }
+
         private void TelaPrincipal_Load(object sender, EventArgs e)
         {
             
@@ -69,13 +73,7 @@ namespace situacaoChavesGolden
 
         private void BtnProprietarios_Click(object sender, EventArgs e)
         {
-            Message message = new Message("Nao foi possível realizar a operação no momento! Tente outra vez mais tarde", "Erro na Execução", "info", "");
-
-            message.ShowDialog();
-
-           
-
-            cadastroProprietario proprietario = new cadastroProprietario();
+            Proprietarios proprietario = new Proprietarios();
             atualizarForm(proprietario);
         }
     }

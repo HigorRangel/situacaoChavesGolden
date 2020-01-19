@@ -187,10 +187,10 @@
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private System.Windows.Forms.Button btnInicio;
         private System.Windows.Forms.Panel painelPrincipal;
-        private System.Windows.Forms.Button btnChaves;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnReservas;
         private System.Windows.Forms.Button btnProprietarios;
         private System.Windows.Forms.Button btnEmprestimos;
+        public System.Windows.Forms.Button btnChaves;
     }
 }
