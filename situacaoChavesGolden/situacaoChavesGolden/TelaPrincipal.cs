@@ -76,5 +76,17 @@ namespace situacaoChavesGolden
             Proprietarios proprietario = new Proprietarios();
             atualizarForm(proprietario);
         }
+
+        private void BtnClientes_Click(object sender, EventArgs e)
+        {
+            CadastroCliente cadastro = new CadastroCliente();
+            cadastro.ShowDialog();
+        }
+
+        private void BtnEmprestimos_Click(object sender, EventArgs e)
+        {
+            CadastrarEmprestimo cadastrar = new CadastrarEmprestimo();
+            cadastrar.ShowDialog();
+        }
     }
 }

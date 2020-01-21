@@ -36,12 +36,14 @@
             this.btnChaves = new System.Windows.Forms.Button();
             this.btnInicio = new System.Windows.Forms.Button();
             this.painelPrincipal = new System.Windows.Forms.Panel();
+            this.btnClientes = new System.Windows.Forms.Button();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroPanel1
             // 
             this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.metroPanel1.Controls.Add(this.btnClientes);
             this.metroPanel1.Controls.Add(this.button1);
             this.metroPanel1.Controls.Add(this.btnReservas);
             this.metroPanel1.Controls.Add(this.btnProprietarios);
@@ -121,6 +123,7 @@
             this.btnEmprestimos.TabIndex = 3;
             this.btnEmprestimos.Text = "Empréstimos";
             this.btnEmprestimos.UseVisualStyleBackColor = true;
+            this.btnEmprestimos.Click += new System.EventHandler(this.BtnEmprestimos_Click);
             // 
             // btnChaves
             // 
@@ -162,6 +165,22 @@
             this.painelPrincipal.Size = new System.Drawing.Size(655, 427);
             this.painelPrincipal.TabIndex = 1;
             // 
+            // btnClientes
+            // 
+            this.btnClientes.FlatAppearance.BorderSize = 0;
+            this.btnClientes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(16)))), ((int)(((byte)(20)))));
+            this.btnClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(67)))), ((int)(((byte)(87)))));
+            this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClientes.ForeColor = System.Drawing.Color.White;
+            this.btnClientes.Location = new System.Drawing.Point(0, 276);
+            this.btnClientes.Name = "btnClientes";
+            this.btnClientes.Size = new System.Drawing.Size(146, 35);
+            this.btnClientes.TabIndex = 7;
+            this.btnClientes.Text = "Clientes";
+            this.btnClientes.UseVisualStyleBackColor = true;
+            this.btnClientes.Click += new System.EventHandler(this.BtnClientes_Click);
+            // 
             // TelaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,5 +211,6 @@
         private System.Windows.Forms.Button btnProprietarios;
         private System.Windows.Forms.Button btnEmprestimos;
         public System.Windows.Forms.Button btnChaves;
+        private System.Windows.Forms.Button btnClientes;
     }
 }
