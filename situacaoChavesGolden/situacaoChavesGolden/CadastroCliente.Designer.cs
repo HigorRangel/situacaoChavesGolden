@@ -242,6 +242,7 @@
             this.boxCpf.CustomForeColor = true;
             this.boxCpf.ForeColor = System.Drawing.Color.Gray;
             this.boxCpf.Location = new System.Drawing.Point(6, 24);
+            this.boxCpf.MaxLength = 11;
             this.boxCpf.Name = "boxCpf";
             this.boxCpf.Size = new System.Drawing.Size(86, 23);
             this.boxCpf.TabIndex = 1;
@@ -271,6 +272,7 @@
             this.btnCancelar.TabIndex = 26;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // btnConfirmar
             // 

@@ -85,7 +85,7 @@ namespace situacaoChavesGolden
 
         private void BtnEmprestimos_Click(object sender, EventArgs e)
         {
-            CadastrarEmprestimo cadastrar = new CadastrarEmprestimo();
+            CadastrarEmprestimo cadastrar = new CadastrarEmprestimo("1");
             cadastrar.ShowDialog();
         }
     }

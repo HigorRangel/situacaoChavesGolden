@@ -54,11 +54,35 @@
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.boxCpf = new MetroFramework.Controls.MetroTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelCodChave = new System.Windows.Forms.Label();
+            this.endereco = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.email = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.labelTel1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.labelTel2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.labelCpf = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnConfirmar = new System.Windows.Forms.Button();
+            this.btnEditarCliente = new System.Windows.Forms.Label();
+            this.nome = new System.Windows.Forms.Label();
+            this.textoCpf = new System.Windows.Forms.Label();
+            this.textoTel1 = new System.Windows.Forms.Label();
+            this.textoTel2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupDadosCliente.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -255,14 +279,18 @@
             // 
             // comboClientes
             // 
+            this.comboClientes.DropDownHeight = 50;
             this.comboClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboClientes.FontSize = MetroFramework.MetroLinkSize.Small;
             this.comboClientes.FormattingEnabled = true;
+            this.comboClientes.IntegralHeight = false;
             this.comboClientes.ItemHeight = 19;
             this.comboClientes.Location = new System.Drawing.Point(131, 26);
             this.comboClientes.Name = "comboClientes";
             this.comboClientes.Size = new System.Drawing.Size(225, 25);
+            this.comboClientes.Style = MetroFramework.MetroColorStyle.White;
             this.comboClientes.TabIndex = 10;
+            this.comboClientes.SelectedIndexChanged += new System.EventHandler(this.ComboClientes_SelectedIndexChanged);
             // 
             // addCliente
             // 
@@ -355,12 +383,268 @@
             this.boxCpf.UseStyleColors = true;
             this.boxCpf.Leave += new System.EventHandler(this.BoxCpf_Leave);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 14);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Cod. Chave:";
+            // 
+            // labelCodChave
+            // 
+            this.labelCodChave.AutoSize = true;
+            this.labelCodChave.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCodChave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelCodChave.Location = new System.Drawing.Point(75, 11);
+            this.labelCodChave.Name = "labelCodChave";
+            this.labelCodChave.Size = new System.Drawing.Size(0, 14);
+            this.labelCodChave.TabIndex = 12;
+            // 
+            // endereco
+            // 
+            this.endereco.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endereco.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.endereco.Location = new System.Drawing.Point(25, 48);
+            this.endereco.MinimumSize = new System.Drawing.Size(160, 0);
+            this.endereco.Name = "endereco";
+            this.endereco.Size = new System.Drawing.Size(160, 14);
+            this.endereco.TabIndex = 14;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 31);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 14);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Endereço:";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.endereco);
+            this.groupBox3.Controls.Add(this.labelCodChave);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Location = new System.Drawing.Point(9, 332);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 117);
+            this.groupBox3.TabIndex = 15;
+            this.groupBox3.TabStop = false;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.textoTel2);
+            this.groupBox4.Controls.Add(this.textoTel1);
+            this.groupBox4.Controls.Add(this.textoCpf);
+            this.groupBox4.Controls.Add(this.nome);
+            this.groupBox4.Controls.Add(this.btnEditarCliente);
+            this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.email);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.labelTel1);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Controls.Add(this.labelTel2);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Controls.Add(this.labelCpf);
+            this.groupBox4.Location = new System.Drawing.Point(215, 332);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(204, 117);
+            this.groupBox4.TabIndex = 16;
+            this.groupBox4.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(1, 48);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(39, 14);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "Email:";
+            // 
+            // email
+            // 
+            this.email.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.email.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.email.Location = new System.Drawing.Point(38, 48);
+            this.email.MinimumSize = new System.Drawing.Size(150, 25);
+            this.email.Name = "email";
+            this.email.Size = new System.Drawing.Size(150, 25);
+            this.email.TabIndex = 24;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(1, 31);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(32, 14);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Tel2:";
+            // 
+            // labelTel1
+            // 
+            this.labelTel1.AutoSize = true;
+            this.labelTel1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelTel1.Location = new System.Drawing.Point(29, 31);
+            this.labelTel1.Name = "labelTel1";
+            this.labelTel1.Size = new System.Drawing.Size(0, 14);
+            this.labelTel1.TabIndex = 22;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(1, 75);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 14);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Nome:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(103, 30);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(32, 14);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Tel1:";
+            // 
+            // labelTel2
+            // 
+            this.labelTel2.AutoSize = true;
+            this.labelTel2.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelTel2.Location = new System.Drawing.Point(131, 30);
+            this.labelTel2.Name = "labelTel2";
+            this.labelTel2.Size = new System.Drawing.Size(0, 14);
+            this.labelTel2.TabIndex = 20;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(1, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 14);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "CPF:";
+            // 
+            // labelCpf
+            // 
+            this.labelCpf.AutoSize = true;
+            this.labelCpf.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCpf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelCpf.Location = new System.Drawing.Point(29, 11);
+            this.labelCpf.Name = "labelCpf";
+            this.labelCpf.Size = new System.Drawing.Size(0, 14);
+            this.labelCpf.TabIndex = 16;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.White;
+            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(107)))));
+            this.btnCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnCancelar.Location = new System.Drawing.Point(235, 454);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 28;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
+            // 
+            // btnConfirmar
+            // 
+            this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnConfirmar.FlatAppearance.BorderSize = 0;
+            this.btnConfirmar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(107)))));
+            this.btnConfirmar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
+            this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmar.ForeColor = System.Drawing.Color.White;
+            this.btnConfirmar.Location = new System.Drawing.Point(335, 455);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.Size = new System.Drawing.Size(75, 23);
+            this.btnConfirmar.TabIndex = 27;
+            this.btnConfirmar.Text = "Confirmar";
+            this.btnConfirmar.UseVisualStyleBackColor = false;
+            // 
+            // btnEditarCliente
+            // 
+            this.btnEditarCliente.AutoSize = true;
+            this.btnEditarCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditarCliente.Enabled = false;
+            this.btnEditarCliente.Font = new System.Drawing.Font("Arial", 7.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnEditarCliente.Location = new System.Drawing.Point(165, 101);
+            this.btnEditarCliente.Name = "btnEditarCliente";
+            this.btnEditarCliente.Size = new System.Drawing.Size(34, 12);
+            this.btnEditarCliente.TabIndex = 29;
+            this.btnEditarCliente.Text = "Editar";
+            this.btnEditarCliente.Click += new System.EventHandler(this.BtnEditarCliente_Click);
+            // 
+            // nome
+            // 
+            this.nome.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.nome.Location = new System.Drawing.Point(41, 75);
+            this.nome.MinimumSize = new System.Drawing.Size(150, 25);
+            this.nome.Name = "nome";
+            this.nome.Size = new System.Drawing.Size(150, 25);
+            this.nome.TabIndex = 30;
+            // 
+            // textoCpf
+            // 
+            this.textoCpf.AutoSize = true;
+            this.textoCpf.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textoCpf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textoCpf.Location = new System.Drawing.Point(28, 11);
+            this.textoCpf.Name = "textoCpf";
+            this.textoCpf.Size = new System.Drawing.Size(23, 14);
+            this.textoCpf.TabIndex = 31;
+            this.textoCpf.Text = "cpf";
+            // 
+            // textoTel1
+            // 
+            this.textoTel1.AutoSize = true;
+            this.textoTel1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textoTel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textoTel1.Location = new System.Drawing.Point(30, 31);
+            this.textoTel1.Name = "textoTel1";
+            this.textoTel1.Size = new System.Drawing.Size(43, 14);
+            this.textoTel1.TabIndex = 32;
+            this.textoTel1.Text = "contato";
+            // 
+            // textoTel2
+            // 
+            this.textoTel2.AutoSize = true;
+            this.textoTel2.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textoTel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textoTel2.Location = new System.Drawing.Point(131, 30);
+            this.textoTel2.Name = "textoTel2";
+            this.textoTel2.Size = new System.Drawing.Size(43, 14);
+            this.textoTel2.TabIndex = 33;
+            this.textoTel2.Text = "contato";
+            // 
             // CadastrarEmprestimo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(429, 449);
+            this.ClientSize = new System.Drawing.Size(429, 486);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnConfirmar);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupDadosCliente);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -379,6 +663,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupDadosCliente.ResumeLayout(false);
             this.groupDadosCliente.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -411,5 +699,27 @@
         private System.Windows.Forms.Label addCliente;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private MetroFramework.Controls.MetroLabel metroLabel11;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelCodChave;
+        private System.Windows.Forms.Label endereco;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label email;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelTel1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label labelTel2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelCpf;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnConfirmar;
+        private System.Windows.Forms.Label btnEditarCliente;
+        private System.Windows.Forms.Label nome;
+        private System.Windows.Forms.Label textoCpf;
+        private System.Windows.Forms.Label textoTel2;
+        private System.Windows.Forms.Label textoTel1;
     }
 }
