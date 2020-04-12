@@ -40,10 +40,11 @@ namespace situacaoChavesGolden
             
         }
 
-
-        public TelaPrincipal(string codigo)
+        string usuario = "";
+        public TelaPrincipal(string codigoUsuario)
         {
             InitializeComponent();
+            usuario = codigoUsuario;
         }
 
         public TelaPrincipal()
@@ -85,7 +86,7 @@ namespace situacaoChavesGolden
 
         private void BtnEmprestimos_Click(object sender, EventArgs e)
         {
-            CadastrarEmprestimo cadastrar = new CadastrarEmprestimo("1");
+            CadastrarEmprestimo cadastrar = new CadastrarEmprestimo(usuario, "1");
             cadastrar.ShowDialog();
         }
     }

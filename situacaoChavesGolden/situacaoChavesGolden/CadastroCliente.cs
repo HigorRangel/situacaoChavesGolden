@@ -50,7 +50,7 @@ namespace situacaoChavesGolden
                     comboDoc.SelectedItem = row[8].ToString();
                     boxNumDoc.Text = row[4].ToString();
                     boxNome.Text = row[1].ToString();
-                    boxEmail.Text = row[2].ToString();
+                    boxEmail.Text = row[3].ToString();
                     boxContato.Text = row[5].ToString();
                     boxContato2.Text = row[6].ToString();
                     boxEndereco.Text = row[7].ToString();   

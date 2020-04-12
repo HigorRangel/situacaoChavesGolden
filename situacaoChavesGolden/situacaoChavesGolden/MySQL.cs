@@ -3,29 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Npgsql;
+using MySql.Data.MySqlClient;
 using System.Data;
 using System.Windows.Forms;
 
 namespace situacaoChavesGolden
 {
-    class PostgreSQL
+    class MySQL
     {
         public string nomeDB = "chaves_golden";
 
-        private NpgsqlConnection conectar()
+        private MySqlConnection conectar()
         {
-
-
             string connectionString = "";
-            connectionString = "Server=localhost;Port=5432;UserID=postgres;Password=123456;Database=" + nomeDB; //String para conexão no PostgreSQL
-            NpgsqlConnection conn = new NpgsqlConnection(connectionString); //Cria objeto para conexão
+            connectionString = "Server=localhost;Port=3306;User Id=root;Database=" + nomeDB + ";Password=;SslMode=none"; //String para conexão no PostgreSQL
+            MySqlConnection conn = new MySqlConnection(connectionString); //Cria objeto para conexão
 
 
             conn.Open(); // Inicia conexão
 
             return conn;
-
         }
 
 
@@ -34,10 +31,8 @@ namespace situacaoChavesGolden
         {
 
             var conn = conectar();
-            NpgsqlCommand cmd = new NpgsqlCommand(); //Cria objeto para utilizar os comandos no PostgreSQL
+            MySqlCommand cmd = new MySqlCommand(); //Cria objeto para utilizar os comandos no PostgreSQL
             cmd.Connection = conn;
-
-
 
             cmd.CommandText = comando;
 
@@ -58,7 +53,7 @@ namespace situacaoChavesGolden
             dtTabela.Clear(); //Apaga todos os dados da tabela
 
 
-            NpgsqlDataAdapter dados = new NpgsqlDataAdapter(comando, conn); //Objeto de dados
+            MySqlDataAdapter dados = new MySqlDataAdapter(comando, conn); //Objeto de dados
 
 
             dados.Fill(dtTabela); //Completa a tabelas com os dados
@@ -79,7 +74,7 @@ namespace situacaoChavesGolden
             var conn = conectar();
 
 
-            NpgsqlCommand dados = new NpgsqlCommand(comando, conn); //Objeto de dados
+            MySqlCommand dados = new MySqlCommand(comando, conn); //Objeto de dados
 
 
             resultado = dados.ExecuteScalar().ToString();
@@ -95,7 +90,7 @@ namespace situacaoChavesGolden
         public bool update(string comando)
         {
             var conn = conectar(); //Chama método de conexão ao Banco de dados
-            NpgsqlCommand cmd = new NpgsqlCommand(); //Cria objeto para utilizar os comandos no PostgreSQL
+            MySqlCommand cmd = new MySqlCommand(); //Cria objeto para utilizar os comandos no PostgreSQL
             cmd.Connection = conn;
 
             try
@@ -119,7 +114,7 @@ namespace situacaoChavesGolden
         public bool delete(string comando)
         {
             var conn = conectar(); //Chama método de conexão ao Banco de dados
-            NpgsqlCommand cmd = new NpgsqlCommand(); //Cria objeto para utilizar os comandos no PostgreSQL
+            MySqlCommand cmd = new MySqlCommand(); //Cria objeto para utilizar os comandos no PostgreSQL
             cmd.Connection = conn;
 
             try

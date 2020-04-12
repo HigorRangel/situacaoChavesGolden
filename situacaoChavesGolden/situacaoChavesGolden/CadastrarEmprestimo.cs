@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace situacaoChavesGolden
 {
@@ -15,17 +16,20 @@ namespace situacaoChavesGolden
     {
         bool seletorTela = false;
         string codigoChave = "";
+        string user = "";
 
-        public CadastrarEmprestimo(int codEmprestimo)
+        public CadastrarEmprestimo(string usuario, int codEmprestimo)
         {
             InitializeComponent();
             seletorTela = true;
+            user = usuario;
         }
 
-        public CadastrarEmprestimo(string codChave)
+        public CadastrarEmprestimo(string usuario, string codChave)
         {
             InitializeComponent();
             codigoChave = codChave;
+            user = usuario;
         }
 
 
@@ -94,7 +98,7 @@ namespace situacaoChavesGolden
             foreach(DataRow row in dadosChave.Rows)
             {
                 codigoChaveBox.Text = row[0].ToString();
-                labelCodChave.Text = row[0].ToString();
+                textoCodChave.Text = row[0].ToString();
                 endereco.Text = string.Format("{0}, {1} ({2}) - {3} - {4}/{5}", row[1], row[2], row[3], row[4], row[5], row[6]);
             }
         }
@@ -129,12 +133,12 @@ namespace situacaoChavesGolden
 
                 if (dadosClientes.Rows.Count == 0)
                 {
-                    boxCpf.Text = "";
-                    texto.Text = "";
-                    label6.Text = "";
-                    labelTel1.Text = "";
-                    labelTel2.Text = "";
-                    email.Text = "";
+                    boxCpf.Text = ""; //CPF
+                    textoCpf.Text = ""; //cpf
+                    nome.Text = ""; //nome
+                    textoTel1.Text = ""; //contato1
+                    textoTel2.Text = "";  //contato2
+                    email.Text = ""; //email
 
                     
                 }
@@ -143,10 +147,10 @@ namespace situacaoChavesGolden
                     foreach (DataRow row in dadosClientes.Rows)
                     {
                         boxCpf.Text = row[0].ToString();
-                        labelCpf.Text = row[0].ToString();
-                        label6.Text = row[1].ToString();
-                        labelTel1.Text = row[2].ToString();
-                        labelTel2.Text = row[3].ToString();
+                        textoCpf.Text = row[0].ToString();
+                        nome.Text = row[1].ToString();
+                        textoTel1.Text = row[2].ToString();
+                        textoTel2.Text = row[3].ToString();
                         email.Text = row[4].ToString();
                     }
                 }
@@ -296,6 +300,139 @@ namespace situacaoChavesGolden
         {
             CadastroCliente editar = new CadastroCliente(codigosClientes[comboClientes.SelectedIndex]);
             editar.ShowDialog();
+        }
+
+        private void BtnConfirmar_Click(object sender, EventArgs e)
+        {
+            int contErros = 0;
+            string erros = "";
+
+            string quemEmpresta = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text; ;
+            string quantChaves = qtdChaves.Value.ToString();
+            string quantControles = qtdControles.Value.ToString();
+            string descricao = descBox.Text;
+            string cpfCliente = boxCpf.Text;
+            string descricaoDocumento = boxDescDoc.Text;
+            string nomeCliente = "";
+            string documentoDeixado = "";
+            string codCliente = "";
+            DateTime dataHojeUs = new DateTime();
+            DateTime dataPrevisao = new DateTime();
+
+            //Código do cliente
+            try
+            {
+                codCliente = codigosClientes[comboClientes.SelectedIndex];
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message);
+                contErros++;
+                erros += "\n-Código do Cliente (Não identificado)";
+            }
+
+            //Data de previsão
+            try
+            {
+                dataPrevisao = datePrevisao.Value;
+
+                dataPrevisao = Convert.ToDateTime(dataPrevisao.ToString("yyyy-MM-dd HH:mm:ss"));
+            }
+            catch
+            {
+                contErros++;
+                erros += "\n-Previsão de entrega (Escolha obrigatória)";
+            }
+
+            //ComboBox de nomes dos clientes
+            try
+            {
+                nomeCliente = comboClientes.SelectedItem.ToString();
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message);
+                contErros++;
+                erros += "\n-Nome do Cliente (Escolha obrigatória)";
+            }
+            //ComboBox de documentos
+            try
+            {
+                 documentoDeixado = comboDocs.SelectedItem.ToString();
+            }
+            catch
+            {
+                contErros++;
+                erros += "\n-Documento Deixado (Escolha obrigatória)";
+            }
+
+            //Quem está emprestando
+            if(quemEmpresta.Length == 0)
+            {
+                contErros++;
+                erros += "\n-Quem está emprestando (Seleção obrigatória)";
+            }
+            //Data previsão
+            if(dataPrevisao.Date == null)
+            {
+                contErros++;
+                erros += "\n-Previsão de entrega (Seleção obrigatória)";
+            }
+            //Quantidade de chaves
+            if(quantChaves.Length == 0)
+            {
+                contErros++;
+                erros += "\n-Quantidade de chaves (Inserção obrigatória)";
+            }
+            //Quantidade de controles
+            if (quantControles.Length == 0)
+            {
+                contErros++;
+                erros += "\n-Quantidade de controles (Inserção obrigatória)";
+            }
+            //Número do CPF do cliente
+            if(cpfCliente.Length == 0)
+            {
+                contErros++;
+                erros += "\n-CPF (Inserção obrigatória)";
+            }
+            if(comboDocs.SelectedIndex != -1 && descricaoDocumento.Length == 0)
+            {
+                contErros++;
+                erros += "\n-Descrição do Documento (Inserção obrigatória)";
+            }
+
+            if(contErros == 0)
+            {
+                //try
+                //{
+                    database.insertInto(string.Format("" +
+                        "INSERT INTO emprestimo (cliente, usuario, cod_chave, quant_chaves, quant_controles, tipo_doc, documento," +
+                        " descricao, data_retirada, data_prevista)" +
+                        " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
+                        codCliente, user, codigoChave, quantChaves, quantControles, documentoDeixado, descricaoDocumento,
+                        descricao, dataHoje, dataPrevisao ));
+
+                    Message caixaMensagem = new Message("Empréstimo cadastrado com sucesso!", "", "sucesso", "confirma");
+                    caixaMensagem.ShowDialog();
+
+                    this.Close();
+                    this.DialogResult = DialogResult.OK;
+                //}
+                //catch (Exception erro)
+                //{
+                //    Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
+                //    caixaMensagem.ShowDialog();
+                //}
+               
+            }
+            else
+            {
+                Message caixaMensagem = new Message("Corrija os erros abaixo antes de continuar!\n-" + erros, "Erro de preenchimento",
+                    "erro", "confirma");
+                caixaMensagem.ShowDialog();
+            }
+
         }
     }
 }

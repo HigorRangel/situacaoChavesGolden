@@ -13,7 +13,7 @@ namespace situacaoChavesGolden
     public partial class cadastroChave : MetroFramework.Forms.MetroForm
     {
 
-        
+
         PostgreSQL database = new PostgreSQL();
         bool seletorTela = false;
         List<string> codigosProprietarios = new List<string>();
@@ -225,7 +225,7 @@ namespace situacaoChavesGolden
                 string estado = boxEstado.Text.Trim();
                 string numero = boxNumero.Text.Trim();
                 string complemento = boxComplemento.Text.Trim();
-                string codProprietario = codigosProprietarios[comboProprietario.SelectedIndex];
+                string codProprietario = codigosProprietarios[comboProprietario.SelectedIndex - 1];
                 string situacaoChave = groupSitChave.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
                 string situacaoImovel = groupSitImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
                 string tipoImovel = groupTipoImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text; ;
@@ -274,7 +274,7 @@ namespace situacaoChavesGolden
                 }
                 catch (Exception erro)
                 {
-                    
+                    MessageBox.Show(erro.Message);
                 }
 
                 

@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupQuemEmpresta = new System.Windows.Forms.GroupBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.radioCliente = new MetroFramework.Controls.MetroRadioButton();
             this.radioProprietario = new MetroFramework.Controls.MetroRadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.groupDadosEmp = new System.Windows.Forms.GroupBox();
+            this.qtdControles = new System.Windows.Forms.NumericUpDown();
             this.metroLabel11 = new MetroFramework.Controls.MetroLabel();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
+            this.qtdChaves = new System.Windows.Forms.NumericUpDown();
+            this.descBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.previsaoLabel = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
@@ -60,6 +60,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.textoTel2 = new System.Windows.Forms.Label();
+            this.textoTel1 = new System.Windows.Forms.Label();
+            this.textoCpf = new System.Windows.Forms.Label();
+            this.nome = new System.Windows.Forms.Label();
+            this.btnEditarCliente = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.email = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -71,30 +76,26 @@
             this.labelCpf = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.btnEditarCliente = new System.Windows.Forms.Label();
-            this.nome = new System.Windows.Forms.Label();
-            this.textoCpf = new System.Windows.Forms.Label();
-            this.textoTel1 = new System.Windows.Forms.Label();
-            this.textoTel2 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.textoCodChave = new System.Windows.Forms.Label();
+            this.groupQuemEmpresta.SuspendLayout();
+            this.groupDadosEmp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.qtdControles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qtdChaves)).BeginInit();
             this.groupDadosCliente.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // groupQuemEmpresta
             // 
-            this.groupBox1.Controls.Add(this.metroLabel1);
-            this.groupBox1.Controls.Add(this.radioCliente);
-            this.groupBox1.Controls.Add(this.radioProprietario);
-            this.groupBox1.Location = new System.Drawing.Point(9, 34);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(410, 42);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
+            this.groupQuemEmpresta.Controls.Add(this.metroLabel1);
+            this.groupQuemEmpresta.Controls.Add(this.radioCliente);
+            this.groupQuemEmpresta.Controls.Add(this.radioProprietario);
+            this.groupQuemEmpresta.Location = new System.Drawing.Point(9, 34);
+            this.groupQuemEmpresta.Name = "groupQuemEmpresta";
+            this.groupQuemEmpresta.Size = new System.Drawing.Size(410, 42);
+            this.groupQuemEmpresta.TabIndex = 0;
+            this.groupQuemEmpresta.TabStop = false;
             // 
             // metroLabel1
             // 
@@ -130,33 +131,33 @@
             this.radioProprietario.UseVisualStyleBackColor = true;
             this.radioProprietario.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
             // 
-            // groupBox2
+            // groupDadosEmp
             // 
-            this.groupBox2.Controls.Add(this.numericUpDown2);
-            this.groupBox2.Controls.Add(this.metroLabel11);
-            this.groupBox2.Controls.Add(this.numericUpDown1);
-            this.groupBox2.Controls.Add(this.metroTextBox2);
-            this.groupBox2.Controls.Add(this.metroLabel6);
-            this.groupBox2.Controls.Add(this.previsaoLabel);
-            this.groupBox2.Controls.Add(this.metroLabel4);
-            this.groupBox2.Controls.Add(this.metroLabel3);
-            this.groupBox2.Controls.Add(this.datePrevisao);
-            this.groupBox2.Controls.Add(this.metroLabel2);
-            this.groupBox2.Controls.Add(this.codigoChaveBox);
-            this.groupBox2.Location = new System.Drawing.Point(9, 81);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(410, 122);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
+            this.groupDadosEmp.Controls.Add(this.qtdControles);
+            this.groupDadosEmp.Controls.Add(this.metroLabel11);
+            this.groupDadosEmp.Controls.Add(this.qtdChaves);
+            this.groupDadosEmp.Controls.Add(this.descBox);
+            this.groupDadosEmp.Controls.Add(this.metroLabel6);
+            this.groupDadosEmp.Controls.Add(this.previsaoLabel);
+            this.groupDadosEmp.Controls.Add(this.metroLabel4);
+            this.groupDadosEmp.Controls.Add(this.metroLabel3);
+            this.groupDadosEmp.Controls.Add(this.datePrevisao);
+            this.groupDadosEmp.Controls.Add(this.metroLabel2);
+            this.groupDadosEmp.Controls.Add(this.codigoChaveBox);
+            this.groupDadosEmp.Location = new System.Drawing.Point(9, 81);
+            this.groupDadosEmp.Name = "groupDadosEmp";
+            this.groupDadosEmp.Size = new System.Drawing.Size(410, 122);
+            this.groupDadosEmp.TabIndex = 1;
+            this.groupDadosEmp.TabStop = false;
             // 
-            // numericUpDown2
+            // qtdControles
             // 
-            this.numericUpDown2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numericUpDown2.Location = new System.Drawing.Point(335, 29);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(60, 20);
-            this.numericUpDown2.TabIndex = 13;
-            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.qtdControles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.qtdControles.Location = new System.Drawing.Point(335, 29);
+            this.qtdControles.Name = "qtdControles";
+            this.qtdControles.Size = new System.Drawing.Size(60, 20);
+            this.qtdControles.TabIndex = 13;
+            this.qtdControles.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // metroLabel11
             // 
@@ -168,24 +169,24 @@
             this.metroLabel11.TabIndex = 12;
             this.metroLabel11.Text = "Qtd Controles";
             // 
-            // numericUpDown1
+            // qtdChaves
             // 
-            this.numericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numericUpDown1.Location = new System.Drawing.Point(262, 29);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(60, 20);
-            this.numericUpDown1.TabIndex = 11;
-            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.qtdChaves.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.qtdChaves.Location = new System.Drawing.Point(262, 29);
+            this.qtdChaves.Name = "qtdChaves";
+            this.qtdChaves.Size = new System.Drawing.Size(60, 20);
+            this.qtdChaves.TabIndex = 11;
+            this.qtdChaves.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // metroTextBox2
+            // descBox
             // 
-            this.metroTextBox2.CustomBackground = true;
-            this.metroTextBox2.Location = new System.Drawing.Point(15, 74);
-            this.metroTextBox2.Multiline = true;
-            this.metroTextBox2.Name = "metroTextBox2";
-            this.metroTextBox2.Size = new System.Drawing.Size(380, 33);
-            this.metroTextBox2.TabIndex = 9;
-            this.metroTextBox2.UseStyleColors = true;
+            this.descBox.CustomBackground = true;
+            this.descBox.Location = new System.Drawing.Point(15, 74);
+            this.descBox.Multiline = true;
+            this.descBox.Name = "descBox";
+            this.descBox.Size = new System.Drawing.Size(380, 33);
+            this.descBox.TabIndex = 9;
+            this.descBox.UseStyleColors = true;
             // 
             // metroLabel6
             // 
@@ -288,7 +289,6 @@
             this.comboClientes.Location = new System.Drawing.Point(131, 26);
             this.comboClientes.Name = "comboClientes";
             this.comboClientes.Size = new System.Drawing.Size(225, 25);
-            this.comboClientes.Style = MetroFramework.MetroColorStyle.White;
             this.comboClientes.TabIndex = 10;
             this.comboClientes.SelectedIndexChanged += new System.EventHandler(this.ComboClientes_SelectedIndexChanged);
             // 
@@ -425,6 +425,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.textoCodChave);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.endereco);
             this.groupBox3.Controls.Add(this.labelCodChave);
@@ -456,6 +457,60 @@
             this.groupBox4.Size = new System.Drawing.Size(204, 117);
             this.groupBox4.TabIndex = 16;
             this.groupBox4.TabStop = false;
+            // 
+            // textoTel2
+            // 
+            this.textoTel2.AutoSize = true;
+            this.textoTel2.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textoTel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textoTel2.Location = new System.Drawing.Point(131, 30);
+            this.textoTel2.Name = "textoTel2";
+            this.textoTel2.Size = new System.Drawing.Size(0, 14);
+            this.textoTel2.TabIndex = 33;
+            // 
+            // textoTel1
+            // 
+            this.textoTel1.AutoSize = true;
+            this.textoTel1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textoTel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textoTel1.Location = new System.Drawing.Point(30, 31);
+            this.textoTel1.Name = "textoTel1";
+            this.textoTel1.Size = new System.Drawing.Size(0, 14);
+            this.textoTel1.TabIndex = 32;
+            // 
+            // textoCpf
+            // 
+            this.textoCpf.AutoSize = true;
+            this.textoCpf.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textoCpf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textoCpf.Location = new System.Drawing.Point(28, 11);
+            this.textoCpf.Name = "textoCpf";
+            this.textoCpf.Size = new System.Drawing.Size(0, 14);
+            this.textoCpf.TabIndex = 31;
+            // 
+            // nome
+            // 
+            this.nome.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.nome.Location = new System.Drawing.Point(41, 75);
+            this.nome.MinimumSize = new System.Drawing.Size(150, 25);
+            this.nome.Name = "nome";
+            this.nome.Size = new System.Drawing.Size(150, 25);
+            this.nome.TabIndex = 30;
+            // 
+            // btnEditarCliente
+            // 
+            this.btnEditarCliente.AutoSize = true;
+            this.btnEditarCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditarCliente.Enabled = false;
+            this.btnEditarCliente.Font = new System.Drawing.Font("Arial", 7.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnEditarCliente.Location = new System.Drawing.Point(165, 101);
+            this.btnEditarCliente.Name = "btnEditarCliente";
+            this.btnEditarCliente.Size = new System.Drawing.Size(34, 12);
+            this.btnEditarCliente.TabIndex = 29;
+            this.btnEditarCliente.Text = "Editar";
+            this.btnEditarCliente.Click += new System.EventHandler(this.BtnEditarCliente_Click);
             // 
             // label12
             // 
@@ -577,63 +632,18 @@
             this.btnConfirmar.TabIndex = 27;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = false;
+            this.btnConfirmar.Click += new System.EventHandler(this.BtnConfirmar_Click);
             // 
-            // btnEditarCliente
+            // textoCodChave
             // 
-            this.btnEditarCliente.AutoSize = true;
-            this.btnEditarCliente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEditarCliente.Enabled = false;
-            this.btnEditarCliente.Font = new System.Drawing.Font("Arial", 7.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
-            this.btnEditarCliente.Location = new System.Drawing.Point(165, 101);
-            this.btnEditarCliente.Name = "btnEditarCliente";
-            this.btnEditarCliente.Size = new System.Drawing.Size(34, 12);
-            this.btnEditarCliente.TabIndex = 29;
-            this.btnEditarCliente.Text = "Editar";
-            this.btnEditarCliente.Click += new System.EventHandler(this.BtnEditarCliente_Click);
-            // 
-            // nome
-            // 
-            this.nome.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.nome.Location = new System.Drawing.Point(41, 75);
-            this.nome.MinimumSize = new System.Drawing.Size(150, 25);
-            this.nome.Name = "nome";
-            this.nome.Size = new System.Drawing.Size(150, 25);
-            this.nome.TabIndex = 30;
-            // 
-            // textoCpf
-            // 
-            this.textoCpf.AutoSize = true;
-            this.textoCpf.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textoCpf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textoCpf.Location = new System.Drawing.Point(28, 11);
-            this.textoCpf.Name = "textoCpf";
-            this.textoCpf.Size = new System.Drawing.Size(23, 14);
-            this.textoCpf.TabIndex = 31;
-            this.textoCpf.Text = "cpf";
-            // 
-            // textoTel1
-            // 
-            this.textoTel1.AutoSize = true;
-            this.textoTel1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textoTel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textoTel1.Location = new System.Drawing.Point(30, 31);
-            this.textoTel1.Name = "textoTel1";
-            this.textoTel1.Size = new System.Drawing.Size(43, 14);
-            this.textoTel1.TabIndex = 32;
-            this.textoTel1.Text = "contato";
-            // 
-            // textoTel2
-            // 
-            this.textoTel2.AutoSize = true;
-            this.textoTel2.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textoTel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textoTel2.Location = new System.Drawing.Point(131, 30);
-            this.textoTel2.Name = "textoTel2";
-            this.textoTel2.Size = new System.Drawing.Size(43, 14);
-            this.textoTel2.TabIndex = 33;
-            this.textoTel2.Text = "contato";
+            this.textoCodChave.AutoSize = true;
+            this.textoCodChave.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textoCodChave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textoCodChave.Location = new System.Drawing.Point(75, 11);
+            this.textoCodChave.Name = "textoCodChave";
+            this.textoCodChave.Size = new System.Drawing.Size(39, 14);
+            this.textoCodChave.TabIndex = 34;
+            this.textoCodChave.Text = "codigo";
             // 
             // CadastrarEmprestimo
             // 
@@ -646,8 +656,8 @@
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupDadosCliente);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupDadosEmp);
+            this.Controls.Add(this.groupQuemEmpresta);
             this.DisplayHeader = false;
             this.Name = "CadastrarEmprestimo";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
@@ -655,12 +665,12 @@
             this.Style = MetroFramework.MetroColorStyle.Silver;
             this.Text = "CadastrarEmprestimo";
             this.Load += new System.EventHandler(this.CadastrarEmprestimo_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.groupQuemEmpresta.ResumeLayout(false);
+            this.groupQuemEmpresta.PerformLayout();
+            this.groupDadosEmp.ResumeLayout(false);
+            this.groupDadosEmp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.qtdControles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qtdChaves)).EndInit();
             this.groupDadosCliente.ResumeLayout(false);
             this.groupDadosCliente.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -673,31 +683,31 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupQuemEmpresta;
         private MetroFramework.Controls.MetroRadioButton radioCliente;
         private MetroFramework.Controls.MetroRadioButton radioProprietario;
         private MetroFramework.Controls.MetroLabel metroLabel1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupDadosEmp;
         private MetroFramework.Controls.MetroLabel previsaoLabel;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private System.Windows.Forms.DateTimePicker datePrevisao;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroTextBox codigoChaveBox;
-        private MetroFramework.Controls.MetroTextBox metroTextBox2;
+        private MetroFramework.Controls.MetroTextBox descBox;
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private System.Windows.Forms.GroupBox groupDadosCliente;
         private MetroFramework.Controls.MetroLabel metroLabel8;
         private MetroFramework.Controls.MetroTextBox boxCpf;
         private MetroFramework.Controls.MetroComboBox comboClientes;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown qtdChaves;
         private MetroFramework.Controls.MetroLabel metroLabel10;
         private MetroFramework.Controls.MetroTextBox boxDescDoc;
         private MetroFramework.Controls.MetroLabel metroLabel9;
         private MetroFramework.Controls.MetroComboBox comboDocs;
         private MetroFramework.Controls.MetroLabel metroLabel7;
         private System.Windows.Forms.Label addCliente;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown qtdControles;
         private MetroFramework.Controls.MetroLabel metroLabel11;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelCodChave;
@@ -721,5 +731,6 @@
         private System.Windows.Forms.Label textoCpf;
         private System.Windows.Forms.Label textoTel2;
         private System.Windows.Forms.Label textoTel1;
+        private System.Windows.Forms.Label textoCodChave;
     }
 }

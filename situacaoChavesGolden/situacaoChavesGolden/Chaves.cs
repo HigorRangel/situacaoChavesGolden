@@ -23,7 +23,13 @@ namespace situacaoChavesGolden
             {
                 if (filtro == "Todos")
                 {
-                    chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel  FROM chave ORDER BY situacao_imovel, rua, cod_imob");
+                    string filtroSitImovel = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
+                    string filtroSitChave = "";
+                    string tipoImovel = "";
+
+                    chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel " +
+                                                 " FROM chave ORDER BY situacao_imovel, rua, cod_imob" +
+                                                 " WHERE ");
                     radioTodos.Checked = true;
                     radioLocacao.Checked = false;
                     radioVenda.Checked = false;
@@ -79,7 +85,7 @@ namespace situacaoChavesGolden
             }
             catch (Exception erro)
             {
-                MessageBox.Show(erro.Message);
+                //MessageBox.Show(erro.Message);
             }
 
 
@@ -160,8 +166,8 @@ namespace situacaoChavesGolden
                     finalidade.Text = row[12].ToString();
                     sitImovel.Text = row[13].ToString();
                     endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} [{5}]", row[1].ToString(),
-                        row[2].ToString(), row[4].ToString(), row[5].ToString(), row[6].ToString(),
-                        row[3].ToString());
+                        row[5].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(),
+                        row[6].ToString());
                     proprietario.Text = row[9].ToString();
                     tipoImovel.Text = row[11].ToString();
                     sitChave.Text = row[7].ToString();
@@ -231,6 +237,26 @@ namespace situacaoChavesGolden
             {
                 atualizarGridChaves("Todos");
             }
+        }
+
+        private void textBoxBusca_Click(object sender, EventArgs e)
+        {
+            textBoxBusca.Text = "";
+        }
+
+        private void X(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFiltro_Click(object sender, EventArgs e)
+        {
+            filtrosPanel.Visible = true;
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            filtrosPanel.Visible = false;
         }
     }
 }
