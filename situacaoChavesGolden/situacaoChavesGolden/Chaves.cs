@@ -15,51 +15,35 @@ namespace situacaoChavesGolden
         PostgreSQL database = new PostgreSQL();
 
 
-        public void atualizarGridChaves(string filtro)
+        public void atualizarGridChaves()
         {
             DataTable chaves = new DataTable();
 
+            string textoBusca = textBoxBusca.Text;
+            string filtroSitImovel = groupBoxSituacaoIm.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+            string filtroSitChave = groupBoxSituacaoCh.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+            string tipoImovel = groupBoxTipoImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+            string filtro = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+            
+            if(textoBusca == "Buscar") { textoBusca = ""; }
+            if (filtroSitImovel == "TODOS") { filtroSitImovel = ""; }
+            if (filtroSitChave == "TODOS") { filtroSitChave = ""; }
+            if (tipoImovel == "TODOS") { tipoImovel = ""; }
+            if (filtro == "TODOS") { filtro = ""; }
+
+            
             try
             {
-                if (filtro == "Todos")
-                {
-                    string filtroSitImovel = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
-                    string filtroSitChave = "";
-                    string tipoImovel = "";
-
-                    chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel " +
-                                                 " FROM chave ORDER BY situacao_imovel, rua, cod_imob" +
-                                                 " WHERE ");
-                    radioTodos.Checked = true;
-                    radioLocacao.Checked = false;
-                    radioVenda.Checked = false;
-                }
-                else if (filtro == "Locação")
-                {
-                    chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel " +
-                        " FROM chave" +
-                        " WHERE finalidade = 'LOCAÇÃO'" +
-                        " ORDER BY situacao_imovel, rua, cod_imob");
-
-                    radioTodos.Checked = false;
-                    radioLocacao.Checked = true;
-                    radioVenda.Checked = false;
-
-                }
-                else
-                {
-                    chaves = database.select("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel " +
-                        " FROM chave" +
-                        " WHERE finalidade = 'VENDA'" +
-                        " ORDER BY situacao_imovel, rua, cod_imob");
-
-                    radioTodos.Checked = false;
-                    radioLocacao.Checked = false;
-                    radioVenda.Checked = true;
-                }
-
-
-
+                chaves = database.select(string.Format("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel " +
+                                             " FROM chave C" +
+                                             " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
+                                             " WHERE (rua ILIKE '%{0}%' OR bairro ILIKE '%{0}%' OR cidade ILIKE '%{0}%' OR estado ILIKE '%{0}%' OR" +
+                                             " numero  ILIKE '%{0}%' OR complemento ILIKE '%{0}%' OR cod_imob ILIKE '%{0}%' OR p.nome ILIKE '%{0}%') AND" +
+                                             " (finalidade ILIKE '%{1}%' AND situacao ILIKE '%{2}%' AND situacao_imovel ILIKE '%{3}%' AND " +
+                                             "  tipo_imovel ILIKE '%{4}%')" +
+                                             " ORDER BY situacao_imovel, rua, cod_imob", textoBusca, filtro, filtroSitChave,
+                                              filtroSitImovel, tipoImovel));
+               
 
                 gridChaves.DataSource = chaves;
 
@@ -100,7 +84,7 @@ namespace situacaoChavesGolden
         private void Chaves_Load(object sender, EventArgs e)
         {
 
-            atualizarGridChaves("Todos");
+            atualizarGridChaves();
 
         }
 
@@ -205,11 +189,7 @@ namespace situacaoChavesGolden
 
         private void RadioTodos_CheckedChanged(object sender, EventArgs e)
         {
-            string opcao = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
-
-            atualizarGridChaves(opcao);
-
-
+            atualizarGridChaves();
         }
 
         private void EditarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -235,7 +215,7 @@ namespace situacaoChavesGolden
 
             if(cadastro.DialogResult == DialogResult.Yes)
             {
-                atualizarGridChaves("Todos");
+                atualizarGridChaves();
             }
         }
 
@@ -257,6 +237,12 @@ namespace situacaoChavesGolden
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             filtrosPanel.Visible = false;
+            atualizarGridChaves();
+        }
+
+        private void TextBoxBusca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            atualizarGridChaves();
         }
     }
 }

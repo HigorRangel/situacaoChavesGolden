@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Npgsql;
 using System.Data;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace situacaoChavesGolden
 {
@@ -138,5 +139,51 @@ namespace situacaoChavesGolden
             }
         }
 
+        public void backup()
+        {
+            string varAmbiente = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
+            string[] colunas = varAmbiente.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string variavel in colunas)
+            {
+                try
+                {
+                    ProcessStartInfo process = new ProcessStartInfo();
+                    process.FileName = variavel + @"pg_dump.exe";
+                    process.WindowStyle = ProcessWindowStyle.Minimized;
+                    process.Arguments = "-h localhost -p 5432 -U postgres -F c -b -v -f \"C:\\Users\\Higor Rangel\\Desktop\\grazadeus.backup\" postgres";
+                    Process processStart = new Process();
+                    processStart.StartInfo = process;
+                    processStart.Start();
+                    processStart.WaitForExit();
+                }
+                catch { }
+
+            }
+
+        }
+
+        public void restore()
+        {
+            string varAmbiente = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
+            string[] colunas = varAmbiente.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach(string variavel in colunas)
+            {
+                try
+                {
+                    ProcessStartInfo process = new ProcessStartInfo();
+                    process.FileName = variavel + @"pg_restore.exe";
+                    process.WindowStyle = ProcessWindowStyle.Hidden;
+                    process.Arguments = "-U postgres -d postgres \"C:\\Users\\Higor Rangel\\Desktop\\grazadeus.backup\"";
+                    Process processStart = new Process();
+                    processStart.StartInfo = process;
+                    processStart.Start();
+                    processStart.WaitForExit();
+                }
+                catch { }
+               
+            }
+        }
     }
 }

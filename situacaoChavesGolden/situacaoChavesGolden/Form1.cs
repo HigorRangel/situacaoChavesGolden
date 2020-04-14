@@ -61,6 +61,8 @@ namespace situacaoChavesGolden
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
+
+
             //Se não tiver usuário selecionado
             if(comboUsuarios.SelectedIndex == -1)
             {
