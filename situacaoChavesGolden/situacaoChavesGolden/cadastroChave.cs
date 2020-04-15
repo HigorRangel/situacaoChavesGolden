@@ -31,8 +31,46 @@ namespace situacaoChavesGolden
             InitializeComponent();
         }
 
+        private string proximoCodigo()
+        {
+            string proxCodigo = "";
+            DataTable codigos = new DataTable();
+
+            codigos = database.select("SELECT cod_chave FROM chave ORDER BY cod_chave");
+            List<int> arrayCodigos = new List<int>();
+            // int[] arrayCodigos = new int[codigos.Rows.Count];
+
+            if(codigos.Rows.Count != 0)
+            {
+                foreach (DataRow row in codigos.Rows)
+                {
+                    arrayCodigos.Add(int.Parse(row[0].ToString()));
+                }
+
+
+                for (int i = 0; i <= codigos.Rows.Count; i++)
+                {
+                    if (arrayCodigos[i] != i + 1)
+                    {
+                        proxCodigo = (i + 1).ToString();
+                        break;
+                    }
+
+                }
+            }
+            else
+            {
+                proxCodigo = "1";
+            }
+
+            
+
+            return proxCodigo;
+        }
         private void CadastroChave_Load(object sender, EventArgs e)
         {
+            MessageBox.Show(proximoCodigo());
+
             if(seletorTela == true)
             {
                 DataTable dadosChave = new DataTable();
@@ -247,10 +285,10 @@ namespace situacaoChavesGolden
                     {
                         database.insertInto(string.Format("" +
                         "INSERT INTO chave (rua, numero, complemento, bairro, cidade, estado, situacao," +
-                        " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel)" +
+                        " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel, cod_chave)" +
                         " VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}'," +
-                        " '{11}','{12}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
-                         localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel));
+                        " '{11}','{12}', '{13}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
+                         localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, proximoCodigo()));
 
                         this.Close();
 

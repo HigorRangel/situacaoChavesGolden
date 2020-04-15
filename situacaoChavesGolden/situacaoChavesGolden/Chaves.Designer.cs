@@ -78,6 +78,8 @@
             this.metroRadioButton3 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
+            this.registrarEmpréstimoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reservarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -136,21 +138,24 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.excluirToolStripMenuItem,
-            this.editarToolStripMenuItem});
+            this.editarToolStripMenuItem,
+            this.registrarEmpréstimoToolStripMenuItem,
+            this.reservarToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(110, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(188, 114);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStrip1_Opening);
             // 
             // excluirToolStripMenuItem
             // 
             this.excluirToolStripMenuItem.Name = "excluirToolStripMenuItem";
-            this.excluirToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.excluirToolStripMenuItem.Text = "Excluir";
+            this.excluirToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.excluirToolStripMenuItem.Text = "Retirar";
+            this.excluirToolStripMenuItem.Click += new System.EventHandler(this.ExcluirToolStripMenuItem_Click);
             // 
             // editarToolStripMenuItem
             // 
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.editarToolStripMenuItem.Text = "Editar";
             this.editarToolStripMenuItem.Click += new System.EventHandler(this.EditarToolStripMenuItem_Click);
             // 
@@ -172,9 +177,9 @@
             this.codigoImob.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.codigoImob.Location = new System.Drawing.Point(106, 278);
             this.codigoImob.Name = "codigoImob";
-            this.codigoImob.Size = new System.Drawing.Size(53, 15);
+            this.codigoImob.Size = new System.Drawing.Size(10, 15);
             this.codigoImob.TabIndex = 2;
-            this.codigoImob.Text = "Código: ";
+            this.codigoImob.Text = " ";
             // 
             // endereco
             // 
@@ -183,9 +188,9 @@
             this.endereco.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.endereco.Location = new System.Drawing.Point(92, 312);
             this.endereco.Name = "endereco";
-            this.endereco.Size = new System.Drawing.Size(53, 15);
+            this.endereco.Size = new System.Drawing.Size(10, 15);
             this.endereco.TabIndex = 4;
-            this.endereco.Text = "Código: ";
+            this.endereco.Text = " ";
             // 
             // label3
             // 
@@ -205,9 +210,9 @@
             this.sitChave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
             this.sitChave.Location = new System.Drawing.Point(116, 17);
             this.sitChave.Name = "sitChave";
-            this.sitChave.Size = new System.Drawing.Size(53, 15);
+            this.sitChave.Size = new System.Drawing.Size(10, 15);
             this.sitChave.TabIndex = 6;
-            this.sitChave.Text = "Código: ";
+            this.sitChave.Text = " ";
             // 
             // labelChave
             // 
@@ -227,9 +232,9 @@
             this.localizacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
             this.localizacao.Location = new System.Drawing.Point(564, 17);
             this.localizacao.Name = "localizacao";
-            this.localizacao.Size = new System.Drawing.Size(53, 15);
+            this.localizacao.Size = new System.Drawing.Size(10, 15);
             this.localizacao.TabIndex = 8;
-            this.localizacao.Text = "Código: ";
+            this.localizacao.Text = " ";
             // 
             // label7
             // 
@@ -249,9 +254,10 @@
             this.proprietario.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.proprietario.Location = new System.Drawing.Point(111, 350);
             this.proprietario.Name = "proprietario";
-            this.proprietario.Size = new System.Drawing.Size(53, 15);
+            this.proprietario.Size = new System.Drawing.Size(10, 15);
             this.proprietario.TabIndex = 10;
-            this.proprietario.Text = "Código: ";
+            this.proprietario.Text = " ";
+            this.proprietario.Click += new System.EventHandler(this.Proprietario_Click);
             // 
             // label9
             // 
@@ -271,9 +277,9 @@
             this.finalidade.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.finalidade.Location = new System.Drawing.Point(306, 278);
             this.finalidade.Name = "finalidade";
-            this.finalidade.Size = new System.Drawing.Size(53, 15);
+            this.finalidade.Size = new System.Drawing.Size(10, 15);
             this.finalidade.TabIndex = 12;
-            this.finalidade.Text = "Código: ";
+            this.finalidade.Text = " ";
             // 
             // label11
             // 
@@ -293,9 +299,9 @@
             this.sitImovel.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.sitImovel.Location = new System.Drawing.Point(567, 279);
             this.sitImovel.Name = "sitImovel";
-            this.sitImovel.Size = new System.Drawing.Size(53, 15);
+            this.sitImovel.Size = new System.Drawing.Size(10, 15);
             this.sitImovel.TabIndex = 14;
-            this.sitImovel.Text = "Código: ";
+            this.sitImovel.Text = " ";
             // 
             // label13
             // 
@@ -315,9 +321,9 @@
             this.tipoImovel.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.tipoImovel.Location = new System.Drawing.Point(552, 350);
             this.tipoImovel.Name = "tipoImovel";
-            this.tipoImovel.Size = new System.Drawing.Size(53, 15);
+            this.tipoImovel.Size = new System.Drawing.Size(10, 15);
             this.tipoImovel.TabIndex = 16;
-            this.tipoImovel.Text = "Código: ";
+            this.tipoImovel.Text = " ";
             // 
             // label15
             // 
@@ -351,9 +357,9 @@
             this.emprestimo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
             this.emprestimo.Location = new System.Drawing.Point(341, 17);
             this.emprestimo.Name = "emprestimo";
-            this.emprestimo.Size = new System.Drawing.Size(53, 15);
+            this.emprestimo.Size = new System.Drawing.Size(10, 15);
             this.emprestimo.TabIndex = 10;
-            this.emprestimo.Text = "Código: ";
+            this.emprestimo.Text = " ";
             // 
             // label
             // 
@@ -439,8 +445,9 @@
             this.textBoxBusca.Text = "Buscar";
             this.textBoxBusca.Theme = MetroFramework.MetroThemeStyle.Light;
             this.textBoxBusca.UseStyleColors = true;
+            this.textBoxBusca.TextChanged += new System.EventHandler(this.TextBoxBusca_TextChanged);
             this.textBoxBusca.Click += new System.EventHandler(this.textBoxBusca_Click);
-            this.textBoxBusca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxBusca_KeyPress);
+            this.textBoxBusca.Leave += new System.EventHandler(this.TextBoxBusca_Leave);
             // 
             // groupBox2
             // 
@@ -646,6 +653,18 @@
             this.metroRadioButton1.Text = "Ativo";
             this.metroRadioButton1.UseVisualStyleBackColor = true;
             // 
+            // registrarEmpréstimoToolStripMenuItem
+            // 
+            this.registrarEmpréstimoToolStripMenuItem.Name = "registrarEmpréstimoToolStripMenuItem";
+            this.registrarEmpréstimoToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.registrarEmpréstimoToolStripMenuItem.Text = "Registrar Empréstimo";
+            // 
+            // reservarToolStripMenuItem
+            // 
+            this.reservarToolStripMenuItem.Name = "reservarToolStripMenuItem";
+            this.reservarToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.reservarToolStripMenuItem.Text = "Reservar";
+            // 
             // Chaves
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -749,5 +768,7 @@
         private MetroFramework.Controls.MetroRadioButton metroRadioButton8;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton9;
         private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.ToolStripMenuItem registrarEmpréstimoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reservarToolStripMenuItem;
     }
 }

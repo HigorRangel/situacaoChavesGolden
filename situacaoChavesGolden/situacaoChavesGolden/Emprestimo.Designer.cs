@@ -43,7 +43,6 @@
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.None;
-            this.Style = MetroFramework.MetroColorStyle.White;
             this.Text = "Emprestimo";
             this.Load += new System.EventHandler(this.Emprestimo_Load);
             this.ResumeLayout(false);

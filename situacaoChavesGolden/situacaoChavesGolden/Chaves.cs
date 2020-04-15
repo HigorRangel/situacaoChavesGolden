@@ -22,13 +22,13 @@ namespace situacaoChavesGolden
             string textoBusca = textBoxBusca.Text;
             string filtroSitImovel = groupBoxSituacaoIm.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
             string filtroSitChave = groupBoxSituacaoCh.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
-            string tipoImovel = groupBoxTipoImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+            string typeImovel = groupBoxTipoImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
             string filtro = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
             
             if(textoBusca == "Buscar") { textoBusca = ""; }
             if (filtroSitImovel == "TODOS") { filtroSitImovel = ""; }
             if (filtroSitChave == "TODOS") { filtroSitChave = ""; }
-            if (tipoImovel == "TODOS") { tipoImovel = ""; }
+            if (typeImovel == "TODOS") { typeImovel = ""; }
             if (filtro == "TODOS") { filtro = ""; }
 
             
@@ -42,33 +42,57 @@ namespace situacaoChavesGolden
                                              " (finalidade ILIKE '%{1}%' AND situacao ILIKE '%{2}%' AND situacao_imovel ILIKE '%{3}%' AND " +
                                              "  tipo_imovel ILIKE '%{4}%')" +
                                              " ORDER BY situacao_imovel, rua, cod_imob", textoBusca, filtro, filtroSitChave,
-                                              filtroSitImovel, tipoImovel));
+                                              filtroSitImovel, typeImovel));
                
 
                 gridChaves.DataSource = chaves;
 
-                gridChaves.Columns[0].HeaderText = "Código";
-                gridChaves.Columns[1].HeaderText = "Cód Imob";
-                gridChaves.Columns[2].HeaderText = "Endereço";
-                gridChaves.Columns[3].HeaderText = "Bairro";
-                gridChaves.Columns[4].HeaderText = "Situação";
+                if(chaves.Rows.Count == 0)
+                {
+                    codigoImob.Text = "";
+                    finalidade.Text = "";
+                    sitImovel.Text = "";
+                    endereco.Text = "";
+                    proprietario.Text = "";
+                    tipoImovel.Text = "";
+                    sitChave.Text = "";
+                    localizacao.Text = "";
+                }
+                else
+                {
+                    gridChaves.Columns[0].HeaderText = "Código";
+                    gridChaves.Columns[1].HeaderText = "Cód Imob";
+                    gridChaves.Columns[2].HeaderText = "Endereço";
+                    gridChaves.Columns[3].HeaderText = "Bairro";
+                    gridChaves.Columns[4].HeaderText = "Situação";
 
-                gridChaves.Columns[0].Width = 60;
-                gridChaves.Columns[1].Width = 60;
-                gridChaves.Columns[2].Width = 275;
-                gridChaves.Columns[3].Width = 112;
-                gridChaves.Columns[4].Width = 100;
+                    gridChaves.Columns[0].Width = 60;
+                    gridChaves.Columns[1].Width = 60;
+                    gridChaves.Columns[2].Width = 275;
+                    gridChaves.Columns[3].Width = 112;
+                    gridChaves.Columns[4].Width = 100;
 
 
 
 
-                endereco.MaximumSize = new Size(520, 0);
-                endereco.AutoSize = true;
-                gridChaves.ClearSelection();
-                gridChaves.Rows[0].Selected = false;
+                    endereco.MaximumSize = new Size(520, 0);
+                    endereco.AutoSize = true;
+                    gridChaves.ClearSelection();
+                    gridChaves.Rows[0].Selected = false;
+
+                    if(proprietario.Text != " ")
+                    {
+                        proprietario.Cursor = Cursors.Hand;
+                    }
+                    
+
+                }
+
+                
             }
             catch (Exception erro)
             {
+
                 //MessageBox.Show(erro.Message);
             }
 
@@ -134,6 +158,18 @@ namespace situacaoChavesGolden
 
         private void GridChaves_SelectionChanged(object sender, EventArgs e)
         {
+            if(gridChaves.CurrentRow == null)
+            {
+                codigoImob.Text = "";
+                finalidade.Text = "";
+                sitImovel.Text = "";
+                endereco.Text = "";
+                proprietario.Text = "";
+                tipoImovel.Text = "";
+                sitChave.Text = "";
+                localizacao.Text =   "";
+            }
+
             if (gridChaves.CurrentRow != null)
             {
 
@@ -141,7 +177,10 @@ namespace situacaoChavesGolden
 
                 DataTable dadosChave = new DataTable();
 
-                dadosChave = database.select(string.Format("SELECT * FROM chave WHERE cod_chave = '{0}'", codigoChave));
+                dadosChave = database.select(string.Format("SELECT c.*, p.nome " +
+                                                           " FROM chave c  " +
+                                                           " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
+                                                           " WHERE cod_chave = {0}", codigoChave));
 
 
                 foreach (DataRow row in dadosChave.Rows)
@@ -152,7 +191,7 @@ namespace situacaoChavesGolden
                     endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} [{5}]", row[1].ToString(),
                         row[5].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(),
                         row[6].ToString());
-                    proprietario.Text = row[9].ToString();
+                    proprietario.Text = row[15].ToString();
                     tipoImovel.Text = row[11].ToString();
                     sitChave.Text = row[7].ToString();
                     localizacao.Text = row[8].ToString();
@@ -165,7 +204,7 @@ namespace situacaoChavesGolden
                     codEmprestimo = database.selectScalar(string.Format("" +
                                         " SELECT e.cod_emprestimo" +
                                         " FROM emprestimo e" +
-                                        " INNER JOIN chave c ON c.cod_chave = e.cod_chave" +
+                                        " INNER JOIN chave c ON c.indice_chave = e.cod_chave" +
                                         " WHERE e.cod_chave = {0} AND e.data_entrega is null", codigoChave));
                     emprestimo.Text = codEmprestimo;
                     emprestimo.Cursor = Cursors.Hand;
@@ -221,7 +260,11 @@ namespace situacaoChavesGolden
 
         private void textBoxBusca_Click(object sender, EventArgs e)
         {
-            textBoxBusca.Text = "";
+            if(textBoxBusca.Text == "Buscar")
+            {
+                textBoxBusca.Text = "";
+            }
+            
         }
 
         private void X(object sender, EventArgs e)
@@ -240,9 +283,38 @@ namespace situacaoChavesGolden
             atualizarGridChaves();
         }
 
-        private void TextBoxBusca_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void TextBoxBusca_Leave(object sender, EventArgs e)
         {
-            atualizarGridChaves();
+            if(textBoxBusca.Text == "")
+            {
+                textBoxBusca.Text = "Buscar";
+            }
+        }
+
+        private void TextBoxBusca_TextChanged(object sender, EventArgs e)
+        {
+            atualizarGridChaves();          
+        }
+
+        private void Proprietario_Click(object sender, EventArgs e)
+        {
+            if(proprietario.Text != " ")
+            {
+                string codigoProp = database.selectScalar(string.Format("SELECT cod_proprietario FROM proprietario" +
+                                                                        " WHERE nome = '{0}'", proprietario.Text));
+
+                cadastroProprietario showProprietario = new cadastroProprietario(codigoProp);
+                showProprietario.ShowDialog();
+            }
+        }
+
+        private void ExcluirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string codigoChaveRetirar = gridChaves.CurrentRow.Cells[0].Value.ToString();
+
+            RetirarChave telaRetirar = new RetirarChave(codigoChaveRetirar);
+            telaRetirar.ShowDialog();
         }
     }
 }

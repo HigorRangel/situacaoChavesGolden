@@ -46,12 +46,18 @@ namespace situacaoChavesGolden
                 nomeBox.Text = row[1].ToString();
                 contatoBox.Text = row[2].ToString();
                 emailBox.Text = row[3].ToString();
+
+                nomeBox.Enabled = false;        
+                contatoBox.Enabled = false;
+                emailBox.Enabled = false;
+                btnCadastrar.Enabled = false;
+                metroLabel4.Text = "Visualizar Proprietário";
             }
         }
 
         private void BtnCadastrar_Click(object sender, EventArgs e)
         {
-            int contErros = 0;
+                int contErros = 0;
 
             if (nomeBox.Text.Length == 0 || !nomeBox.Text.Contains(" "))
             {
