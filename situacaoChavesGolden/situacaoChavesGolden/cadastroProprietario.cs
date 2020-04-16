@@ -69,11 +69,7 @@ namespace situacaoChavesGolden
             {
                 contErros++;
             }
-            if(emailBox.Text.Length == 0)
-            {
-                contErros++;
-            }
-            
+ 
 
 
             if(contErros == 0)

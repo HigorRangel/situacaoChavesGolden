@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridChaves = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.excluirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrarEmpréstimoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reservarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.codigoImob = new System.Windows.Forms.Label();
             this.endereco = new System.Windows.Forms.Label();
@@ -65,6 +67,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnCadastrarChave = new System.Windows.Forms.Label();
             this.filtrosPanel = new System.Windows.Forms.Panel();
+            this.btnRestaurar = new System.Windows.Forms.Label();
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.groupBoxTipoImovel = new System.Windows.Forms.GroupBox();
             this.metroRadioButton7 = new MetroFramework.Controls.MetroRadioButton();
@@ -78,8 +81,6 @@
             this.metroRadioButton3 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
-            this.registrarEmpréstimoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reservarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -100,14 +101,14 @@
             this.gridChaves.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
             this.gridChaves.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridChaves.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridChaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridChaves.ContextMenuStrip = this.contextMenuStrip1;
             this.gridChaves.GridColor = System.Drawing.Color.White;
@@ -116,14 +117,14 @@
             this.gridChaves.Name = "gridChaves";
             this.gridChaves.ReadOnly = true;
             this.gridChaves.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridChaves.RowHeadersVisible = false;
             this.gridChaves.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridChaves.RowTemplate.ReadOnly = true;
@@ -142,7 +143,7 @@
             this.registrarEmpréstimoToolStripMenuItem,
             this.reservarToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(188, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(188, 92);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStrip1_Opening);
             // 
             // excluirToolStripMenuItem
@@ -158,6 +159,18 @@
             this.editarToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.editarToolStripMenuItem.Text = "Editar";
             this.editarToolStripMenuItem.Click += new System.EventHandler(this.EditarToolStripMenuItem_Click);
+            // 
+            // registrarEmpréstimoToolStripMenuItem
+            // 
+            this.registrarEmpréstimoToolStripMenuItem.Name = "registrarEmpréstimoToolStripMenuItem";
+            this.registrarEmpréstimoToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.registrarEmpréstimoToolStripMenuItem.Text = "Registrar Empréstimo";
+            // 
+            // reservarToolStripMenuItem
+            // 
+            this.reservarToolStripMenuItem.Name = "reservarToolStripMenuItem";
+            this.reservarToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.reservarToolStripMenuItem.Text = "Reservar";
             // 
             // label1
             // 
@@ -494,6 +507,7 @@
             // filtrosPanel
             // 
             this.filtrosPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.filtrosPanel.Controls.Add(this.btnRestaurar);
             this.filtrosPanel.Controls.Add(this.btnFiltrar);
             this.filtrosPanel.Controls.Add(this.groupBoxTipoImovel);
             this.filtrosPanel.Controls.Add(this.groupBoxSituacaoCh);
@@ -503,6 +517,18 @@
             this.filtrosPanel.Size = new System.Drawing.Size(262, 197);
             this.filtrosPanel.TabIndex = 23;
             this.filtrosPanel.Visible = false;
+            // 
+            // btnRestaurar
+            // 
+            this.btnRestaurar.AutoSize = true;
+            this.btnRestaurar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRestaurar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRestaurar.Location = new System.Drawing.Point(13, 166);
+            this.btnRestaurar.Name = "btnRestaurar";
+            this.btnRestaurar.Size = new System.Drawing.Size(53, 13);
+            this.btnRestaurar.TabIndex = 6;
+            this.btnRestaurar.Text = "Restaurar";
+            this.btnRestaurar.Click += new System.EventHandler(this.BtnRestaurar_Click);
             // 
             // btnFiltrar
             // 
@@ -653,18 +679,6 @@
             this.metroRadioButton1.Text = "Ativo";
             this.metroRadioButton1.UseVisualStyleBackColor = true;
             // 
-            // registrarEmpréstimoToolStripMenuItem
-            // 
-            this.registrarEmpréstimoToolStripMenuItem.Name = "registrarEmpréstimoToolStripMenuItem";
-            this.registrarEmpréstimoToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.registrarEmpréstimoToolStripMenuItem.Text = "Registrar Empréstimo";
-            // 
-            // reservarToolStripMenuItem
-            // 
-            this.reservarToolStripMenuItem.Name = "reservarToolStripMenuItem";
-            this.reservarToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.reservarToolStripMenuItem.Text = "Reservar";
-            // 
             // Chaves
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -708,6 +722,7 @@
             this.groupMenuSup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).EndInit();
             this.filtrosPanel.ResumeLayout(false);
+            this.filtrosPanel.PerformLayout();
             this.groupBoxTipoImovel.ResumeLayout(false);
             this.groupBoxTipoImovel.PerformLayout();
             this.groupBoxSituacaoCh.ResumeLayout(false);
@@ -770,5 +785,6 @@
         private System.Windows.Forms.Button btnFiltrar;
         private System.Windows.Forms.ToolStripMenuItem registrarEmpréstimoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reservarToolStripMenuItem;
+        private System.Windows.Forms.Label btnRestaurar;
     }
 }

@@ -39,7 +39,7 @@ namespace situacaoChavesGolden
                                              " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
                                              " WHERE (rua ILIKE '%{0}%' OR bairro ILIKE '%{0}%' OR cidade ILIKE '%{0}%' OR estado ILIKE '%{0}%' OR" +
                                              " numero  ILIKE '%{0}%' OR complemento ILIKE '%{0}%' OR cod_imob ILIKE '%{0}%' OR p.nome ILIKE '%{0}%') AND" +
-                                             " (finalidade ILIKE '%{1}%' AND situacao ILIKE '%{2}%' AND situacao_imovel ILIKE '%{3}%' AND " +
+                                             " (finalidade ILIKE '%{1}%' AND situacao ILIKE '{2}%' AND situacao_imovel ILIKE '{3}%' AND " +
                                              "  tipo_imovel ILIKE '%{4}%')" +
                                              " ORDER BY situacao_imovel, rua, cod_imob", textoBusca, filtro, filtroSitChave,
                                               filtroSitImovel, typeImovel));
@@ -313,8 +313,22 @@ namespace situacaoChavesGolden
         {
             string codigoChaveRetirar = gridChaves.CurrentRow.Cells[0].Value.ToString();
 
+            codigoChaveRetirar = database.selectScalar(string.Format("SELECT indice_chave FROM chave WHERE cod_chave = '{0}'", codigoChaveRetirar));
+
             RetirarChave telaRetirar = new RetirarChave(codigoChaveRetirar);
             telaRetirar.ShowDialog();
+
+            if(telaRetirar.DialogResult == DialogResult.OK)
+            {
+                atualizarGridChaves();
+            }
+        }
+
+        private void BtnRestaurar_Click(object sender, EventArgs e)
+        {
+            metroRadioButton1.Checked = true;
+            metroRadioButton6.Checked = true;
+            metroRadioButton9.Checked = true;
         }
     }
 }

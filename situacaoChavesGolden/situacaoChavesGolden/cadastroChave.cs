@@ -44,17 +44,31 @@ namespace situacaoChavesGolden
             {
                 foreach (DataRow row in codigos.Rows)
                 {
-                    arrayCodigos.Add(int.Parse(row[0].ToString()));
+                    try
+                    {
+                        arrayCodigos.Add(int.Parse(row[0].ToString()));
+                    }
+                    catch (System.FormatException)
+                    {
+
+                    }
+                    
                 }
-
-
                 for (int i = 0; i <= codigos.Rows.Count; i++)
                 {
-                    if (arrayCodigos[i] != i + 1)
+                    try
                     {
-                        proxCodigo = (i + 1).ToString();
-                        break;
+                        if (arrayCodigos[i] != i + 1)
+                        {
+                            proxCodigo = (i + 1).ToString();
+                            break;
+                        }
                     }
+                    catch
+                    {
+                        proxCodigo = (i+1).ToString();
+                    }
+                    
 
                 }
             }
