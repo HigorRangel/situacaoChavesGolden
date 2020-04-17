@@ -55,9 +55,19 @@ namespace situacaoChavesGolden
             }
         }
 
+        private bool verificarExistencia()
+        {
+            DataTable tabelaProp = new DataTable();
+
+            tabelaProp = database.select(string.Format("SELECT * FROM proprietario" +
+                                                        " WHERE nome ILIKE '%{0}%' OR email ILIKE '%{1}%' OR" +
+                                                        " contato ILIKE '%{2}%'", nomeBox.Text.Trim(), emailBox.Text.Trim(),
+                                                        contatoBox.Text.Trim()));
+        }
+
         private void BtnCadastrar_Click(object sender, EventArgs e)
         {
-                int contErros = 0;
+            int contErros = 0;
 
             if (nomeBox.Text.Length == 0 || !nomeBox.Text.Contains(" "))
             {

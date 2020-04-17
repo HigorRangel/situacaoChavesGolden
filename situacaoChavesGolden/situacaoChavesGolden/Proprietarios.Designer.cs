@@ -159,6 +159,7 @@
             this.gridProprietarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridProprietarios.Size = new System.Drawing.Size(609, 177);
             this.gridProprietarios.TabIndex = 23;
+            this.gridProprietarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridProprietarios_CellContentClick);
             this.gridProprietarios.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridProprietarios_CellMouseClick);
             this.gridProprietarios.SelectionChanged += new System.EventHandler(this.gridProprietarios_SelectionChanged);
             this.gridProprietarios.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridProprietarios_MouseClick);
@@ -217,19 +218,19 @@
             this.excluirToolStripMenuItem,
             this.editarToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(110, 48);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // excluirToolStripMenuItem
             // 
             this.excluirToolStripMenuItem.Name = "excluirToolStripMenuItem";
-            this.excluirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.excluirToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.excluirToolStripMenuItem.Text = "Excluir";
             // 
             // editarToolStripMenuItem
             // 
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.editarToolStripMenuItem.Text = "Editar";
             this.editarToolStripMenuItem.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
             // 

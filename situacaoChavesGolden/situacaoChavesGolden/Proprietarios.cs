@@ -143,5 +143,10 @@ namespace situacaoChavesGolden
 
             atualizarGridProprietarios();
         }
+
+        private void GridProprietarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

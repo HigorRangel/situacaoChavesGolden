@@ -53,28 +53,39 @@
             this.radioTipoCom = new MetroFramework.Controls.MetroRadioButton();
             this.radioTipoRes = new MetroFramework.Controls.MetroRadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.comboProprietario = new System.Windows.Forms.ComboBox();
+            this.excluiProp = new System.Windows.Forms.Label();
+            this.labelCod = new MetroFramework.Controls.MetroLabel();
+            this.boxCodProp = new MetroFramework.Controls.MetroTextBox();
+            this.nomePropBox = new MetroFramework.Controls.MetroTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.metroLabel15 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
+            this.groupSitChave = new System.Windows.Forms.GroupBox();
+            this.radioChaveIndisponivel = new MetroFramework.Controls.MetroRadioButton();
+            this.radioChaveDisponivel = new MetroFramework.Controls.MetroRadioButton();
             this.boxOutraLocalizacao = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel11 = new MetroFramework.Controls.MetroLabel();
             this.comboLocalizacao = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.codImovel = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
+            this.labelProp = new MetroFramework.Controls.MetroLabel();
             this.metroLabel14 = new MetroFramework.Controls.MetroLabel();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.metroLabel15 = new MetroFramework.Controls.MetroLabel();
-            this.groupSitChave = new System.Windows.Forms.GroupBox();
-            this.radioChaveIndisponivel = new MetroFramework.Controls.MetroRadioButton();
-            this.radioChaveDisponivel = new MetroFramework.Controls.MetroRadioButton();
+            this.painelProp = new System.Windows.Forms.Panel();
+            this.btnCancelarProp = new System.Windows.Forms.Button();
+            this.btnConfirmarProp = new System.Windows.Forms.Button();
+            this.gridProprietarios = new System.Windows.Forms.DataGridView();
+            this.boxProcurarProp = new System.Windows.Forms.TextBox();
+            this.btnAdicionarProp = new System.Windows.Forms.Label();
             this.groupSitImovel.SuspendLayout();
             this.groupFinalImovel.SuspendLayout();
             this.groupTipoImovel.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupSitChave.SuspendLayout();
+            this.painelProp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProprietarios)).BeginInit();
             this.SuspendLayout();
             // 
             // boxLogradouro
@@ -332,7 +343,10 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.comboProprietario);
+            this.groupBox5.Controls.Add(this.excluiProp);
+            this.groupBox5.Controls.Add(this.labelCod);
+            this.groupBox5.Controls.Add(this.boxCodProp);
+            this.groupBox5.Controls.Add(this.nomePropBox);
             this.groupBox5.ForeColor = System.Drawing.Color.Gray;
             this.groupBox5.Location = new System.Drawing.Point(16, 146);
             this.groupBox5.Name = "groupBox5";
@@ -340,21 +354,58 @@
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             // 
-            // comboProprietario
+            // excluiProp
             // 
-            this.comboProprietario.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboProprietario.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboProprietario.ForeColor = System.Drawing.Color.Gray;
-            this.comboProprietario.FormattingEnabled = true;
-            this.comboProprietario.ItemHeight = 13;
-            this.comboProprietario.Items.AddRange(new object[] {
-            "--NOVO--"});
-            this.comboProprietario.Location = new System.Drawing.Point(13, 234);
-            this.comboProprietario.Name = "comboProprietario";
-            this.comboProprietario.Size = new System.Drawing.Size(371, 21);
-            this.comboProprietario.TabIndex = 27;
-            this.comboProprietario.SelectedValueChanged += new System.EventHandler(this.ComboProprietario_SelectedValueChanged);
-            this.comboProprietario.Click += new System.EventHandler(this.ComboProprietario_Click);
+            this.excluiProp.AutoSize = true;
+            this.excluiProp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.excluiProp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.excluiProp.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.excluiProp.Location = new System.Drawing.Point(367, 237);
+            this.excluiProp.Name = "excluiProp";
+            this.excluiProp.Size = new System.Drawing.Size(25, 24);
+            this.excluiProp.TabIndex = 27;
+            this.excluiProp.Text = "X";
+            this.excluiProp.Visible = false;
+            this.excluiProp.Click += new System.EventHandler(this.ExcluiProp_Click);
+            // 
+            // labelCod
+            // 
+            this.labelCod.AutoSize = true;
+            this.labelCod.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.labelCod.Location = new System.Drawing.Point(15, 219);
+            this.labelCod.Name = "labelCod";
+            this.labelCod.Size = new System.Drawing.Size(52, 15);
+            this.labelCod.TabIndex = 26;
+            this.labelCod.Text = "Código *";
+            this.labelCod.Visible = false;
+            // 
+            // boxCodProp
+            // 
+            this.boxCodProp.CustomBackground = true;
+            this.boxCodProp.CustomForeColor = true;
+            this.boxCodProp.ForeColor = System.Drawing.Color.DarkGray;
+            this.boxCodProp.Location = new System.Drawing.Point(13, 237);
+            this.boxCodProp.Name = "boxCodProp";
+            this.boxCodProp.ReadOnly = true;
+            this.boxCodProp.Size = new System.Drawing.Size(54, 25);
+            this.boxCodProp.TabIndex = 1;
+            this.boxCodProp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.boxCodProp.Visible = false;
+            // 
+            // nomePropBox
+            // 
+            this.nomePropBox.CustomBackground = true;
+            this.nomePropBox.CustomForeColor = true;
+            this.nomePropBox.ForeColor = System.Drawing.Color.DarkGray;
+            this.nomePropBox.Location = new System.Drawing.Point(72, 237);
+            this.nomePropBox.Name = "nomePropBox";
+            this.nomePropBox.ReadOnly = true;
+            this.nomePropBox.Size = new System.Drawing.Size(290, 25);
+            this.nomePropBox.TabIndex = 0;
+            this.nomePropBox.Text = "Clique para adicionar o proprietário";
+            this.nomePropBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nomePropBox.Visible = false;
+            this.nomePropBox.Click += new System.EventHandler(this.NomePropBox_Click);
             // 
             // groupBox2
             // 
@@ -373,6 +424,16 @@
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             // 
+            // metroLabel15
+            // 
+            this.metroLabel15.AutoSize = true;
+            this.metroLabel15.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel15.Location = new System.Drawing.Point(197, 8);
+            this.metroLabel15.Name = "metroLabel15";
+            this.metroLabel15.Size = new System.Drawing.Size(101, 15);
+            this.metroLabel15.TabIndex = 20;
+            this.metroLabel15.Text = "Situação da chave*";
+            // 
             // metroLabel12
             // 
             this.metroLabel12.AutoSize = true;
@@ -382,6 +443,38 @@
             this.metroLabel12.Size = new System.Drawing.Size(45, 15);
             this.metroLabel12.TabIndex = 26;
             this.metroLabel12.Text = "Outro *";
+            // 
+            // groupSitChave
+            // 
+            this.groupSitChave.Controls.Add(this.radioChaveIndisponivel);
+            this.groupSitChave.Controls.Add(this.radioChaveDisponivel);
+            this.groupSitChave.Location = new System.Drawing.Point(111, 17);
+            this.groupSitChave.Name = "groupSitChave";
+            this.groupSitChave.Size = new System.Drawing.Size(273, 33);
+            this.groupSitChave.TabIndex = 19;
+            this.groupSitChave.TabStop = false;
+            // 
+            // radioChaveIndisponivel
+            // 
+            this.radioChaveIndisponivel.AutoSize = true;
+            this.radioChaveIndisponivel.Location = new System.Drawing.Point(149, 12);
+            this.radioChaveIndisponivel.Name = "radioChaveIndisponivel";
+            this.radioChaveIndisponivel.Size = new System.Drawing.Size(99, 15);
+            this.radioChaveIndisponivel.TabIndex = 12;
+            this.radioChaveIndisponivel.TabStop = true;
+            this.radioChaveIndisponivel.Text = "INDISPONIVEL";
+            this.radioChaveIndisponivel.UseVisualStyleBackColor = true;
+            // 
+            // radioChaveDisponivel
+            // 
+            this.radioChaveDisponivel.AutoSize = true;
+            this.radioChaveDisponivel.Location = new System.Drawing.Point(25, 12);
+            this.radioChaveDisponivel.Name = "radioChaveDisponivel";
+            this.radioChaveDisponivel.Size = new System.Drawing.Size(87, 15);
+            this.radioChaveDisponivel.TabIndex = 1;
+            this.radioChaveDisponivel.TabStop = true;
+            this.radioChaveDisponivel.Text = "DISPONIVEL";
+            this.radioChaveDisponivel.UseVisualStyleBackColor = true;
             // 
             // boxOutraLocalizacao
             // 
@@ -441,15 +534,16 @@
             this.codImovel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.codImovel.UseStyleColors = true;
             // 
-            // metroLabel13
+            // labelProp
             // 
-            this.metroLabel13.AutoSize = true;
-            this.metroLabel13.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel13.Location = new System.Drawing.Point(161, 364);
-            this.metroLabel13.Name = "metroLabel13";
-            this.metroLabel13.Size = new System.Drawing.Size(75, 15);
-            this.metroLabel13.TabIndex = 21;
-            this.metroLabel13.Text = "Proprietário *";
+            this.labelProp.AutoSize = true;
+            this.labelProp.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.labelProp.Location = new System.Drawing.Point(192, 364);
+            this.labelProp.Name = "labelProp";
+            this.labelProp.Size = new System.Drawing.Size(75, 15);
+            this.labelProp.TabIndex = 21;
+            this.labelProp.Text = "Proprietário *";
+            this.labelProp.Visible = false;
             // 
             // metroLabel14
             // 
@@ -493,47 +587,87 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.MouseEnter += new System.EventHandler(this.BtnCancelar_MouseEnter);
             // 
-            // metroLabel15
+            // painelProp
             // 
-            this.metroLabel15.AutoSize = true;
-            this.metroLabel15.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel15.Location = new System.Drawing.Point(197, 8);
-            this.metroLabel15.Name = "metroLabel15";
-            this.metroLabel15.Size = new System.Drawing.Size(101, 15);
-            this.metroLabel15.TabIndex = 20;
-            this.metroLabel15.Text = "Situação da chave*";
+            this.painelProp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.painelProp.Controls.Add(this.btnCancelarProp);
+            this.painelProp.Controls.Add(this.btnConfirmarProp);
+            this.painelProp.Controls.Add(this.gridProprietarios);
+            this.painelProp.Controls.Add(this.boxProcurarProp);
+            this.painelProp.Location = new System.Drawing.Point(29, 136);
+            this.painelProp.Name = "painelProp";
+            this.painelProp.Size = new System.Drawing.Size(374, 225);
+            this.painelProp.TabIndex = 25;
+            this.painelProp.Visible = false;
             // 
-            // groupSitChave
+            // btnCancelarProp
             // 
-            this.groupSitChave.Controls.Add(this.radioChaveIndisponivel);
-            this.groupSitChave.Controls.Add(this.radioChaveDisponivel);
-            this.groupSitChave.Location = new System.Drawing.Point(111, 17);
-            this.groupSitChave.Name = "groupSitChave";
-            this.groupSitChave.Size = new System.Drawing.Size(273, 33);
-            this.groupSitChave.TabIndex = 19;
-            this.groupSitChave.TabStop = false;
+            this.btnCancelarProp.BackColor = System.Drawing.Color.White;
+            this.btnCancelarProp.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnCancelarProp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(107)))));
+            this.btnCancelarProp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
+            this.btnCancelarProp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelarProp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnCancelarProp.Location = new System.Drawing.Point(170, 194);
+            this.btnCancelarProp.Name = "btnCancelarProp";
+            this.btnCancelarProp.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelarProp.TabIndex = 26;
+            this.btnCancelarProp.Text = "Cancelar";
+            this.btnCancelarProp.UseVisualStyleBackColor = false;
+            this.btnCancelarProp.Click += new System.EventHandler(this.BtnCancelarProp_Click);
             // 
-            // radioChaveIndisponivel
+            // btnConfirmarProp
             // 
-            this.radioChaveIndisponivel.AutoSize = true;
-            this.radioChaveIndisponivel.Location = new System.Drawing.Point(149, 12);
-            this.radioChaveIndisponivel.Name = "radioChaveIndisponivel";
-            this.radioChaveIndisponivel.Size = new System.Drawing.Size(99, 15);
-            this.radioChaveIndisponivel.TabIndex = 12;
-            this.radioChaveIndisponivel.TabStop = true;
-            this.radioChaveIndisponivel.Text = "INDISPONIVEL";
-            this.radioChaveIndisponivel.UseVisualStyleBackColor = true;
+            this.btnConfirmarProp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnConfirmarProp.FlatAppearance.BorderSize = 0;
+            this.btnConfirmarProp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(107)))));
+            this.btnConfirmarProp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
+            this.btnConfirmarProp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmarProp.ForeColor = System.Drawing.Color.White;
+            this.btnConfirmarProp.Location = new System.Drawing.Point(270, 195);
+            this.btnConfirmarProp.Name = "btnConfirmarProp";
+            this.btnConfirmarProp.Size = new System.Drawing.Size(75, 23);
+            this.btnConfirmarProp.TabIndex = 25;
+            this.btnConfirmarProp.Text = "Confirmar";
+            this.btnConfirmarProp.UseVisualStyleBackColor = false;
+            this.btnConfirmarProp.Click += new System.EventHandler(this.BtnConfirmarProp_Click);
             // 
-            // radioChaveDisponivel
+            // gridProprietarios
             // 
-            this.radioChaveDisponivel.AutoSize = true;
-            this.radioChaveDisponivel.Location = new System.Drawing.Point(25, 12);
-            this.radioChaveDisponivel.Name = "radioChaveDisponivel";
-            this.radioChaveDisponivel.Size = new System.Drawing.Size(87, 15);
-            this.radioChaveDisponivel.TabIndex = 1;
-            this.radioChaveDisponivel.TabStop = true;
-            this.radioChaveDisponivel.Text = "DISPONIVEL";
-            this.radioChaveDisponivel.UseVisualStyleBackColor = true;
+            this.gridProprietarios.AllowUserToAddRows = false;
+            this.gridProprietarios.AllowUserToDeleteRows = false;
+            this.gridProprietarios.AllowUserToResizeRows = false;
+            this.gridProprietarios.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.gridProprietarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridProprietarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridProprietarios.Location = new System.Drawing.Point(29, 58);
+            this.gridProprietarios.MultiSelect = false;
+            this.gridProprietarios.Name = "gridProprietarios";
+            this.gridProprietarios.ReadOnly = true;
+            this.gridProprietarios.RowHeadersVisible = false;
+            this.gridProprietarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridProprietarios.Size = new System.Drawing.Size(317, 125);
+            this.gridProprietarios.TabIndex = 1;
+            // 
+            // boxProcurarProp
+            // 
+            this.boxProcurarProp.Location = new System.Drawing.Point(29, 23);
+            this.boxProcurarProp.Name = "boxProcurarProp";
+            this.boxProcurarProp.Size = new System.Drawing.Size(317, 20);
+            this.boxProcurarProp.TabIndex = 0;
+            this.boxProcurarProp.TextChanged += new System.EventHandler(this.BoxProcurarProp_TextChanged);
+            // 
+            // btnAdicionarProp
+            // 
+            this.btnAdicionarProp.AutoSize = true;
+            this.btnAdicionarProp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdicionarProp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdicionarProp.Location = new System.Drawing.Point(154, 379);
+            this.btnAdicionarProp.Name = "btnAdicionarProp";
+            this.btnAdicionarProp.Size = new System.Drawing.Size(125, 15);
+            this.btnAdicionarProp.TabIndex = 28;
+            this.btnAdicionarProp.Text = "Adicionar Proprietário";
+            this.btnAdicionarProp.Click += new System.EventHandler(this.BtnAdicionarProp_Click);
             // 
             // cadastroChave
             // 
@@ -541,10 +675,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(429, 449);
+            this.Controls.Add(this.btnAdicionarProp);
+            this.Controls.Add(this.painelProp);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.metroLabel14);
-            this.Controls.Add(this.metroLabel13);
+            this.Controls.Add(this.labelProp);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.metroLabel10);
             this.Controls.Add(this.groupTipoImovel);
@@ -579,10 +715,14 @@
             this.groupTipoImovel.ResumeLayout(false);
             this.groupTipoImovel.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupSitChave.ResumeLayout(false);
             this.groupSitChave.PerformLayout();
+            this.painelProp.ResumeLayout(false);
+            this.painelProp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProprietarios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -619,11 +759,10 @@
         private MetroFramework.Controls.MetroLabel metroLabel11;
         private MetroFramework.Controls.MetroLabel metroLabel8;
         private MetroFramework.Controls.MetroTextBox codImovel;
-        private System.Windows.Forms.ComboBox comboProprietario;
         private MetroFramework.Controls.MetroLabel metroLabel12;
         private MetroFramework.Controls.MetroTextBox boxOutraLocalizacao;
         private MetroFramework.Controls.MetroComboBox comboLocalizacao;
-        private MetroFramework.Controls.MetroLabel metroLabel13;
+        private MetroFramework.Controls.MetroLabel labelProp;
         private MetroFramework.Controls.MetroLabel metroLabel14;
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.Button btnCancelar;
@@ -631,5 +770,15 @@
         private System.Windows.Forms.GroupBox groupSitChave;
         private MetroFramework.Controls.MetroRadioButton radioChaveIndisponivel;
         private MetroFramework.Controls.MetroRadioButton radioChaveDisponivel;
+        private System.Windows.Forms.Panel painelProp;
+        private System.Windows.Forms.TextBox boxProcurarProp;
+        private System.Windows.Forms.DataGridView gridProprietarios;
+        private MetroFramework.Controls.MetroTextBox nomePropBox;
+        private MetroFramework.Controls.MetroTextBox boxCodProp;
+        private MetroFramework.Controls.MetroLabel labelCod;
+        private System.Windows.Forms.Button btnCancelarProp;
+        private System.Windows.Forms.Button btnConfirmarProp;
+        private System.Windows.Forms.Label excluiProp;
+        private System.Windows.Forms.Label btnAdicionarProp;
     }
 }

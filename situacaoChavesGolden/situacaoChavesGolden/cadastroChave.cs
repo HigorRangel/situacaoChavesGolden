@@ -16,7 +16,6 @@ namespace situacaoChavesGolden
 
         PostgreSQL database = new PostgreSQL();
         bool seletorTela = false;
-        List<string> codigosProprietarios = new List<string>();
         string codChave = "";
 
         public cadastroChave(string codigoChave)
@@ -83,7 +82,7 @@ namespace situacaoChavesGolden
         }
         private void CadastroChave_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(proximoCodigo());
+                
 
             if(seletorTela == true)
             {
@@ -137,31 +136,12 @@ namespace situacaoChavesGolden
                     }
 
 
-                    MessageBox.Show(database.selectScalar(string.Format("" +
-                        "SELECT nome FROM proprietario WHERE cod_proprietario = '{0}'", row[9].ToString())));
-
-                    comboProprietario.SelectedValue = database.selectScalar(string.Format("" +
+                    nomePropBox.Text = database.selectScalar(string.Format("" +
                         "SELECT nome FROM proprietario WHERE cod_proprietario = '{0}'", row[9].ToString()));
 
+                    boxCodProp.Text = row[9].ToString();
+
                 }
-
-
-            }
-
-            //PREENCHE A COMBOBOX DE PROPRIETÁRIO
-
-            codigosProprietarios.Clear();
-            comboProprietario.Items.Clear();
-            comboProprietario.Items.Add("--NOVO--");
-
-            DataTable proprietarios = new DataTable();
-
-            proprietarios = database.select("SELECT cod_proprietario, nome FROM proprietario ORDER BY nome");
-
-            foreach (DataRow row in proprietarios.Rows)
-            {
-                codigosProprietarios.Add(row[0].ToString());
-                comboProprietario.Items.Add(row[1].ToString());
 
 
             }
@@ -173,35 +153,6 @@ namespace situacaoChavesGolden
             btnCancelar.ForeColor = Color.White;
         }
 
-        private void ComboProprietario_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if(comboProprietario.SelectedItem.ToString() == "--NOVO--")
-            {
-                cadastroProprietario proprietario = new cadastroProprietario();
-                proprietario.ShowDialog();
-            }
-        }
-
-     
-
-        private void ComboProprietario_Click(object sender, EventArgs e)
-        {
-            codigosProprietarios.Clear();
-            comboProprietario.Items.Clear();
-            comboProprietario.Items.Add("--NOVO--");
-
-            DataTable proprietarios = new DataTable();
-
-            proprietarios = database.select("SELECT cod_proprietario, nome FROM proprietario ORDER BY nome");
-
-            foreach(DataRow row in proprietarios.Rows)
-            {
-                codigosProprietarios.Add(row[0].ToString());
-                comboProprietario.Items.Add(row[1].ToString());
-
-
-            }
-        }
 
         private void BtnCadastrar_Click(object sender, EventArgs e)
         {
@@ -260,13 +211,10 @@ namespace situacaoChavesGolden
             {
                 contErro++;
             }
-            if(comboProprietario.SelectedIndex == -1)
+            if(boxCodProp.Text.Length == 0)
             {
                 contErro++;
             }
-
-
-            
 
             if (contErro == 0)
             {
@@ -277,7 +225,7 @@ namespace situacaoChavesGolden
                 string estado = boxEstado.Text.Trim();
                 string numero = boxNumero.Text.Trim();
                 string complemento = boxComplemento.Text.Trim();
-                string codProprietario = codigosProprietarios[comboProprietario.SelectedIndex - 1];
+                string codProprietario = boxCodProp.Text.Trim();
                 string situacaoChave = groupSitChave.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
                 string situacaoImovel = groupSitImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
                 string tipoImovel = groupTipoImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text; ;
@@ -302,7 +250,7 @@ namespace situacaoChavesGolden
                         " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel, cod_chave)" +
                         " VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}'," +
                         " '{11}','{12}', '{13}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
-                         localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, proximoCodigo()));
+                         localizacao, 1, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, proximoCodigo()));
 
                         this.Close();
 
@@ -317,7 +265,7 @@ namespace situacaoChavesGolden
                             " cidade = '{4}', estado = '{5}', situacao = '{6}', localizacao = '{7}', proprietario = '{8}', " +
                             " cod_imob = '{9}', tipo_imovel = '{10}', finalidade = '{11}', situacao_imovel = '{12}' " +
                             " WHERE cod_chave = {13}", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
-                            localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, codChave));
+                            localizacao, 1, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, codChave));
 
                         this.Close();
 
@@ -338,6 +286,104 @@ namespace situacaoChavesGolden
             {
                 MessageBox.Show("Há campso preenchidos incorretamente! Verifique e tente novamente");
             }
+        }
+
+        private void ComboProprietario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void atualizarGridProprietarios()
+        {
+            try
+            {
+                DataTable tabelaProp = new DataTable();
+
+                tabelaProp = database.select(string.Format("SELECT cod_proprietario, nome " +
+                    " FROM proprietario" +
+                    " WHERE nome ILIKE '%{0}%' OR cod_proprietario ILIKE '%{0}%'", boxProcurarProp.Text));
+
+                gridProprietarios.DataSource = tabelaProp;
+
+                gridProprietarios.Columns[0].HeaderText = "Código";
+                gridProprietarios.Columns[1].HeaderText = "Nome";
+
+                gridProprietarios.Columns[0].Width = 45;
+                gridProprietarios.Columns[1].Width = 270;
+
+                gridProprietarios.Columns[0].MinimumWidth = 45;
+                gridProprietarios.Columns[1].MinimumWidth = 270;
+            }
+            catch
+            {
+
+            }
+        }
+        private void NomePropBox_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void BtnConfirmarProp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string codigoProprietario = gridProprietarios.CurrentRow.Cells[0].Value.ToString();
+                string nomeProprietario = gridProprietarios.CurrentRow.Cells[1].Value.ToString();
+
+                boxCodProp.Text = codigoProprietario;
+                nomePropBox.Text = nomeProprietario;
+
+
+                nomePropBox.Visible = true;
+                boxCodProp.Visible = true;
+                excluiProp.Visible = true;
+                labelCod.Visible = true;
+                labelProp.Visible = true;
+                btnAdicionarProp.Visible = false;
+            }
+            catch { }
+
+            painelProp.Visible = false;
+            groupBox2.Enabled = true;
+            groupBox5.Enabled = true;
+
+
+        }
+
+        private void BtnCancelarProp_Click(object sender, EventArgs e)
+        {
+            painelProp.Visible = false;
+            groupBox2.Enabled = true;
+            groupBox5.Enabled = true;
+        }
+
+        private void ExcluiProp_Click(object sender, EventArgs e)
+        {
+            nomePropBox.Text = "";
+            boxCodProp.Text = "";
+            nomePropBox.Visible = false;
+            boxCodProp.Visible = false;
+            excluiProp.Visible = false;
+            labelCod.Visible = false;
+            labelProp.Visible = false;
+            btnAdicionarProp.Visible = true;
+        }
+
+        private void BtnAdicionarProp_Click(object sender, EventArgs e)
+        {
+            atualizarGridProprietarios();
+
+            painelProp.Visible = true;
+
+            groupBox2.Enabled = false;
+            groupBox5.Enabled = false;
+
+        }
+
+        private void BoxProcurarProp_TextChanged(object sender, EventArgs e)
+        {
+            atualizarGridProprietarios();
         }
     }
 }

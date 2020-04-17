@@ -69,9 +69,9 @@
             this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Small;
             this.metroLabel2.Location = new System.Drawing.Point(58, 90);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(121, 15);
+            this.metroLabel2.Size = new System.Drawing.Size(113, 15);
             this.metroLabel2.TabIndex = 3;
-            this.metroLabel2.Text = "Email do proprietário *";
+            this.metroLabel2.Text = "Email do proprietário";
             // 
             // emailBox
             // 
