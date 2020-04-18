@@ -27,8 +27,10 @@ namespace situacaoChavesGolden
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            string caminho = Environment.CurrentDirectory;
+            caminho = caminho.Replace("bin\\Debug", "");
 
-            database.restore(Environment.CurrentDirectory, "\\backupDados.dump");
+            database.restore(caminho, "\\backupDados.dump");
 
             //Cria tabela para preencher com os usuários
             DataTable usuarios = new DataTable();
@@ -83,8 +85,11 @@ namespace situacaoChavesGolden
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
-            database.backup(Environment.CurrentDirectory, "\\backupDados.dump");
+            string caminho = Environment.CurrentDirectory;
+            caminho = caminho.Replace("bin\\Debug", "");
+
+            database.backup(caminho, "\\backupDados.dump");
+
         }
     }
 }
