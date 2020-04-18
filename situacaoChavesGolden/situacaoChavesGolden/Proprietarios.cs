@@ -54,9 +54,9 @@ namespace situacaoChavesGolden
             atualizarGridProprietarios();
         }
 
-        private void gridProprietarios_SelectionChanged(object sender, EventArgs e)
+        private void atualizarGridChave()
         {
-            if(gridProprietarios.SelectedRows != null)
+            if (gridProprietarios.SelectedRows != null)
             {
                 DataTable chaves = new DataTable();
 
@@ -82,6 +82,10 @@ namespace situacaoChavesGolden
                 gridChaves.Columns[3].Width = 112;
                 gridChaves.Columns[4].Width = 100;
             }
+        }
+        private void gridProprietarios_SelectionChanged(object sender, EventArgs e)
+        {
+            atualizarGridChave();
         }
 
         private void btnCadastrarProprietario_Click(object sender, EventArgs e)
@@ -147,6 +151,50 @@ namespace situacaoChavesGolden
         private void GridProprietarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void ExcluirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GridChaves_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+
+                if (gridChaves.CurrentCell != null)
+                {
+                    DataGridView.HitTestInfo info;
+                    info = gridChaves.HitTest(e.X, e.Y);
+                    if (info.Type == DataGridViewHitTestType.Cell)
+                    {
+                        if (info.Type == DataGridViewHitTestType.Cell && info.ColumnIndex == 1)
+                            gridChaves.CurrentCell.Selected = false;
+                        gridChaves[info.ColumnIndex, info.RowIndex].Selected = true;
+                        gridChaves.Refresh();
+                        contextMenuStrip2.Show(gridChaves, new Point(e.X, e.Y));
+                    }
+                }
+
+
+
+                DataRowView rowView = gridChaves.SelectedRows[0].DataBoundItem as DataRowView;
+
+                DataRow dtRow = rowView.Row;
+            }
+        }
+
+        private void RetirarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string codigoChave = gridChaves.CurrentRow.Cells[0].Value.ToString();
+            RetirarChave telaRetirar = new RetirarChave(codigoChave);
+            telaRetirar.ShowDialog();
+
+            if(telaRetirar.DialogResult == DialogResult.OK)
+            {
+                atualizarGridChave();
+            }
         }
     }
 }

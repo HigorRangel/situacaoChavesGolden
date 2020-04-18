@@ -34,9 +34,9 @@ namespace situacaoChavesGolden
             
             try
             {
-                chaves = database.select(string.Format("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel " +
+                chaves = database.select(string.Format("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel, indice_chave " +
                                              " FROM chave C" +
-                                             " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
+                                             " LEFT JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
                                              " WHERE (rua ILIKE '%{0}%' OR bairro ILIKE '%{0}%' OR cidade ILIKE '%{0}%' OR estado ILIKE '%{0}%' OR" +
                                              " numero  ILIKE '%{0}%' OR complemento ILIKE '%{0}%' OR cod_imob ILIKE '%{0}%' OR p.nome ILIKE '%{0}%') AND" +
                                              " (finalidade ILIKE '%{1}%' AND situacao ILIKE '{2}%' AND situacao_imovel ILIKE '{3}%' AND " +
@@ -65,6 +65,7 @@ namespace situacaoChavesGolden
                     gridChaves.Columns[2].HeaderText = "Endereço";
                     gridChaves.Columns[3].HeaderText = "Bairro";
                     gridChaves.Columns[4].HeaderText = "Situação";
+                    gridChaves.Columns[5].Visible = false;
 
                     gridChaves.Columns[0].Width = 60;
                     gridChaves.Columns[1].Width = 60;
@@ -119,6 +120,8 @@ namespace situacaoChavesGolden
 
                 if (gridChaves.CurrentCell != null)
                 {
+                    MessageBox.Show(gridChaves.CurrentRow.Cells[0].Value.ToString());
+
                     DataGridView.HitTestInfo info;
                     info = gridChaves.HitTest(e.X, e.Y);
                     if (info.Type == DataGridViewHitTestType.Cell)
@@ -127,7 +130,11 @@ namespace situacaoChavesGolden
                             gridChaves.CurrentCell.Selected = false;
                         gridChaves[info.ColumnIndex, info.RowIndex].Selected = true;
                         gridChaves.Refresh();
+
                         contextMenuStrip1.Show(gridChaves, new Point(e.X, e.Y));
+
+                        
+                        
                     }
                 }
 
@@ -148,6 +155,7 @@ namespace situacaoChavesGolden
         {
             try
             {
+               
                 gridChaves.AccessibilityObject.HitTest(MousePosition.X, MousePosition.Y).Select(AccessibleSelection.TakeSelection);
 
             }
@@ -158,7 +166,18 @@ namespace situacaoChavesGolden
 
         private void GridChaves_SelectionChanged(object sender, EventArgs e)
         {
-            if(gridChaves.CurrentRow == null)
+            if (gridChaves.CurrentRow.Cells[0].Value.ToString() == "")
+            {
+                excluirToolStripMenuItem.Enabled = false;
+                button2.Visible = false;
+            }
+            else
+            {
+                excluirToolStripMenuItem.Enabled = true;
+                button2.Visible = true;
+            }
+
+            if (gridChaves.CurrentRow == null)
             {
                 codigoImob.Text = "";
                 finalidade.Text = "";
@@ -173,14 +192,14 @@ namespace situacaoChavesGolden
             if (gridChaves.CurrentRow != null)
             {
 
-                string codigoChave = gridChaves.CurrentRow.Cells[0].Value.ToString();
+                string codigoChave = gridChaves.CurrentRow.Cells[5].Value.ToString();
 
                 DataTable dadosChave = new DataTable();
 
                 dadosChave = database.select(string.Format("SELECT c.*, p.nome " +
                                                            " FROM chave c  " +
                                                            " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
-                                                           " WHERE cod_chave = {0}", codigoChave));
+                                                           " WHERE indice_chave = {0}", codigoChave));
 
 
                 foreach (DataRow row in dadosChave.Rows)
@@ -236,7 +255,7 @@ namespace situacaoChavesGolden
             if (gridChaves.CurrentRow != null)
             {
 
-                string codigoChave = gridChaves.CurrentRow.Cells[0].Value.ToString();
+                string codigoChave = gridChaves.CurrentRow.Cells[5].Value.ToString();
 
 
                 cadastroChave editarChave = new cadastroChave(codigoChave);
@@ -311,9 +330,7 @@ namespace situacaoChavesGolden
 
         private void ExcluirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string codigoChaveRetirar = gridChaves.CurrentRow.Cells[0].Value.ToString();
-
-            codigoChaveRetirar = database.selectScalar(string.Format("SELECT indice_chave FROM chave WHERE cod_chave = '{0}'", codigoChaveRetirar));
+            string codigoChaveRetirar = gridChaves.CurrentRow.Cells[5].Value.ToString();
 
             RetirarChave telaRetirar = new RetirarChave(codigoChaveRetirar);
             telaRetirar.ShowDialog();
@@ -326,9 +343,15 @@ namespace situacaoChavesGolden
 
         private void BtnRestaurar_Click(object sender, EventArgs e)
         {
-            metroRadioButton1.Checked = true;
-            metroRadioButton6.Checked = true;
+            metroRadioButton3.Checked = true;
+            metroRadioButton5.Checked = true;
             metroRadioButton9.Checked = true;
+        }
+
+        private void GridChaves_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            
         }
     }
 }

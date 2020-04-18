@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridChaves = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.excluirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,8 +79,9 @@
             this.metroRadioButton6 = new MetroFramework.Controls.MetroRadioButton();
             this.groupBoxSituacaoIm = new System.Windows.Forms.GroupBox();
             this.metroRadioButton3 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
+            this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -101,14 +102,14 @@
             this.gridChaves.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
             this.gridChaves.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridChaves.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridChaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridChaves.ContextMenuStrip = this.contextMenuStrip1;
             this.gridChaves.GridColor = System.Drawing.Color.White;
@@ -117,20 +118,21 @@
             this.gridChaves.Name = "gridChaves";
             this.gridChaves.ReadOnly = true;
             this.gridChaves.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridChaves.RowHeadersVisible = false;
             this.gridChaves.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridChaves.RowTemplate.ReadOnly = true;
             this.gridChaves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridChaves.Size = new System.Drawing.Size(609, 177);
             this.gridChaves.TabIndex = 0;
+            this.gridChaves.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridChaves_CellContentClick);
             this.gridChaves.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridChaves_CellMouseClick);
             this.gridChaves.SelectionChanged += new System.EventHandler(this.GridChaves_SelectionChanged);
             this.gridChaves.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridChaves_MouseClick);
@@ -605,7 +607,7 @@
             // metroRadioButton4
             // 
             this.metroRadioButton4.AutoSize = true;
-            this.metroRadioButton4.Location = new System.Drawing.Point(148, 19);
+            this.metroRadioButton4.Location = new System.Drawing.Point(90, 19);
             this.metroRadioButton4.Name = "metroRadioButton4";
             this.metroRadioButton4.Size = new System.Drawing.Size(87, 15);
             this.metroRadioButton4.TabIndex = 2;
@@ -615,22 +617,22 @@
             // metroRadioButton5
             // 
             this.metroRadioButton5.AutoSize = true;
-            this.metroRadioButton5.Location = new System.Drawing.Point(64, 19);
+            this.metroRadioButton5.Checked = true;
+            this.metroRadioButton5.Location = new System.Drawing.Point(6, 19);
             this.metroRadioButton5.Name = "metroRadioButton5";
             this.metroRadioButton5.Size = new System.Drawing.Size(78, 15);
             this.metroRadioButton5.TabIndex = 1;
+            this.metroRadioButton5.TabStop = true;
             this.metroRadioButton5.Text = "Disponivel";
             this.metroRadioButton5.UseVisualStyleBackColor = true;
             // 
             // metroRadioButton6
             // 
             this.metroRadioButton6.AutoSize = true;
-            this.metroRadioButton6.Checked = true;
-            this.metroRadioButton6.Location = new System.Drawing.Point(6, 19);
+            this.metroRadioButton6.Location = new System.Drawing.Point(181, 19);
             this.metroRadioButton6.Name = "metroRadioButton6";
             this.metroRadioButton6.Size = new System.Drawing.Size(54, 15);
             this.metroRadioButton6.TabIndex = 0;
-            this.metroRadioButton6.TabStop = true;
             this.metroRadioButton6.Text = "Todos";
             this.metroRadioButton6.UseVisualStyleBackColor = true;
             // 
@@ -650,34 +652,45 @@
             // metroRadioButton3
             // 
             this.metroRadioButton3.AutoSize = true;
-            this.metroRadioButton3.Location = new System.Drawing.Point(152, 22);
+            this.metroRadioButton3.Checked = true;
+            this.metroRadioButton3.Location = new System.Drawing.Point(6, 22);
             this.metroRadioButton3.Name = "metroRadioButton3";
             this.metroRadioButton3.Size = new System.Drawing.Size(54, 15);
             this.metroRadioButton3.TabIndex = 2;
+            this.metroRadioButton3.TabStop = true;
             this.metroRadioButton3.Text = "Todos";
             this.metroRadioButton3.UseVisualStyleBackColor = true;
+            // 
+            // metroRadioButton1
+            // 
+            this.metroRadioButton1.AutoSize = true;
+            this.metroRadioButton1.Location = new System.Drawing.Point(91, 22);
+            this.metroRadioButton1.Name = "metroRadioButton1";
+            this.metroRadioButton1.Size = new System.Drawing.Size(51, 15);
+            this.metroRadioButton1.TabIndex = 0;
+            this.metroRadioButton1.Text = "Ativo";
+            this.metroRadioButton1.UseVisualStyleBackColor = true;
             // 
             // metroRadioButton2
             // 
             this.metroRadioButton2.AutoSize = true;
-            this.metroRadioButton2.Location = new System.Drawing.Point(70, 22);
+            this.metroRadioButton2.Location = new System.Drawing.Point(170, 22);
             this.metroRadioButton2.Name = "metroRadioButton2";
             this.metroRadioButton2.Size = new System.Drawing.Size(59, 15);
             this.metroRadioButton2.TabIndex = 1;
             this.metroRadioButton2.Text = "Inativo";
             this.metroRadioButton2.UseVisualStyleBackColor = true;
             // 
-            // metroRadioButton1
+            // button2
             // 
-            this.metroRadioButton1.AutoSize = true;
-            this.metroRadioButton1.Checked = true;
-            this.metroRadioButton1.Location = new System.Drawing.Point(9, 22);
-            this.metroRadioButton1.Name = "metroRadioButton1";
-            this.metroRadioButton1.Size = new System.Drawing.Size(51, 15);
-            this.metroRadioButton1.TabIndex = 0;
-            this.metroRadioButton1.TabStop = true;
-            this.metroRadioButton1.Text = "Ativo";
-            this.metroRadioButton1.UseVisualStyleBackColor = true;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = global::situacaoChavesGolden.Properties.Resources.Delete1;
+            this.button2.Location = new System.Drawing.Point(26, 247);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(20, 20);
+            this.button2.TabIndex = 24;
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // Chaves
             // 
@@ -685,6 +698,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 430);
             this.ControlBox = false;
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.filtrosPanel);
             this.Controls.Add(this.btnCadastrarChave);
             this.Controls.Add(this.button1);
@@ -771,8 +785,6 @@
         private System.Windows.Forms.PictureBox btnFiltro;
         private System.Windows.Forms.Panel filtrosPanel;
         private System.Windows.Forms.GroupBox groupBoxSituacaoIm;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton3;
         private System.Windows.Forms.GroupBox groupBoxSituacaoCh;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton4;
@@ -786,5 +798,8 @@
         private System.Windows.Forms.ToolStripMenuItem registrarEmpréstimoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reservarToolStripMenuItem;
         private System.Windows.Forms.Label btnRestaurar;
+        private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
+        private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
+        private System.Windows.Forms.Button button2;
     }
 }

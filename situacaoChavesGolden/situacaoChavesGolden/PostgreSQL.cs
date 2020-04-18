@@ -139,7 +139,7 @@ namespace situacaoChavesGolden
             }
         }
 
-        public void backup()
+        public void backup(string caminho, string nome)
         {
             string varAmbiente = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
             string[] colunas = varAmbiente.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
@@ -150,20 +150,25 @@ namespace situacaoChavesGolden
                 {
                     ProcessStartInfo process = new ProcessStartInfo();
                     process.FileName = variavel + @"pg_dump.exe";
+                
                     process.WindowStyle = ProcessWindowStyle.Minimized;
-                    process.Arguments = "-h localhost -p 5432 -U postgres -F c -b -v -f \"C:\\Users\\Higor Rangel\\Desktop\\grazadeus.backup\" postgres";
+                    process.Arguments = "-h localhost -p 5432 -U postgres -F c -b -v -f \"" + caminho + nome + "\" postgres";
                     Process processStart = new Process();
                     processStart.StartInfo = process;
                     processStart.Start();
                     processStart.WaitForExit();
-                }
-                catch { }
-
+                    break;
+            }
+                catch (Exception erro)
+            {
+               // MessageBox.Show("-h localhost - p 5432 - U postgres - F c - b - v - f \"" + caminho + nome + "\" postgres");
             }
 
         }
 
-        public void restore()
+        }
+
+        public void restore(string caminho, string nome)
         {
             string varAmbiente = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
             string[] colunas = varAmbiente.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
@@ -175,11 +180,12 @@ namespace situacaoChavesGolden
                     ProcessStartInfo process = new ProcessStartInfo();
                     process.FileName = variavel + @"pg_restore.exe";
                     process.WindowStyle = ProcessWindowStyle.Hidden;
-                    process.Arguments = "-U postgres -d postgres \"C:\\Users\\Higor Rangel\\Desktop\\grazadeus.backup\"";
+                    process.Arguments = "-U postgres -d postgres \"" + caminho + nome + "\"";
                     Process processStart = new Process();
                     processStart.StartInfo = process;
                     processStart.Start();
                     processStart.WaitForExit();
+                    break;
                 }
                 catch { }
                

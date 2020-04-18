@@ -27,6 +27,9 @@ namespace situacaoChavesGolden
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            database.restore(Environment.CurrentDirectory, "\\backupDados.dump");
+
             //Cria tabela para preencher com os usuários
             DataTable usuarios = new DataTable();
 
@@ -76,6 +79,12 @@ namespace situacaoChavesGolden
 
                 tela.ShowDialog();
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+            database.backup(Environment.CurrentDirectory, "\\backupDados.dump");
         }
     }
 }
