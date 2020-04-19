@@ -88,7 +88,7 @@ namespace situacaoChavesGolden
             {
                 DataTable dadosChave = new DataTable();
 
-                dadosChave = database.select(string.Format("SELECT * FROM chave WHERE cod_chave = '{0}'", codChave));
+                dadosChave = database.select(string.Format("SELECT * FROM chave WHERE indice_chave = '{0}'", codChave));
 
 
                 foreach(DataRow row in dadosChave.Rows)
@@ -141,6 +141,12 @@ namespace situacaoChavesGolden
 
                     boxCodProp.Text = row[9].ToString();
 
+                    nomePropBox.Visible = true;
+                    boxCodProp.Visible = true;
+                    excluiProp.Visible = true;
+                    labelCod.Visible = true;
+                    labelProp.Visible = true;
+                    btnAdicionarProp.Visible = false;
                 }
 
 
@@ -301,7 +307,7 @@ namespace situacaoChavesGolden
 
                 tabelaProp = database.select(string.Format("SELECT cod_proprietario, nome " +
                     " FROM proprietario" +
-                    " WHERE nome ILIKE '%{0}%' OR cod_proprietario ILIKE '%{0}%'", boxProcurarProp.Text));
+                    " WHERE nome ILIKE '%{0}%' OR cod_proprietario::text ILIKE '%{0}%'", boxProcurarProp.Text));
 
                 gridProprietarios.DataSource = tabelaProp;
 
@@ -312,11 +318,11 @@ namespace situacaoChavesGolden
                 gridProprietarios.Columns[1].Width = 270;
 
                 gridProprietarios.Columns[0].MinimumWidth = 45;
-                gridProprietarios.Columns[1].MinimumWidth = 270;
+                gridProprietarios.Columns[1].MinimumWidth = 265;
             }
-            catch
+            catch (Exception erro)
             {
-
+                MessageBox.Show(erro.Message);
             }
         }
         private void NomePropBox_Click(object sender, EventArgs e)

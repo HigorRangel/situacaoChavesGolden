@@ -65,7 +65,7 @@ namespace situacaoChavesGolden
 
         private void btnChaves_Click(object sender, EventArgs e)
         {
-            Chaves telaChaves = new Chaves();
+            Chaves telaChaves = new Chaves(usuario);
             atualizarForm(telaChaves);
             telaChaves.radioTodos.Checked = true;
             telaChaves.radioLocacao.Checked = false;

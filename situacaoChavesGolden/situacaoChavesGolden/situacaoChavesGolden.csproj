@@ -285,6 +285,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\EditGray.png" />
+    <None Include="Resources\DeleteGray.png" />
+    <None Include="Resources\ChaveReservarGray.png" />
+    <None Include="Resources\ChaveEmprestarGray.png" />
+    <None Include="Resources\ChaveReservar.png" />
     <None Include="Resources\ChaveEmprestar.png" />
     <None Include="Resources\Edit.png" />
     <None Include="Resources\Delete.png" />
