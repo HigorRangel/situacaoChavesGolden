@@ -180,6 +180,7 @@ namespace situacaoChavesGolden
                     ProcessStartInfo process = new ProcessStartInfo();
                     process.FileName = variavel + @"pg_restore.exe";
                     process.WindowStyle = ProcessWindowStyle.Hidden;
+                    //MessageBox.Show(variavel);
                     process.Arguments = "-U postgres -d postgres \"" + caminho + nome + "\"";
                     Process processStart = new Process();
                     processStart.StartInfo = process;
@@ -187,7 +188,10 @@ namespace situacaoChavesGolden
                     processStart.WaitForExit();
                     break;
                 }
-                catch { }
+                catch (Exception erro)
+                {
+                   MessageBox.Show(erro.Message);
+                }
                
             }
         }
