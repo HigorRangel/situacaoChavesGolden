@@ -30,7 +30,7 @@ namespace situacaoChavesGolden
             string caminho = Environment.CurrentDirectory;
             caminho = caminho.Replace("bin\\Debug", "");
 
-            database.restore(caminho, "\\backupDados.dump");
+            database.restore(caminho, "\\backupDados.backup");
 
             //Cria tabela para preencher com os usuários
             DataTable usuarios = new DataTable();
