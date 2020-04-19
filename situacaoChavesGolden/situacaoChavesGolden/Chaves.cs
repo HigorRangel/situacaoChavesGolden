@@ -100,10 +100,12 @@ namespace situacaoChavesGolden
 
         }
 
-
-        public Chaves()
+        string usuario = "";
+        public Chaves(string codUser)
         {
             InitializeComponent();
+
+            usuario = codUser;
         }
 
         private void Chaves_Load(object sender, EventArgs e)
@@ -111,39 +113,6 @@ namespace situacaoChavesGolden
 
             atualizarGridChaves();
 
-        }
-
-        private void gridChaves_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-
-                if (gridChaves.CurrentCell != null)
-                {
-                    MessageBox.Show(gridChaves.CurrentRow.Cells[0].Value.ToString());
-
-                    DataGridView.HitTestInfo info;
-                    info = gridChaves.HitTest(e.X, e.Y);
-                    if (info.Type == DataGridViewHitTestType.Cell)
-                    {
-                        if (info.Type == DataGridViewHitTestType.Cell && info.ColumnIndex == 1)
-                            gridChaves.CurrentCell.Selected = false;
-                        gridChaves[info.ColumnIndex, info.RowIndex].Selected = true;
-                        gridChaves.Refresh();
-
-                        contextMenuStrip1.Show(gridChaves, new Point(e.X, e.Y));
-
-                        
-                        
-                    }
-                }
-
-
-
-                DataRowView rowView = gridChaves.SelectedRows[0].DataBoundItem as DataRowView;
-
-                DataRow dtRow = rowView.Row;
-            }
         }
 
         private void gridChaves_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -168,13 +137,23 @@ namespace situacaoChavesGolden
         {
             if (gridChaves.CurrentRow.Cells[0].Value.ToString() == "")
             {
-                excluirToolStripMenuItem.Enabled = false;
-                button2.Visible = false;
+                btnExcluir.Enabled = false;
+                btnEmprestar.Enabled = false;
+                btnReservar.Enabled = false;
+
+                btnExcluir.Image = new Bitmap(Properties.Resources.DeleteGray);
+                btnEmprestar.Image = new Bitmap(Properties.Resources.ChaveEmprestarGray);
+                btnReservar.Image = new Bitmap(Properties.Resources.ChaveReservarGray);
             }
             else
             {
-                excluirToolStripMenuItem.Enabled = true;
-                button2.Visible = true;
+                btnExcluir.Enabled = true;
+                btnEmprestar.Enabled = true;
+                btnReservar.Enabled = true;
+
+                btnExcluir.Image = new Bitmap(Properties.Resources.Delete);
+                btnEmprestar.Image = new Bitmap(Properties.Resources.ChaveEmprestar);
+                btnReservar.Image = new Bitmap(Properties.Resources.ChaveReservar);
             }
 
             if (gridChaves.CurrentRow == null)
@@ -252,17 +231,7 @@ namespace situacaoChavesGolden
 
         private void EditarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (gridChaves.CurrentRow != null)
-            {
-
-                string codigoChave = gridChaves.CurrentRow.Cells[5].Value.ToString();
-
-
-                cadastroChave editarChave = new cadastroChave(codigoChave);
-
-                editarChave.ShowDialog();
-
-            }
+          
         }
 
         private void BtnCadastrarChave_Click(object sender, EventArgs e)
@@ -330,15 +299,7 @@ namespace situacaoChavesGolden
 
         private void ExcluirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string codigoChaveRetirar = gridChaves.CurrentRow.Cells[5].Value.ToString();
-
-            RetirarChave telaRetirar = new RetirarChave(codigoChaveRetirar);
-            telaRetirar.ShowDialog();
-
-            if(telaRetirar.DialogResult == DialogResult.OK)
-            {
-                atualizarGridChaves();
-            }
+           
         }
 
         private void BtnRestaurar_Click(object sender, EventArgs e)
@@ -352,6 +313,40 @@ namespace situacaoChavesGolden
         {
 
             
+        }
+
+        private void BtnExcluir_Click(object sender, EventArgs e)
+        {
+            string codigoChaveRetirar = gridChaves.CurrentRow.Cells[5].Value.ToString();
+
+            RetirarChave telaRetirar = new RetirarChave(codigoChaveRetirar);
+            telaRetirar.ShowDialog();
+
+            if (telaRetirar.DialogResult == DialogResult.OK)
+            {
+                atualizarGridChaves();
+            }
+        }
+
+        private void BtnEditar_Click(object sender, EventArgs e)
+        {
+            if (gridChaves.CurrentRow != null)
+            {
+
+                string codigoChave = gridChaves.CurrentRow.Cells[5].Value.ToString();
+
+
+                cadastroChave editarChave = new cadastroChave(codigoChave);
+
+                editarChave.ShowDialog();
+
+            }
+        }
+
+        private void BtnEmprestar_Click(object sender, EventArgs e)
+        {
+            CadastrarEmprestimo cadastrarEmp = new CadastrarEmprestimo(usuario, gridChaves.CurrentRow.Cells[5].Value.ToString());
+            cadastrarEmp.ShowDialog();
         }
     }
 }

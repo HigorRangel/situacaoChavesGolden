@@ -32,11 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridChaves = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.excluirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registrarEmpréstimoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reservarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.codigoImob = new System.Windows.Forms.Label();
             this.endereco = new System.Windows.Forms.Label();
@@ -79,11 +74,17 @@
             this.metroRadioButton6 = new MetroFramework.Controls.MetroRadioButton();
             this.groupBoxSituacaoIm = new System.Windows.Forms.GroupBox();
             this.metroRadioButton3 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
-            this.button2 = new System.Windows.Forms.Button();
+            this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
+            this.btnReservar = new System.Windows.Forms.Button();
+            this.btnEmprestar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.toolTipRetirar = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipEditar = new System.Windows.Forms.ToolTip(this.components);
+            this.ToolTipEmprestar = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipReservar = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupMenuSup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
@@ -111,7 +112,6 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridChaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.gridChaves.ContextMenuStrip = this.contextMenuStrip1;
             this.gridChaves.GridColor = System.Drawing.Color.White;
             this.gridChaves.Location = new System.Drawing.Point(23, 68);
             this.gridChaves.MultiSelect = false;
@@ -135,51 +135,13 @@
             this.gridChaves.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridChaves_CellContentClick);
             this.gridChaves.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridChaves_CellMouseClick);
             this.gridChaves.SelectionChanged += new System.EventHandler(this.GridChaves_SelectionChanged);
-            this.gridChaves.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridChaves_MouseClick);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.excluirToolStripMenuItem,
-            this.editarToolStripMenuItem,
-            this.registrarEmpréstimoToolStripMenuItem,
-            this.reservarToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(188, 92);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStrip1_Opening);
-            // 
-            // excluirToolStripMenuItem
-            // 
-            this.excluirToolStripMenuItem.Name = "excluirToolStripMenuItem";
-            this.excluirToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.excluirToolStripMenuItem.Text = "Retirar";
-            this.excluirToolStripMenuItem.Click += new System.EventHandler(this.ExcluirToolStripMenuItem_Click);
-            // 
-            // editarToolStripMenuItem
-            // 
-            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.editarToolStripMenuItem.Text = "Editar";
-            this.editarToolStripMenuItem.Click += new System.EventHandler(this.EditarToolStripMenuItem_Click);
-            // 
-            // registrarEmpréstimoToolStripMenuItem
-            // 
-            this.registrarEmpréstimoToolStripMenuItem.Name = "registrarEmpréstimoToolStripMenuItem";
-            this.registrarEmpréstimoToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.registrarEmpréstimoToolStripMenuItem.Text = "Registrar Empréstimo";
-            // 
-            // reservarToolStripMenuItem
-            // 
-            this.reservarToolStripMenuItem.Name = "reservarToolStripMenuItem";
-            this.reservarToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.reservarToolStripMenuItem.Text = "Reservar";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label1.Location = new System.Drawing.Point(28, 277);
+            this.label1.Location = new System.Drawing.Point(28, 286);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 15);
             this.label1.TabIndex = 1;
@@ -190,7 +152,7 @@
             this.codigoImob.AutoSize = true;
             this.codigoImob.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.codigoImob.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.codigoImob.Location = new System.Drawing.Point(106, 278);
+            this.codigoImob.Location = new System.Drawing.Point(106, 287);
             this.codigoImob.Name = "codigoImob";
             this.codigoImob.Size = new System.Drawing.Size(10, 15);
             this.codigoImob.TabIndex = 2;
@@ -201,7 +163,7 @@
             this.endereco.AutoSize = true;
             this.endereco.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.endereco.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.endereco.Location = new System.Drawing.Point(92, 312);
+            this.endereco.Location = new System.Drawing.Point(92, 321);
             this.endereco.Name = "endereco";
             this.endereco.Size = new System.Drawing.Size(10, 15);
             this.endereco.TabIndex = 4;
@@ -212,7 +174,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label3.Location = new System.Drawing.Point(28, 312);
+            this.label3.Location = new System.Drawing.Point(28, 321);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 15);
             this.label3.TabIndex = 3;
@@ -267,7 +229,7 @@
             this.proprietario.AutoSize = true;
             this.proprietario.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.proprietario.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.proprietario.Location = new System.Drawing.Point(111, 350);
+            this.proprietario.Location = new System.Drawing.Point(111, 355);
             this.proprietario.Name = "proprietario";
             this.proprietario.Size = new System.Drawing.Size(10, 15);
             this.proprietario.TabIndex = 10;
@@ -279,7 +241,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label9.Location = new System.Drawing.Point(28, 350);
+            this.label9.Location = new System.Drawing.Point(28, 355);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(78, 15);
             this.label9.TabIndex = 9;
@@ -290,7 +252,7 @@
             this.finalidade.AutoSize = true;
             this.finalidade.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.finalidade.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.finalidade.Location = new System.Drawing.Point(306, 278);
+            this.finalidade.Location = new System.Drawing.Point(306, 287);
             this.finalidade.Name = "finalidade";
             this.finalidade.Size = new System.Drawing.Size(10, 15);
             this.finalidade.TabIndex = 12;
@@ -301,7 +263,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label11.Location = new System.Drawing.Point(242, 277);
+            this.label11.Location = new System.Drawing.Point(242, 286);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(67, 15);
             this.label11.TabIndex = 11;
@@ -312,7 +274,7 @@
             this.sitImovel.AutoSize = true;
             this.sitImovel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sitImovel.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.sitImovel.Location = new System.Drawing.Point(567, 279);
+            this.sitImovel.Location = new System.Drawing.Point(567, 288);
             this.sitImovel.Name = "sitImovel";
             this.sitImovel.Size = new System.Drawing.Size(10, 15);
             this.sitImovel.TabIndex = 14;
@@ -323,7 +285,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label13.Location = new System.Drawing.Point(452, 278);
+            this.label13.Location = new System.Drawing.Point(452, 287);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(117, 15);
             this.label13.TabIndex = 13;
@@ -334,7 +296,7 @@
             this.tipoImovel.AutoSize = true;
             this.tipoImovel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tipoImovel.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.tipoImovel.Location = new System.Drawing.Point(552, 350);
+            this.tipoImovel.Location = new System.Drawing.Point(552, 355);
             this.tipoImovel.Name = "tipoImovel";
             this.tipoImovel.Size = new System.Drawing.Size(10, 15);
             this.tipoImovel.TabIndex = 16;
@@ -345,7 +307,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label15.Location = new System.Drawing.Point(461, 350);
+            this.label15.Location = new System.Drawing.Point(461, 355);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(91, 15);
             this.label15.TabIndex = 15;
@@ -466,9 +428,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Location = new System.Drawing.Point(23, 263);
+            this.groupBox2.Location = new System.Drawing.Point(23, 275);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(609, 114);
+            this.groupBox2.Size = new System.Drawing.Size(609, 99);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.X);
@@ -661,16 +623,6 @@
             this.metroRadioButton3.Text = "Todos";
             this.metroRadioButton3.UseVisualStyleBackColor = true;
             // 
-            // metroRadioButton1
-            // 
-            this.metroRadioButton1.AutoSize = true;
-            this.metroRadioButton1.Location = new System.Drawing.Point(91, 22);
-            this.metroRadioButton1.Name = "metroRadioButton1";
-            this.metroRadioButton1.Size = new System.Drawing.Size(51, 15);
-            this.metroRadioButton1.TabIndex = 0;
-            this.metroRadioButton1.Text = "Ativo";
-            this.metroRadioButton1.UseVisualStyleBackColor = true;
-            // 
             // metroRadioButton2
             // 
             this.metroRadioButton2.AutoSize = true;
@@ -681,16 +633,87 @@
             this.metroRadioButton2.Text = "Inativo";
             this.metroRadioButton2.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // metroRadioButton1
             // 
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = global::situacaoChavesGolden.Properties.Resources.Delete1;
-            this.button2.Location = new System.Drawing.Point(26, 247);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(20, 20);
-            this.button2.TabIndex = 24;
-            this.button2.UseVisualStyleBackColor = true;
+            this.metroRadioButton1.AutoSize = true;
+            this.metroRadioButton1.Location = new System.Drawing.Point(91, 22);
+            this.metroRadioButton1.Name = "metroRadioButton1";
+            this.metroRadioButton1.Size = new System.Drawing.Size(51, 15);
+            this.metroRadioButton1.TabIndex = 0;
+            this.metroRadioButton1.Text = "Ativo";
+            this.metroRadioButton1.UseVisualStyleBackColor = true;
+            // 
+            // btnReservar
+            // 
+            this.btnReservar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReservar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnReservar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnReservar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnReservar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnReservar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReservar.Image = global::situacaoChavesGolden.Properties.Resources.ChaveReservar;
+            this.btnReservar.Location = new System.Drawing.Point(109, 247);
+            this.btnReservar.Name = "btnReservar";
+            this.btnReservar.Size = new System.Drawing.Size(24, 22);
+            this.btnReservar.TabIndex = 27;
+            this.toolTipReservar.SetToolTip(this.btnReservar, "Reservar Chave");
+            this.btnReservar.UseVisualStyleBackColor = true;
+            // 
+            // btnEmprestar
+            // 
+            this.btnEmprestar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEmprestar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnEmprestar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnEmprestar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnEmprestar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnEmprestar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmprestar.Image = global::situacaoChavesGolden.Properties.Resources.ChaveEmprestar;
+            this.btnEmprestar.Location = new System.Drawing.Point(83, 247);
+            this.btnEmprestar.Name = "btnEmprestar";
+            this.btnEmprestar.Size = new System.Drawing.Size(24, 22);
+            this.btnEmprestar.TabIndex = 26;
+            this.ToolTipEmprestar.SetToolTip(this.btnEmprestar, "Registrar Empréstimo");
+            this.btnEmprestar.UseVisualStyleBackColor = true;
+            this.btnEmprestar.Click += new System.EventHandler(this.BtnEmprestar_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnEditar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnEditar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnEditar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar.Image = global::situacaoChavesGolden.Properties.Resources.Edit;
+            this.btnEditar.Location = new System.Drawing.Point(57, 247);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(24, 22);
+            this.btnEditar.TabIndex = 25;
+            this.toolTipEditar.SetToolTip(this.btnEditar, "Editar Chave");
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluir.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnExcluir.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnExcluir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnExcluir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcluir.Image = global::situacaoChavesGolden.Properties.Resources.Delete1;
+            this.btnExcluir.Location = new System.Drawing.Point(31, 247);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(24, 22);
+            this.btnExcluir.TabIndex = 24;
+            this.toolTipRetirar.SetToolTip(this.btnExcluir, "Retirar Chave");
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
+            // 
+            // toolTipRetirar
+            // 
+            this.toolTipRetirar.AutomaticDelay = 300;
+            this.toolTipRetirar.Tag = "Retirar";
             // 
             // Chaves
             // 
@@ -698,7 +721,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 430);
             this.ControlBox = false;
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnReservar);
+            this.Controls.Add(this.btnEmprestar);
+            this.Controls.Add(this.btnEditar);
+            this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.filtrosPanel);
             this.Controls.Add(this.btnCadastrarChave);
             this.Controls.Add(this.button1);
@@ -729,7 +755,6 @@
             this.Text = "Chaves";
             this.Load += new System.EventHandler(this.Chaves_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupMenuSup.ResumeLayout(false);
@@ -751,9 +776,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView gridChaves;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem excluirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label codigoImob;
         private System.Windows.Forms.Label endereco;
@@ -795,11 +817,16 @@
         private MetroFramework.Controls.MetroRadioButton metroRadioButton8;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton9;
         private System.Windows.Forms.Button btnFiltrar;
-        private System.Windows.Forms.ToolStripMenuItem registrarEmpréstimoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reservarToolStripMenuItem;
         private System.Windows.Forms.Label btnRestaurar;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnEmprestar;
+        private System.Windows.Forms.Button btnReservar;
+        private System.Windows.Forms.ToolTip toolTipRetirar;
+        private System.Windows.Forms.ToolTip ToolTipEmprestar;
+        private System.Windows.Forms.ToolTip toolTipEditar;
+        private System.Windows.Forms.ToolTip toolTipReservar;
     }
 }
