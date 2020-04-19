@@ -141,9 +141,11 @@ namespace situacaoChavesGolden
 
         public void backup(string caminho, string nome)
         {
+            MessageBox.Show("-h localhost -p 5432 -U postgres -F c -b -v -f \"" + caminho + nome + "\" postgres");
             string varAmbiente = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
             string[] colunas = varAmbiente.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
 
+            
             foreach (string variavel in colunas)
             {
                 try
@@ -152,7 +154,7 @@ namespace situacaoChavesGolden
                     process.FileName = variavel + @"pg_dump.exe";
                 
                     process.WindowStyle = ProcessWindowStyle.Minimized;
-                    process.Arguments = "-h localhost -p 5432 -U postgres -F c -b -v -f \"" + caminho + nome + "\" postgres";
+                    process.Arguments = "-h localhost -p 5432 -U postgres -F c -b -v -f \"" + caminho + nome + "\" chaves_golden";
                     Process processStart = new Process();
                     processStart.StartInfo = process;
                     processStart.Start();
@@ -173,15 +175,17 @@ namespace situacaoChavesGolden
             string varAmbiente = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
             string[] colunas = varAmbiente.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
 
-            foreach(string variavel in colunas)
+            foreach (string variavel in colunas)
             {
                 try
                 {
+                    Environment.SetEnvironmentVariable("PGPASSWORD", "123456");
                     ProcessStartInfo process = new ProcessStartInfo();
-                    process.FileName = variavel + @"pg_restore.exe";
-                    process.WindowStyle = ProcessWindowStyle.Hidden;
+                    process.FileName = variavel + @"pg_restore";
+                    process.WindowStyle = ProcessWindowStyle.Normal;
                     //MessageBox.Show(variavel);
-                    process.Arguments = "-U postgres -d postgres \"" + caminho + nome + "\"";
+                    process.Arguments = "-U postgres -d chaves_golden -w \"" + caminho + nome + "\"";
+                    //process.Arguments = "PGPASSWORD=123456";
                     Process processStart = new Process();
                     processStart.StartInfo = process;
                     processStart.Start();
@@ -190,7 +194,8 @@ namespace situacaoChavesGolden
                 }
                 catch (Exception erro)
                 {
-                   MessageBox.Show(erro.Message);
+                   //
+                    //MessageBox.Show(erro.Message);
                 }
                
             }

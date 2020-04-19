@@ -391,5 +391,17 @@ namespace situacaoChavesGolden
         {
             atualizarGridProprietarios();
         }
+
+        private void btnNovoProp_Click(object sender, EventArgs e)
+        {
+            cadastroProprietario cadProp = new cadastroProprietario();
+
+            cadProp.ShowDialog();
+
+            if(cadProp.DialogResult == DialogResult.OK)
+            {
+                atualizarGridProprietarios();
+            }
+        }
     }
 }

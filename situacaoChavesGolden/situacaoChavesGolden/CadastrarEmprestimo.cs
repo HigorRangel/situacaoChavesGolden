@@ -68,7 +68,7 @@ namespace situacaoChavesGolden
                                                         " ORDER BY cod_cliente DESC " +
                                                         " LIMIT 1");
 
-                    comboClientes.SelectedItem = nomeProp;
+                    //comboClientes.SelectedItem = nomeProp;
 
                     buscarDadosCliente(codigoProp);
 
@@ -93,7 +93,7 @@ namespace situacaoChavesGolden
             dadosChave = database.select(string.Format("" +
                 "SELECT cod_imob, rua, numero, complemento, bairro, cidade, estado" +
                 " FROM chave" +
-                " WHERE cod_chave = '{0}'", codigoChave));
+                " WHERE indice_chave = '{0}'", codigoChave));
 
             foreach(DataRow row in dadosChave.Rows)
             {
@@ -133,7 +133,7 @@ namespace situacaoChavesGolden
 
                 if (dadosClientes.Rows.Count == 0)
                 {
-                    boxCpf.Text = ""; //CPF
+                    //boxCpf.Text = ""; //CPF
                     textoCpf.Text = ""; //cpf
                     nome.Text = ""; //nome
                     textoTel1.Text = ""; //contato1
@@ -146,7 +146,7 @@ namespace situacaoChavesGolden
                 {
                     foreach (DataRow row in dadosClientes.Rows)
                     {
-                        boxCpf.Text = row[0].ToString();
+                        //boxCpf.Text = row[0].ToString();
                         textoCpf.Text = row[0].ToString();
                         nome.Text = row[1].ToString();
                         textoTel1.Text = row[2].ToString();
@@ -171,7 +171,7 @@ namespace situacaoChavesGolden
         {
             codigosClientes.Clear();
             cpfClientes.Clear();
-            comboClientes.Items.Clear();
+            //comboClientes.Items.Clear();
 
             DataTable clientes = new DataTable();
 
@@ -180,7 +180,7 @@ namespace situacaoChavesGolden
             foreach(DataRow row in clientes.Rows)
             {
                 cpfClientes.Add(row[2].ToString());
-                comboClientes.Items.Add(row[1].ToString());
+                //comboClientes.Items.Add(row[1].ToString());
                 codigosClientes.Add(row[0].ToString());
 
                 //boxCpf.Text = row[0].ToString();
@@ -221,30 +221,30 @@ namespace situacaoChavesGolden
             atualizarComboBox();
         }
 
-        private void BoxCpf_Leave(object sender, EventArgs e)
-        {
+        //private void BoxCpf_Leave(object sender, EventArgs e)
+        //{
             
-            if(boxCpf.Text.Length > 0)
-            {
-                if (cpfClientes.Contains(boxCpf.Text.Trim()))
-                {
-                    buscarDadosCliente(boxCpf.Text.Trim());
-                    comboClientes.SelectedIndex = cpfClientes.IndexOf(boxCpf.Text.Trim());
-                }
-                else
-                {
-                    Message caixaMensagem = new Message(string.Format("Não foi encontrado cliente com o CPF {0}." +
-                        " Deseja cadastrar um novo cliente?", boxCpf.Text), "Cliente não encontrado",
-                        "erro", "escolha");
-                    caixaMensagem.ShowDialog();
+        //    if(boxCpf.Text.Length > 0)
+        //    {
+        //        if (cpfClientes.Contains(boxCpf.Text.Trim()))
+        //        {
+        //            buscarDadosCliente(boxCpf.Text.Trim());
+        //            comboClientes.SelectedIndex = cpfClientes.IndexOf(boxCpf.Text.Trim());
+        //        }
+        //        else
+        //        {
+        //            Message caixaMensagem = new Message(string.Format("Não foi encontrado cliente com o CPF {0}." +
+        //                " Deseja cadastrar um novo cliente?", boxCpf.Text), "Cliente não encontrado",
+        //                "erro", "escolha");
+        //            caixaMensagem.ShowDialog();
 
-                    if (caixaMensagem.DialogResult == DialogResult.Yes)
-                    {
-                        criarCadastroCliente();
-                    }
-                }
-            }
-        }
+        //            if (caixaMensagem.DialogResult == DialogResult.Yes)
+        //            {
+        //                criarCadastroCliente();
+        //            }
+        //        }
+        //    }
+        //}
 
         private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -263,32 +263,41 @@ namespace situacaoChavesGolden
         {
             if (radioProprietario.Checked)
             {
-                groupDadosCliente.Enabled = false;
-                boxCpf.Style = MetroFramework.MetroColorStyle.Silver;
-                boxDescDoc.Style = MetroFramework.MetroColorStyle.Silver;
+                DataTable dadosProp = new DataTable();
+
+                dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
+                                                           " FROM proprietario p " +
+                                                           " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
+                                                           " WHERE c.indice_chave = '{0}'", codigoChave));
+
+                nomePessoaBox.Visible = true;
+                codPessoaBox.Visible = true;
+                excluiProp.Enabled = false;
+                excluiProp.Visible = true;
+                labelCod.Visible = true;
+                labelProp.Visible = true;
+                btnAdicionarPessoa.Visible = false;
+
+                foreach (DataRow row in dadosProp.Rows)
+                {
+                    codPessoaBox.Text = row[0].ToString();
+                    nomePessoaBox.Text = row[1].ToString();
+                }
 
             }
-            else
+            else if(radioCliente.Checked || radioFuncionario.Checked)
             {
-                boxCpf.Style = MetroFramework.MetroColorStyle.Blue;
-                boxDescDoc.Style = MetroFramework.MetroColorStyle.Blue;
-                groupDadosCliente.Enabled = true;
+                nomePessoaBox.Visible = false;
+                codPessoaBox.Visible = false;
+                excluiProp.Enabled = false;
+                excluiProp.Visible = false;
+                labelCod.Visible = false;
+                labelProp.Visible = false;
+                btnAdicionarPessoa.Visible = true;
             }
         }
 
-        private void ComboClientes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(comboClientes.SelectedIndex == -1)
-            {
-                btnEditarCliente.Enabled = false;
-            }
-            else
-            {
-                btnEditarCliente.Enabled = true;
-            }
-
-            buscarDadosCliente(codigosClientes[comboClientes.SelectedIndex]);
-        }
+      
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
@@ -298,8 +307,8 @@ namespace situacaoChavesGolden
 
         private void BtnEditarCliente_Click(object sender, EventArgs e)
         {
-            CadastroCliente editar = new CadastroCliente(codigosClientes[comboClientes.SelectedIndex]);
-            editar.ShowDialog();
+           // CadastroCliente editar = new CadastroCliente(codigosClientes[comboClientes.SelectedIndex]);
+            //editar.ShowDialog();
         }
 
         private void BtnConfirmar_Click(object sender, EventArgs e)
@@ -311,7 +320,7 @@ namespace situacaoChavesGolden
             string quantChaves = qtdChaves.Value.ToString();
             string quantControles = qtdControles.Value.ToString();
             string descricao = descBox.Text;
-            string cpfCliente = boxCpf.Text;
+           // string cpfCliente = boxCpf.Text;
             string descricaoDocumento = boxDescDoc.Text;
             string nomeCliente = "";
             string documentoDeixado = "";
@@ -322,7 +331,7 @@ namespace situacaoChavesGolden
             //Código do cliente
             try
             {
-                codCliente = codigosClientes[comboClientes.SelectedIndex];
+                //codCliente = codigosClientes[comboClientes.SelectedIndex];
             }
             catch (Exception erro)
             {
@@ -347,7 +356,7 @@ namespace situacaoChavesGolden
             //ComboBox de nomes dos clientes
             try
             {
-                nomeCliente = comboClientes.SelectedItem.ToString();
+                //nomeCliente = comboClientes.SelectedItem.ToString();
             }
             catch (Exception erro)
             {
@@ -391,11 +400,11 @@ namespace situacaoChavesGolden
                 erros += "\n-Quantidade de controles (Inserção obrigatória)";
             }
             //Número do CPF do cliente
-            if(cpfCliente.Length == 0)
-            {
-                contErros++;
-                erros += "\n-CPF (Inserção obrigatória)";
-            }
+            //if(cpfCliente.Length == 0)
+            //{
+            //    contErros++;
+            //    erros += "\n-CPF (Inserção obrigatória)";
+            //}
             if(comboDocs.SelectedIndex != -1 && descricaoDocumento.Length == 0)
             {
                 contErros++;
@@ -433,6 +442,119 @@ namespace situacaoChavesGolden
                 caixaMensagem.ShowDialog();
             }
 
+        }
+
+        private void btnAdicionarPessoa_Click(object sender, EventArgs e)
+        {
+            atualizarGrid(groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper());
+            painelProp.Visible = true;
+            groupQuemEmpresta.Enabled = false;
+            groupDadosEmp.Enabled = false;
+            groupDadosCliente.Enabled = false;
+            groupBox4.Enabled = false;
+            btnConfirmar.Enabled = false;
+        }
+
+        private void atualizarGrid (string tipo)
+        {
+            if(tipo == "CLIENTE")
+            {
+                gridPessoas.DataSource = database.select(string.Format("SELECT cod_cliente, nome_cliente" +
+                                                                       " FROM cliente" +
+                                                                       " ORDER BY nome_cliente"));
+
+                gridPessoas.Columns[0].HeaderText = "Código";
+                gridPessoas.Columns[1].HeaderText = "Nome do Cliente";
+
+
+            }
+            else if (tipo == "FUNCIONARIO")
+            {
+                gridPessoas.DataSource = database.select(string.Format("SELECT cod_usuario, nome_usuario" +
+                                                                       " FROM usuario" +
+                                                                       " ORDER BY nome_usuario"));
+                gridPessoas.Columns[0].HeaderText = "Código";
+                gridPessoas.Columns[1].HeaderText = "Nome do Usuário";
+            }
+
+            gridPessoas.Columns[0].Width = 45;
+            gridPessoas.Columns[1].Width = 270;
+
+            gridPessoas.Columns[0].MinimumWidth = 45;
+            gridPessoas.Columns[1].MinimumWidth = 265;
+        }
+
+        private void btnCancelarProp_Click(object sender, EventArgs e)
+        {
+            painelProp.Visible = false;
+            groupQuemEmpresta.Enabled = true;
+            groupDadosEmp.Enabled = true;
+            groupDadosCliente.Enabled = true;
+            groupBox4.Enabled = true;
+            btnConfirmar.Enabled = true;
+        }
+
+        private void btnConfirmarProp_Click(object sender, EventArgs e)
+        {
+            if(gridPessoas.CurrentRow.Index != -1)
+            {
+                codPessoaBox.Text = gridPessoas.CurrentRow.Cells[0].Value.ToString();
+               nomePessoaBox.Text = gridPessoas.CurrentRow.Cells[1].Value.ToString(); ;
+
+                painelProp.Visible = false;
+                groupQuemEmpresta.Enabled = true;
+                groupDadosEmp.Enabled = true;
+                groupDadosCliente.Enabled = true;
+                groupBox4.Enabled = true;
+                btnConfirmar.Enabled = true;
+                btnAdicionarPessoa.Visible = false;
+                labelProp.Visible = true;
+                labelCod.Visible = true;
+                codPessoaBox.Visible = true;
+                nomePessoaBox.Visible = true;
+                excluiProp.Enabled = true;
+
+                string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+
+                DataTable dados = new DataTable();
+
+                if(tipo == "PROPRIETARIO")
+                {
+                    dados = database.select(string.Format("SELECT contato, email, nome" +
+                                                          " FROM proprietario" +
+                                                          " WHERE cod_proprietario = '{0}'", codPessoaBox.Text));
+
+                    foreach (DataRow row in dados.Rows)
+                    {
+                        labelTel1.Text = row[0].ToString();;
+                        email.Text = row[1].ToString();
+                        nome.Text = row[2].ToString();
+                    }
+                }
+                else if(tipo == "CLIENTE")
+                {
+                    dados = database.select(string.Format("SELECT cpf, contato_principal, contato_secundario, email, nome_cliente" +
+                                            " FROM cliente" +
+                                            " WHERE cod_cliente = '{0}'", codPessoaBox.Text));
+
+                    foreach (DataRow row in dados.Rows)
+                    {
+                        labelCpf.Text = row[0].ToString();
+                        labelTel1.Text = row[1].ToString();
+                        labelTel2.Text = row[2].ToString();
+                        email.Text = row[3].ToString();
+                        nome.Text = row[4].ToString();
+                    }
+                }
+                else
+                {
+                    nome.Text = database.selectScalar(string.Format("SELECT nome_usuario" +
+                                                        " FROM usuario" +
+                                                        " WHERE cod_usuario = '{0}'", codPessoaBox.Text));
+                }
+                DataTable dados = new DataTable();
+            }
+        
         }
     }
 }
