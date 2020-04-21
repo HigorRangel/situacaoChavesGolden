@@ -99,21 +99,21 @@ namespace situacaoChavesGolden
             NpgsqlCommand cmd = new NpgsqlCommand(); //Cria objeto para utilizar os comandos no PostgreSQL
             cmd.Connection = conn;
 
-            try
-            {
+            //try
+            //{
                 cmd.CommandText = comando;
 
                 cmd.ExecuteNonQuery();
                 conn.Close();
 
                 return true;
-            }
+            //}
 
-            catch (Exception erro)
-            {
-                MessageBox.Show(erro.Message);
-                return false;
-            }
+            //catch (Exception erro)
+            //{
+            //    MessageBox.Show(erro.Message);
+            //    return false;
+            //}
 
         }
 

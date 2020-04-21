@@ -42,49 +42,7 @@ namespace situacaoChavesGolden
         string codigoCliente = "";
 
 
-        private void criarCadastroCliente()
-        {
-
-            CadastroCliente cadastro = new CadastroCliente();
-            cadastro.ShowDialog();
-
-
-            if (cadastro.DialogResult == DialogResult.Yes)
-            {
-
-                atualizarComboBox();
-
-                string codigoProp = "";
-                string nomeProp = "";
-                try
-                {
-                    codigoProp = database.selectScalar("SELECT cod_cliente " +
-                                                        " FROM cliente " +
-                                                        " ORDER BY cod_cliente DESC " +
-                                                        " LIMIT 1");
-
-                    nomeProp = database.selectScalar("SELECT nome_cliente " +
-                                                        " FROM cliente " +
-                                                        " ORDER BY cod_cliente DESC " +
-                                                        " LIMIT 1");
-
-                    //comboClientes.SelectedItem = nomeProp;
-
-                    buscarDadosCliente(codigoProp);
-
-
-                }
-                catch (Exception erro)
-                {
-                    Message caixaMensagem = new Message("Não foi possível buscar os dados pelo seguinte erro: \n\n- " +
-                        erro.Message, "Erro", "erro", "confirma");
-
-                    caixaMensagem.ShowDialog();
-                }
-
-                
-            }
-        }
+       
 
         private void buscarDadosChave()
         {
@@ -103,95 +61,9 @@ namespace situacaoChavesGolden
             }
         }
 
-        private void buscarDadosCliente(string cliente)
-        {
-
-
-            string tipo = "";
-            if(cliente.Length == 11)
-            {
-                tipo = "cpf";
-            }
-            else
-            {
-                tipo = "cod_cliente";
-            }
-
-
-            try
-            {
-                DataTable dadosClientes = new DataTable();
-
-                dadosClientes = database.select(string.Format("" +
-                    "SELECT cpf, nome_cliente, contato_principal, contato_secundario, email" +
-                    " FROM cliente" +
-                    " WHERE {0} = '{1}'", tipo, cliente));
-
-                //MessageBox.Show(dadosClientes.Rows.Count.ToString());
-
-
-
-                if (dadosClientes.Rows.Count == 0)
-                {
-                    //boxCpf.Text = ""; //CPF
-                    textoCpf.Text = ""; //cpf
-                    nome.Text = ""; //nome
-                    textoTel1.Text = ""; //contato1
-                    textoTel2.Text = "";  //contato2
-                    email.Text = ""; //email
-
-                    
-                }
-                else
-                {
-                    foreach (DataRow row in dadosClientes.Rows)
-                    {
-                        //boxCpf.Text = row[0].ToString();
-                        textoCpf.Text = row[0].ToString();
-                        nome.Text = row[1].ToString();
-                        textoTel1.Text = row[2].ToString();
-                        textoTel2.Text = row[3].ToString();
-                        email.Text = row[4].ToString();
-                    }
-                }
-                            
-
-                
-            }
-            catch (Exception erro)
-            {
-                Message caixaMensagem = new Message("Não foi possível encontrar os dados do usuário pelo" +
-                    " seguinte motivo: \n" + erro.Message, "Erro ao buscar os dados", "erro", "confirma");
-                caixaMensagem.ShowDialog();
-            }
-
-        }
-
-        private void atualizarComboBox()
-        {
-            codigosClientes.Clear();
-            cpfClientes.Clear();
-            //comboClientes.Items.Clear();
-
-            DataTable clientes = new DataTable();
-
-            clientes = database.select("SELECT cod_cliente, nome_cliente, cpf FROM cliente ORDER BY nome_cliente");
-
-            foreach(DataRow row in clientes.Rows)
-            {
-                cpfClientes.Add(row[2].ToString());
-                //comboClientes.Items.Add(row[1].ToString());
-                codigosClientes.Add(row[0].ToString());
-
-                //boxCpf.Text = row[0].ToString();
-            }
-        }
-
-        
 
         private void CadastrarEmprestimo_Load(object sender, EventArgs e)
         {
-            atualizarComboBox();
             buscarDadosChave();
 
             endereco.MaximumSize = new Size(160, 49);
@@ -214,37 +86,7 @@ namespace situacaoChavesGolden
             radioProprietario.Checked = false;
         }
 
-        private void AddCliente_Click(object sender, EventArgs e)
-        {
-            criarCadastroCliente();
-
-            atualizarComboBox();
-        }
-
-        //private void BoxCpf_Leave(object sender, EventArgs e)
-        //{
-            
-        //    if(boxCpf.Text.Length > 0)
-        //    {
-        //        if (cpfClientes.Contains(boxCpf.Text.Trim()))
-        //        {
-        //            buscarDadosCliente(boxCpf.Text.Trim());
-        //            comboClientes.SelectedIndex = cpfClientes.IndexOf(boxCpf.Text.Trim());
-        //        }
-        //        else
-        //        {
-        //            Message caixaMensagem = new Message(string.Format("Não foi encontrado cliente com o CPF {0}." +
-        //                " Deseja cadastrar um novo cliente?", boxCpf.Text), "Cliente não encontrado",
-        //                "erro", "escolha");
-        //            caixaMensagem.ShowDialog();
-
-        //            if (caixaMensagem.DialogResult == DialogResult.Yes)
-        //            {
-        //                criarCadastroCliente();
-        //            }
-        //        }
-        //    }
-        //}
+        
 
         private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -353,17 +195,7 @@ namespace situacaoChavesGolden
             }
 
           
-            //ComboBox de documentos
-            try
-            {
-                 documentoDeixado = comboDocs.SelectedItem.ToString();
-            }
-            catch
-            {
-                contErros++;
-                erros += "\n-Documento Deixado (Escolha obrigatória)";
-            }
-
+           
             //Quem está emprestando
             if(tipo.Length == 0)
             {

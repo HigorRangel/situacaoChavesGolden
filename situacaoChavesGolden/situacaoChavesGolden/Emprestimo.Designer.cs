@@ -76,7 +76,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.sitImovel = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.finalidade = new System.Windows.Forms.Label();
+            this.codChave = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.proprietario = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -87,6 +87,7 @@
             this.groupBoxTipoImovel.SuspendLayout();
             this.groupBoxSituacaoCh.SuspendLayout();
             this.groupBoxSituacaoIm.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridEmprestimo)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -368,6 +369,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.codChave);
             this.groupBox2.Location = new System.Drawing.Point(21, 261);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(609, 114);
@@ -602,16 +604,16 @@
             this.label13.TabIndex = 33;
             this.label13.Text = "Situação do Imóvel:";
             // 
-            // finalidade
+            // codChave
             // 
-            this.finalidade.AutoSize = true;
-            this.finalidade.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.finalidade.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.finalidade.Location = new System.Drawing.Point(304, 276);
-            this.finalidade.Name = "finalidade";
-            this.finalidade.Size = new System.Drawing.Size(10, 15);
-            this.finalidade.TabIndex = 32;
-            this.finalidade.Text = " ";
+            this.codChave.AutoSize = true;
+            this.codChave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codChave.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.codChave.Location = new System.Drawing.Point(306, 16);
+            this.codChave.Name = "codChave";
+            this.codChave.Size = new System.Drawing.Size(10, 15);
+            this.codChave.TabIndex = 32;
+            this.codChave.Text = " ";
             // 
             // label11
             // 
@@ -620,9 +622,9 @@
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
             this.label11.Location = new System.Drawing.Point(240, 275);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(67, 15);
+            this.label11.Size = new System.Drawing.Size(87, 15);
             this.label11.TabIndex = 31;
-            this.label11.Text = "Finalidade:";
+            this.label11.Text = "Código Chave:";
             // 
             // proprietario
             // 
@@ -672,7 +674,6 @@
             this.Controls.Add(this.btnCadastrarChave);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gridEmprestimo);
             this.Controls.Add(this.endereco);
             this.Controls.Add(this.codigoImob);
@@ -682,11 +683,11 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.sitImovel);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.finalidade);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.proprietario);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.groupBox2);
             this.DisplayHeader = false;
             this.Movable = false;
             this.Name = "Emprestimo";
@@ -706,6 +707,8 @@
             this.groupBoxSituacaoCh.PerformLayout();
             this.groupBoxSituacaoIm.ResumeLayout(false);
             this.groupBoxSituacaoIm.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridEmprestimo)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -762,7 +765,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label sitImovel;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label finalidade;
+        private System.Windows.Forms.Label codChave;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label proprietario;
         private System.Windows.Forms.Label label9;

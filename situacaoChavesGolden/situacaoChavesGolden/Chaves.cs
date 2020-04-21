@@ -17,6 +17,16 @@ namespace situacaoChavesGolden
 
         public void atualizarGridChaves()
         {
+            if(gridChaves.CurrentRow == null)
+            {
+                btnExcluir.Enabled = false;
+                btnEmprestar.Enabled = false;
+                btnReservar.Enabled = false;
+
+                btnExcluir.Image = new Bitmap(Properties.Resources.DeleteGray);
+                btnEmprestar.Image = new Bitmap(Properties.Resources.ChaveEmprestarGray);
+                btnReservar.Image = new Bitmap(Properties.Resources.ChaveReservarGray);
+            }
             DataTable chaves = new DataTable();
 
             string textoBusca = textBoxBusca.Text;
@@ -153,102 +163,107 @@ namespace situacaoChavesGolden
 
         private void GridChaves_SelectionChanged(object sender, EventArgs e)
         {
-            if (gridChaves.CurrentRow.Cells[0].Value.ToString() == "")
+            try
             {
-                btnExcluir.Enabled = false;
-                btnEmprestar.Enabled = false;
-                btnReservar.Enabled = false;
-
-                btnExcluir.Image = new Bitmap(Properties.Resources.DeleteGray);
-                btnEmprestar.Image = new Bitmap(Properties.Resources.ChaveEmprestarGray);
-                btnReservar.Image = new Bitmap(Properties.Resources.ChaveReservarGray);
-            }
-            else
-            {
-                btnExcluir.Enabled = true;
-                btnEmprestar.Enabled = true;
-                btnReservar.Enabled = true;
-
-                btnExcluir.Image = new Bitmap(Properties.Resources.Delete);
-                btnEmprestar.Image = new Bitmap(Properties.Resources.ChaveEmprestar);
-                btnReservar.Image = new Bitmap(Properties.Resources.ChaveReservar);
-            }
-
-            if (gridChaves.CurrentRow == null)
-            {
-                codigoImob.Text = "";
-                finalidade.Text = "";
-                sitImovel.Text = "";
-                endereco.Text = "";
-                proprietario.Text = "";
-                tipoImovel.Text = "";
-                sitChave.Text = "";
-                localizacao.Text =   "";
-            }
-
-            if (gridChaves.CurrentRow != null)
-            {
-
-                string codigoChave = gridChaves.CurrentRow.Cells[5].Value.ToString();
-
-                DataTable dadosChave = new DataTable();
-
-                dadosChave = database.select(string.Format("SELECT c.*, p.nome " +
-                                                           " FROM chave c  " +
-                                                           " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
-                                                           " WHERE indice_chave = {0}", codigoChave));
-
-
-                foreach (DataRow row in dadosChave.Rows)
+                if (gridChaves.CurrentRow.Cells[0].Value.ToString() == "")
                 {
-                    codigoImob.Text = row[10].ToString();
-                    finalidade.Text = row[12].ToString();
-                    sitImovel.Text = row[13].ToString();
-                    endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} [{5}]", row[1].ToString(),
-                        row[5].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(),
-                        row[6].ToString());
-                    proprietario.Text = row[15].ToString();
-                    tipoImovel.Text = row[11].ToString();
-                    sitChave.Text = row[7].ToString();
-                    localizacao.Text = row[8].ToString();
+                    btnExcluir.Enabled = false;
+                    btnEmprestar.Enabled = false;
+                    btnReservar.Enabled = false;
 
-                    if (row[7].ToString() == "INDISPONIVEL")
+                    btnExcluir.Image = new Bitmap(Properties.Resources.DeleteGray);
+                    btnEmprestar.Image = new Bitmap(Properties.Resources.ChaveEmprestarGray);
+                    btnReservar.Image = new Bitmap(Properties.Resources.ChaveReservarGray);
+                }
+                else
+                {
+                    btnExcluir.Enabled = true;
+                    btnEmprestar.Enabled = true;
+                    btnReservar.Enabled = true;
+
+                    btnExcluir.Image = new Bitmap(Properties.Resources.Delete);
+                    btnEmprestar.Image = new Bitmap(Properties.Resources.ChaveEmprestar);
+                    btnReservar.Image = new Bitmap(Properties.Resources.ChaveReservar);
+                }
+
+                if (gridChaves.CurrentRow == null)
+                {
+                    codigoImob.Text = "";
+                    finalidade.Text = "";
+                    sitImovel.Text = "";
+                    endereco.Text = "";
+                    proprietario.Text = "";
+                    tipoImovel.Text = "";
+                    sitChave.Text = "";
+                    localizacao.Text = "";
+                }
+
+                if (gridChaves.CurrentRow != null)
+                {
+
+                    string codigoChave = gridChaves.CurrentRow.Cells[5].Value.ToString();
+
+                    DataTable dadosChave = new DataTable();
+
+                    dadosChave = database.select(string.Format("SELECT c.*, p.nome " +
+                                                               " FROM chave c  " +
+                                                               " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
+                                                               " WHERE indice_chave = {0}", codigoChave));
+
+
+                    foreach (DataRow row in dadosChave.Rows)
                     {
-                        btnEmprestar.Image = Properties.Resources.ChaveDevolver;
+                        codigoImob.Text = row[10].ToString();
+                        finalidade.Text = row[12].ToString();
+                        sitImovel.Text = row[13].ToString();
+                        endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} [{5}]", row[1].ToString(),
+                            row[5].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(),
+                            row[6].ToString());
+                        proprietario.Text = row[15].ToString();
+                        tipoImovel.Text = row[11].ToString();
+                        sitChave.Text = row[7].ToString();
+                        localizacao.Text = row[8].ToString();
 
-                        ToolTipEmprestar.SetToolTip(btnEmprestar, "Devolver Chaves");
+                        if (row[7].ToString() == "INDISPONIVEL")
+                        {
+                            btnEmprestar.Image = Properties.Resources.ChaveDevolver;
+
+                            ToolTipEmprestar.SetToolTip(btnEmprestar, "Devolver Chaves");
+                        }
+                        else
+                        {
+                            btnEmprestar.Image = Properties.Resources.ChaveEmprestar;
+
+                            ToolTipEmprestar.SetToolTip(btnEmprestar, "Registrar Empréstimo");
+                        }
+
                     }
-                    else
+
+                    string codEmprestimo = "";
+                    try
                     {
-                        btnEmprestar.Image = Properties.Resources.ChaveEmprestar;
+                        codEmprestimo = database.selectScalar(string.Format("" +
+                                            " SELECT e.cod_emprestimo" +
+                                            " FROM emprestimo e" +
+                                            " INNER JOIN chave c ON c.indice_chave = e.cod_chave" +
+                                            " WHERE e.cod_chave = {0} AND e.data_entrega is null", codigoChave));
+                        emprestimo.Text = codEmprestimo;
+                        emprestimo.Cursor = Cursors.Hand;
 
-                        ToolTipEmprestar.SetToolTip(btnEmprestar, "Registrar Empréstimo");
+                    }
+                    catch (NullReferenceException)
+                    {
+                        emprestimo.Text = "N/A";
+                        emprestimo.Cursor = Cursors.Default;
                     }
 
                 }
-
-                string codEmprestimo = "";
-                try
-                {
-                    codEmprestimo = database.selectScalar(string.Format("" +
-                                        " SELECT e.cod_emprestimo" +
-                                        " FROM emprestimo e" +
-                                        " INNER JOIN chave c ON c.indice_chave = e.cod_chave" +
-                                        " WHERE e.cod_chave = {0} AND e.data_entrega is null", codigoChave));
-                    emprestimo.Text = codEmprestimo;
-                    emprestimo.Cursor = Cursors.Hand;
-
-                }
-                catch (NullReferenceException)
-                {
-                    emprestimo.Text = "N/A";
-                    emprestimo.Cursor = Cursors.Default;
-                }
-
-
-                
+            }
+            catch 
+            {
 
             }
+            
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -377,8 +392,19 @@ namespace situacaoChavesGolden
 
         private void BtnEmprestar_Click(object sender, EventArgs e)
         {
-            CadastrarEmprestimo cadastrarEmp = new CadastrarEmprestimo(usuario, gridChaves.CurrentRow.Cells[5].Value.ToString());
-            cadastrarEmp.ShowDialog();
+            if(emprestimo.Text == "N/A")
+            {
+                CadastrarEmprestimo cadastrarEmp = new CadastrarEmprestimo(usuario, gridChaves.CurrentRow.Cells[5].Value.ToString());
+                cadastrarEmp.ShowDialog();
+                atualizarGridChaves();
+            }
+            else
+            {
+                DevolverChave devolucao = new DevolverChave(emprestimo.Text);
+                devolucao.ShowDialog();
+                atualizarGridChaves();
+            }
+           
         }
     }
 }
