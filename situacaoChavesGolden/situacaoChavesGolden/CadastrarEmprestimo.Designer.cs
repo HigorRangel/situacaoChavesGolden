@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupQuemEmpresta = new System.Windows.Forms.GroupBox();
+            this.radioFuncionario = new MetroFramework.Controls.MetroRadioButton();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.radioCliente = new MetroFramework.Controls.MetroRadioButton();
             this.radioProprietario = new MetroFramework.Controls.MetroRadioButton();
@@ -45,7 +46,10 @@
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.codigoChaveBox = new MetroFramework.Controls.MetroTextBox();
             this.groupDadosCliente = new System.Windows.Forms.GroupBox();
+            this.btnAdicionarPessoa = new System.Windows.Forms.Label();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
+            this.excluiProp = new System.Windows.Forms.Label();
             this.boxDescDoc = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
             this.comboDocs = new MetroFramework.Controls.MetroComboBox();
@@ -72,7 +76,6 @@
             this.labelCpf = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.radioFuncionario = new MetroFramework.Controls.MetroRadioButton();
             this.painelProp = new System.Windows.Forms.Panel();
             this.btnNovoProp = new System.Windows.Forms.Button();
             this.btnCancelarProp = new System.Windows.Forms.Button();
@@ -82,10 +85,7 @@
             this.labelCod = new MetroFramework.Controls.MetroLabel();
             this.codPessoaBox = new MetroFramework.Controls.MetroTextBox();
             this.labelProp = new MetroFramework.Controls.MetroLabel();
-            this.excluiProp = new System.Windows.Forms.Label();
             this.nomePessoaBox = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.btnAdicionarPessoa = new System.Windows.Forms.Label();
             this.groupQuemEmpresta.SuspendLayout();
             this.groupDadosEmp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qtdControles)).BeginInit();
@@ -108,6 +108,18 @@
             this.groupQuemEmpresta.Size = new System.Drawing.Size(410, 42);
             this.groupQuemEmpresta.TabIndex = 0;
             this.groupQuemEmpresta.TabStop = false;
+            // 
+            // radioFuncionario
+            // 
+            this.radioFuncionario.FontSize = MetroFramework.MetroLinkSize.Medium;
+            this.radioFuncionario.Location = new System.Drawing.Point(258, 13);
+            this.radioFuncionario.Name = "radioFuncionario";
+            this.radioFuncionario.Size = new System.Drawing.Size(101, 20);
+            this.radioFuncionario.TabIndex = 2;
+            this.radioFuncionario.TabStop = true;
+            this.radioFuncionario.Text = "Funcionario";
+            this.radioFuncionario.UseVisualStyleBackColor = true;
+            this.radioFuncionario.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
             // 
             // metroLabel1
             // 
@@ -289,6 +301,29 @@
             this.groupDadosCliente.TabIndex = 10;
             this.groupDadosCliente.TabStop = false;
             // 
+            // btnAdicionarPessoa
+            // 
+            this.btnAdicionarPessoa.AutoSize = true;
+            this.btnAdicionarPessoa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdicionarPessoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdicionarPessoa.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAdicionarPessoa.Location = new System.Drawing.Point(149, 29);
+            this.btnAdicionarPessoa.Name = "btnAdicionarPessoa";
+            this.btnAdicionarPessoa.Size = new System.Drawing.Size(158, 15);
+            this.btnAdicionarPessoa.TabIndex = 29;
+            this.btnAdicionarPessoa.Text = "Escolher cliente/funcionário";
+            this.btnAdicionarPessoa.Click += new System.EventHandler(this.btnAdicionarPessoa_Click);
+            // 
+            // metroLabel5
+            // 
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel5.Location = new System.Drawing.Point(123, -1);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(183, 15);
+            this.metroLabel5.TabIndex = 3;
+            this.metroLabel5.Text = "Dados de quem está emprestando";
+            // 
             // metroLabel10
             // 
             this.metroLabel10.AutoSize = true;
@@ -298,6 +333,20 @@
             this.metroLabel10.Size = new System.Drawing.Size(133, 15);
             this.metroLabel10.TabIndex = 14;
             this.metroLabel10.Text = "Descrição do documento";
+            // 
+            // excluiProp
+            // 
+            this.excluiProp.AutoSize = true;
+            this.excluiProp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.excluiProp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.excluiProp.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.excluiProp.Location = new System.Drawing.Point(365, 32);
+            this.excluiProp.Name = "excluiProp";
+            this.excluiProp.Size = new System.Drawing.Size(25, 24);
+            this.excluiProp.TabIndex = 33;
+            this.excluiProp.Text = "X";
+            this.excluiProp.Visible = false;
+            this.excluiProp.Click += new System.EventHandler(this.ExcluiProp_Click);
             // 
             // boxDescDoc
             // 
@@ -599,18 +648,6 @@
             this.btnConfirmar.UseVisualStyleBackColor = false;
             this.btnConfirmar.Click += new System.EventHandler(this.BtnConfirmar_Click);
             // 
-            // radioFuncionario
-            // 
-            this.radioFuncionario.FontSize = MetroFramework.MetroLinkSize.Medium;
-            this.radioFuncionario.Location = new System.Drawing.Point(258, 13);
-            this.radioFuncionario.Name = "radioFuncionario";
-            this.radioFuncionario.Size = new System.Drawing.Size(101, 20);
-            this.radioFuncionario.TabIndex = 2;
-            this.radioFuncionario.TabStop = true;
-            this.radioFuncionario.Text = "Funcionario";
-            this.radioFuncionario.UseVisualStyleBackColor = true;
-            this.radioFuncionario.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
-            // 
             // painelProp
             // 
             this.painelProp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -619,7 +656,7 @@
             this.painelProp.Controls.Add(this.btnConfirmarProp);
             this.painelProp.Controls.Add(this.gridPessoas);
             this.painelProp.Controls.Add(this.boxProcurarProp);
-            this.painelProp.Location = new System.Drawing.Point(25, 25);
+            this.painelProp.Location = new System.Drawing.Point(29, 28);
             this.painelProp.Name = "painelProp";
             this.painelProp.Size = new System.Drawing.Size(374, 225);
             this.painelProp.TabIndex = 26;
@@ -639,6 +676,7 @@
             this.btnNovoProp.TabIndex = 27;
             this.btnNovoProp.Text = "Novo";
             this.btnNovoProp.UseVisualStyleBackColor = false;
+            this.btnNovoProp.Click += new System.EventHandler(this.BtnNovoProp_Click);
             // 
             // btnCancelarProp
             // 
@@ -695,6 +733,7 @@
             this.boxProcurarProp.Name = "boxProcurarProp";
             this.boxProcurarProp.Size = new System.Drawing.Size(317, 20);
             this.boxProcurarProp.TabIndex = 0;
+            this.boxProcurarProp.TextChanged += new System.EventHandler(this.BoxProcurarProp_TextChanged);
             // 
             // labelCod
             // 
@@ -705,6 +744,7 @@
             this.labelCod.Size = new System.Drawing.Size(52, 15);
             this.labelCod.TabIndex = 32;
             this.labelCod.Text = "Código *";
+            this.labelCod.Visible = false;
             // 
             // codPessoaBox
             // 
@@ -717,6 +757,7 @@
             this.codPessoaBox.Size = new System.Drawing.Size(54, 25);
             this.codPessoaBox.TabIndex = 30;
             this.codPessoaBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.codPessoaBox.Visible = false;
             // 
             // labelProp
             // 
@@ -727,19 +768,7 @@
             this.labelProp.Size = new System.Drawing.Size(42, 15);
             this.labelProp.TabIndex = 31;
             this.labelProp.Text = "Nome:";
-            // 
-            // excluiProp
-            // 
-            this.excluiProp.AutoSize = true;
-            this.excluiProp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.excluiProp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.excluiProp.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.excluiProp.Location = new System.Drawing.Point(365, 32);
-            this.excluiProp.Name = "excluiProp";
-            this.excluiProp.Size = new System.Drawing.Size(25, 24);
-            this.excluiProp.TabIndex = 33;
-            this.excluiProp.Text = "X";
-            this.excluiProp.Visible = false;
+            this.labelProp.Visible = false;
             // 
             // nomePessoaBox
             // 
@@ -753,29 +782,7 @@
             this.nomePessoaBox.TabIndex = 29;
             this.nomePessoaBox.Text = "Clique para adicionar";
             this.nomePessoaBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // metroLabel5
-            // 
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel5.Location = new System.Drawing.Point(123, -1);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(183, 15);
-            this.metroLabel5.TabIndex = 3;
-            this.metroLabel5.Text = "Dados de quem está emprestando";
-            // 
-            // btnAdicionarPessoa
-            // 
-            this.btnAdicionarPessoa.AutoSize = true;
-            this.btnAdicionarPessoa.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdicionarPessoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdicionarPessoa.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnAdicionarPessoa.Location = new System.Drawing.Point(149, 29);
-            this.btnAdicionarPessoa.Name = "btnAdicionarPessoa";
-            this.btnAdicionarPessoa.Size = new System.Drawing.Size(125, 15);
-            this.btnAdicionarPessoa.TabIndex = 29;
-            this.btnAdicionarPessoa.Text = "Adicionar Proprietário";
-            this.btnAdicionarPessoa.Click += new System.EventHandler(this.btnAdicionarPessoa_Click);
+            this.nomePessoaBox.Visible = false;
             // 
             // CadastrarEmprestimo
             // 

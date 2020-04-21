@@ -52,7 +52,6 @@
             this.emprestimo = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
             this.groupMenuSup = new System.Windows.Forms.GroupBox();
-            this.btnFiltro = new System.Windows.Forms.PictureBox();
             this.radioVenda = new MetroFramework.Controls.MetroRadioButton();
             this.radioLocacao = new MetroFramework.Controls.MetroRadioButton();
             this.radioTodos = new MetroFramework.Controls.MetroRadioButton();
@@ -76,22 +75,23 @@
             this.metroRadioButton3 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
-            this.btnReservar = new System.Windows.Forms.Button();
-            this.btnEmprestar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnExcluir = new System.Windows.Forms.Button();
             this.toolTipRetirar = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipEditar = new System.Windows.Forms.ToolTip(this.components);
             this.ToolTipEmprestar = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipReservar = new System.Windows.Forms.ToolTip(this.components);
+            this.btnReservar = new System.Windows.Forms.Button();
+            this.btnEmprestar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnFiltro = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupMenuSup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             this.filtrosPanel.SuspendLayout();
             this.groupBoxTipoImovel.SuspendLayout();
             this.groupBoxSituacaoCh.SuspendLayout();
             this.groupBoxSituacaoIm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             this.SuspendLayout();
             // 
             // gridChaves
@@ -363,17 +363,6 @@
             this.groupMenuSup.TabIndex = 18;
             this.groupMenuSup.TabStop = false;
             // 
-            // btnFiltro
-            // 
-            this.btnFiltro.BackColor = System.Drawing.Color.Black;
-            this.btnFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFiltro.Location = new System.Drawing.Point(454, 9);
-            this.btnFiltro.Name = "btnFiltro";
-            this.btnFiltro.Size = new System.Drawing.Size(34, 27);
-            this.btnFiltro.TabIndex = 4;
-            this.btnFiltro.TabStop = false;
-            this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
-            // 
             // radioVenda
             // 
             this.radioVenda.AutoSize = true;
@@ -643,6 +632,11 @@
             this.metroRadioButton1.Text = "Ativo";
             this.metroRadioButton1.UseVisualStyleBackColor = true;
             // 
+            // toolTipRetirar
+            // 
+            this.toolTipRetirar.AutomaticDelay = 300;
+            this.toolTipRetirar.Tag = "Retirar";
+            // 
             // btnReservar
             // 
             this.btnReservar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -710,10 +704,16 @@
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
             // 
-            // toolTipRetirar
+            // btnFiltro
             // 
-            this.toolTipRetirar.AutomaticDelay = 300;
-            this.toolTipRetirar.Tag = "Retirar";
+            this.btnFiltro.BackColor = System.Drawing.Color.Black;
+            this.btnFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiltro.Location = new System.Drawing.Point(454, 9);
+            this.btnFiltro.Name = "btnFiltro";
+            this.btnFiltro.Size = new System.Drawing.Size(34, 27);
+            this.btnFiltro.TabIndex = 4;
+            this.btnFiltro.TabStop = false;
+            this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
             // 
             // Chaves
             // 
@@ -759,7 +759,6 @@
             this.panel1.PerformLayout();
             this.groupMenuSup.ResumeLayout(false);
             this.groupMenuSup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).EndInit();
             this.filtrosPanel.ResumeLayout(false);
             this.filtrosPanel.PerformLayout();
             this.groupBoxTipoImovel.ResumeLayout(false);
@@ -768,6 +767,7 @@
             this.groupBoxSituacaoCh.PerformLayout();
             this.groupBoxSituacaoIm.ResumeLayout(false);
             this.groupBoxSituacaoIm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

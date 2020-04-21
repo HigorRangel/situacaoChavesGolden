@@ -263,6 +263,9 @@ namespace situacaoChavesGolden
         {
             if (radioProprietario.Checked)
             {
+                comboDocs.Enabled = false;
+                boxDescDoc.Enabled = false;
+
                 DataTable dadosProp = new DataTable();
 
                 dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
@@ -285,7 +288,7 @@ namespace situacaoChavesGolden
                 }
 
             }
-            else if(radioCliente.Checked || radioFuncionario.Checked)
+            else if(radioFuncionario.Checked)
             {
                 nomePessoaBox.Visible = false;
                 codPessoaBox.Visible = false;
@@ -294,6 +297,14 @@ namespace situacaoChavesGolden
                 labelCod.Visible = false;
                 labelProp.Visible = false;
                 btnAdicionarPessoa.Visible = true;
+
+                comboDocs.Enabled = false;
+                boxDescDoc.Enabled = false;
+            }
+            else
+            {
+                comboDocs.Enabled = true;
+                boxDescDoc.Enabled = true;
             }
         }
 
@@ -316,29 +327,17 @@ namespace situacaoChavesGolden
             int contErros = 0;
             string erros = "";
 
-            string quemEmpresta = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text; ;
-            string quantChaves = qtdChaves.Value.ToString();
-            string quantControles = qtdControles.Value.ToString();
+            string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToLower();
+            decimal quantChaves = qtdChaves.Value;
+            decimal quantControles = qtdControles.Value;
             string descricao = descBox.Text;
-           // string cpfCliente = boxCpf.Text;
+            string codigo = codPessoaBox.Text;
             string descricaoDocumento = boxDescDoc.Text;
-            string nomeCliente = "";
             string documentoDeixado = "";
             string codCliente = "";
             DateTime dataHojeUs = new DateTime();
             DateTime dataPrevisao = new DateTime();
 
-            //Código do cliente
-            try
-            {
-                //codCliente = codigosClientes[comboClientes.SelectedIndex];
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show(erro.Message);
-                contErros++;
-                erros += "\n-Código do Cliente (Não identificado)";
-            }
 
             //Data de previsão
             try
@@ -353,17 +352,7 @@ namespace situacaoChavesGolden
                 erros += "\n-Previsão de entrega (Escolha obrigatória)";
             }
 
-            //ComboBox de nomes dos clientes
-            try
-            {
-                //nomeCliente = comboClientes.SelectedItem.ToString();
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show(erro.Message);
-                contErros++;
-                erros += "\n-Nome do Cliente (Escolha obrigatória)";
-            }
+          
             //ComboBox de documentos
             try
             {
@@ -376,7 +365,7 @@ namespace situacaoChavesGolden
             }
 
             //Quem está emprestando
-            if(quemEmpresta.Length == 0)
+            if(tipo.Length == 0)
             {
                 contErros++;
                 erros += "\n-Quem está emprestando (Seleção obrigatória)";
@@ -388,53 +377,79 @@ namespace situacaoChavesGolden
                 erros += "\n-Previsão de entrega (Seleção obrigatória)";
             }
             //Quantidade de chaves
-            if(quantChaves.Length == 0)
+            if(quantChaves == 0 && quantControles == 0)
             {
                 contErros++;
                 erros += "\n-Quantidade de chaves (Inserção obrigatória)";
             }
             //Quantidade de controles
-            if (quantControles.Length == 0)
+            if (quantControles == 0 && quantChaves == 0)
             {
                 contErros++;
                 erros += "\n-Quantidade de controles (Inserção obrigatória)";
             }
-            //Número do CPF do cliente
-            //if(cpfCliente.Length == 0)
-            //{
-            //    contErros++;
-            //    erros += "\n-CPF (Inserção obrigatória)";
-            //}
+           
             if(comboDocs.SelectedIndex != -1 && descricaoDocumento.Length == 0)
             {
                 contErros++;
                 erros += "\n-Descrição do Documento (Inserção obrigatória)";
             }
 
-            if(contErros == 0)
+            if (codPessoaBox.Text.Length <= 0)
             {
-                //try
-                //{
-                    database.insertInto(string.Format("" +
-                        "INSERT INTO emprestimo (cliente, usuario, cod_chave, quant_chaves, quant_controles, tipo_doc, documento," +
-                        " descricao, data_retirada, data_prevista)" +
-                        " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
-                        codCliente, user, codigoChave, quantChaves, quantControles, documentoDeixado, descricaoDocumento,
-                        descricao, dataHoje, dataPrevisao ));
+                contErros++;
+                erros += "\n-Dados do cliente/funcionário (Inserção obrigatória)";
+            }
+
+            if (contErros == 0)
+            {
+                try
+                {
+                    if (tipo == "proprietario")
+                    {
+                        database.insertInto(string.Format("" +
+                           "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
+                           " cod_usuario, quant_controles, tipo_doc, cod_proprietario)" +
+                           " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
+                           quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
+                           user, quantControles, documentoDeixado, codPessoaBox.Text));
+                    }
+                    else if(tipo == "cliente")
+                    {
+                        database.insertInto(string.Format("" +
+                           "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
+                           " cod_usuario, quant_controles, tipo_doc, cod_cliente)" +
+                           " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
+                           quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
+                           user, quantControles, documentoDeixado, codPessoaBox.Text));
+                    }
+                    else
+                    {
+                        database.insertInto(string.Format("" +
+                           "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
+                           " cod_usuario, quant_controles, tipo_doc)" +
+                           " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')",
+                           quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
+                           user, quantControles, documentoDeixado));
+                    }
+
+                    database.update(string.Format("UPDATE chave" +
+                                                  " SET situacao = 'INDISPONIVEL', localizacao = '{0}'" +
+                                                  " WHERE indice_chave = '{1}'", tipo.ToUpper(), codigoChave));
 
                     Message caixaMensagem = new Message("Empréstimo cadastrado com sucesso!", "", "sucesso", "confirma");
                     caixaMensagem.ShowDialog();
 
                     this.Close();
                     this.DialogResult = DialogResult.OK;
-                //}
-                //catch (Exception erro)
-                //{
-                //    Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
-                //    caixaMensagem.ShowDialog();
-                //}
-               
             }
+                catch (Exception erro)
+            {
+                Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
+                caixaMensagem.ShowDialog();
+            }
+
+        }
             else
             {
                 Message caixaMensagem = new Message("Corrija os erros abaixo antes de continuar!\n-" + erros, "Erro de preenchimento",
@@ -461,10 +476,13 @@ namespace situacaoChavesGolden
             {
                 gridPessoas.DataSource = database.select(string.Format("SELECT cod_cliente, nome_cliente" +
                                                                        " FROM cliente" +
-                                                                       " ORDER BY nome_cliente"));
+                                                                       " WHERE nome_cliente ILIKE '%{0}%'" +
+                                                                       " ORDER BY nome_cliente", boxProcurarProp.Text));
 
                 gridPessoas.Columns[0].HeaderText = "Código";
                 gridPessoas.Columns[1].HeaderText = "Nome do Cliente";
+
+                btnNovoProp.Visible = true;
 
 
             }
@@ -472,9 +490,12 @@ namespace situacaoChavesGolden
             {
                 gridPessoas.DataSource = database.select(string.Format("SELECT cod_usuario, nome_usuario" +
                                                                        " FROM usuario" +
-                                                                       " ORDER BY nome_usuario"));
+                                                                       " WHERE nome_usuario ILIKE '%{0}%'" +
+                                                                       " ORDER BY nome_usuario", boxProcurarProp.Text));
                 gridPessoas.Columns[0].HeaderText = "Código";
                 gridPessoas.Columns[1].HeaderText = "Nome do Usuário";
+
+                btnNovoProp.Visible = false;
             }
 
             gridPessoas.Columns[0].Width = 45;
@@ -513,6 +534,7 @@ namespace situacaoChavesGolden
                 codPessoaBox.Visible = true;
                 nomePessoaBox.Visible = true;
                 excluiProp.Enabled = true;
+                excluiProp.Visible = true;
 
                 string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
 
@@ -552,9 +574,46 @@ namespace situacaoChavesGolden
                                                         " FROM usuario" +
                                                         " WHERE cod_usuario = '{0}'", codPessoaBox.Text));
                 }
-                DataTable dados = new DataTable();
+                
             }
         
+        }
+
+        private void BtnNovoProp_Click(object sender, EventArgs e)
+        {
+            string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+
+            if (tipo == "CLIENTE")
+            {
+                CadastroCliente cadastrarProp = new CadastroCliente();
+                cadastrarProp.ShowDialog();
+
+                atualizarGrid(tipo);
+            }
+        }
+
+        private void BoxProcurarProp_TextChanged(object sender, EventArgs e)
+        {
+            atualizarGrid(groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper());
+        }
+
+        private void ExcluiProp_Click(object sender, EventArgs e)
+        {
+            nomePessoaBox.Text = "";
+            codPessoaBox.Text = "";
+            nomePessoaBox.Visible = false;
+            codPessoaBox.Visible = false;
+            excluiProp.Visible = false;
+            labelCod.Visible = false;
+            labelProp.Visible = false;
+            btnAdicionarPessoa.Visible = true;
+
+            nome.Text = "";
+            labelCpf.Text = "";
+            textoTel1.Text = "";
+            textoTel2.Text = "";
+            email.Text = "";
+
         }
     }
 }

@@ -47,7 +47,25 @@ namespace situacaoChavesGolden
 
                 gridChaves.DataSource = chaves;
 
-                if(chaves.Rows.Count == 0)
+                gridChaves.Columns[0].HeaderText = "Código";
+                gridChaves.Columns[1].HeaderText = "Cód Imob";
+                gridChaves.Columns[2].HeaderText = "Endereço";
+                gridChaves.Columns[3].HeaderText = "Bairro";
+                gridChaves.Columns[4].HeaderText = "Situação";
+                gridChaves.Columns[5].Visible = false;
+
+                gridChaves.Columns[0].Width = 60;
+                gridChaves.Columns[1].Width = 60;
+                gridChaves.Columns[2].Width = 275;
+                gridChaves.Columns[3].Width = 112;
+                gridChaves.Columns[4].Width = 100;
+
+
+
+
+                endereco.MaximumSize = new Size(520, 0);
+
+                if (chaves.Rows.Count == 0)
                 {
                     codigoImob.Text = "";
                     finalidade.Text = "";
@@ -94,7 +112,7 @@ namespace situacaoChavesGolden
             catch (Exception erro)
             {
 
-                //MessageBox.Show(erro.Message);
+                MessageBox.Show(erro.Message);
             }
 
 
@@ -194,6 +212,19 @@ namespace situacaoChavesGolden
                     sitChave.Text = row[7].ToString();
                     localizacao.Text = row[8].ToString();
 
+                    if (row[7].ToString() == "INDISPONIVEL")
+                    {
+                        btnEmprestar.Image = Properties.Resources.ChaveDevolver;
+
+                        ToolTipEmprestar.SetToolTip(btnEmprestar, "Devolver Chaves");
+                    }
+                    else
+                    {
+                        btnEmprestar.Image = Properties.Resources.ChaveEmprestar;
+
+                        ToolTipEmprestar.SetToolTip(btnEmprestar, "Registrar Empréstimo");
+                    }
+
                 }
 
                 string codEmprestimo = "";
@@ -215,6 +246,7 @@ namespace situacaoChavesGolden
                 }
 
 
+                
 
             }
         }

@@ -186,6 +186,12 @@
     <Compile Include="Chaves.Designer.cs">
       <DependentUpon>Chaves.cs</DependentUpon>
     </Compile>
+    <Compile Include="DevolverChave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DevolverChave.Designer.cs">
+      <DependentUpon>DevolverChave.cs</DependentUpon>
+    </Compile>
     <Compile Include="Emprestimo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +247,9 @@
     <EmbeddedResource Include="Chaves.resx">
       <DependentUpon>Chaves.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DevolverChave.resx">
+      <DependentUpon>DevolverChave.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Emprestimo.resx">
       <DependentUpon>Emprestimo.cs</DependentUpon>
     </EmbeddedResource>
@@ -285,6 +294,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\ChaveDevolver.png" />
     <None Include="Resources\EditGray.png" />
     <None Include="Resources\DeleteGray.png" />
     <None Include="Resources\ChaveReservarGray.png" />
