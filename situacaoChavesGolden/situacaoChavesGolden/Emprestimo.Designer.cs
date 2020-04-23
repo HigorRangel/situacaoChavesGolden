@@ -40,23 +40,15 @@
             this.filtrosPanel = new System.Windows.Forms.Panel();
             this.btnRestaurar = new System.Windows.Forms.Label();
             this.btnFiltrar = new System.Windows.Forms.Button();
-            this.groupBoxTipoImovel = new System.Windows.Forms.GroupBox();
-            this.metroRadioButton7 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroRadioButton8 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroRadioButton9 = new MetroFramework.Controls.MetroRadioButton();
             this.groupBoxSituacaoCh = new System.Windows.Forms.GroupBox();
-            this.metroRadioButton4 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroRadioButton5 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroRadioButton6 = new MetroFramework.Controls.MetroRadioButton();
-            this.groupBoxSituacaoIm = new System.Windows.Forms.GroupBox();
+            this.groupTipoEmprestimo = new System.Windows.Forms.GroupBox();
             this.metroRadioButton3 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
-            this.btnCadastrarChave = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.codChave = new System.Windows.Forms.Label();
+            this.previsEntrega = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
             this.gridEmprestimo = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -64,33 +56,53 @@
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarEmpréstimoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reservarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.endereco = new System.Windows.Forms.Label();
+            this.dadosRetirante = new System.Windows.Forms.Label();
             this.codigoImob = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.localizacao = new System.Windows.Forms.Label();
+            this.dataEntrega = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.sitChave = new System.Windows.Forms.Label();
+            this.dataRetirada = new System.Windows.Forms.Label();
             this.labelChave = new System.Windows.Forms.Label();
-            this.tipoImovel = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.sitImovel = new System.Windows.Forms.Label();
+            this.sitEmprestimo = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.codChave = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.proprietario = new System.Windows.Forms.Label();
+            this.descricao = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.qtdChaves = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.contato = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.qtdControles = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.funcionario = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.dpMinDataRetirada = new System.Windows.Forms.DateTimePicker();
+            this.dpMaxDataRetirada = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dpMaxPrevisEntrega = new System.Windows.Forms.DateTimePicker();
+            this.dpMinPrevisEntrega = new System.Windows.Forms.DateTimePicker();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dpMaxDataEntrega = new System.Windows.Forms.DateTimePicker();
+            this.dpMinDataEntrega = new System.Windows.Forms.DateTimePicker();
+            this.checkDataRetirada = new System.Windows.Forms.CheckBox();
+            this.checkPrevisEntrega = new System.Windows.Forms.CheckBox();
+            this.checkDataEntrega = new System.Windows.Forms.CheckBox();
             this.groupMenuSup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             this.filtrosPanel.SuspendLayout();
-            this.groupBoxTipoImovel.SuspendLayout();
             this.groupBoxSituacaoCh.SuspendLayout();
-            this.groupBoxSituacaoIm.SuspendLayout();
+            this.groupTipoEmprestimo.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridEmprestimo)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupMenuSup
@@ -101,41 +113,45 @@
             this.groupMenuSup.Controls.Add(this.radioTodos);
             this.groupMenuSup.Controls.Add(this.textBoxBusca);
             this.groupMenuSup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupMenuSup.Location = new System.Drawing.Point(136, 18);
+            this.groupMenuSup.Location = new System.Drawing.Point(116, 18);
             this.groupMenuSup.Name = "groupMenuSup";
-            this.groupMenuSup.Size = new System.Drawing.Size(494, 40);
+            this.groupMenuSup.Size = new System.Drawing.Size(514, 40);
             this.groupMenuSup.TabIndex = 38;
             this.groupMenuSup.TabStop = false;
+            this.groupMenuSup.Enter += new System.EventHandler(this.GroupMenuSup_Enter);
             // 
             // btnFiltro
             // 
             this.btnFiltro.BackColor = System.Drawing.Color.Black;
             this.btnFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFiltro.Location = new System.Drawing.Point(454, 9);
+            this.btnFiltro.Location = new System.Drawing.Point(470, 9);
             this.btnFiltro.Name = "btnFiltro";
             this.btnFiltro.Size = new System.Drawing.Size(34, 27);
             this.btnFiltro.TabIndex = 4;
             this.btnFiltro.TabStop = false;
+            this.btnFiltro.Click += new System.EventHandler(this.BtnFiltro_Click);
             // 
             // radioVenda
             // 
             this.radioVenda.AutoSize = true;
-            this.radioVenda.Location = new System.Drawing.Point(139, 13);
+            this.radioVenda.Location = new System.Drawing.Point(203, 13);
             this.radioVenda.Name = "radioVenda";
-            this.radioVenda.Size = new System.Drawing.Size(55, 15);
+            this.radioVenda.Size = new System.Drawing.Size(54, 15);
             this.radioVenda.TabIndex = 3;
-            this.radioVenda.Text = "Venda";
+            this.radioVenda.Text = "Todos";
             this.radioVenda.UseVisualStyleBackColor = true;
+            this.radioVenda.CheckedChanged += new System.EventHandler(this.RadioTodos_CheckedChanged);
             // 
             // radioLocacao
             // 
             this.radioLocacao.AutoSize = true;
-            this.radioLocacao.Location = new System.Drawing.Point(66, 13);
+            this.radioLocacao.Location = new System.Drawing.Point(116, 13);
             this.radioLocacao.Name = "radioLocacao";
-            this.radioLocacao.Size = new System.Drawing.Size(67, 15);
+            this.radioLocacao.Size = new System.Drawing.Size(76, 15);
             this.radioLocacao.TabIndex = 2;
-            this.radioLocacao.Text = "Locação";
+            this.radioLocacao.Text = "Finalizado";
             this.radioLocacao.UseVisualStyleBackColor = true;
+            this.radioLocacao.CheckedChanged += new System.EventHandler(this.RadioTodos_CheckedChanged);
             // 
             // radioTodos
             // 
@@ -143,50 +159,57 @@
             this.radioTodos.Checked = true;
             this.radioTodos.Location = new System.Drawing.Point(6, 13);
             this.radioTodos.Name = "radioTodos";
-            this.radioTodos.Size = new System.Drawing.Size(54, 15);
+            this.radioTodos.Size = new System.Drawing.Size(104, 15);
             this.radioTodos.TabIndex = 1;
             this.radioTodos.TabStop = true;
-            this.radioTodos.Text = "Todos";
+            this.radioTodos.Text = "Em andamento";
             this.radioTodos.UseVisualStyleBackColor = true;
+            this.radioTodos.CheckedChanged += new System.EventHandler(this.RadioTodos_CheckedChanged);
             // 
             // textBoxBusca
             // 
             this.textBoxBusca.CustomBackground = true;
             this.textBoxBusca.CustomForeColor = true;
             this.textBoxBusca.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.textBoxBusca.Location = new System.Drawing.Point(200, 11);
+            this.textBoxBusca.Location = new System.Drawing.Point(263, 11);
             this.textBoxBusca.Name = "textBoxBusca";
-            this.textBoxBusca.Size = new System.Drawing.Size(222, 23);
+            this.textBoxBusca.Size = new System.Drawing.Size(192, 23);
             this.textBoxBusca.Style = MetroFramework.MetroColorStyle.Blue;
             this.textBoxBusca.TabIndex = 0;
             this.textBoxBusca.Text = "Buscar";
             this.textBoxBusca.Theme = MetroFramework.MetroThemeStyle.Light;
             this.textBoxBusca.UseStyleColors = true;
+            this.textBoxBusca.TextChanged += new System.EventHandler(this.TextBoxBusca_TextChanged);
+            this.textBoxBusca.Click += new System.EventHandler(this.TextBoxBusca_Click);
+            this.textBoxBusca.Leave += new System.EventHandler(this.TextBoxBusca_Leave);
             // 
             // filtrosPanel
             // 
             this.filtrosPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.filtrosPanel.Controls.Add(this.groupBox3);
+            this.filtrosPanel.Controls.Add(this.groupBox1);
             this.filtrosPanel.Controls.Add(this.btnRestaurar);
             this.filtrosPanel.Controls.Add(this.btnFiltrar);
-            this.filtrosPanel.Controls.Add(this.groupBoxTipoImovel);
             this.filtrosPanel.Controls.Add(this.groupBoxSituacaoCh);
-            this.filtrosPanel.Controls.Add(this.groupBoxSituacaoIm);
-            this.filtrosPanel.Location = new System.Drawing.Point(368, 58);
+            this.filtrosPanel.Controls.Add(this.groupTipoEmprestimo);
+            this.filtrosPanel.Location = new System.Drawing.Point(344, 58);
             this.filtrosPanel.Name = "filtrosPanel";
-            this.filtrosPanel.Size = new System.Drawing.Size(262, 197);
+            this.filtrosPanel.Size = new System.Drawing.Size(286, 232);
             this.filtrosPanel.TabIndex = 43;
             this.filtrosPanel.Visible = false;
+            this.filtrosPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.FiltrosPanel_Paint);
             // 
             // btnRestaurar
             // 
             this.btnRestaurar.AutoSize = true;
             this.btnRestaurar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRestaurar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRestaurar.Location = new System.Drawing.Point(13, 166);
+            this.btnRestaurar.Location = new System.Drawing.Point(13, 204);
             this.btnRestaurar.Name = "btnRestaurar";
             this.btnRestaurar.Size = new System.Drawing.Size(53, 13);
             this.btnRestaurar.TabIndex = 6;
             this.btnRestaurar.Text = "Restaurar";
+            this.btnRestaurar.Click += new System.EventHandler(this.BtnRestaurar_Click);
             // 
             // btnFiltrar
             // 
@@ -194,124 +217,49 @@
             this.btnFiltrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(143)))), ((int)(((byte)(168)))));
             this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFiltrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.btnFiltrar.Location = new System.Drawing.Point(175, 162);
+            this.btnFiltrar.Location = new System.Drawing.Point(194, 202);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
             this.btnFiltrar.TabIndex = 5;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxTipoImovel
-            // 
-            this.groupBoxTipoImovel.Controls.Add(this.metroRadioButton7);
-            this.groupBoxTipoImovel.Controls.Add(this.metroRadioButton8);
-            this.groupBoxTipoImovel.Controls.Add(this.metroRadioButton9);
-            this.groupBoxTipoImovel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxTipoImovel.Location = new System.Drawing.Point(14, 106);
-            this.groupBoxTipoImovel.Name = "groupBoxTipoImovel";
-            this.groupBoxTipoImovel.Size = new System.Drawing.Size(236, 43);
-            this.groupBoxTipoImovel.TabIndex = 4;
-            this.groupBoxTipoImovel.TabStop = false;
-            this.groupBoxTipoImovel.Text = "Tipo do Imóvel";
-            // 
-            // metroRadioButton7
-            // 
-            this.metroRadioButton7.AutoSize = true;
-            this.metroRadioButton7.Location = new System.Drawing.Point(152, 19);
-            this.metroRadioButton7.Name = "metroRadioButton7";
-            this.metroRadioButton7.Size = new System.Drawing.Size(77, 15);
-            this.metroRadioButton7.TabIndex = 2;
-            this.metroRadioButton7.Text = "Comercial";
-            this.metroRadioButton7.UseVisualStyleBackColor = true;
-            // 
-            // metroRadioButton8
-            // 
-            this.metroRadioButton8.AutoSize = true;
-            this.metroRadioButton8.Location = new System.Drawing.Point(61, 19);
-            this.metroRadioButton8.Name = "metroRadioButton8";
-            this.metroRadioButton8.Size = new System.Drawing.Size(82, 15);
-            this.metroRadioButton8.TabIndex = 1;
-            this.metroRadioButton8.Text = "Residencial";
-            this.metroRadioButton8.UseVisualStyleBackColor = true;
-            // 
-            // metroRadioButton9
-            // 
-            this.metroRadioButton9.AutoSize = true;
-            this.metroRadioButton9.Checked = true;
-            this.metroRadioButton9.Location = new System.Drawing.Point(6, 19);
-            this.metroRadioButton9.Name = "metroRadioButton9";
-            this.metroRadioButton9.Size = new System.Drawing.Size(54, 15);
-            this.metroRadioButton9.TabIndex = 0;
-            this.metroRadioButton9.TabStop = true;
-            this.metroRadioButton9.Text = "Todos";
-            this.metroRadioButton9.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.BtnFiltrar_Click);
             // 
             // groupBoxSituacaoCh
             // 
-            this.groupBoxSituacaoCh.Controls.Add(this.metroRadioButton4);
-            this.groupBoxSituacaoCh.Controls.Add(this.metroRadioButton5);
-            this.groupBoxSituacaoCh.Controls.Add(this.metroRadioButton6);
+            this.groupBoxSituacaoCh.Controls.Add(this.checkDataRetirada);
+            this.groupBoxSituacaoCh.Controls.Add(this.label1);
+            this.groupBoxSituacaoCh.Controls.Add(this.dpMaxDataRetirada);
+            this.groupBoxSituacaoCh.Controls.Add(this.dpMinDataRetirada);
             this.groupBoxSituacaoCh.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxSituacaoCh.Location = new System.Drawing.Point(14, 57);
             this.groupBoxSituacaoCh.Name = "groupBoxSituacaoCh";
-            this.groupBoxSituacaoCh.Size = new System.Drawing.Size(236, 43);
+            this.groupBoxSituacaoCh.Size = new System.Drawing.Size(254, 43);
             this.groupBoxSituacaoCh.TabIndex = 3;
             this.groupBoxSituacaoCh.TabStop = false;
-            this.groupBoxSituacaoCh.Text = "Situação da Chave";
+            this.groupBoxSituacaoCh.Text = "Data de retirada";
             // 
-            // metroRadioButton4
+            // groupTipoEmprestimo
             // 
-            this.metroRadioButton4.AutoSize = true;
-            this.metroRadioButton4.Location = new System.Drawing.Point(148, 19);
-            this.metroRadioButton4.Name = "metroRadioButton4";
-            this.metroRadioButton4.Size = new System.Drawing.Size(87, 15);
-            this.metroRadioButton4.TabIndex = 2;
-            this.metroRadioButton4.Text = "Indisponivel";
-            this.metroRadioButton4.UseVisualStyleBackColor = true;
-            // 
-            // metroRadioButton5
-            // 
-            this.metroRadioButton5.AutoSize = true;
-            this.metroRadioButton5.Location = new System.Drawing.Point(64, 19);
-            this.metroRadioButton5.Name = "metroRadioButton5";
-            this.metroRadioButton5.Size = new System.Drawing.Size(78, 15);
-            this.metroRadioButton5.TabIndex = 1;
-            this.metroRadioButton5.Text = "Disponivel";
-            this.metroRadioButton5.UseVisualStyleBackColor = true;
-            // 
-            // metroRadioButton6
-            // 
-            this.metroRadioButton6.AutoSize = true;
-            this.metroRadioButton6.Checked = true;
-            this.metroRadioButton6.Location = new System.Drawing.Point(6, 19);
-            this.metroRadioButton6.Name = "metroRadioButton6";
-            this.metroRadioButton6.Size = new System.Drawing.Size(54, 15);
-            this.metroRadioButton6.TabIndex = 0;
-            this.metroRadioButton6.TabStop = true;
-            this.metroRadioButton6.Text = "Todos";
-            this.metroRadioButton6.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxSituacaoIm
-            // 
-            this.groupBoxSituacaoIm.Controls.Add(this.metroRadioButton3);
-            this.groupBoxSituacaoIm.Controls.Add(this.metroRadioButton2);
-            this.groupBoxSituacaoIm.Controls.Add(this.metroRadioButton1);
-            this.groupBoxSituacaoIm.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxSituacaoIm.Location = new System.Drawing.Point(14, 8);
-            this.groupBoxSituacaoIm.Name = "groupBoxSituacaoIm";
-            this.groupBoxSituacaoIm.Size = new System.Drawing.Size(236, 43);
-            this.groupBoxSituacaoIm.TabIndex = 1;
-            this.groupBoxSituacaoIm.TabStop = false;
-            this.groupBoxSituacaoIm.Text = "Situação da Imóvel";
+            this.groupTipoEmprestimo.Controls.Add(this.metroRadioButton3);
+            this.groupTipoEmprestimo.Controls.Add(this.metroRadioButton2);
+            this.groupTipoEmprestimo.Controls.Add(this.metroRadioButton1);
+            this.groupTipoEmprestimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupTipoEmprestimo.Location = new System.Drawing.Point(14, 8);
+            this.groupTipoEmprestimo.Name = "groupTipoEmprestimo";
+            this.groupTipoEmprestimo.Size = new System.Drawing.Size(254, 43);
+            this.groupTipoEmprestimo.TabIndex = 1;
+            this.groupTipoEmprestimo.TabStop = false;
+            this.groupTipoEmprestimo.Text = "Tipo";
             // 
             // metroRadioButton3
             // 
             this.metroRadioButton3.AutoSize = true;
-            this.metroRadioButton3.Location = new System.Drawing.Point(152, 22);
+            this.metroRadioButton3.Location = new System.Drawing.Point(143, 22);
             this.metroRadioButton3.Name = "metroRadioButton3";
-            this.metroRadioButton3.Size = new System.Drawing.Size(54, 15);
+            this.metroRadioButton3.Size = new System.Drawing.Size(86, 15);
             this.metroRadioButton3.TabIndex = 2;
-            this.metroRadioButton3.Text = "Todos";
+            this.metroRadioButton3.Text = "Funcionario";
             this.metroRadioButton3.UseVisualStyleBackColor = true;
             // 
             // metroRadioButton2
@@ -319,9 +267,9 @@
             this.metroRadioButton2.AutoSize = true;
             this.metroRadioButton2.Location = new System.Drawing.Point(70, 22);
             this.metroRadioButton2.Name = "metroRadioButton2";
-            this.metroRadioButton2.Size = new System.Drawing.Size(59, 15);
+            this.metroRadioButton2.Size = new System.Drawing.Size(60, 15);
             this.metroRadioButton2.TabIndex = 1;
-            this.metroRadioButton2.Text = "Inativo";
+            this.metroRadioButton2.Text = "Cliente";
             this.metroRadioButton2.UseVisualStyleBackColor = true;
             // 
             // metroRadioButton1
@@ -330,73 +278,78 @@
             this.metroRadioButton1.Checked = true;
             this.metroRadioButton1.Location = new System.Drawing.Point(9, 22);
             this.metroRadioButton1.Name = "metroRadioButton1";
-            this.metroRadioButton1.Size = new System.Drawing.Size(51, 15);
+            this.metroRadioButton1.Size = new System.Drawing.Size(54, 15);
             this.metroRadioButton1.TabIndex = 0;
             this.metroRadioButton1.TabStop = true;
-            this.metroRadioButton1.Text = "Ativo";
+            this.metroRadioButton1.Text = "Todos";
             this.metroRadioButton1.UseVisualStyleBackColor = true;
-            // 
-            // btnCadastrarChave
-            // 
-            this.btnCadastrarChave.AutoSize = true;
-            this.btnCadastrarChave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCadastrarChave.Location = new System.Drawing.Point(509, 248);
-            this.btnCadastrarChave.Name = "btnCadastrarChave";
-            this.btnCadastrarChave.Size = new System.Drawing.Size(121, 13);
-            this.btnCadastrarChave.TabIndex = 42;
-            this.btnCadastrarChave.Text = "Cadastrar nova chave >";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(489, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 41;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel1.Location = new System.Drawing.Point(24, 27);
+            this.metroLabel1.Location = new System.Drawing.Point(20, 27);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(68, 25);
+            this.metroLabel1.Size = new System.Drawing.Size(88, 19);
             this.metroLabel1.TabIndex = 40;
-            this.metroLabel1.Text = "Chaves";
+            this.metroLabel1.Text = "Empréstimos";
             this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.funcionario);
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.qtdControles);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.contato);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.qtdChaves);
+            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.codChave);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.sitEmprestimo);
+            this.groupBox2.Controls.Add(this.dadosRetirante);
             this.groupBox2.Location = new System.Drawing.Point(21, 261);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(609, 114);
+            this.groupBox2.Size = new System.Drawing.Size(609, 133);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
-            // label1
+            // codChave
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
-            this.label1.Location = new System.Drawing.Point(341, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(10, 15);
-            this.label1.TabIndex = 10;
-            this.label1.Text = " ";
+            this.codChave.AutoSize = true;
+            this.codChave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codChave.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.codChave.Location = new System.Drawing.Point(271, 16);
+            this.codChave.Name = "codChave";
+            this.codChave.Size = new System.Drawing.Size(10, 15);
+            this.codChave.TabIndex = 32;
+            this.codChave.Text = " ";
+            // 
+            // previsEntrega
+            // 
+            this.previsEntrega.AutoSize = true;
+            this.previsEntrega.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.previsEntrega.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
+            this.previsEntrega.Location = new System.Drawing.Point(322, 8);
+            this.previsEntrega.Name = "previsEntrega";
+            this.previsEntrega.Size = new System.Drawing.Size(10, 15);
+            this.previsEntrega.TabIndex = 10;
+            this.previsEntrega.Text = " ";
+            this.previsEntrega.Click += new System.EventHandler(this.Label1_Click);
             // 
             // label
             // 
             this.label.AutoSize = true;
             this.label.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label.ForeColor = System.Drawing.Color.White;
-            this.label.Location = new System.Drawing.Point(261, 17);
+            this.label.Location = new System.Drawing.Point(230, 8);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(79, 15);
+            this.label.Size = new System.Drawing.Size(96, 15);
             this.label.TabIndex = 9;
-            this.label.Text = "Empréstimo:";
+            this.label.Text = "Previs. Entrega:";
             // 
             // gridEmprestimo
             // 
@@ -437,6 +390,8 @@
             this.gridEmprestimo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridEmprestimo.Size = new System.Drawing.Size(609, 177);
             this.gridEmprestimo.TabIndex = 24;
+            this.gridEmprestimo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridEmprestimo_CellContentClick);
+            this.gridEmprestimo.SelectionChanged += new System.EventHandler(this.GridEmprestimo_SelectionChanged);
             // 
             // contextMenuStrip1
             // 
@@ -472,16 +427,17 @@
             this.reservarToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.reservarToolStripMenuItem.Text = "Reservar";
             // 
-            // endereco
+            // dadosRetirante
             // 
-            this.endereco.AutoSize = true;
-            this.endereco.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endereco.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.endereco.Location = new System.Drawing.Point(90, 310);
-            this.endereco.Name = "endereco";
-            this.endereco.Size = new System.Drawing.Size(10, 15);
-            this.endereco.TabIndex = 28;
-            this.endereco.Text = " ";
+            this.dadosRetirante.AutoSize = true;
+            this.dadosRetirante.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dadosRetirante.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.dadosRetirante.Location = new System.Drawing.Point(90, 43);
+            this.dadosRetirante.Name = "dadosRetirante";
+            this.dadosRetirante.Size = new System.Drawing.Size(10, 15);
+            this.dadosRetirante.TabIndex = 28;
+            this.dadosRetirante.Text = " ";
+            this.dadosRetirante.Click += new System.EventHandler(this.Endereco_Click);
             // 
             // codigoImob
             // 
@@ -493,6 +449,7 @@
             this.codigoImob.Size = new System.Drawing.Size(10, 15);
             this.codigoImob.TabIndex = 26;
             this.codigoImob.Text = " ";
+            this.codigoImob.Click += new System.EventHandler(this.CodigoImob_Click);
             // 
             // label2
             // 
@@ -510,181 +467,379 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(489, 17);
+            this.label7.Location = new System.Drawing.Point(451, 8);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 15);
+            this.label7.Size = new System.Drawing.Size(83, 15);
             this.label7.TabIndex = 7;
-            this.label7.Text = "Localização:";
+            this.label7.Text = "Data Entrega:";
             // 
-            // localizacao
+            // dataEntrega
             // 
-            this.localizacao.AutoSize = true;
-            this.localizacao.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.localizacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
-            this.localizacao.Location = new System.Drawing.Point(564, 17);
-            this.localizacao.Name = "localizacao";
-            this.localizacao.Size = new System.Drawing.Size(10, 15);
-            this.localizacao.TabIndex = 8;
-            this.localizacao.Text = " ";
+            this.dataEntrega.AutoSize = true;
+            this.dataEntrega.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataEntrega.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
+            this.dataEntrega.Location = new System.Drawing.Point(531, 8);
+            this.dataEntrega.Name = "dataEntrega";
+            this.dataEntrega.Size = new System.Drawing.Size(10, 15);
+            this.dataEntrega.TabIndex = 8;
+            this.dataEntrega.Text = " ";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label3.Location = new System.Drawing.Point(26, 310);
+            this.label3.Location = new System.Drawing.Point(26, 304);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 15);
+            this.label3.Size = new System.Drawing.Size(85, 15);
             this.label3.TabIndex = 27;
-            this.label3.Text = "Endereço:";
+            this.label3.Text = "Quem retirou:";
+            this.label3.Click += new System.EventHandler(this.Label3_Click);
             // 
-            // sitChave
+            // dataRetirada
             // 
-            this.sitChave.AutoSize = true;
-            this.sitChave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sitChave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
-            this.sitChave.Location = new System.Drawing.Point(116, 17);
-            this.sitChave.Name = "sitChave";
-            this.sitChave.Size = new System.Drawing.Size(10, 15);
-            this.sitChave.TabIndex = 6;
-            this.sitChave.Text = " ";
+            this.dataRetirada.AutoSize = true;
+            this.dataRetirada.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataRetirada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
+            this.dataRetirada.Location = new System.Drawing.Point(103, 8);
+            this.dataRetirada.Name = "dataRetirada";
+            this.dataRetirada.Size = new System.Drawing.Size(10, 15);
+            this.dataRetirada.TabIndex = 6;
+            this.dataRetirada.Text = " ";
+            this.dataRetirada.Click += new System.EventHandler(this.SitChave_Click);
             // 
             // labelChave
             // 
             this.labelChave.AutoSize = true;
             this.labelChave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelChave.ForeColor = System.Drawing.Color.White;
-            this.labelChave.Location = new System.Drawing.Point(3, 17);
+            this.labelChave.Location = new System.Drawing.Point(3, 8);
             this.labelChave.Name = "labelChave";
-            this.labelChave.Size = new System.Drawing.Size(114, 15);
+            this.labelChave.Size = new System.Drawing.Size(104, 15);
             this.labelChave.TabIndex = 5;
-            this.labelChave.Text = "Situação da chave:";
+            this.labelChave.Text = "Data de Retirada:";
             // 
-            // tipoImovel
+            // sitEmprestimo
             // 
-            this.tipoImovel.AutoSize = true;
-            this.tipoImovel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tipoImovel.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.tipoImovel.Location = new System.Drawing.Point(550, 348);
-            this.tipoImovel.Name = "tipoImovel";
-            this.tipoImovel.Size = new System.Drawing.Size(10, 15);
-            this.tipoImovel.TabIndex = 36;
-            this.tipoImovel.Text = " ";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label15.Location = new System.Drawing.Point(459, 348);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(91, 15);
-            this.label15.TabIndex = 35;
-            this.label15.Text = "Tipo do imóvel:";
-            // 
-            // sitImovel
-            // 
-            this.sitImovel.AutoSize = true;
-            this.sitImovel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sitImovel.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.sitImovel.Location = new System.Drawing.Point(565, 277);
-            this.sitImovel.Name = "sitImovel";
-            this.sitImovel.Size = new System.Drawing.Size(10, 15);
-            this.sitImovel.TabIndex = 34;
-            this.sitImovel.Text = " ";
+            this.sitEmprestimo.AutoSize = true;
+            this.sitEmprestimo.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sitEmprestimo.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.sitEmprestimo.Location = new System.Drawing.Point(503, 16);
+            this.sitEmprestimo.Name = "sitEmprestimo";
+            this.sitEmprestimo.Size = new System.Drawing.Size(10, 15);
+            this.sitEmprestimo.TabIndex = 34;
+            this.sitEmprestimo.Text = " ";
+            this.sitEmprestimo.Click += new System.EventHandler(this.SitEmprestimo_Click);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label13.Location = new System.Drawing.Point(450, 276);
+            this.label13.Location = new System.Drawing.Point(357, 16);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(117, 15);
+            this.label13.Size = new System.Drawing.Size(149, 15);
             this.label13.TabIndex = 33;
-            this.label13.Text = "Situação do Imóvel:";
-            // 
-            // codChave
-            // 
-            this.codChave.AutoSize = true;
-            this.codChave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.codChave.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.codChave.Location = new System.Drawing.Point(306, 16);
-            this.codChave.Name = "codChave";
-            this.codChave.Size = new System.Drawing.Size(10, 15);
-            this.codChave.TabIndex = 32;
-            this.codChave.Text = " ";
+            this.label13.Text = "Situação do Empréstimo:";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label11.Location = new System.Drawing.Point(240, 275);
+            this.label11.Location = new System.Drawing.Point(184, 14);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(87, 15);
             this.label11.TabIndex = 31;
             this.label11.Text = "Código Chave:";
             // 
-            // proprietario
+            // descricao
             // 
-            this.proprietario.AutoSize = true;
-            this.proprietario.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.proprietario.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.proprietario.Location = new System.Drawing.Point(109, 348);
-            this.proprietario.Name = "proprietario";
-            this.proprietario.Size = new System.Drawing.Size(10, 15);
-            this.proprietario.TabIndex = 30;
-            this.proprietario.Text = " ";
+            this.descricao.AutoSize = true;
+            this.descricao.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descricao.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.descricao.Location = new System.Drawing.Point(94, 336);
+            this.descricao.MaximumSize = new System.Drawing.Size(520, 0);
+            this.descricao.Name = "descricao";
+            this.descricao.Size = new System.Drawing.Size(10, 15);
+            this.descricao.TabIndex = 30;
+            this.descricao.Text = " ";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label9.Location = new System.Drawing.Point(26, 348);
+            this.label9.Location = new System.Drawing.Point(26, 336);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(78, 15);
+            this.label9.Size = new System.Drawing.Size(68, 15);
             this.label9.TabIndex = 29;
-            this.label9.Text = "Proprietário:";
+            this.label9.Text = "Descrição:";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.previsEntrega);
             this.panel1.Controls.Add(this.label);
-            this.panel1.Controls.Add(this.sitChave);
+            this.panel1.Controls.Add(this.dataRetirada);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.localizacao);
+            this.panel1.Controls.Add(this.dataEntrega);
             this.panel1.Controls.Add(this.labelChave);
-            this.panel1.Location = new System.Drawing.Point(-3, 381);
+            this.panel1.Location = new System.Drawing.Point(-3, 400);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(660, 49);
+            this.panel1.Size = new System.Drawing.Size(660, 30);
             this.panel1.TabIndex = 37;
+            // 
+            // qtdChaves
+            // 
+            this.qtdChaves.AutoSize = true;
+            this.qtdChaves.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qtdChaves.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.qtdChaves.Location = new System.Drawing.Point(94, 116);
+            this.qtdChaves.Name = "qtdChaves";
+            this.qtdChaves.Size = new System.Drawing.Size(10, 15);
+            this.qtdChaves.TabIndex = 36;
+            this.qtdChaves.Text = " ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label5.Location = new System.Drawing.Point(5, 115);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 15);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Quant. Chaves:";
+            // 
+            // contato
+            // 
+            this.contato.AutoSize = true;
+            this.contato.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contato.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.contato.Location = new System.Drawing.Point(442, 45);
+            this.contato.MaximumSize = new System.Drawing.Size(200, 0);
+            this.contato.Name = "contato";
+            this.contato.Size = new System.Drawing.Size(10, 15);
+            this.contato.TabIndex = 38;
+            this.contato.Text = " ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label8.Location = new System.Drawing.Point(388, 43);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 15);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "Contato:";
+            // 
+            // qtdControles
+            // 
+            this.qtdControles.AutoSize = true;
+            this.qtdControles.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qtdControles.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.qtdControles.Location = new System.Drawing.Point(327, 116);
+            this.qtdControles.Name = "qtdControles";
+            this.qtdControles.Size = new System.Drawing.Size(10, 15);
+            this.qtdControles.TabIndex = 40;
+            this.qtdControles.Text = " ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label12.Location = new System.Drawing.Point(224, 115);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(105, 15);
+            this.label12.TabIndex = 39;
+            this.label12.Text = "Quant. Controles:";
+            // 
+            // funcionario
+            // 
+            this.funcionario.AutoSize = true;
+            this.funcionario.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.funcionario.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.funcionario.Location = new System.Drawing.Point(514, 116);
+            this.funcionario.Name = "funcionario";
+            this.funcionario.Size = new System.Drawing.Size(10, 15);
+            this.funcionario.TabIndex = 42;
+            this.funcionario.Text = " ";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label15.Location = new System.Drawing.Point(440, 115);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(76, 15);
+            this.label15.TabIndex = 41;
+            this.label15.Text = "Funcionário:";
+            // 
+            // dpMinDataRetirada
+            // 
+            this.dpMinDataRetirada.Checked = false;
+            this.dpMinDataRetirada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dpMinDataRetirada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpMinDataRetirada.Location = new System.Drawing.Point(9, 17);
+            this.dpMinDataRetirada.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dpMinDataRetirada.Name = "dpMinDataRetirada";
+            this.dpMinDataRetirada.Size = new System.Drawing.Size(95, 20);
+            this.dpMinDataRetirada.TabIndex = 0;
+            this.dpMinDataRetirada.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
+            // 
+            // dpMaxDataRetirada
+            // 
+            this.dpMaxDataRetirada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dpMaxDataRetirada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpMaxDataRetirada.Location = new System.Drawing.Point(134, 17);
+            this.dpMaxDataRetirada.Name = "dpMaxDataRetirada";
+            this.dpMaxDataRetirada.Size = new System.Drawing.Size(95, 20);
+            this.dpMaxDataRetirada.TabIndex = 1;
+            this.dpMaxDataRetirada.ValueChanged += new System.EventHandler(this.DateTimePicker2_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(113, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(13, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "à";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.checkPrevisEntrega);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.dpMaxPrevisEntrega);
+            this.groupBox1.Controls.Add(this.dpMinPrevisEntrega);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(15, 106);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(254, 43);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Previsão de entrega";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(113, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(13, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "à";
+            // 
+            // dpMaxPrevisEntrega
+            // 
+            this.dpMaxPrevisEntrega.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dpMaxPrevisEntrega.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpMaxPrevisEntrega.Location = new System.Drawing.Point(134, 17);
+            this.dpMaxPrevisEntrega.Name = "dpMaxPrevisEntrega";
+            this.dpMaxPrevisEntrega.Size = new System.Drawing.Size(95, 20);
+            this.dpMaxPrevisEntrega.TabIndex = 1;
+            // 
+            // dpMinPrevisEntrega
+            // 
+            this.dpMinPrevisEntrega.Checked = false;
+            this.dpMinPrevisEntrega.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dpMinPrevisEntrega.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpMinPrevisEntrega.Location = new System.Drawing.Point(9, 17);
+            this.dpMinPrevisEntrega.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dpMinPrevisEntrega.Name = "dpMinPrevisEntrega";
+            this.dpMinPrevisEntrega.Size = new System.Drawing.Size(95, 20);
+            this.dpMinPrevisEntrega.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.checkDataEntrega);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.dpMaxDataEntrega);
+            this.groupBox3.Controls.Add(this.dpMinDataEntrega);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(15, 153);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(254, 43);
+            this.groupBox3.TabIndex = 5;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Data de entrega";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(113, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(13, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "à";
+            // 
+            // dpMaxDataEntrega
+            // 
+            this.dpMaxDataEntrega.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dpMaxDataEntrega.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpMaxDataEntrega.Location = new System.Drawing.Point(134, 17);
+            this.dpMaxDataEntrega.Name = "dpMaxDataEntrega";
+            this.dpMaxDataEntrega.Size = new System.Drawing.Size(95, 20);
+            this.dpMaxDataEntrega.TabIndex = 1;
+            // 
+            // dpMinDataEntrega
+            // 
+            this.dpMinDataEntrega.Checked = false;
+            this.dpMinDataEntrega.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dpMinDataEntrega.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpMinDataEntrega.Location = new System.Drawing.Point(9, 17);
+            this.dpMinDataEntrega.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dpMinDataEntrega.Name = "dpMinDataEntrega";
+            this.dpMinDataEntrega.Size = new System.Drawing.Size(95, 20);
+            this.dpMinDataEntrega.TabIndex = 0;
+            // 
+            // checkDataRetirada
+            // 
+            this.checkDataRetirada.AutoSize = true;
+            this.checkDataRetirada.Location = new System.Drawing.Point(234, 21);
+            this.checkDataRetirada.Name = "checkDataRetirada";
+            this.checkDataRetirada.Size = new System.Drawing.Size(15, 14);
+            this.checkDataRetirada.TabIndex = 3;
+            this.checkDataRetirada.UseVisualStyleBackColor = true;
+            // 
+            // checkPrevisEntrega
+            // 
+            this.checkPrevisEntrega.AutoSize = true;
+            this.checkPrevisEntrega.Location = new System.Drawing.Point(233, 21);
+            this.checkPrevisEntrega.Name = "checkPrevisEntrega";
+            this.checkPrevisEntrega.Size = new System.Drawing.Size(15, 14);
+            this.checkPrevisEntrega.TabIndex = 4;
+            this.checkPrevisEntrega.UseVisualStyleBackColor = true;
+            // 
+            // checkDataEntrega
+            // 
+            this.checkDataEntrega.AutoSize = true;
+            this.checkDataEntrega.Location = new System.Drawing.Point(233, 20);
+            this.checkDataEntrega.Name = "checkDataEntrega";
+            this.checkDataEntrega.Size = new System.Drawing.Size(15, 14);
+            this.checkDataEntrega.TabIndex = 5;
+            this.checkDataEntrega.UseVisualStyleBackColor = true;
             // 
             // Emprestimo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(655, 430);
             this.ControlBox = false;
             this.Controls.Add(this.groupMenuSup);
             this.Controls.Add(this.filtrosPanel);
-            this.Controls.Add(this.btnCadastrarChave);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.gridEmprestimo);
-            this.Controls.Add(this.endereco);
             this.Controls.Add(this.codigoImob);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.tipoImovel);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.sitImovel);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.proprietario);
+            this.Controls.Add(this.descricao);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
@@ -694,6 +849,8 @@
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.None;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Style = MetroFramework.MetroColorStyle.White;
             this.Text = "Emprestimo";
             this.Load += new System.EventHandler(this.Emprestimo_Load);
             this.groupMenuSup.ResumeLayout(false);
@@ -701,18 +858,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).EndInit();
             this.filtrosPanel.ResumeLayout(false);
             this.filtrosPanel.PerformLayout();
-            this.groupBoxTipoImovel.ResumeLayout(false);
-            this.groupBoxTipoImovel.PerformLayout();
             this.groupBoxSituacaoCh.ResumeLayout(false);
             this.groupBoxSituacaoCh.PerformLayout();
-            this.groupBoxSituacaoIm.ResumeLayout(false);
-            this.groupBoxSituacaoIm.PerformLayout();
+            this.groupTipoEmprestimo.ResumeLayout(false);
+            this.groupTipoEmprestimo.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridEmprestimo)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -729,23 +888,14 @@
         private System.Windows.Forms.Panel filtrosPanel;
         private System.Windows.Forms.Label btnRestaurar;
         private System.Windows.Forms.Button btnFiltrar;
-        private System.Windows.Forms.GroupBox groupBoxTipoImovel;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton7;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton8;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton9;
         private System.Windows.Forms.GroupBox groupBoxSituacaoCh;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton4;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton5;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton6;
-        private System.Windows.Forms.GroupBox groupBoxSituacaoIm;
+        private System.Windows.Forms.GroupBox groupTipoEmprestimo;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton3;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
-        private System.Windows.Forms.Label btnCadastrarChave;
-        private System.Windows.Forms.Button button1;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label previsEntrega;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.DataGridView gridEmprestimo;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -753,22 +903,42 @@
         private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registrarEmpréstimoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reservarToolStripMenuItem;
-        private System.Windows.Forms.Label endereco;
+        private System.Windows.Forms.Label dadosRetirante;
         private System.Windows.Forms.Label codigoImob;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label localizacao;
+        private System.Windows.Forms.Label dataEntrega;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label sitChave;
+        private System.Windows.Forms.Label dataRetirada;
         private System.Windows.Forms.Label labelChave;
-        private System.Windows.Forms.Label tipoImovel;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label sitImovel;
+        private System.Windows.Forms.Label sitEmprestimo;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label codChave;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label proprietario;
+        private System.Windows.Forms.Label descricao;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label funcionario;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label qtdControles;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label contato;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label qtdChaves;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dpMaxDataRetirada;
+        private System.Windows.Forms.DateTimePicker dpMinDataRetirada;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DateTimePicker dpMaxDataEntrega;
+        private System.Windows.Forms.DateTimePicker dpMinDataEntrega;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dpMaxPrevisEntrega;
+        private System.Windows.Forms.DateTimePicker dpMinPrevisEntrega;
+        private System.Windows.Forms.CheckBox checkDataEntrega;
+        private System.Windows.Forms.CheckBox checkPrevisEntrega;
+        private System.Windows.Forms.CheckBox checkDataRetirada;
     }
 }
