@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupMenuSup = new System.Windows.Forms.GroupBox();
+            this.btnFiltro = new System.Windows.Forms.PictureBox();
             this.radioVenda = new MetroFramework.Controls.MetroRadioButton();
             this.radioLocacao = new MetroFramework.Controls.MetroRadioButton();
             this.radioTodos = new MetroFramework.Controls.MetroRadioButton();
@@ -54,6 +56,7 @@
             this.dpMaxDataRetirada = new System.Windows.Forms.DateTimePicker();
             this.dpMinDataRetirada = new System.Windows.Forms.DateTimePicker();
             this.groupTipoEmprestimo = new System.Windows.Forms.GroupBox();
+            this.metroRadioButton4 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton3 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
@@ -85,11 +88,16 @@
             this.descricao = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.metroRadioButton4 = new MetroFramework.Controls.MetroRadioButton();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnFiltro = new System.Windows.Forms.PictureBox();
-            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnBaixa = new System.Windows.Forms.Button();
+            this.btnProrrogar = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupMenuSup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             this.filtrosPanel.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -98,7 +106,8 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridEmprestimo)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupMenuSup
@@ -109,12 +118,23 @@
             this.groupMenuSup.Controls.Add(this.radioTodos);
             this.groupMenuSup.Controls.Add(this.textBoxBusca);
             this.groupMenuSup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupMenuSup.Location = new System.Drawing.Point(116, 18);
+            this.groupMenuSup.Location = new System.Drawing.Point(116, 9);
             this.groupMenuSup.Name = "groupMenuSup";
             this.groupMenuSup.Size = new System.Drawing.Size(514, 40);
             this.groupMenuSup.TabIndex = 38;
             this.groupMenuSup.TabStop = false;
             this.groupMenuSup.Enter += new System.EventHandler(this.GroupMenuSup_Enter);
+            // 
+            // btnFiltro
+            // 
+            this.btnFiltro.BackColor = System.Drawing.Color.Black;
+            this.btnFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiltro.Location = new System.Drawing.Point(470, 9);
+            this.btnFiltro.Name = "btnFiltro";
+            this.btnFiltro.Size = new System.Drawing.Size(34, 27);
+            this.btnFiltro.TabIndex = 4;
+            this.btnFiltro.TabStop = false;
+            this.btnFiltro.Click += new System.EventHandler(this.BtnFiltro_Click);
             // 
             // radioVenda
             // 
@@ -177,7 +197,7 @@
             this.filtrosPanel.Controls.Add(this.btnFiltrar);
             this.filtrosPanel.Controls.Add(this.groupBoxSituacaoCh);
             this.filtrosPanel.Controls.Add(this.groupTipoEmprestimo);
-            this.filtrosPanel.Location = new System.Drawing.Point(341, 58);
+            this.filtrosPanel.Location = new System.Drawing.Point(341, 55);
             this.filtrosPanel.Name = "filtrosPanel";
             this.filtrosPanel.Size = new System.Drawing.Size(289, 261);
             this.filtrosPanel.TabIndex = 43;
@@ -365,7 +385,6 @@
             this.dpMaxDataRetirada.Name = "dpMaxDataRetirada";
             this.dpMaxDataRetirada.Size = new System.Drawing.Size(95, 20);
             this.dpMaxDataRetirada.TabIndex = 1;
-            this.dpMaxDataRetirada.ValueChanged += new System.EventHandler(this.DateTimePicker2_ValueChanged);
             // 
             // dpMinDataRetirada
             // 
@@ -378,7 +397,6 @@
             this.dpMinDataRetirada.Name = "dpMinDataRetirada";
             this.dpMinDataRetirada.Size = new System.Drawing.Size(95, 20);
             this.dpMinDataRetirada.TabIndex = 0;
-            this.dpMinDataRetirada.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
             // 
             // groupTipoEmprestimo
             // 
@@ -393,6 +411,16 @@
             this.groupTipoEmprestimo.TabIndex = 1;
             this.groupTipoEmprestimo.TabStop = false;
             this.groupTipoEmprestimo.Text = "Tipo";
+            // 
+            // metroRadioButton4
+            // 
+            this.metroRadioButton4.AutoSize = true;
+            this.metroRadioButton4.Location = new System.Drawing.Point(144, 43);
+            this.metroRadioButton4.Name = "metroRadioButton4";
+            this.metroRadioButton4.Size = new System.Drawing.Size(85, 15);
+            this.metroRadioButton4.TabIndex = 3;
+            this.metroRadioButton4.Text = "Proprietario";
+            this.metroRadioButton4.UseVisualStyleBackColor = true;
             // 
             // metroRadioButton3
             // 
@@ -431,7 +459,7 @@
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel1.Location = new System.Drawing.Point(20, 27);
+            this.metroLabel1.Location = new System.Drawing.Point(20, 18);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(88, 19);
             this.metroLabel1.TabIndex = 40;
@@ -458,7 +486,6 @@
             this.groupBox2.Size = new System.Drawing.Size(609, 133);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
             // funcionario
             // 
@@ -592,7 +619,6 @@
             this.sitEmprestimo.Size = new System.Drawing.Size(10, 15);
             this.sitEmprestimo.TabIndex = 34;
             this.sitEmprestimo.Text = " ";
-            this.sitEmprestimo.Click += new System.EventHandler(this.SitEmprestimo_Click);
             // 
             // dadosRetirante
             // 
@@ -604,7 +630,6 @@
             this.dadosRetirante.Size = new System.Drawing.Size(10, 15);
             this.dadosRetirante.TabIndex = 28;
             this.dadosRetirante.Text = " ";
-            this.dadosRetirante.Click += new System.EventHandler(this.Endereco_Click);
             // 
             // previsEntrega
             // 
@@ -616,7 +641,6 @@
             this.previsEntrega.Size = new System.Drawing.Size(10, 15);
             this.previsEntrega.TabIndex = 10;
             this.previsEntrega.Text = " ";
-            this.previsEntrega.Click += new System.EventHandler(this.Label1_Click);
             // 
             // label
             // 
@@ -648,7 +672,7 @@
             this.gridEmprestimo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridEmprestimo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridEmprestimo.GridColor = System.Drawing.Color.White;
-            this.gridEmprestimo.Location = new System.Drawing.Point(21, 66);
+            this.gridEmprestimo.Location = new System.Drawing.Point(21, 57);
             this.gridEmprestimo.MultiSelect = false;
             this.gridEmprestimo.Name = "gridEmprestimo";
             this.gridEmprestimo.ReadOnly = true;
@@ -667,7 +691,7 @@
             this.gridEmprestimo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridEmprestimo.Size = new System.Drawing.Size(609, 177);
             this.gridEmprestimo.TabIndex = 24;
-            this.gridEmprestimo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridEmprestimo_CellContentClick);
+            this.gridEmprestimo.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridEmprestimo_CellFormatting);
             this.gridEmprestimo.SelectionChanged += new System.EventHandler(this.GridEmprestimo_SelectionChanged);
             // 
             // codigoImob
@@ -680,7 +704,6 @@
             this.codigoImob.Size = new System.Drawing.Size(10, 15);
             this.codigoImob.TabIndex = 26;
             this.codigoImob.Text = " ";
-            this.codigoImob.Click += new System.EventHandler(this.CodigoImob_Click);
             // 
             // label2
             // 
@@ -725,7 +748,6 @@
             this.label3.Size = new System.Drawing.Size(85, 15);
             this.label3.TabIndex = 27;
             this.label3.Text = "Quem retirou:";
-            this.label3.Click += new System.EventHandler(this.Label3_Click);
             // 
             // dataRetirada
             // 
@@ -737,7 +759,6 @@
             this.dataRetirada.Size = new System.Drawing.Size(10, 15);
             this.dataRetirada.TabIndex = 6;
             this.dataRetirada.Text = " ";
-            this.dataRetirada.Click += new System.EventHandler(this.SitChave_Click);
             // 
             // labelChave
             // 
@@ -787,57 +808,78 @@
             this.panel1.Size = new System.Drawing.Size(660, 30);
             this.panel1.TabIndex = 37;
             // 
-            // metroRadioButton4
+            // btnBaixa
             // 
-            this.metroRadioButton4.AutoSize = true;
-            this.metroRadioButton4.Location = new System.Drawing.Point(144, 43);
-            this.metroRadioButton4.Name = "metroRadioButton4";
-            this.metroRadioButton4.Size = new System.Drawing.Size(85, 15);
-            this.metroRadioButton4.TabIndex = 3;
-            this.metroRadioButton4.Text = "Proprietario";
-            this.metroRadioButton4.UseVisualStyleBackColor = true;
+            this.btnBaixa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBaixa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBaixa.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnBaixa.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnBaixa.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnBaixa.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnBaixa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBaixa.Image = global::situacaoChavesGolden.Properties.Resources.BaixaEmprestimo;
+            this.btnBaixa.Location = new System.Drawing.Point(47, 238);
+            this.btnBaixa.Name = "btnBaixa";
+            this.btnBaixa.Size = new System.Drawing.Size(34, 22);
+            this.btnBaixa.TabIndex = 27;
+            this.toolTip2.SetToolTip(this.btnBaixa, "Dar Baixa");
+            this.btnBaixa.UseVisualStyleBackColor = true;
+            this.btnBaixa.Click += new System.EventHandler(this.btnBaixa_Click);
             // 
-            // btnEditar
+            // btnProrrogar
             // 
-            this.btnEditar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEditar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
-            this.btnEditar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnEditar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnEditar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.Image = global::situacaoChavesGolden.Properties.Resources.BaixaEmprestimo;
-            this.btnEditar.Location = new System.Drawing.Point(47, 244);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(34, 22);
-            this.btnEditar.TabIndex = 27;
-            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnProrrogar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnProrrogar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnProrrogar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnProrrogar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnProrrogar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnProrrogar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProrrogar.Image = global::situacaoChavesGolden.Properties.Resources.ProrrogarEmprestimo;
+            this.btnProrrogar.Location = new System.Drawing.Point(21, 238);
+            this.btnProrrogar.Name = "btnProrrogar";
+            this.btnProrrogar.Size = new System.Drawing.Size(24, 22);
+            this.btnProrrogar.TabIndex = 26;
+            this.toolTip1.SetToolTip(this.btnProrrogar, "Prorrogar Empréstimo");
+            this.btnProrrogar.UseVisualStyleBackColor = true;
+            this.btnProrrogar.Click += new System.EventHandler(this.btnProrrogar_Click);
             // 
-            // btnFiltro
+            // groupBox4
             // 
-            this.btnFiltro.BackColor = System.Drawing.Color.Black;
-            this.btnFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFiltro.Location = new System.Drawing.Point(470, 9);
-            this.btnFiltro.Name = "btnFiltro";
-            this.btnFiltro.Size = new System.Drawing.Size(34, 27);
-            this.btnFiltro.TabIndex = 4;
-            this.btnFiltro.TabStop = false;
-            this.btnFiltro.Click += new System.EventHandler(this.BtnFiltro_Click);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.pictureBox1);
+            this.groupBox4.Location = new System.Drawing.Point(435, 234);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(195, 28);
+            this.groupBox4.TabIndex = 44;
+            this.groupBox4.TabStop = false;
             // 
-            // btnExcluir
+            // label14
             // 
-            this.btnExcluir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExcluir.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
-            this.btnExcluir.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnExcluir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnExcluir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcluir.Image = global::situacaoChavesGolden.Properties.Resources.ProrrogarEmprestimo;
-            this.btnExcluir.Location = new System.Drawing.Point(21, 244);
-            this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(24, 22);
-            this.btnExcluir.TabIndex = 26;
-            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(10, 10);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(52, 13);
+            this.label14.TabIndex = 2;
+            this.label14.Text = "Legenda:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(85, 10);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(103, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Devolução atrasada";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.pictureBox1.Location = new System.Drawing.Point(68, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(15, 15);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // Emprestimo
             // 
@@ -845,10 +887,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 430);
             this.ControlBox = false;
-            this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.groupMenuSup);
-            this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.filtrosPanel);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.btnBaixa);
+            this.Controls.Add(this.groupMenuSup);
+            this.Controls.Add(this.btnProrrogar);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.gridEmprestimo);
             this.Controls.Add(this.codigoImob);
@@ -870,6 +913,7 @@
             this.Load += new System.EventHandler(this.Emprestimo_Load);
             this.groupMenuSup.ResumeLayout(false);
             this.groupMenuSup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).EndInit();
             this.filtrosPanel.ResumeLayout(false);
             this.filtrosPanel.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -885,7 +929,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridEmprestimo)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -950,7 +996,13 @@
         private System.Windows.Forms.CheckBox checkPrevisEntrega;
         private System.Windows.Forms.CheckBox checkDataRetirada;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton4;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.Button btnBaixa;
+        private System.Windows.Forms.Button btnProrrogar;
+        private System.Windows.Forms.ToolTip toolTip2;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

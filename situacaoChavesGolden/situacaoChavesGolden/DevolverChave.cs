@@ -35,8 +35,8 @@ namespace situacaoChavesGolden
                                                                 " e.quant_chaves, e.quant_controles, c.cod_chave, c.cod_imob," +
                                                                 " cl.nome_cliente, e.data_retirada, e.cod_usuario" +
                                                                 " FROM emprestimo e" +
-                                                                " INNER JOIN chave c ON c.cod_chave = e.cod_chave" +
-                                                                " INNER JOIN cliente cl ON cl.cod_cliente = e.cod_cliente" +
+                                                                " LEFT JOIN chave c ON c.cod_chave = e.cod_chave" +
+                                                                " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente" +
                                                                 " WHERE e.cod_emprestimo = '{0}'", codigoEmprestimo));
         
             foreach(DataRow row in dadosEmprestimo.Rows)
@@ -105,6 +105,11 @@ namespace situacaoChavesGolden
             }
             
 
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

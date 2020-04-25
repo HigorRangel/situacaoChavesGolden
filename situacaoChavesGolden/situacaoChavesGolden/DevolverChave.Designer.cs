@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelDoc = new System.Windows.Forms.Label();
+            this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
             this.qtdControles = new System.Windows.Forms.NumericUpDown();
             this.metroLabel11 = new MetroFramework.Controls.MetroLabel();
             this.qtdChaves = new System.Windows.Forms.NumericUpDown();
@@ -58,8 +60,6 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
-            this.labelDoc = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qtdControles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qtdChaves)).BeginInit();
@@ -80,6 +80,28 @@
             this.groupBox1.Size = new System.Drawing.Size(272, 61);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // labelDoc
+            // 
+            this.labelDoc.AutoSize = true;
+            this.labelDoc.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDoc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelDoc.Location = new System.Drawing.Point(211, 36);
+            this.labelDoc.Name = "labelDoc";
+            this.labelDoc.Size = new System.Drawing.Size(10, 14);
+            this.labelDoc.TabIndex = 33;
+            this.labelDoc.Text = " ";
+            this.labelDoc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // metroLabel9
+            // 
+            this.metroLabel9.AutoSize = true;
+            this.metroLabel9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel9.Location = new System.Drawing.Point(188, 16);
+            this.metroLabel9.Name = "metroLabel9";
+            this.metroLabel9.Size = new System.Drawing.Size(68, 15);
+            this.metroLabel9.TabIndex = 17;
+            this.metroLabel9.Text = "Deixou doc?";
             // 
             // qtdControles
             // 
@@ -366,6 +388,7 @@
             this.btnCancelar.TabIndex = 30;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnConfirmar
             // 
@@ -392,28 +415,6 @@
             this.metroLabel7.Size = new System.Drawing.Size(40, 15);
             this.metroLabel7.TabIndex = 31;
             this.metroLabel7.Text = "Dados";
-            // 
-            // metroLabel9
-            // 
-            this.metroLabel9.AutoSize = true;
-            this.metroLabel9.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel9.Location = new System.Drawing.Point(188, 16);
-            this.metroLabel9.Name = "metroLabel9";
-            this.metroLabel9.Size = new System.Drawing.Size(68, 15);
-            this.metroLabel9.TabIndex = 17;
-            this.metroLabel9.Text = "Deixou doc?";
-            // 
-            // labelDoc
-            // 
-            this.labelDoc.AutoSize = true;
-            this.labelDoc.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDoc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelDoc.Location = new System.Drawing.Point(211, 36);
-            this.labelDoc.Name = "labelDoc";
-            this.labelDoc.Size = new System.Drawing.Size(10, 14);
-            this.labelDoc.TabIndex = 33;
-            this.labelDoc.Text = " ";
-            this.labelDoc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DevolverChave
             // 

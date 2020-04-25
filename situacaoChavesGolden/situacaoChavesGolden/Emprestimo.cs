@@ -22,8 +22,8 @@ namespace situacaoChavesGolden
 
         private void atualizarGridEmprestimo()
         {
-            //try
-            //{
+            try
+            {
                 DataTable dadosEmprestimo = new DataTable();
 
                 string situacao = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
@@ -44,7 +44,7 @@ namespace situacaoChavesGolden
 
                 dadosEmprestimo = database.select(string.Format("SELECT e.cod_emprestimo, c.cod_chave, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco," +
                                                   "  e.data_retirada, e.entrega_prevista, " +
-                                                  " (CASE WHEN e.data_entrega is null THEN 'EM ANDAMENTO' ELSE 'FINALIZADO' END) as situacao " +
+                                                  " (CASE WHEN e.data_entrega is null THEN 'EM ANDAMENTO' ELSE 'FINALIZADO' END) as situacao, c.indice_chave " +
                                                   " FROM emprestimo e " +
                                                   " LEFT JOIN chave c on c.indice_chave = e.cod_chave " +
                                                   " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente " +
@@ -64,12 +64,17 @@ namespace situacaoChavesGolden
 
                 gridEmprestimo.DataSource = dadosEmprestimo;
 
+                
+
+                
+
                 gridEmprestimo.Columns[0].HeaderText = "Código";        
                 gridEmprestimo.Columns[1].HeaderText = "Chave";
                 gridEmprestimo.Columns[2].HeaderText = "Endereço";
                 gridEmprestimo.Columns[3].HeaderText = "Data retirada";
                 gridEmprestimo.Columns[4].HeaderText = "Previsão de entrega";
                 gridEmprestimo.Columns[5].HeaderText = "Situação";
+                gridEmprestimo.Columns[6].Visible = false;
 
                 gridEmprestimo.Columns[0].Width = 40;
                 gridEmprestimo.Columns[1].Width = 40;
@@ -77,12 +82,13 @@ namespace situacaoChavesGolden
                 gridEmprestimo.Columns[3].Width = 98;
                 gridEmprestimo.Columns[4].Width = 98;
                 gridEmprestimo.Columns[5].Width = 98;
-            //}
-            //catch (Exception erro)
-            //{
-            //    MessageBox.Show(erro.Message);
-            //}
-        }
+
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message);
+            }
+}
 
         private void Emprestimo_Load(object sender, EventArgs e)
         {
@@ -126,6 +132,8 @@ namespace situacaoChavesGolden
                 " LEFT JOIN proprietario p ON p.cod_proprietario = e.cod_proprietario" +
                 " WHERE cod_emprestimo = '{0}'", gridEmprestimo.CurrentRow.Cells[0].Value.ToString()));
 
+
+
             foreach(DataRow row in dadosEmprestimo.Rows)
             {
                 codigoImob.Text = row[0].ToString();
@@ -156,55 +164,6 @@ namespace situacaoChavesGolden
             }
         }
 
-        private void Label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Endereco_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GroupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SitChave_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GridEmprestimo_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void CodigoImob_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SitEmprestimo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void BtnFiltro_Click(object sender, EventArgs e)
         {
@@ -351,6 +310,48 @@ namespace situacaoChavesGolden
 
         private void MetroRadioButton3_CheckedChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnProrrogar_Click(object sender, EventArgs e)
+        {
+            ProrrogarEmpréstimo prorrogar = new ProrrogarEmpréstimo(gridEmprestimo.CurrentRow.Cells[0].Value.ToString());
+            prorrogar.ShowDialog();
+
+            atualizarGridEmprestimo();
+        }
+
+        private void gridEmprestimo_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            string situacao = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+
+            if (situacao == "EM ANDAMENTO")
+            {
+                try
+                {
+                    DataGridViewRow row = gridEmprestimo.Rows[e.RowIndex];
+
+                    DateTime data = DateTime.Parse(row.Cells[4].Value.ToString());
+
+                    if (data < dataHoje)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 176, 176);
+                    }
+
+                }
+                catch { }
+            }
+           
+
+
+        }
+
+        private void btnBaixa_Click(object sender, EventArgs e)
+        {
+            DevolverChave telaDevolver = new DevolverChave(gridEmprestimo.CurrentRow.Cells[0].Value.ToString());
+            telaDevolver.ShowDialog();
+
+            atualizarGridEmprestimo();
 
         }
     }
