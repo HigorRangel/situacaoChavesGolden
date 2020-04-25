@@ -213,14 +213,17 @@ namespace situacaoChavesGolden
 
         private void BtnRestaurar_Click(object sender, EventArgs e)
         {
+            metroRadioButton1.Checked = true;
+            checkDataRetirada.Checked = false;
+            checkPrevisEntrega.Checked = false;
+            checkDataEntrega.Checked = false;
+
 
             dpMinDataRetirada.Value = dataHoje.AddMonths(-3);
             dpMinPrevisEntrega.Value = dataHoje.AddMonths(-3);
             dpMinDataEntrega.Value = dataHoje.AddMonths(-3);
 
-            dpMaxDataRetirada.Value = dataHoje.AddDays(7);
-            dpMaxPrevisEntrega.Value = dataHoje.AddDays(7);
-            dpMaxDataEntrega.Value = dataHoje.AddDays(7);
+           
 
             dpMaxDataRetirada.MaxDate = dataHoje;
             dpMaxDataEntrega.MaxDate = dataHoje;
@@ -241,8 +244,39 @@ namespace situacaoChavesGolden
 
         private void BtnFiltrar_Click(object sender, EventArgs e)
         {
-            filtrosPanel.Visible = false;
-            atualizarGridEmprestimo();
+            int contErro = 0;
+            string msgErro = "A data mínima não pode ser superior à data máxima nos seguintes campos!\n\n";
+
+            if(dpMinDataRetirada.Value > dpMaxDataRetirada.Value && checkDataRetirada.Checked)
+            {
+                msgErro += "- Data de Retirada";
+                contErro++;
+            }
+
+            if (dpMinPrevisEntrega.Value > dpMaxPrevisEntrega.Value && checkPrevisEntrega.Checked)
+            {
+                msgErro += "- Previsão de entrega";
+                contErro++;
+            }
+
+            if (dpMinDataEntrega.Value > dpMaxDataEntrega.Value && checkDataEntrega.Checked)
+            {
+                msgErro += "- Data de entrega";
+                contErro++;
+            }
+
+            if(contErro != 0)
+            {
+                Message popup = new Message(msgErro, "", "erro", "confirma");
+                popup.ShowDialog();
+            }
+            else
+            {
+                filtrosPanel.Visible = false;
+                atualizarGridEmprestimo();
+            }
+
+            
         }
 
         private void MetroCheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -269,6 +303,53 @@ namespace situacaoChavesGolden
         }
 
         private void GroupMenuSup_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CheckDataRetirada_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkDataRetirada.Checked)
+            {
+                dpMinDataRetirada.Enabled = true; 
+                dpMaxDataRetirada.Enabled = true;
+            }
+            else
+            {
+                dpMinDataRetirada.Enabled = false;
+                dpMaxDataRetirada.Enabled = false;
+            }
+        }
+
+        private void CheckPrevisEntrega_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkPrevisEntrega.Checked)
+            {
+                dpMinPrevisEntrega.Enabled = true;
+                dpMaxPrevisEntrega.Enabled = true;
+            }
+            else
+            {
+                dpMinPrevisEntrega.Enabled = false;
+                dpMaxPrevisEntrega.Enabled = false;
+            }
+        }
+
+        private void CheckDataEntrega_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkDataEntrega.Checked)
+            {
+                dpMinDataEntrega.Enabled = true;
+                dpMaxDataEntrega.Enabled = true;
+            }
+            else
+            {
+                dpMinDataEntrega.Enabled = false;
+                dpMaxDataEntrega.Enabled = false;
+            }
+        }
+
+        private void MetroRadioButton3_CheckedChanged(object sender, EventArgs e)
         {
 
         }

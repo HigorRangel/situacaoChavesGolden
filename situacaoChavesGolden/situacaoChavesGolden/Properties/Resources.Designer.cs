@@ -63,6 +63,16 @@ namespace situacaoChavesGolden.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BaixaEmprestimo {
+            get {
+                object obj = ResourceManager.GetObject("BaixaEmprestimo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ChaveDevolver {
             get {
                 object obj = ResourceManager.GetObject("ChaveDevolver", resourceCulture);
@@ -156,6 +166,16 @@ namespace situacaoChavesGolden.Properties {
         internal static System.Drawing.Bitmap EditGray {
             get {
                 object obj = ResourceManager.GetObject("EditGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ProrrogarEmprestimo {
+            get {
+                object obj = ResourceManager.GetObject("ProrrogarEmprestimo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
