@@ -226,11 +226,17 @@
     <Compile Include="ProrrogarEmpréstimo.Designer.cs">
       <DependentUpon>ProrrogarEmpréstimo.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReservarChave.cs">
+    <Compile Include="CadastroReserva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReservarChave.Designer.cs">
-      <DependentUpon>ReservarChave.cs</DependentUpon>
+    <Compile Include="CadastroReserva.Designer.cs">
+      <DependentUpon>CadastroReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reserva.Designer.cs">
+      <DependentUpon>Reserva.cs</DependentUpon>
     </Compile>
     <Compile Include="RetirarChave.cs">
       <SubType>Form</SubType>
@@ -287,8 +293,11 @@
     <EmbeddedResource Include="ProrrogarEmpréstimo.resx">
       <DependentUpon>ProrrogarEmpréstimo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReservarChave.resx">
-      <DependentUpon>ReservarChave.cs</DependentUpon>
+    <EmbeddedResource Include="CadastroReserva.resx">
+      <DependentUpon>CadastroReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reserva.resx">
+      <DependentUpon>Reserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RetirarChave.resx">
       <DependentUpon>RetirarChave.cs</DependentUpon>

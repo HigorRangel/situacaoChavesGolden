@@ -49,11 +49,11 @@ namespace situacaoChavesGolden
                                              " FROM chave C" +
                                              " LEFT JOIN reserva r ON r.cod_chave = c.indice_chave" +
                                              " LEFT JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
-                                             " WHERE (rua ILIKE '%{0}%' OR bairro ILIKE '%{0}%' OR cidade ILIKE '%{0}%' OR estado ILIKE '%{0}%' OR" +
-                                             " numero  ILIKE '%{0}%' OR complemento ILIKE '%{0}%' OR cod_imob ILIKE '%{0}%' OR p.nome ILIKE '%{0}%') AND" +
-                                             " (finalidade ILIKE '%{1}%' AND situacao ILIKE '{2}%' AND situacao_imovel ILIKE '{3}%' AND " +
-                                             "  tipo_imovel ILIKE '%{4}%')" +
-                                             " ORDER BY situacao_imovel, rua, cod_imob", textoBusca, filtro, filtroSitChave,
+                                             " WHERE (c.rua ILIKE '%{0}%' OR c.bairro ILIKE '%{0}%' OR c.cidade ILIKE '%{0}%' OR c.estado ILIKE '%{0}%' OR" +
+                                             " c.numero  ILIKE '%{0}%' OR c.complemento ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%' OR p.nome ILIKE '%{0}%') AND" +
+                                             " (c.finalidade ILIKE '%{1}%' AND c.situacao ILIKE '{2}%' AND c.situacao_imovel ILIKE '{3}%' AND " +
+                                             "  c.tipo_imovel ILIKE '%{4}%')" +
+                                             " ORDER BY c.situacao_imovel, c.rua, c.cod_imob", textoBusca, filtro, filtroSitChave,
                                               filtroSitImovel, typeImovel));
                
 
@@ -412,7 +412,7 @@ namespace situacaoChavesGolden
 
         private void BtnReservar_Click(object sender, EventArgs e)
         {
-            ReservarChave reservar = new ReservarChave(gridChaves.CurrentRow.Cells[5].Value.ToString(), usuario);
+            CadastroReserva reservar = new CadastroReserva(gridChaves.CurrentRow.Cells[5].Value.ToString(), usuario);
             reservar.ShowDialog();
 
             atualizarGridChaves();
@@ -425,6 +425,7 @@ namespace situacaoChavesGolden
             if(row.Cells[6].Value.ToString() == "RESERVADO")
             {
                 row.DefaultCellStyle.BackColor = Color.FromArgb(255, 243, 135);
+                row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(201, 170, 83);
             }
         }
 

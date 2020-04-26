@@ -1,6 +1,6 @@
 ﻿namespace situacaoChavesGolden
 {
-    partial class ReservarChave
+    partial class CadastroReserva
     {
         /// <summary>
         /// Required designer variable.
@@ -521,6 +521,7 @@
             this.radioFuncionario.TabStop = true;
             this.radioFuncionario.Text = "Funcionario";
             this.radioFuncionario.UseVisualStyleBackColor = true;
+            this.radioFuncionario.CheckedChanged += new System.EventHandler(this.radioChanged);
             // 
             // metroLabel1
             // 
@@ -542,6 +543,7 @@
             this.radioCliente.TabStop = true;
             this.radioCliente.Text = "Cliente";
             this.radioCliente.UseVisualStyleBackColor = true;
+            this.radioCliente.CheckedChanged += new System.EventHandler(this.radioChanged);
             // 
             // radioProprietario
             // 
@@ -553,6 +555,7 @@
             this.radioProprietario.TabStop = true;
             this.radioProprietario.Text = "Proprietario";
             this.radioProprietario.UseVisualStyleBackColor = true;
+            this.radioProprietario.CheckedChanged += new System.EventHandler(this.radioChanged);
             // 
             // groupDadosCliente
             // 
@@ -608,7 +611,7 @@
             this.excluiProp.Visible = false;
             this.excluiProp.Click += new System.EventHandler(this.ExcluiProp_Click_1);
             // 
-            // ReservarChave
+            // CadastroReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -622,7 +625,7 @@
             this.Controls.Add(this.groupQuemEmpresta);
             this.Controls.Add(this.groupDadosCliente);
             this.DisplayHeader = false;
-            this.Name = "ReservarChave";
+            this.Name = "CadastroReserva";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Text = "ReservarChave";
             this.Load += new System.EventHandler(this.ReservarChave_Load);

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace situacaoChavesGolden
 {
-    public partial class ReservarChave : MetroFramework.Forms.MetroForm
+    public partial class CadastroReserva : MetroFramework.Forms.MetroForm
     {
         PostgreSQL database = new PostgreSQL();
 
@@ -19,7 +19,7 @@ namespace situacaoChavesGolden
         string codigoChave = "";
         string user = "";
 
-        public ReservarChave(string codChave, string usuario)
+        public CadastroReserva(string codChave, string usuario)
         {
             InitializeComponent();
 
@@ -382,40 +382,80 @@ namespace situacaoChavesGolden
 
             if (contErros == 0)
             {
-                try
-                {
+                //try
+                //{
                     if (tipo == "proprietario")
                     {
-                        database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_proprietario, cod_usuario)" +
-                                                            " VALUES ('{0}', '{1}', '{2}', '{3}')", codigoChave, dataHoje,
-                                                            codPessoaBox.Text, user));
+                        database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_proprietario, cod_usuario, descricao)" +
+                                                            " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", codigoChave, dataHoje,
+                                                            codPessoaBox.Text, user, descBox.Text));
                     }
                     else if (tipo == "cliente")
                     {
-                        database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_cliente, cod_usuario)" +
-                                                            " VALUES ('{0}', '{1}', '{2}', '{3}')", codigoChave, dataHoje,
-                                                            codPessoaBox.Text, user));
+                        database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_cliente, cod_usuario, descricao)" +
+                                                            " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", codigoChave, dataHoje,
+                                                            codPessoaBox.Text, user, descBox.Text));
                     }
                     else
                     {
-                        database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_usuario)" +
-                                                           " VALUES ('{0}', '{1}', '{2}')", codigoChave, dataHoje, user));
+                        database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_usuario, descricao)" +
+                                                           " VALUES ('{0}', '{1}', '{2}', '{3}')", codigoChave, dataHoje, user, descBox.Text));
                     }
 
                     Message popup = new Message("Reserva efetuada com sucesso!", "", "sucesso", "confirma");
                     popup.ShowDialog();
 
                     this.Close();
-                }
-                catch (Exception erro)
-                {
-                    Message popup = new Message("Não foi possível reservar a chave pelo seguinte erro: \n\n- " + erro.Message,
-                        "", "erro", "confirma");
-                    popup.ShowDialog();
+                //}
+                //catch (Exception erro)
+                //{
+                //    Message popup = new Message("Não foi possível reservar a chave pelo seguinte erro: \n\n- " + erro.Message,
+                //        "", "erro", "confirma");
+                //    popup.ShowDialog();
 
+                //}
+
+            }
+        }
+
+        private void radioChanged(object sender, EventArgs e)
+        {
+            if (radioProprietario.Checked)
+            {
+                DataTable dadosProp = new DataTable();
+
+                dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
+                                                           " FROM proprietario p " +
+                                                           " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
+                                                           " WHERE c.indice_chave = '{0}'", codigoChave));
+
+                nomePessoaBox.Visible = true;
+                codPessoaBox.Visible = true;
+                excluiProp.Enabled = false;
+                excluiProp.Visible = true;
+                labelCod.Visible = true;
+                labelProp.Visible = true;
+                btnAdicionarPessoa.Visible = false;
+
+                foreach (DataRow row in dadosProp.Rows)
+                {
+                    codPessoaBox.Text = row[0].ToString();
+                    nomePessoaBox.Text = row[1].ToString();
                 }
 
             }
+            else if (radioFuncionario.Checked)
+            {
+                nomePessoaBox.Visible = false;
+                codPessoaBox.Visible = false;
+                excluiProp.Enabled = false;
+                excluiProp.Visible = false;
+                labelCod.Visible = false;
+                labelProp.Visible = false;
+                btnAdicionarPessoa.Visible = true;
+
+            }
+
         }
     }
 }

@@ -89,5 +89,11 @@ namespace situacaoChavesGolden
             Emprestimo telaEmprestimo = new Emprestimo();
             atualizarForm(telaEmprestimo);
         }
+
+        private void btnReservas_Click(object sender, EventArgs e)
+        {
+            Reserva telaReserva = new Reserva();
+            atualizarForm(telaReserva);
+        }
     }
 }
