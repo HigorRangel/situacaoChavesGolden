@@ -73,10 +73,7 @@ namespace situacaoChavesGolden
             email.AutoSize = true;
 
 
-            comboDocs.Items.Add("RG");
-            comboDocs.Items.Add("RNE");
-            comboDocs.Items.Add("CNH");
-            comboDocs.Items.Add("Outro");
+           
 
             datePrevisao.Value = dataHoje.AddDays(1);
             datePrevisao.MinDate = dataHoje.AddDays(1);
@@ -447,5 +444,7 @@ namespace situacaoChavesGolden
             email.Text = "";
 
         }
+
+
     }
 }

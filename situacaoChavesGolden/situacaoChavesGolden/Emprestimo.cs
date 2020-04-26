@@ -109,6 +109,23 @@ namespace situacaoChavesGolden
 
         private void GridEmprestimo_SelectionChanged(object sender, EventArgs e)
         {
+
+            if(gridEmprestimo.CurrentRow.Cells[5].Value.ToString() == "FINALIZADO")
+            {
+                btnBaixa.Enabled = false;
+                btnProrrogar.Enabled = false;
+
+                btnBaixa.Image = Properties.Resources.BaixaEmprestimoGray;
+                btnProrrogar.Image = Properties.Resources.ProrrogarEmprestimoGray;
+            }
+            else
+            {
+                btnBaixa.Enabled = true;
+                btnProrrogar.Enabled = true;
+
+                btnBaixa.Image = Properties.Resources.BaixaEmprestimo;
+                btnProrrogar.Image = Properties.Resources.ProrrogarEmprestimo;
+            }
             DataTable dadosEmprestimo = new DataTable();
             string filtrarSituacao = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
 
@@ -324,13 +341,16 @@ namespace situacaoChavesGolden
         private void gridEmprestimo_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             string situacao = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+            DataGridViewRow row = gridEmprestimo.Rows[e.RowIndex];
 
-            if (situacao == "EM ANDAMENTO")
+
+            //MessageBox.Show(row.Cells[4].Value.ToString());
+
+            if (situacao == "EM ANDAMENTO" || situacao == "TODOS" && row.Cells[5].Value.ToString() != "FINALIZADO")
             {
                 try
                 {
-                    DataGridViewRow row = gridEmprestimo.Rows[e.RowIndex];
-
+                    
                     DateTime data = DateTime.Parse(row.Cells[4].Value.ToString());
 
                     if (data < dataHoje)
@@ -352,6 +372,11 @@ namespace situacaoChavesGolden
             telaDevolver.ShowDialog();
 
             atualizarGridEmprestimo();
+
+        }
+
+        private void GridEmprestimo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

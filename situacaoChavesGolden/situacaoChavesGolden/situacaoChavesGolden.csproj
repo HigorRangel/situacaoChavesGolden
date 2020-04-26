@@ -226,6 +226,12 @@
     <Compile Include="ProrrogarEmpréstimo.Designer.cs">
       <DependentUpon>ProrrogarEmpréstimo.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReservarChave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReservarChave.Designer.cs">
+      <DependentUpon>ReservarChave.cs</DependentUpon>
+    </Compile>
     <Compile Include="RetirarChave.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,6 +287,9 @@
     <EmbeddedResource Include="ProrrogarEmpréstimo.resx">
       <DependentUpon>ProrrogarEmpréstimo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReservarChave.resx">
+      <DependentUpon>ReservarChave.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RetirarChave.resx">
       <DependentUpon>RetirarChave.cs</DependentUpon>
     </EmbeddedResource>
@@ -303,6 +312,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\ProrrogarEmprestimoGray.png" />
+    <None Include="Resources\BaixaEmprestimoGray.png" />
+    <None Include="Resources\Filter1.png" />
+    <None Include="Resources\Filter.png" />
     <None Include="Resources\BaixaEmprestimo.png" />
     <None Include="Resources\ProrrogarEmprestimo.png" />
     <None Include="Resources\ChaveDevolver.png" />

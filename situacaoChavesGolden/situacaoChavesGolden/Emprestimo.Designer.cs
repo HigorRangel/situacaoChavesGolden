@@ -88,10 +88,10 @@
             this.descricao = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnBaixa = new System.Windows.Forms.Button();
-            this.btnProrrogar = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnProrrogar = new System.Windows.Forms.Button();
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnBaixa = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -127,11 +127,13 @@
             // 
             // btnFiltro
             // 
-            this.btnFiltro.BackColor = System.Drawing.Color.Black;
+            this.btnFiltro.BackColor = System.Drawing.Color.White;
             this.btnFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiltro.Image = global::situacaoChavesGolden.Properties.Resources.Filter1;
             this.btnFiltro.Location = new System.Drawing.Point(470, 9);
             this.btnFiltro.Name = "btnFiltro";
-            this.btnFiltro.Size = new System.Drawing.Size(34, 27);
+            this.btnFiltro.Size = new System.Drawing.Size(29, 27);
+            this.btnFiltro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnFiltro.TabIndex = 4;
             this.btnFiltro.TabStop = false;
             this.btnFiltro.Click += new System.EventHandler(this.BtnFiltro_Click);
@@ -691,6 +693,7 @@
             this.gridEmprestimo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridEmprestimo.Size = new System.Drawing.Size(609, 177);
             this.gridEmprestimo.TabIndex = 24;
+            this.gridEmprestimo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridEmprestimo_CellContentClick);
             this.gridEmprestimo.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridEmprestimo_CellFormatting);
             this.gridEmprestimo.SelectionChanged += new System.EventHandler(this.GridEmprestimo_SelectionChanged);
             // 
@@ -808,6 +811,23 @@
             this.panel1.Size = new System.Drawing.Size(660, 30);
             this.panel1.TabIndex = 37;
             // 
+            // btnProrrogar
+            // 
+            this.btnProrrogar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnProrrogar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnProrrogar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnProrrogar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnProrrogar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnProrrogar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProrrogar.Image = global::situacaoChavesGolden.Properties.Resources.ProrrogarEmprestimo;
+            this.btnProrrogar.Location = new System.Drawing.Point(21, 238);
+            this.btnProrrogar.Name = "btnProrrogar";
+            this.btnProrrogar.Size = new System.Drawing.Size(24, 22);
+            this.btnProrrogar.TabIndex = 26;
+            this.toolTip1.SetToolTip(this.btnProrrogar, "Prorrogar Empréstimo");
+            this.btnProrrogar.UseVisualStyleBackColor = true;
+            this.btnProrrogar.Click += new System.EventHandler(this.btnProrrogar_Click);
+            // 
             // btnBaixa
             // 
             this.btnBaixa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -825,23 +845,6 @@
             this.toolTip2.SetToolTip(this.btnBaixa, "Dar Baixa");
             this.btnBaixa.UseVisualStyleBackColor = true;
             this.btnBaixa.Click += new System.EventHandler(this.btnBaixa_Click);
-            // 
-            // btnProrrogar
-            // 
-            this.btnProrrogar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnProrrogar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
-            this.btnProrrogar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnProrrogar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnProrrogar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnProrrogar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProrrogar.Image = global::situacaoChavesGolden.Properties.Resources.ProrrogarEmprestimo;
-            this.btnProrrogar.Location = new System.Drawing.Point(21, 238);
-            this.btnProrrogar.Name = "btnProrrogar";
-            this.btnProrrogar.Size = new System.Drawing.Size(24, 22);
-            this.btnProrrogar.TabIndex = 26;
-            this.toolTip1.SetToolTip(this.btnProrrogar, "Prorrogar Empréstimo");
-            this.btnProrrogar.UseVisualStyleBackColor = true;
-            this.btnProrrogar.Click += new System.EventHandler(this.btnProrrogar_Click);
             // 
             // groupBox4
             // 

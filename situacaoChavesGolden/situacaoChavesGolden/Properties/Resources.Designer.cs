@@ -73,6 +73,16 @@ namespace situacaoChavesGolden.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BaixaEmprestimoGray {
+            get {
+                object obj = ResourceManager.GetObject("BaixaEmprestimoGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ChaveDevolver {
             get {
                 object obj = ResourceManager.GetObject("ChaveDevolver", resourceCulture);
@@ -173,9 +183,39 @@ namespace situacaoChavesGolden.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Filter {
+            get {
+                object obj = ResourceManager.GetObject("Filter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Filter1 {
+            get {
+                object obj = ResourceManager.GetObject("Filter1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ProrrogarEmprestimo {
             get {
                 object obj = ResourceManager.GetObject("ProrrogarEmprestimo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ProrrogarEmprestimoGray {
+            get {
+                object obj = ResourceManager.GetObject("ProrrogarEmprestimoGray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

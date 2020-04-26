@@ -44,8 +44,10 @@ namespace situacaoChavesGolden
             
             try
             {
-                chaves = database.select(string.Format("SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel, indice_chave " +
+                chaves = database.select(string.Format("SELECT c.cod_chave, c.cod_imob, c.rua || ', ' || c.numero as endereco, c.bairro, c.situacao_imovel, c.indice_chave," +
+                                             " (CASE WHEN r.cod_reserva is null THEN '' ELSE 'RESERVADO' END)" +
                                              " FROM chave C" +
+                                             " LEFT JOIN reserva r ON r.cod_chave = c.indice_chave" +
                                              " LEFT JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
                                              " WHERE (rua ILIKE '%{0}%' OR bairro ILIKE '%{0}%' OR cidade ILIKE '%{0}%' OR estado ILIKE '%{0}%' OR" +
                                              " numero  ILIKE '%{0}%' OR complemento ILIKE '%{0}%' OR cod_imob ILIKE '%{0}%' OR p.nome ILIKE '%{0}%') AND" +
@@ -63,6 +65,7 @@ namespace situacaoChavesGolden
                 gridChaves.Columns[3].HeaderText = "Bairro";
                 gridChaves.Columns[4].HeaderText = "Situação";
                 gridChaves.Columns[5].Visible = false;
+                gridChaves.Columns[6].Visible = false;
 
                 gridChaves.Columns[0].Width = 60;
                 gridChaves.Columns[1].Width = 60;
@@ -405,6 +408,29 @@ namespace situacaoChavesGolden
                 atualizarGridChaves();
             }
            
+        }
+
+        private void BtnReservar_Click(object sender, EventArgs e)
+        {
+            ReservarChave reservar = new ReservarChave(gridChaves.CurrentRow.Cells[5].Value.ToString(), usuario);
+            reservar.ShowDialog();
+
+            atualizarGridChaves();
+        }
+
+        private void GridChaves_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridViewRow row = gridChaves.Rows[e.RowIndex];
+
+            if(row.Cells[6].Value.ToString() == "RESERVADO")
+            {
+                row.DefaultCellStyle.BackColor = Color.FromArgb(255, 243, 135);
+            }
+        }
+
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
