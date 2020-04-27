@@ -17,12 +17,15 @@ namespace situacaoChavesGolden
         bool seletorTela = false;
         string codigoChave = "";
         string user = "";
+        string codigoReserva = "";
 
-        public CadastrarEmprestimo(string usuario, int codEmprestimo)
+        public CadastrarEmprestimo(string usuario, string codReserva, string codChave)
         {
             InitializeComponent();
             seletorTela = true;
             user = usuario;
+            codigoReserva = codReserva;
+            codigoChave = codChave;
         }
 
         public CadastrarEmprestimo(string usuario, string codChave)
@@ -46,19 +49,71 @@ namespace situacaoChavesGolden
 
         private void buscarDadosChave()
         {
-            DataTable dadosChave = new DataTable();
 
-            dadosChave = database.select(string.Format("" +
+            DataTable dadosChave = new DataTable();
+            if (seletorTela == true)
+            {
+                btnAdicionarPessoa.Visible = false;
+                codPessoaBox.Visible = true;
+                nomePessoaBox.Visible = true;
+                excluiProp.Enabled = false;
+                groupQuemEmpresta.Enabled = false;
+
+                dadosChave = database.select(string.Format("" +
+               "SELECT c.cod_imob, c.rua, c.numero, c.complemento, c.bairro, c.cidade, c.estado, " +
+               " (CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
+                       " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
+                       " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) as tipo, " +
+                        " cl.cod_cliente, cl.nome_cliente, p.cod_proprietario, p.nome, u.cod_usuario, u.nome_usuario " +
+               " FROM reserva r " +
+               " LEFT JOIN cliente cl ON cl.cod_cliente = r.cod_cliente " +
+               " LEFT JOIN proprietario p ON p.cod_proprietario = r.cod_proprietario " +
+               " LEFT JOIN usuario u ON u.cod_usuario = r.cod_usuario " +
+               " LEFT JOIN chave c ON r.cod_chave = c.indice_chave " +
+               " WHERE r.cod_reserva = '{0}'", codigoReserva));
+
+                foreach (DataRow row in dadosChave.Rows)
+                {
+                    codigoChaveBox.Text = row[0].ToString();
+                    textoCodChave.Text = row[0].ToString();
+                    endereco.Text = string.Format("{0}, {1} ({2}) - {3} - {4}/{5}", row[1], row[2], row[3], row[4], row[5], row[6]);
+                    if(row[7].ToString() == "CLIENTE") {
+                        codPessoaBox.Text = row[8].ToString();
+                        nomePessoaBox.Text = row[9].ToString();
+                        radioCliente.Checked = true;
+                    }
+                    else if (row[7].ToString() == "PROPRIETARIO")
+                    {
+                        codPessoaBox.Text = row[10].ToString();
+                        nomePessoaBox.Text = row[11].ToString();
+                        radioProprietario.Checked = true;
+                    }
+                    else
+                    {
+                        codPessoaBox.Text = row[12].ToString();
+                        nomePessoaBox.Text = row[13].ToString();
+                        radioFuncionario.Checked = true;
+                    }
+                }
+            }
+            else
+            {
+                dadosChave = database.select(string.Format("" +
                 "SELECT cod_imob, rua, numero, complemento, bairro, cidade, estado" +
                 " FROM chave" +
                 " WHERE indice_chave = '{0}'", codigoChave));
 
-            foreach(DataRow row in dadosChave.Rows)
-            {
-                codigoChaveBox.Text = row[0].ToString();
-                textoCodChave.Text = row[0].ToString();
-                endereco.Text = string.Format("{0}, {1} ({2}) - {3} - {4}/{5}", row[1], row[2], row[3], row[4], row[5], row[6]);
+                foreach (DataRow row in dadosChave.Rows)
+                {
+                    codigoChaveBox.Text = row[0].ToString();
+                    textoCodChave.Text = row[0].ToString();
+                    endereco.Text = string.Format("{0}, {1} ({2}) - {3} - {4}/{5}", row[1], row[2], row[3], row[4], row[5], row[6]);
+                }
             }
+
+            
+
+           
         }
 
 
@@ -79,8 +134,7 @@ namespace situacaoChavesGolden
             datePrevisao.MinDate = dataHoje.AddDays(1);
             datePrevisao.MaxDate = dataHoje.AddDays(30);
 
-            radioCliente.Checked = true;
-            radioProprietario.Checked = false;
+           
         }
 
         
@@ -232,8 +286,8 @@ namespace situacaoChavesGolden
 
             if (contErros == 0)
             {
-                try
-                {
+                //try
+                //{
                     if (tipo == "proprietario")
                     {
                         database.insertInto(string.Format("" +
@@ -266,17 +320,24 @@ namespace situacaoChavesGolden
                                                   " SET situacao = 'INDISPONIVEL', localizacao = '{0}'" +
                                                   " WHERE indice_chave = '{1}'", tipo.ToUpper(), codigoChave));
 
+                    if(seletorTela == true)
+                    {
+                        database.update(string.Format("UPDATE reserva" +
+                                                  " SET situacao = 'FINALIZADO'" +
+                                                  " WHERE cod_reserva = '{0}'", codigoReserva));
+                    }
+
                     Message caixaMensagem = new Message("Empréstimo cadastrado com sucesso!", "", "sucesso", "confirma");
                     caixaMensagem.ShowDialog();
 
                     this.Close();
                     this.DialogResult = DialogResult.OK;
-            }
-                catch (Exception erro)
-            {
-                Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
-                caixaMensagem.ShowDialog();
-            }
+            //}
+            //    catch (Exception erro)
+            //{
+            //    Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
+            //    caixaMensagem.ShowDialog();
+            //}
 
         }
             else

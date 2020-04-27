@@ -92,7 +92,7 @@ namespace situacaoChavesGolden
 
         private void btnReservas_Click(object sender, EventArgs e)
         {
-            Reserva telaReserva = new Reserva();
+            Reserva telaReserva = new Reserva(usuario);
             atualizarForm(telaReserva);
         }
     }

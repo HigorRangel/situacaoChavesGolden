@@ -14,9 +14,12 @@ namespace situacaoChavesGolden
     {
         PostgreSQL database = new PostgreSQL();
         DateTime dataHoje = DateTime.Now;
-        public Reserva()
+        string usuario = "";
+        public Reserva(string user)
         {
             InitializeComponent();
+
+            usuario = user;
         }
 
         private void atualizarGrid()
@@ -203,11 +206,38 @@ namespace situacaoChavesGolden
         {
             DataGridViewRow row = gridReserva.Rows[e.RowIndex];
 
-            if(row.Cells[5].Value.ToString() == "LIVRE")
+            if(row.Cells[5].Value.ToString() == "LIVRE" && row.Cells[4].Value.ToString() != "FINALIZADO")
             {
                 row.DefaultCellStyle.BackColor = Color.FromArgb(199, 237, 166);
                 row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(131, 173, 94);
             }
+        }
+
+        private void BtnExcluir_Click(object sender, EventArgs e)
+        {
+            Message telaMsg = new Message("Você tem certeza que quer excluir esta reserva?", "Confirmação", "aviso", "escolha");
+            telaMsg.ShowDialog();
+
+            if(telaMsg.DialogResult == DialogResult.Yes)
+            {
+                database.update(string.Format("UPDATE reserva" +
+                                                  " SET situacao = 'FINALIZADO'" +
+                                                  " WHERE cod_chave = '{0}'", gridReserva.CurrentRow.Cells[6].Value.ToString()));
+                atualizarGrid();
+            }
+
+           
+        }
+
+        private void BtnEmprestar_Click(object sender, EventArgs e)
+        {
+            CadastrarEmprestimo emprestimo = new CadastrarEmprestimo(usuario, gridReserva.CurrentRow.Cells[0].Value.ToString(),
+                gridReserva.CurrentRow.Cells[6].Value.ToString());
+            emprestimo.ShowDialog();
+
+            atualizarGrid();
+
+           
         }
     }
 }

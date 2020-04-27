@@ -72,6 +72,10 @@ namespace situacaoChavesGolden
                                                   " situacao_imovel = 'INATIVO', cod_chave = null" +
                                                   " WHERE indice_chave = '{1}'", tipoRetirada, codigoChave));
 
+                    database.update(string.Format("UPDATE reserva" +
+                                                    " SET situacao = 'FINALIZADO'" +
+                                                    " WHERE cod_chave = '{0}'", codigoChave));
+
                     Message caixaMensagem = new Message("Chave retirada com sucesso!", "", "sucesso", "confirma");
                     caixaMensagem.ShowDialog();
 

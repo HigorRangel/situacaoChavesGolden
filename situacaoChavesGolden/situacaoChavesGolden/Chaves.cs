@@ -41,13 +41,15 @@ namespace situacaoChavesGolden
             if (typeImovel == "TODOS") { typeImovel = ""; }
             if (filtro == "TODOS") { filtro = ""; }
 
-            
+
             try
             {
                 chaves = database.select(string.Format("SELECT c.cod_chave, c.cod_imob, c.rua || ', ' || c.numero as endereco, c.bairro, c.situacao_imovel, c.indice_chave," +
-                                             " (CASE WHEN r.cod_reserva is null THEN '' ELSE 'RESERVADO' END)" +
+                                             " (SELECT COUNT((CASE WHEN r.cod_reserva is not null AND " +
+                                             " r.situacao != 'FINALIZADO' THEN 'RESERVADO' ELSE '' END)) " +
+                                             " FROM reserva r " +
+                                             " WHERE cod_chave = c.indice_chave AND situacao = 'EM ANDAMENTO') as emprestimo" +
                                              " FROM chave C" +
-                                             " LEFT JOIN reserva r ON r.cod_chave = c.indice_chave" +
                                              " LEFT JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
                                              " WHERE (c.rua ILIKE '%{0}%' OR c.bairro ILIKE '%{0}%' OR c.cidade ILIKE '%{0}%' OR c.estado ILIKE '%{0}%' OR" +
                                              " c.numero  ILIKE '%{0}%' OR c.complemento ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%' OR p.nome ILIKE '%{0}%') AND" +
@@ -120,7 +122,7 @@ namespace situacaoChavesGolden
 
                 }
 
-                
+
             }
             catch (Exception erro)
             {
@@ -422,7 +424,7 @@ namespace situacaoChavesGolden
         {
             DataGridViewRow row = gridChaves.Rows[e.RowIndex];
 
-            if(row.Cells[6].Value.ToString() == "RESERVADO")
+            if(int.Parse(row.Cells[6].Value.ToString()) > 0)
             {
                 row.DefaultCellStyle.BackColor = Color.FromArgb(255, 243, 135);
                 row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(201, 170, 83);
