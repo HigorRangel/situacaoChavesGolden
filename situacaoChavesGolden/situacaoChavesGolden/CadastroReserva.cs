@@ -92,6 +92,7 @@ namespace situacaoChavesGolden
 
         private void ReservarChave_Load(object sender, EventArgs e)
         {
+            dateRetirada.MinDate = dataHoje;
             buscarDadosChave();
 
             endereco.MaximumSize = new Size(160, 49);
@@ -387,19 +388,19 @@ namespace situacaoChavesGolden
                     if (tipo == "proprietario")
                     {
                         database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_proprietario, cod_usuario, descricao)" +
-                                                            " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", codigoChave, dataHoje,
+                                                            " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", codigoChave, dateRetirada.Value,
                                                             codPessoaBox.Text, user, descBox.Text));
                     }
                     else if (tipo == "cliente")
                     {
                         database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_cliente, cod_usuario, descricao)" +
-                                                            " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", codigoChave, dataHoje,
+                                                            " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", codigoChave, dateRetirada.Value,
                                                             codPessoaBox.Text, user, descBox.Text));
                     }
                     else
                     {
                         database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_usuario, descricao)" +
-                                                           " VALUES ('{0}', '{1}', '{2}', '{3}')", codigoChave, dataHoje, user, descBox.Text));
+                                                           " VALUES ('{0}', '{1}', '{2}', '{3}')", codigoChave, dateRetirada.Value, user, descBox.Text));
                     }
 
                     Message popup = new Message("Reserva efetuada com sucesso!", "", "sucesso", "confirma");
@@ -454,7 +455,39 @@ namespace situacaoChavesGolden
                 labelProp.Visible = false;
                 btnAdicionarPessoa.Visible = true;
 
+                codPessoaBox.Text = "";
+                nomePessoaBox.Text = "";
+
             }
+            else if (radioCliente.Checked)
+            {
+                nomePessoaBox.Visible = false;
+                codPessoaBox.Visible = false;
+                excluiProp.Enabled = false;
+                excluiProp.Visible = false;
+                labelCod.Visible = false;
+                labelProp.Visible = false;
+                btnAdicionarPessoa.Visible = true;
+
+                codPessoaBox.Text = "";
+                nomePessoaBox.Text = "";
+                
+            }
+
+        }
+
+        private void PainelProp_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void DatePrevisao_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MetroLabel3_Click(object sender, EventArgs e)
+        {
 
         }
     }

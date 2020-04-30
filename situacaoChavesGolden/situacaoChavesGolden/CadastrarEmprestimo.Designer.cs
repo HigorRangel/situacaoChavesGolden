@@ -467,6 +467,7 @@
             this.groupBox4.Size = new System.Drawing.Size(204, 117);
             this.groupBox4.TabIndex = 16;
             this.groupBox4.TabStop = false;
+            this.groupBox4.Enter += new System.EventHandler(this.GroupBox4_Enter);
             // 
             // textoTel2
             // 

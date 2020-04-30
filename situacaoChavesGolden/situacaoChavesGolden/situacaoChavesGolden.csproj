@@ -186,6 +186,18 @@
     <Compile Include="Chaves.Designer.cs">
       <DependentUpon>Chaves.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cliente.Designer.cs">
+      <DependentUpon>Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="DevolverChave.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +276,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Chaves.resx">
       <DependentUpon>Chaves.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cliente.resx">
+      <DependentUpon>Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DevolverChave.resx">
       <DependentUpon>DevolverChave.cs</DependentUpon>

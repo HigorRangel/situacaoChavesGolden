@@ -59,8 +59,7 @@ namespace situacaoChavesGolden
        
         private void BtnInicio_Click(object sender, EventArgs e)
         {
-            cadastroChave telaCadastro = new cadastroChave();
-            atualizarForm(telaCadastro);
+            
         }
 
         private void btnChaves_Click(object sender, EventArgs e)
@@ -80,8 +79,8 @@ namespace situacaoChavesGolden
 
         private void BtnClientes_Click(object sender, EventArgs e)
         {
-            CadastroCliente cadastro = new CadastroCliente();
-            cadastro.ShowDialog();
+            Cliente cliente = new Cliente();
+            atualizarForm(cliente);
         }
 
         private void BtnEmprestimos_Click(object sender, EventArgs e)

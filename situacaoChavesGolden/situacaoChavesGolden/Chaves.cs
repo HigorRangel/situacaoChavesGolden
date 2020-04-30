@@ -392,6 +392,8 @@ namespace situacaoChavesGolden
 
                 editarChave.ShowDialog();
 
+                atualizarGridChaves();
+
             }
         }
 

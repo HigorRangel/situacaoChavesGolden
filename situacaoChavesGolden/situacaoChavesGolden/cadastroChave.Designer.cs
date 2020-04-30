@@ -73,12 +73,12 @@
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.painelProp = new System.Windows.Forms.Panel();
+            this.btnNovoProp = new System.Windows.Forms.Button();
             this.btnCancelarProp = new System.Windows.Forms.Button();
             this.btnConfirmarProp = new System.Windows.Forms.Button();
             this.gridProprietarios = new System.Windows.Forms.DataGridView();
             this.boxProcurarProp = new System.Windows.Forms.TextBox();
             this.btnAdicionarProp = new System.Windows.Forms.Label();
-            this.btnNovoProp = new System.Windows.Forms.Button();
             this.groupSitImovel.SuspendLayout();
             this.groupFinalImovel.SuspendLayout();
             this.groupTipoImovel.SuspendLayout();
@@ -602,6 +602,22 @@
             this.painelProp.TabIndex = 25;
             this.painelProp.Visible = false;
             // 
+            // btnNovoProp
+            // 
+            this.btnNovoProp.BackColor = System.Drawing.Color.White;
+            this.btnNovoProp.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnNovoProp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(107)))));
+            this.btnNovoProp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
+            this.btnNovoProp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNovoProp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnNovoProp.Location = new System.Drawing.Point(29, 194);
+            this.btnNovoProp.Name = "btnNovoProp";
+            this.btnNovoProp.Size = new System.Drawing.Size(59, 23);
+            this.btnNovoProp.TabIndex = 27;
+            this.btnNovoProp.Text = "Novo";
+            this.btnNovoProp.UseVisualStyleBackColor = false;
+            this.btnNovoProp.Click += new System.EventHandler(this.btnNovoProp_Click);
+            // 
             // btnCancelarProp
             // 
             this.btnCancelarProp.BackColor = System.Drawing.Color.White;
@@ -670,22 +686,6 @@
             this.btnAdicionarProp.TabIndex = 28;
             this.btnAdicionarProp.Text = "Adicionar Proprietário";
             this.btnAdicionarProp.Click += new System.EventHandler(this.BtnAdicionarProp_Click);
-            // 
-            // btnNovoProp
-            // 
-            this.btnNovoProp.BackColor = System.Drawing.Color.White;
-            this.btnNovoProp.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
-            this.btnNovoProp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(107)))));
-            this.btnNovoProp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
-            this.btnNovoProp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNovoProp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
-            this.btnNovoProp.Location = new System.Drawing.Point(29, 194);
-            this.btnNovoProp.Name = "btnNovoProp";
-            this.btnNovoProp.Size = new System.Drawing.Size(59, 23);
-            this.btnNovoProp.TabIndex = 27;
-            this.btnNovoProp.Text = "Novo";
-            this.btnNovoProp.UseVisualStyleBackColor = false;
-            this.btnNovoProp.Click += new System.EventHandler(this.btnNovoProp_Click);
             // 
             // cadastroChave
             // 

@@ -42,7 +42,7 @@
             // 
             // metroPanel1
             // 
-            this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(63)))), ((int)(((byte)(79)))));
             this.metroPanel1.Controls.Add(this.btnClientes);
             this.metroPanel1.Controls.Add(this.button1);
             this.metroPanel1.Controls.Add(this.btnReservas);

@@ -59,7 +59,8 @@ namespace situacaoChavesGolden
                                                             " {3} " +
                                                             " {4} ) " +
                                                          " AND (cl.nome_cliente ILIKE '%{5}%' OR e.descricao ILIKE '%{5}%' OR " +
-                                                         " c.rua ILIKE '%{5}%' OR u.nome_usuario ILIKE '%{5}%' OR  p.nome  ILIKE '%{5}%')", 
+                                                         " c.rua ILIKE '%{5}%' OR u.nome_usuario ILIKE '%{5}%' OR  p.nome  ILIKE '%{5}%'OR" +
+                                                         " c.cod_chave::TEXT ILIKE '%{5}%' OR c.cod_imob::TEXT ILIKE '%{5}%')", 
                                                          situacao, tipo,  dataRetirada, entregaPrevista, dataRetirada, busca));
 
                 gridEmprestimo.DataSource = dadosEmprestimo;
@@ -109,76 +110,86 @@ namespace situacaoChavesGolden
 
         private void GridEmprestimo_SelectionChanged(object sender, EventArgs e)
         {
-
-            if(gridEmprestimo.CurrentRow.Cells[5].Value.ToString() == "FINALIZADO")
+            try
             {
-                btnBaixa.Enabled = false;
-                btnProrrogar.Enabled = false;
-
-                btnBaixa.Image = Properties.Resources.BaixaEmprestimoGray;
-                btnProrrogar.Image = Properties.Resources.ProrrogarEmprestimoGray;
-            }
-            else
-            {
-                btnBaixa.Enabled = true;
-                btnProrrogar.Enabled = true;
-
-                btnBaixa.Image = Properties.Resources.BaixaEmprestimo;
-                btnProrrogar.Image = Properties.Resources.ProrrogarEmprestimo;
-            }
-            DataTable dadosEmprestimo = new DataTable();
-            string filtrarSituacao = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
-
-            if(filtrarSituacao == "EM ANDAMENTO") { filtrarSituacao = "e.data_entrega is null"; }
-            else if (filtrarSituacao == "FINALIZADO") { filtrarSituacao = "e.data_entrega is not null"; }
-            else { filtrarSituacao = ""; }
-
-            dadosEmprestimo = database.select(string.Format("" +
-                "SELECT c.cod_imob, c.cod_chave, " +
-                " (CASE WHEN e.data_entrega is null THEN 'EM ANDAMENTO' ELSE 'FINALIZADO' END) as situacao, " +
-                " (CASE WHEN e.cod_proprietario is null AND e.cod_cliente is null THEN 'FUNCIONARIO' " +
-                      "  WHEN e.cod_proprietario is null AND e.cod_cliente is not null THEN 'CLIENTE' " +
-                       " WHEN e.cod_proprietario is not null AND e.cod_cliente is null THEN 'PROPRIETARIO' END) as tipo, " +
-                       " '(' || cl.cod_cliente || ') - ' || cl.nome_cliente, cl.contato_principal || ' / ' || cl.contato_secundario, " +
-                       " '(' || p.cod_proprietario || ') - ' || p.nome as proprietario, p.contato, u.nome_usuario, e.descricao, e.quant_chaves, " +
-                       " e.quant_controles, e.data_retirada, e.entrega_prevista, e.data_entrega " +
-                " FROM emprestimo e " +
-                " LEFT JOIN chave c on c.indice_chave = e.cod_chave " +
-                " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente " +
-                " LEFT JOIN usuario u ON u.cod_usuario = e.cod_usuario " +
-                " LEFT JOIN proprietario p ON p.cod_proprietario = e.cod_proprietario" +
-                " WHERE cod_emprestimo = '{0}'", gridEmprestimo.CurrentRow.Cells[0].Value.ToString()));
-
-
-
-            foreach(DataRow row in dadosEmprestimo.Rows)
-            {
-                codigoImob.Text = row[0].ToString();
-                codChave.Text = row[1].ToString();
-                sitEmprestimo.Text = row[2].ToString();
-                if(row[3].ToString() == "FUNCIONARIO")
+                if (gridEmprestimo.CurrentRow.Cells[5].Value.ToString() == "FINALIZADO")
                 {
-                    dadosRetirante.Text = string.Format("{0} [{1}]", row[8].ToString(), row[3].ToString());
-                    
-                }
-                else if(row[3].ToString() == "CLIENTE")
-                {
-                    dadosRetirante.Text = string.Format("{0} [{1}]", row[4].ToString(), row[3].ToString());
-                    contato.Text = row[5].ToString();
+                    btnBaixa.Enabled = false;
+                    btnProrrogar.Enabled = false;
+
+                    btnBaixa.Image = Properties.Resources.BaixaEmprestimoGray;
+                    btnProrrogar.Image = Properties.Resources.ProrrogarEmprestimoGray;
                 }
                 else
                 {
-                    dadosRetirante.Text = string.Format("{0} [{1}]", row[6].ToString(), row[3].ToString());
-                    contato.Text = row[7].ToString();
+                    btnBaixa.Enabled = true;
+                    btnProrrogar.Enabled = true;
+
+                    btnBaixa.Image = Properties.Resources.BaixaEmprestimo;
+                    btnProrrogar.Image = Properties.Resources.ProrrogarEmprestimo;
                 }
-                descricao.Text = row[9].ToString();
-                qtdChaves.Text = row[10].ToString();
-                qtdControles.Text = row[11].ToString();
-                funcionario.Text = row[8].ToString();
-                dataRetirada.Text = row[12].ToString();
-                previsEntrega.Text = row[13].ToString();
-                dataEntrega.Text = row[14].ToString();
             }
+            catch { }
+
+
+            try
+            {
+                DataTable dadosEmprestimo = new DataTable();
+                string filtrarSituacao = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+
+                if (filtrarSituacao == "EM ANDAMENTO") { filtrarSituacao = "e.data_entrega is null"; }
+                else if (filtrarSituacao == "FINALIZADO") { filtrarSituacao = "e.data_entrega is not null"; }
+                else { filtrarSituacao = ""; }
+
+                dadosEmprestimo = database.select(string.Format("" +
+                    "SELECT c.cod_imob, c.cod_chave, " +
+                    " (CASE WHEN e.data_entrega is null THEN 'EM ANDAMENTO' ELSE 'FINALIZADO' END) as situacao, " +
+                    " (CASE WHEN e.cod_proprietario is null AND e.cod_cliente is null THEN 'FUNCIONARIO' " +
+                          "  WHEN e.cod_proprietario is null AND e.cod_cliente is not null THEN 'CLIENTE' " +
+                           " WHEN e.cod_proprietario is not null AND e.cod_cliente is null THEN 'PROPRIETARIO' END) as tipo, " +
+                           " '(' || cl.cod_cliente || ') - ' || cl.nome_cliente, cl.contato_principal || ' / ' || cl.contato_secundario, " +
+                           " '(' || p.cod_proprietario || ') - ' || p.nome as proprietario, p.contato, u.nome_usuario, e.descricao, e.quant_chaves, " +
+                           " e.quant_controles, e.data_retirada, e.entrega_prevista, e.data_entrega " +
+                    " FROM emprestimo e " +
+                    " LEFT JOIN chave c on c.indice_chave = e.cod_chave " +
+                    " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente " +
+                    " LEFT JOIN usuario u ON u.cod_usuario = e.cod_usuario " +
+                    " LEFT JOIN proprietario p ON p.cod_proprietario = e.cod_proprietario" +
+                    " WHERE cod_emprestimo = '{0}'", gridEmprestimo.CurrentRow.Cells[0].Value.ToString()));
+
+
+
+                foreach (DataRow row in dadosEmprestimo.Rows)
+                {
+                    codigoImob.Text = row[0].ToString();
+                    codChave.Text = row[1].ToString();
+                    sitEmprestimo.Text = row[2].ToString();
+                    if (row[3].ToString() == "FUNCIONARIO")
+                    {
+                        dadosRetirante.Text = string.Format("{0} [{1}]", row[8].ToString(), row[3].ToString());
+
+                    }
+                    else if (row[3].ToString() == "CLIENTE")
+                    {
+                        dadosRetirante.Text = string.Format("{0} [{1}]", row[4].ToString(), row[3].ToString());
+                        contato.Text = row[5].ToString();
+                    }
+                    else
+                    {
+                        dadosRetirante.Text = string.Format("{0} [{1}]", row[6].ToString(), row[3].ToString());
+                        contato.Text = row[7].ToString();
+                    }
+                    descricao.Text = row[9].ToString();
+                    qtdChaves.Text = row[10].ToString();
+                    qtdControles.Text = row[11].ToString();
+                    funcionario.Text = row[8].ToString();
+                    dataRetirada.Text = row[12].ToString();
+                    previsEntrega.Text = row[13].ToString();
+                    dataEntrega.Text = row[14].ToString();
+                }
+            }
+            catch { }
+           
         }
 
 

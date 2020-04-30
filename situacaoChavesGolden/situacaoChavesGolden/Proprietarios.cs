@@ -42,10 +42,6 @@ namespace situacaoChavesGolden
                 gridProprietarios.Columns[3].Width = 200;
             }
             catch { }
-            
-
-            
-
 
         }
 

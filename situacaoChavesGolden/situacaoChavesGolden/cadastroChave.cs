@@ -94,11 +94,11 @@ namespace situacaoChavesGolden
                 foreach(DataRow row in dadosChave.Rows)
                 {
                     boxLogradouro.Text = row[1].ToString();
-                    boxNumero.Text = row[2].ToString();
-                    boxComplemento.Text = row[3].ToString();
-                    boxBairro.Text = row[4].ToString();
-                    boxCidade.Text = row[5].ToString();
-                    boxEstado.Text = row[6].ToString();
+                    boxNumero.Text = row[5].ToString();
+                    boxComplemento.Text = row[6].ToString();
+                    boxBairro.Text = row[2].ToString();
+                    boxCidade.Text = row[3].ToString();
+                    boxEstado.Text = row[4].ToString();
                     comboLocalizacao.SelectedItem = row[8].ToString();
                     codImovel.Text = row[10].ToString();
                     
@@ -110,7 +110,7 @@ namespace situacaoChavesGolden
                     {
                         radioChaveIndisponivel.Checked = true;
                     }
-                    if(row[11].ToString() == "RESIDENCIAL")
+                    if(row[12].ToString() == "RESIDENCIAL")
                     {
                         radioTipoRes.Checked = true;
                     }
@@ -118,7 +118,7 @@ namespace situacaoChavesGolden
                     {
                         radioTipoCom.Checked = true;
                     }
-                    if(row[12].ToString() == "LOCAÇÃO")
+                    if(row[13].ToString() == "LOCAÇÃO")
                     {
                         radioFinalidadeLoc.Checked = true;
                     }
@@ -126,7 +126,7 @@ namespace situacaoChavesGolden
                     {
                         radioFinalidadeVenda.Checked = true;
                     }
-                    if(row[13].ToString() == "ATIVO")
+                    if(row[11].ToString() == "ATIVO")
                     {
                         radioImovAtivo.Checked = true;
                     }
@@ -270,24 +270,24 @@ namespace situacaoChavesGolden
                             " SET rua = '{0}', numero = '{1}', complemento = '{2}', bairro = '{3}', " +
                             " cidade = '{4}', estado = '{5}', situacao = '{6}', localizacao = '{7}', proprietario = '{8}', " +
                             " cod_imob = '{9}', tipo_imovel = '{10}', finalidade = '{11}', situacao_imovel = '{12}' " +
-                            " WHERE cod_chave = {13}", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
+                            " WHERE indice_chave = '{13}'", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
                             localizacao, 1, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, codChave));
 
                         this.Close();
 
                         this.DialogResult = DialogResult.OK;
                     }
-                }
-                catch (Exception erro)
-                {
-                    MessageBox.Show(erro.Message);
-                }
-
-                
-                
-
-                
             }
+                catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message);
+            }
+
+
+
+
+
+        }
             else
             {
                 MessageBox.Show("Há campso preenchidos incorretamente! Verifique e tente novamente");

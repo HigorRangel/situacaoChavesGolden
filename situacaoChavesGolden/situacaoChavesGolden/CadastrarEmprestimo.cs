@@ -45,7 +45,113 @@ namespace situacaoChavesGolden
         string codigoCliente = "";
 
 
-       
+        private string verificarReservaPessoa()
+        {
+            string quem = "";
+            if (radioCliente.Checked) { quem = "r.cod_cliente"; }
+            if (radioFuncionario.Checked) { quem = "r.cod_usuario"; }
+            if (radioProprietario.Checked) { quem = "r.cod_proprietario"; }
+
+            DataTable tabelaReserva = new DataTable();
+
+            tabelaReserva = database.select(string.Format("SELECT r.cod_reserva, " +
+                                                        " (CASE  " +
+
+                                                                " WHEN " +
+                                                                    " (CASE " +
+
+                                                                        " WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
+                                                                       "  WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
+                                                                        " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
+                                                                          " = 'CLIENTE' THEN r.cod_cliente " +
+                                                                 "  WHEN " +
+                                                                      " (CASE " +
+                                                                          " WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
+                                                                        " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
+                                                                        " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
+                                                                          " = 'PROPRIETARIO' THEN r.cod_proprietario " +
+                                                                 " WHEN " +
+                                                                      " (CASE " +
+                                                                          " WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
+                                                                        " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
+                                                                        " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
+                                                                          " = 'FUNCIONARIO' THEN r.cod_usuario END " +
+                                                                               " ) " +
+                                                        " FROM reserva r " +
+                                                        " INNER JOIN chave c ON c.indice_chave = r.cod_chave " +
+                                                        " WHERE indice_chave = '{0}' AND {1} = '{2}' AND r.situacao != 'FINALIZADO'", codigoChave, quem, codPessoaBox.Text));
+
+            string codigoReserva = "";
+
+            if (tabelaReserva.Rows.Count == 0)
+            {
+                codigoReserva = "";
+            }
+            else
+            {
+                codigoReserva = tabelaReserva.Rows[0][0].ToString();
+
+            }
+
+            return codigoReserva;
+        }
+
+       private DialogResult verificarReserva()
+        {
+
+            DataTable reservas = new DataTable();
+
+            reservas = database.select(string.Format("SELECT cod_reserva, (CASE " +
+
+                                                                 " WHEN " +
+                                                                     " (CASE " +
+                                                                         " WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
+                                                                         " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
+                                                                         " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
+                                                                           " = 'CLIENTE' THEN('(' || cl.cod_cliente || ') - ' || cl.nome_cliente || ' - ' || to_char(r.data_reserva, 'DD/MM/YYYY') || ' (CLIENTE)') " +
+                                                                   " WHEN " +
+                                                                       " (CASE " +
+                                                                           " WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
+                                                                         " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
+                                                                         " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
+                                                                          "  = 'PROPRIETARIO' THEN('(' || p.cod_proprietario || ') - ' || p.nome || ' - ' || to_char(r.data_reserva, 'DD/MM/YYYY') || ' (PROPRIETÁRIO)') " +
+                                                                  " WHEN " +
+                                                                       " (CASE " +
+                                                                          "  WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
+                                                                        "  WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
+                                                                        "  WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
+                                                                          "  = 'FUNCIONARIO' THEN('(' || u.cod_usuario || ') - ' || u.nome_usuario || ' - ' || to_char(r.data_reserva, 'DD/MM/YYYY') || ' (FUNCIONÁRIO)') END " +
+                                                                                " ) " +
+                                                                " FROM reserva r " +
+                                                                " LEFT JOIN cliente cl ON cl.cod_cliente = r.cod_cliente " +
+                                                                " LEFT JOIN proprietario p ON r.cod_proprietario = p.cod_proprietario " +
+                                                                " LEFT JOIN usuario u ON r.cod_usuario = u.cod_usuario " +
+                                                                " WHERE r.situacao != 'FINALIZADO' AND r.cod_chave = {0} " +
+                                                                " ORDER BY r.data_reserva", codigoChave));
+
+            string textoReserva = "ATENÇÃO! Há uma ou mais reservas para esta chave descritas abaixo." +
+                " Deseja realmente emprestar esta chave?\n";
+            DialogResult resultado = new DialogResult();
+
+            if(reservas.Rows.Count != 0 && (verificarReservaPessoa() != "" && reservas.Rows.Count == 1) == false)
+            {
+                foreach(DataRow row in reservas.Rows)
+                {
+                    textoReserva += string.Format("\n - Reserva: {0} || {1}",row[0].ToString(), row[1].ToString());
+                }
+
+                Message telaAviso = new Message(textoReserva, "Aviso", "aviso", "escolha");
+                telaAviso.ShowDialog();
+
+                resultado = telaAviso.DialogResult;
+            }
+            else
+            {
+                resultado = DialogResult.Yes;
+            }
+
+            return resultado;            
+        }
 
         private void buscarDadosChave()
         {
@@ -196,6 +302,17 @@ namespace situacaoChavesGolden
             }
             else
             {
+
+                nomePessoaBox.Visible = false;
+                codPessoaBox.Visible = false;
+                excluiProp.Enabled = false;
+                excluiProp.Visible = false;
+                labelCod.Visible = false;
+                labelProp.Visible = false;
+                btnAdicionarPessoa.Visible = true;
+
+                codPessoaBox.Text = "";
+                nomePessoaBox.Text = "";
                 comboDocs.Enabled = true;
                 boxDescDoc.Enabled = true;
             }
@@ -217,77 +334,79 @@ namespace situacaoChavesGolden
 
         private void BtnConfirmar_Click(object sender, EventArgs e)
         {
-            int contErros = 0;
-            string erros = "";
+            if(verificarReserva() == DialogResult.Yes)
+            {
+                int contErros = 0;
+                string erros = "";
 
-            string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToLower();
-            decimal quantChaves = qtdChaves.Value;
-            decimal quantControles = qtdControles.Value;
-            string descricao = descBox.Text;
-            string codigo = codPessoaBox.Text;
-            string descricaoDocumento = boxDescDoc.Text;
-            string documentoDeixado = "";
-            string codCliente = "";
-            DateTime dataHojeUs = new DateTime();
-            DateTime dataPrevisao = new DateTime();
+                string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToLower();
+                decimal quantChaves = qtdChaves.Value;
+                decimal quantControles = qtdControles.Value;
+                string descricao = descBox.Text;
+                string codigo = codPessoaBox.Text;
+                string descricaoDocumento = boxDescDoc.Text;
+                string documentoDeixado = "";
+                string codCliente = "";
+                DateTime dataHojeUs = new DateTime();
+                DateTime dataPrevisao = new DateTime();
 
 
-            //Data de previsão
-            try
-            {
-                dataPrevisao = datePrevisao.Value;
+                //Data de previsão
+                try
+                {
+                    dataPrevisao = datePrevisao.Value;
 
-                dataPrevisao = Convert.ToDateTime(dataPrevisao.ToString("yyyy-MM-dd HH:mm:ss"));
-            }
-            catch
-            {
-                contErros++;
-                erros += "\n-Previsão de entrega (Escolha obrigatória)";
-            }
+                    dataPrevisao = Convert.ToDateTime(dataPrevisao.ToString("yyyy-MM-dd HH:mm:ss"));
+                }
+                catch
+                {
+                    contErros++;
+                    erros += "\n-Previsão de entrega (Escolha obrigatória)";
+                }
 
-          
-           
-            //Quem está emprestando
-            if(tipo.Length == 0)
-            {
-                contErros++;
-                erros += "\n-Quem está emprestando (Seleção obrigatória)";
-            }
-            //Data previsão
-            if(dataPrevisao.Date == null)
-            {
-                contErros++;
-                erros += "\n-Previsão de entrega (Seleção obrigatória)";
-            }
-            //Quantidade de chaves
-            if(quantChaves == 0 && quantControles == 0)
-            {
-                contErros++;
-                erros += "\n-Quantidade de chaves (Inserção obrigatória)";
-            }
-            //Quantidade de controles
-            if (quantControles == 0 && quantChaves == 0)
-            {
-                contErros++;
-                erros += "\n-Quantidade de controles (Inserção obrigatória)";
-            }
-           
-            if(comboDocs.SelectedIndex != -1 && descricaoDocumento.Length == 0)
-            {
-                contErros++;
-                erros += "\n-Descrição do Documento (Inserção obrigatória)";
-            }
 
-            if (codPessoaBox.Text.Length <= 0)
-            {
-                contErros++;
-                erros += "\n-Dados do cliente/funcionário (Inserção obrigatória)";
-            }
 
-            if (contErros == 0)
-            {
-                //try
-                //{
+                //Quem está emprestando
+                if (tipo.Length == 0)
+                {
+                    contErros++;
+                    erros += "\n-Quem está emprestando (Seleção obrigatória)";
+                }
+                //Data previsão
+                if (dataPrevisao.Date == null)
+                {
+                    contErros++;
+                    erros += "\n-Previsão de entrega (Seleção obrigatória)";
+                }
+                //Quantidade de chaves
+                if (quantChaves == 0 && quantControles == 0)
+                {
+                    contErros++;
+                    erros += "\n-Quantidade de chaves (Inserção obrigatória)";
+                }
+                //Quantidade de controles
+                if (quantControles == 0 && quantChaves == 0)
+                {
+                    contErros++;
+                    erros += "\n-Quantidade de controles (Inserção obrigatória)";
+                }
+
+                if (comboDocs.SelectedIndex != -1 && descricaoDocumento.Length == 0)
+                {
+                    contErros++;
+                    erros += "\n-Descrição do Documento (Inserção obrigatória)";
+                }
+
+                if (codPessoaBox.Text.Length <= 0)
+                {
+                    contErros++;
+                    erros += "\n-Dados do cliente/funcionário (Inserção obrigatória)";
+                }
+
+                if (contErros == 0)
+                {
+                    //try
+                    //{
                     if (tipo == "proprietario")
                     {
                         database.insertInto(string.Format("" +
@@ -297,7 +416,7 @@ namespace situacaoChavesGolden
                            quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
                            user, quantControles, documentoDeixado, codPessoaBox.Text));
                     }
-                    else if(tipo == "cliente")
+                    else if (tipo == "cliente")
                     {
                         database.insertInto(string.Format("" +
                            "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
@@ -320,11 +439,20 @@ namespace situacaoChavesGolden
                                                   " SET situacao = 'INDISPONIVEL', localizacao = '{0}'" +
                                                   " WHERE indice_chave = '{1}'", tipo.ToUpper(), codigoChave));
 
-                    if(seletorTela == true)
+                    if (seletorTela == true)
                     {
                         database.update(string.Format("UPDATE reserva" +
                                                   " SET situacao = 'FINALIZADO'" +
                                                   " WHERE cod_reserva = '{0}'", codigoReserva));
+                    }
+
+                    string codReserva = verificarReservaPessoa();
+
+                    if (codReserva != "")
+                    {
+                        database.update(string.Format("UPDATE reserva" +
+                                        " SET situacao = 'FINALIZADO'" +
+                                        " WHERE cod_reserva = '{0}'", codReserva));
                     }
 
                     Message caixaMensagem = new Message("Empréstimo cadastrado com sucesso!", "", "sucesso", "confirma");
@@ -332,20 +460,22 @@ namespace situacaoChavesGolden
 
                     this.Close();
                     this.DialogResult = DialogResult.OK;
-            //}
-            //    catch (Exception erro)
-            //{
-            //    Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
-            //    caixaMensagem.ShowDialog();
-            //}
+                    //}
+                    //    catch (Exception erro)
+                    //{
+                    //    Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
+                    //    caixaMensagem.ShowDialog();
+                    //}
 
-        }
-            else
-            {
-                Message caixaMensagem = new Message("Corrija os erros abaixo antes de continuar!\n-" + erros, "Erro de preenchimento",
-                    "erro", "confirma");
-                caixaMensagem.ShowDialog();
+                }
+                else
+                {
+                    Message caixaMensagem = new Message("Corrija os erros abaixo antes de continuar!\n-" + erros, "Erro de preenchimento",
+                        "erro", "confirma");
+                    caixaMensagem.ShowDialog();
+                }
             }
+            
 
         }
 
@@ -506,6 +636,9 @@ namespace situacaoChavesGolden
 
         }
 
+        private void GroupBox4_Enter(object sender, EventArgs e)
+        {
 
+        }
     }
 }
