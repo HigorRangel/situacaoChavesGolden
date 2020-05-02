@@ -216,6 +216,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImprimirEtiquetas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImprimirEtiquetas.Designer.cs">
+      <DependentUpon>ImprimirEtiquetas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Message.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +298,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImprimirEtiquetas.resx">
+      <DependentUpon>ImprimirEtiquetas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Message.resx">
       <DependentUpon>Message.cs</DependentUpon>
     </EmbeddedResource>
@@ -339,6 +348,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\logoSbernardo.png" />
     <None Include="Resources\ProrrogarEmprestimoGray.png" />
     <None Include="Resources\BaixaEmprestimoGray.png" />
     <None Include="Resources\Filter1.png" />

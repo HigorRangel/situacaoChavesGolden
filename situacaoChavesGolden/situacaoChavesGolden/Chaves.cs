@@ -437,5 +437,11 @@ namespace situacaoChavesGolden
         {
 
         }
+
+        private void btnPrintTags_Click(object sender, EventArgs e)
+        {
+            ImprimirEtiquetas imprimirTags = new ImprimirEtiquetas();
+            imprimirTags.ShowDialog();
+        }
     }
 }

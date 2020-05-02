@@ -79,6 +79,13 @@
             this.gridProprietarios = new System.Windows.Forms.DataGridView();
             this.boxProcurarProp = new System.Windows.Forms.TextBox();
             this.btnAdicionarProp = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
+            this.boxCond = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel16 = new MetroFramework.Controls.MetroLabel();
+            this.boxCategImov = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel17 = new MetroFramework.Controls.MetroLabel();
+            this.boxQtdChaves = new System.Windows.Forms.NumericUpDown();
             this.groupSitImovel.SuspendLayout();
             this.groupFinalImovel.SuspendLayout();
             this.groupTipoImovel.SuspendLayout();
@@ -87,6 +94,8 @@
             this.groupSitChave.SuspendLayout();
             this.painelProp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProprietarios)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.boxQtdChaves)).BeginInit();
             this.SuspendLayout();
             // 
             // boxLogradouro
@@ -439,7 +448,7 @@
             // 
             this.metroLabel12.AutoSize = true;
             this.metroLabel12.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel12.Location = new System.Drawing.Point(213, 64);
+            this.metroLabel12.Location = new System.Drawing.Point(250, 64);
             this.metroLabel12.Name = "metroLabel12";
             this.metroLabel12.Size = new System.Drawing.Size(45, 15);
             this.metroLabel12.TabIndex = 26;
@@ -564,7 +573,7 @@
             this.btnCadastrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
             this.btnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadastrar.ForeColor = System.Drawing.Color.White;
-            this.btnCadastrar.Location = new System.Drawing.Point(303, 421);
+            this.btnCadastrar.Location = new System.Drawing.Point(338, 487);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
             this.btnCadastrar.TabIndex = 16;
@@ -580,7 +589,7 @@
             this.btnCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
-            this.btnCancelar.Location = new System.Drawing.Point(203, 420);
+            this.btnCancelar.Location = new System.Drawing.Point(238, 486);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 24;
@@ -687,12 +696,93 @@
             this.btnAdicionarProp.Text = "Adicionar Proprietário";
             this.btnAdicionarProp.Click += new System.EventHandler(this.BtnAdicionarProp_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.boxQtdChaves);
+            this.groupBox1.Controls.Add(this.metroLabel16);
+            this.groupBox1.Controls.Add(this.metroLabel17);
+            this.groupBox1.Controls.Add(this.boxCategImov);
+            this.groupBox1.Controls.Add(this.metroLabel13);
+            this.groupBox1.Controls.Add(this.boxCond);
+            this.groupBox1.ForeColor = System.Drawing.Color.Silver;
+            this.groupBox1.Location = new System.Drawing.Point(16, 420);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(397, 62);
+            this.groupBox1.TabIndex = 29;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Dados para a plaquina de chaves";
+            // 
+            // metroLabel13
+            // 
+            this.metroLabel13.AutoSize = true;
+            this.metroLabel13.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel13.Location = new System.Drawing.Point(23, 15);
+            this.metroLabel13.Name = "metroLabel13";
+            this.metroLabel13.Size = new System.Drawing.Size(106, 15);
+            this.metroLabel13.TabIndex = 28;
+            this.metroLabel13.Text = "Condomínio/Edifício";
+            // 
+            // boxCond
+            // 
+            this.boxCond.CustomBackground = true;
+            this.boxCond.CustomForeColor = true;
+            this.boxCond.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.boxCond.Location = new System.Drawing.Point(7, 30);
+            this.boxCond.Name = "boxCond";
+            this.boxCond.Size = new System.Drawing.Size(138, 25);
+            this.boxCond.Style = MetroFramework.MetroColorStyle.Silver;
+            this.boxCond.TabIndex = 27;
+            this.boxCond.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.boxCond.UseStyleColors = true;
+            // 
+            // metroLabel16
+            // 
+            this.metroLabel16.AutoSize = true;
+            this.metroLabel16.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel16.Location = new System.Drawing.Point(176, 15);
+            this.metroLabel16.Name = "metroLabel16";
+            this.metroLabel16.Size = new System.Drawing.Size(109, 15);
+            this.metroLabel16.TabIndex = 30;
+            this.metroLabel16.Text = "Categoria do Imóvel";
+            // 
+            // boxCategImov
+            // 
+            this.boxCategImov.CustomBackground = true;
+            this.boxCategImov.CustomForeColor = true;
+            this.boxCategImov.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.boxCategImov.Location = new System.Drawing.Point(160, 30);
+            this.boxCategImov.Name = "boxCategImov";
+            this.boxCategImov.Size = new System.Drawing.Size(142, 25);
+            this.boxCategImov.Style = MetroFramework.MetroColorStyle.Silver;
+            this.boxCategImov.TabIndex = 29;
+            this.boxCategImov.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.boxCategImov.UseStyleColors = true;
+            // 
+            // metroLabel17
+            // 
+            this.metroLabel17.AutoSize = true;
+            this.metroLabel17.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel17.Location = new System.Drawing.Point(322, 15);
+            this.metroLabel17.Name = "metroLabel17";
+            this.metroLabel17.Size = new System.Drawing.Size(68, 15);
+            this.metroLabel17.TabIndex = 32;
+            this.metroLabel17.Text = "Qtd. Chaves";
+            // 
+            // boxQtdChaves
+            // 
+            this.boxQtdChaves.Location = new System.Drawing.Point(322, 33);
+            this.boxQtdChaves.Name = "boxQtdChaves";
+            this.boxQtdChaves.Size = new System.Drawing.Size(68, 20);
+            this.boxQtdChaves.TabIndex = 33;
+            this.boxQtdChaves.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // cadastroChave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(429, 449);
+            this.ClientSize = new System.Drawing.Size(429, 516);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAdicionarProp);
             this.Controls.Add(this.painelProp);
             this.Controls.Add(this.btnCancelar);
@@ -741,6 +831,9 @@
             this.painelProp.ResumeLayout(false);
             this.painelProp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProprietarios)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.boxQtdChaves)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -799,5 +892,12 @@
         private System.Windows.Forms.Label excluiProp;
         private System.Windows.Forms.Label btnAdicionarProp;
         private System.Windows.Forms.Button btnNovoProp;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private MetroFramework.Controls.MetroLabel metroLabel16;
+        private MetroFramework.Controls.MetroLabel metroLabel17;
+        private MetroFramework.Controls.MetroTextBox boxCategImov;
+        private MetroFramework.Controls.MetroLabel metroLabel13;
+        private MetroFramework.Controls.MetroTextBox boxCond;
+        private System.Windows.Forms.NumericUpDown boxQtdChaves;
     }
 }

@@ -101,6 +101,9 @@ namespace situacaoChavesGolden
                     boxEstado.Text = row[4].ToString();
                     comboLocalizacao.SelectedItem = row[8].ToString();
                     codImovel.Text = row[10].ToString();
+                    boxQtdChaves.Value = int.Parse(row[14].ToString());
+                    boxCond.Text = row[15].ToString();
+                    boxCategImov.Text = row[16].ToString();
                     
                     if(row[7].ToString() == "DISPONIVEL")
                     {
@@ -221,6 +224,19 @@ namespace situacaoChavesGolden
             {
                 contErro++;
             }
+            if(boxCond.Text.Length == 0)
+            {
+                contErro++;
+            }
+            if (boxCategImov.Text.Length == 0)
+            {
+                contErro++;
+            }
+            //if (boxQtdChaves.Value == 0)
+            //{
+            //    contErro++;
+            //}
+
 
             if (contErro == 0)
             {
@@ -253,10 +269,10 @@ namespace situacaoChavesGolden
                     {
                         database.insertInto(string.Format("" +
                         "INSERT INTO chave (rua, numero, complemento, bairro, cidade, estado, situacao," +
-                        " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel, cod_chave)" +
+                        " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel, cod_chave, quant_chaves, cond, categoria_imovel)" +
                         " VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}'," +
-                        " '{11}','{12}', '{13}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
-                         localizacao, 1, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, proximoCodigo()));
+                        " '{11}','{12}', '{13}', '{14}', '{15}', '{16}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
+                         localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, proximoCodigo(), boxQtdChaves.Value, boxCond.Text, boxCategImov.Text));
 
                         this.Close();
 
@@ -269,9 +285,9 @@ namespace situacaoChavesGolden
                             "UPDATE chave " +
                             " SET rua = '{0}', numero = '{1}', complemento = '{2}', bairro = '{3}', " +
                             " cidade = '{4}', estado = '{5}', situacao = '{6}', localizacao = '{7}', proprietario = '{8}', " +
-                            " cod_imob = '{9}', tipo_imovel = '{10}', finalidade = '{11}', situacao_imovel = '{12}' " +
-                            " WHERE indice_chave = '{13}'", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
-                            localizacao, 1, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, codChave));
+                            " cod_imob = '{9}', tipo_imovel = '{10}', finalidade = '{11}', situacao_imovel = '{12}', quant_chaves = '{13}', cond = '{14}', categoria_imovel = '{15}' " +
+                            " WHERE indice_chave = '{16}'", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
+                            localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, boxQtdChaves.Value, boxCond.Text, boxCategImov.Text, codChave));
 
                         this.Close();
 
