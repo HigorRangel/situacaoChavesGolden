@@ -41,6 +41,9 @@ namespace situacaoChavesGolden
         }
 
         string usuario = "";
+
+
+        
         public TelaPrincipal(string codigoUsuario)
         {
             InitializeComponent();
@@ -53,13 +56,15 @@ namespace situacaoChavesGolden
 
         private void TelaPrincipal_Load(object sender, EventArgs e)
         {
-            
+            Dashboard dashboard = new Dashboard();
+            atualizarForm(dashboard);
         }
 
        
         private void BtnInicio_Click(object sender, EventArgs e)
         {
-            
+            Dashboard dashboard = new Dashboard();
+            atualizarForm(dashboard);
         }
 
         private void btnChaves_Click(object sender, EventArgs e)

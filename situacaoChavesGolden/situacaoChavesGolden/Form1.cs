@@ -36,7 +36,8 @@ namespace situacaoChavesGolden
             DataTable usuarios = new DataTable();
 
             //Coloca os usuários cadastrados na tabela
-            usuarios = database.select(string.Format("SELECT * FROM usuario"));
+            usuarios = database.select(string.Format("SELECT * FROM usuario" +
+                                                     " ORDER BY nome_usuario"));
 
             //Apaga itens da ComboBox
             comboUsuarios.Items.Clear();

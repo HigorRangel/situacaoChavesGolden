@@ -243,13 +243,13 @@
             this.radioImovInativo.Name = "radioImovInativo";
             this.radioImovInativo.Size = new System.Drawing.Size(67, 15);
             this.radioImovInativo.TabIndex = 13;
-            this.radioImovInativo.TabStop = true;
             this.radioImovInativo.Text = "INATIVO";
             this.radioImovInativo.UseVisualStyleBackColor = true;
             // 
             // radioImovAtivo
             // 
             this.radioImovAtivo.AutoSize = true;
+            this.radioImovAtivo.Checked = true;
             this.radioImovAtivo.Location = new System.Drawing.Point(16, 11);
             this.radioImovAtivo.Name = "radioImovAtivo";
             this.radioImovAtivo.Size = new System.Drawing.Size(55, 15);
@@ -484,7 +484,6 @@
             this.radioChaveIndisponivel.Name = "radioChaveIndisponivel";
             this.radioChaveIndisponivel.Size = new System.Drawing.Size(99, 15);
             this.radioChaveIndisponivel.TabIndex = 3;
-            this.radioChaveIndisponivel.TabStop = true;
             this.radioChaveIndisponivel.Text = "INDISPONIVEL";
             this.radioChaveIndisponivel.UseVisualStyleBackColor = true;
             this.radioChaveIndisponivel.CheckedChanged += new System.EventHandler(this.RadioChaveIndisponivel_CheckedChanged);
@@ -492,6 +491,7 @@
             // radioChaveDisponivel
             // 
             this.radioChaveDisponivel.AutoSize = true;
+            this.radioChaveDisponivel.Checked = true;
             this.radioChaveDisponivel.Location = new System.Drawing.Point(25, 12);
             this.radioChaveDisponivel.Name = "radioChaveDisponivel";
             this.radioChaveDisponivel.Size = new System.Drawing.Size(87, 15);
@@ -619,7 +619,7 @@
             this.painelProp.Controls.Add(this.btnConfirmarProp);
             this.painelProp.Controls.Add(this.gridProprietarios);
             this.painelProp.Controls.Add(this.boxProcurarProp);
-            this.painelProp.Location = new System.Drawing.Point(27, 142);
+            this.painelProp.Location = new System.Drawing.Point(27, 183);
             this.painelProp.Name = "painelProp";
             this.painelProp.Size = new System.Drawing.Size(374, 225);
             this.painelProp.TabIndex = 25;
@@ -796,9 +796,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(429, 516);
+            this.Controls.Add(this.painelProp);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAdicionarProp);
-            this.Controls.Add(this.painelProp);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.metroLabel14);

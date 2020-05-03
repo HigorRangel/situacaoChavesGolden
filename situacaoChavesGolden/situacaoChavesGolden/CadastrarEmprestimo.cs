@@ -405,67 +405,67 @@ namespace situacaoChavesGolden
 
                 if (contErros == 0)
                 {
-                    //try
-                    //{
-                    if (tipo == "proprietario")
+                    try
                     {
-                        database.insertInto(string.Format("" +
-                           "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
-                           " cod_usuario, quant_controles, tipo_doc, cod_proprietario)" +
-                           " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
-                           quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
-                           user, quantControles, documentoDeixado, codPessoaBox.Text));
+                            if (tipo == "proprietario")
+                        {
+                            database.insertInto(string.Format("" +
+                               "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
+                               " cod_usuario, quant_controles, tipo_doc, cod_proprietario)" +
+                               " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
+                               quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
+                               user, quantControles, documentoDeixado, codPessoaBox.Text));
+                        }
+                        else if (tipo == "cliente")
+                        {
+                            database.insertInto(string.Format("" +
+                               "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
+                               " cod_usuario, quant_controles, tipo_doc, cod_cliente)" +
+                               " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
+                               quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
+                               user, quantControles, documentoDeixado, codPessoaBox.Text));
+                        }
+                        else
+                        {
+                            database.insertInto(string.Format("" +
+                               "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
+                               " cod_usuario, quant_controles, tipo_doc)" +
+                               " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')",
+                               quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
+                               user, quantControles, documentoDeixado));
+                        }
+
+                        database.update(string.Format("UPDATE chave" +
+                                                      " SET situacao = 'INDISPONIVEL', localizacao = '{0}'" +
+                                                      " WHERE indice_chave = '{1}'", tipo.ToUpper(), codigoChave));
+
+                        if (seletorTela == true)
+                        {
+                            database.update(string.Format("UPDATE reserva" +
+                                                      " SET situacao = 'FINALIZADO'" +
+                                                      " WHERE cod_reserva = '{0}'", codigoReserva));
+                        }
+
+                        string codReserva = verificarReservaPessoa();
+
+                        if (codReserva != "")
+                        {
+                            database.update(string.Format("UPDATE reserva" +
+                                            " SET situacao = 'FINALIZADO'" +
+                                            " WHERE cod_reserva = '{0}'", codReserva));
+                        }
+
+                        Message caixaMensagem = new Message("Empréstimo cadastrado com sucesso!", "", "sucesso", "confirma");
+                        caixaMensagem.ShowDialog();
+
+                        this.Close();
+                        this.DialogResult = DialogResult.OK;
                     }
-                    else if (tipo == "cliente")
+                    catch (Exception erro)
                     {
-                        database.insertInto(string.Format("" +
-                           "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
-                           " cod_usuario, quant_controles, tipo_doc, cod_cliente)" +
-                           " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
-                           quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
-                           user, quantControles, documentoDeixado, codPessoaBox.Text));
+                        Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
+                        caixaMensagem.ShowDialog();
                     }
-                    else
-                    {
-                        database.insertInto(string.Format("" +
-                           "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
-                           " cod_usuario, quant_controles, tipo_doc)" +
-                           " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')",
-                           quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
-                           user, quantControles, documentoDeixado));
-                    }
-
-                    database.update(string.Format("UPDATE chave" +
-                                                  " SET situacao = 'INDISPONIVEL', localizacao = '{0}'" +
-                                                  " WHERE indice_chave = '{1}'", tipo.ToUpper(), codigoChave));
-
-                    if (seletorTela == true)
-                    {
-                        database.update(string.Format("UPDATE reserva" +
-                                                  " SET situacao = 'FINALIZADO'" +
-                                                  " WHERE cod_reserva = '{0}'", codigoReserva));
-                    }
-
-                    string codReserva = verificarReservaPessoa();
-
-                    if (codReserva != "")
-                    {
-                        database.update(string.Format("UPDATE reserva" +
-                                        " SET situacao = 'FINALIZADO'" +
-                                        " WHERE cod_reserva = '{0}'", codReserva));
-                    }
-
-                    Message caixaMensagem = new Message("Empréstimo cadastrado com sucesso!", "", "sucesso", "confirma");
-                    caixaMensagem.ShowDialog();
-
-                    this.Close();
-                    this.DialogResult = DialogResult.OK;
-                    //}
-                    //    catch (Exception erro)
-                    //{
-                    //    Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
-                    //    caixaMensagem.ShowDialog();
-                    //}
 
                 }
                 else

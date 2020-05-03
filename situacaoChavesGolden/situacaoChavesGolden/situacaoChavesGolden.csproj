@@ -348,6 +348,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\propostaDash.png" />
+    <None Include="Resources\emprestimoDash.png" />
+    <None Include="Resources\reservaDash.png" />
+    <None Include="Resources\ampulhetaDash.png" />
+    <None Include="Resources\logoAzul.png" />
     <None Include="Resources\logoSaoBernardoWhite.png" />
     <None Include="Resources\PassBack.png" />
     <None Include="Resources\PassTo.png" />

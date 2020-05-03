@@ -84,10 +84,6 @@ namespace situacaoChavesGolden
 
             //descImovel.Size = new Size(cmToPixel(3.3), cmToPixel(1.9));
 
-
-
-            descImovel.Text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaz";
-
         }
 
 
@@ -430,7 +426,7 @@ namespace situacaoChavesGolden
                     {
                         string codigo = row.Cells[2].Value.ToString();
 
-                        MessageBox.Show(row.Cells[0].Value.ToString());
+                        //MessageBox.Show(row.Cells[0].Value.ToString());
                         gridTo.Rows.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString());
                         gridFrom.Rows.RemoveAt(row.Index);
 
@@ -468,6 +464,7 @@ namespace situacaoChavesGolden
 
         private void GridTo_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+           
             try
             {
                 DataGridViewRow row = gridTo.Rows[e.RowIndex];
@@ -529,9 +526,15 @@ namespace situacaoChavesGolden
         }
 
       
-        private void BtnPassSelecBack_Click(object sender, EventArgs e)
-        {
 
+
+        private void BtnImprimir_Click(object sender, EventArgs e)
+        {
+            gerarEtiquetas(tipo, endereco, codChave, quantChave);
+        }
+
+        private void BtnSelecTudoTo_Click(object sender, EventArgs e)
+        {
             gridTo.Rows.Clear();
             tipo.Clear();
             endereco.Clear();
@@ -541,59 +544,45 @@ namespace situacaoChavesGolden
             atualizarGridFrom();
 
             descImovel.Text = "";
-
-            //foreach (DataGridViewRow row in gridTo.SelectedRows)
-            //{
-            //    try
-            //    {
-            //        string codigo = row.Cells[2].Value.ToString();
-
-            //        MessageBox.Show(row.Cells[0].Value.ToString());
-            //        gridFrom.Rows.Add(row.Cells[0].Value, row.Cells[1].Value.ToString(), row.Cells[2].Value);
-            //        gridTo.Rows.RemoveAt(row.Index);
-
-            //        tabelaChave.Rows.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString());
-
-            //        try
-            //        {
-            //            foreach (DataRow linha in tabelaChave.Rows)
-            //            {
-            //                tipo.RemoveAt(row.Index);
-            //                endereco.RemoveAt(row.Index);
-            //                codChave.RemoveAt(row.Index);
-            //                quantChave.RemoveAt(row.Index);
-
-            //                MessageBox.Show(linha[1].ToString().Length.ToString());
-
-            //                descImovel.Text = linha[1].ToString();
-
-
-            //            }
-            //        }
-            //        catch { }
-
-
-            //}
-            //catch (Exception erro)
-            //{
-            //    MessageBox.Show(erro.Message);
-            //}
-
-        }
-
-        private void BtnImprimir_Click(object sender, EventArgs e)
-        {
-            gerarEtiquetas(tipo, endereco, codChave, quantChave);
-        }
-
-        private void BtnSelecTudoTo_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void BtnPassSelectBack_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void gridTo_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+           
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void gridTo_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            if (gridTo.Rows.Count == 0)
+            {
+                btnImprimir.Enabled = false;
+            }
+            else
+            {
+                btnImprimir.Enabled = true;
+            }
+        }
+
+        private void gridTo_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            if (gridTo.Rows.Count == 0)
+            {
+                btnImprimir.Enabled = false;
+            }
+            else
+            {
+                btnImprimir.Enabled = true;
+            }
         }
     }
 }

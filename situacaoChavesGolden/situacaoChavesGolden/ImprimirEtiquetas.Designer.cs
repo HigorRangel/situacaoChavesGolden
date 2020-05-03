@@ -48,8 +48,8 @@
             this.imagem = new System.Windows.Forms.PictureBox();
             this.btnSelecTudoTo = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgTexto)).BeginInit();
@@ -148,6 +148,9 @@
             this.gridTo.Size = new System.Drawing.Size(262, 325);
             this.gridTo.TabIndex = 47;
             this.gridTo.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridTo_CellFormatting);
+            this.gridTo.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTo_CellValueChanged);
+            this.gridTo.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridTo_RowsAdded);
+            this.gridTo.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gridTo_RowsRemoved);
             this.gridTo.SelectionChanged += new System.EventHandler(this.GridTo_SelectionChanged);
             // 
             // printDocument1
@@ -215,10 +218,12 @@
             this.btnCancelar.TabIndex = 58;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnImprimir
             // 
             this.btnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnImprimir.Enabled = false;
             this.btnImprimir.FlatAppearance.BorderSize = 0;
             this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(107)))));
             this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
@@ -283,17 +288,6 @@
             this.groupBox1.TabIndex = 59;
             this.groupBox1.TabStop = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(56, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(171, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Chaves à serem selecionadas";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -304,6 +298,17 @@
             this.label2.Size = new System.Drawing.Size(123, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "Chaves selecionadas";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Gray;
+            this.label1.Location = new System.Drawing.Point(56, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(171, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Chaves à serem selecionadas";
             // 
             // ImprimirEtiquetas
             // 

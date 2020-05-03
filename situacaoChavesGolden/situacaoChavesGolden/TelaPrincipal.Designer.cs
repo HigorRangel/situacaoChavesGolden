@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.logoImob = new System.Windows.Forms.PictureBox();
             this.btnClientes = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnReservas = new System.Windows.Forms.Button();
@@ -37,7 +38,6 @@
             this.btnChaves = new System.Windows.Forms.Button();
             this.btnInicio = new System.Windows.Forms.Button();
             this.painelPrincipal = new System.Windows.Forms.Panel();
-            this.logoImob = new System.Windows.Forms.PictureBox();
             this.metroPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoImob)).BeginInit();
             this.SuspendLayout();
@@ -64,6 +64,16 @@
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
+            // 
+            // logoImob
+            // 
+            this.logoImob.Image = global::situacaoChavesGolden.Properties.Resources.logoSaoBernardoWhite;
+            this.logoImob.Location = new System.Drawing.Point(9, 19);
+            this.logoImob.Name = "logoImob";
+            this.logoImob.Size = new System.Drawing.Size(128, 50);
+            this.logoImob.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logoImob.TabIndex = 8;
+            this.logoImob.TabStop = false;
             // 
             // btnClientes
             // 
@@ -185,16 +195,6 @@
             this.painelPrincipal.Size = new System.Drawing.Size(655, 427);
             this.painelPrincipal.TabIndex = 1;
             // 
-            // logoImob
-            // 
-            this.logoImob.Image = global::situacaoChavesGolden.Properties.Resources.logoSaoBernardoWhite;
-            this.logoImob.Location = new System.Drawing.Point(9, 19);
-            this.logoImob.Name = "logoImob";
-            this.logoImob.Size = new System.Drawing.Size(128, 50);
-            this.logoImob.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.logoImob.TabIndex = 8;
-            this.logoImob.TabStop = false;
-            // 
             // TelaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,6 +206,7 @@
             this.DisplayHeader = false;
             this.Name = "TelaPrincipal";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
+            this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Silver;
             this.Text = "TelaPrincipal";
             this.Theme = MetroFramework.MetroThemeStyle.Light;

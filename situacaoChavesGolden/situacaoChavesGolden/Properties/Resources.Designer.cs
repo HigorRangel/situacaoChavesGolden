@@ -63,6 +63,16 @@ namespace situacaoChavesGolden.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ampulhetaDash {
+            get {
+                object obj = ResourceManager.GetObject("ampulhetaDash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BaixaEmprestimo {
             get {
                 object obj = ResourceManager.GetObject("BaixaEmprestimo", resourceCulture);
@@ -183,6 +193,16 @@ namespace situacaoChavesGolden.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap emprestimoDash {
+            get {
+                object obj = ResourceManager.GetObject("emprestimoDash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Filter {
             get {
                 object obj = ResourceManager.GetObject("Filter", resourceCulture);
@@ -196,6 +216,16 @@ namespace situacaoChavesGolden.Properties {
         internal static System.Drawing.Bitmap Filter1 {
             get {
                 object obj = ResourceManager.GetObject("Filter1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logoAzul {
+            get {
+                object obj = ResourceManager.GetObject("logoAzul", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,6 +273,16 @@ namespace situacaoChavesGolden.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap propostaDash {
+            get {
+                object obj = ResourceManager.GetObject("propostaDash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ProrrogarEmprestimo {
             get {
                 object obj = ResourceManager.GetObject("ProrrogarEmprestimo", resourceCulture);
@@ -256,6 +296,16 @@ namespace situacaoChavesGolden.Properties {
         internal static System.Drawing.Bitmap ProrrogarEmprestimoGray {
             get {
                 object obj = ResourceManager.GetObject("ProrrogarEmprestimoGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap reservaDash {
+            get {
+                object obj = ResourceManager.GetObject("reservaDash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

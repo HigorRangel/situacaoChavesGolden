@@ -91,17 +91,23 @@ namespace situacaoChavesGolden
                     contIgual++;
                 }
 
-                Message popUp = new Message(aviso, "Aviso", "aviso", "escolha");
-                popUp.ShowDialog();
+                if(contIgual > 0)
+                {
+                    Message popUp = new Message(aviso, "Aviso", "aviso", "escolha");
+                    popUp.ShowDialog();
 
-                if(popUp.DialogResult == DialogResult.Yes)
-                {
-                    return true;
+                    if (popUp.DialogResult == DialogResult.Yes)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-                else
-                {
-                    return false;
-                }
+               
+
+                
                 
             }
             return true;
@@ -164,7 +170,7 @@ namespace situacaoChavesGolden
                     }
                     catch (Exception erro)
                     {
-                        Message caixaMensagem = new Message("Não foi possível acessar o banco de dados no momento! Tente novamente mais tarde",
+                        Message caixaMensagem = new Message("Não foi possível acessar o banco de dados no momento pelo seguinte motivo:\n\n" + erro.Message,
                             "Erro no banco de dados", "erro", "confirma");
                         caixaMensagem.ShowDialog();
                     }

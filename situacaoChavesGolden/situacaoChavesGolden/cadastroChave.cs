@@ -167,75 +167,80 @@ namespace situacaoChavesGolden
         {
             int contErro = 0;
 
+            string erro = "Não foi possível cadastrar a chave. Por favor, verifique os campos abaixo:\n";
 
             if(codImovel.Text.Length == 0)
             {
+                erro += "\n- Código do Imóvel (não pode ficar vazio)";
                 contErro++;
             }
             if(comboLocalizacao.SelectedIndex == -1)
             {
+                erro += "\n- Localização do imóvel (Não pode ficar vazio)";
                 contErro++;
             }
             if (boxOutraLocalizacao.Text.Length < 0 && comboLocalizacao.SelectedItem.ToString() == "Outro")
             {
+                erro += "\n- Outra localização (Não pode ficar vazio)";
                 contErro++;
             }
             if(boxLogradouro.Text.Length == 0)
             {
+                erro += "\n- Logradouro (Não pode ficar vazio)";
                 contErro++;
             }
             if(boxCidade.Text.Length == 0)
             {
+                erro += "\n- Cidade(Não pode ficar vazio)";
                 contErro++;
             }
             if(boxBairro.Text.Length == 0)
             {
+                erro += "\n- Bairro (Não pode ficar vazio)";
                 contErro++;
             }
             if(boxEstado.Text.Length == 0)
             {
+                erro += "\n- Estado (Não pode ficar vazio)";
                 contErro++;
             }
             if(boxNumero.Text.Length == 0)
             {
+                erro += "\n- Número (Não pode ficar vazio)";
                 contErro++;
             }
             if (radioChaveDisponivel.Checked == false && radioChaveIndisponivel.Checked == false)
             {
+                erro += "\n- Situação da Chave (Seleção Obrigatória)";
                 contErro++;
             }
             if (radioImovAtivo.Checked == false && radioImovInativo.Checked == false)
             {
+                erro += "\n- Situação do imóvel (Seleção Obrigatória)";
                 contErro++;
             }
             if(radioTipoCom.Checked == false && radioTipoRes.Checked == false)
             {
+                erro += "\n- Tipo do imóvel (Seleção Obrigatória)";
                 contErro++;
             }
             if(radioFinalidadeLoc.Checked == false && radioFinalidadeVenda.Checked == false)
             {
+                erro += "\n- Finalidade (Seleção Obrigatória)";
                 contErro++;
             }
-            if(radioFinalidadeVenda.Checked == false && radioFinalidadeLoc.Checked == false)
-            {
-                contErro++;
-            }
+           
             if(boxCodProp.Text.Length == 0)
             {
-                contErro++;
-            }
-            if(boxCond.Text.Length == 0)
-            {
+                erro += "\n- Código do proprietário (Não pode ficar vazio)";
                 contErro++;
             }
             if (boxCategImov.Text.Length == 0)
             {
+                erro += "\n- Categoria do imóvel (Não pode ficar vazio)";
                 contErro++;
             }
-            //if (boxQtdChaves.Value == 0)
-            //{
-            //    contErro++;
-            //}
+
 
 
             if (contErro == 0)
@@ -294,19 +299,18 @@ namespace situacaoChavesGolden
                         this.DialogResult = DialogResult.OK;
                     }
             }
-                catch (Exception erro)
+                catch (Exception error)
             {
-                MessageBox.Show(erro.Message);
+                Message popup = new Message("Não foi possível cadastrar a chave pelo seguinte erro: \n\n" + error.Message, "Erro ao cadastrar", "erro", "confirma");
+                    popup.ShowDialog();
             }
-
-
-
 
 
         }
             else
             {
-                MessageBox.Show("Há campso preenchidos incorretamente! Verifique e tente novamente");
+                Message popup = new Message(erro, "Erro ao cadastrar", "erro", "confirma");
+                popup.ShowDialog();
             }
         }
 
