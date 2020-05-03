@@ -82,7 +82,7 @@ namespace situacaoChavesGolden
         }
         private void CadastroChave_Load(object sender, EventArgs e)
         {
-                
+            codImovel.Focus();
 
             if(seletorTela == true)
             {
@@ -418,6 +418,26 @@ namespace situacaoChavesGolden
             {
                 atualizarGridProprietarios();
             }
+        }
+
+        private void RadioChaveIndisponivel_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BoxLogradouro_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RadioImovAtivo_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BoxCodProp_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

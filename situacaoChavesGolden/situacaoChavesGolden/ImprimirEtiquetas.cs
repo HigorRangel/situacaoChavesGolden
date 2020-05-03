@@ -20,6 +20,7 @@ namespace situacaoChavesGolden
         List<string> endereco = new List<string>();
         List<string> codChave = new List<string>();
         List<string> quantChave = new List<string>();
+        DataTable tabelaChave = new DataTable();
 
         PostgreSQL database = new PostgreSQL();
         public ImprimirEtiquetas()
@@ -29,11 +30,15 @@ namespace situacaoChavesGolden
 
         void atualizarGridFrom()
         {
-            gridFrom.DataSource = database.select("SELECT c.cod_chave, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, c.situacao_imovel" +
-                                                  " FROM chave c" +
-                                                  " ORDER BY c.situacao_imovel, c.cod_chave").DefaultView;
+            tabelaChave.Rows.Clear();
 
-            gridFrom.Columns[0].HeaderText = "Cód";
+            tabelaChave = database.select("SELECT c.cod_chave::text, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, c.situacao_imovel" +
+                                                  " FROM chave c" +
+                                                  " ORDER BY c.situacao_imovel, c.cod_chave");
+
+            gridFrom.DataSource = tabelaChave.DefaultView;
+
+           gridFrom.Columns[0].HeaderText = "Cód";
             gridFrom.Columns[1].HeaderText = "Endereço";
             gridFrom.Columns[2].Visible = false;
             gridFrom.Columns[3].Visible = false;
@@ -43,6 +48,26 @@ namespace situacaoChavesGolden
 
         }
 
+        void atualizarRectTexto(string texto)
+        {
+            Bitmap bm = new Bitmap(imgTexto.Width, imgTexto.Height);
+            Graphics drawer = Graphics.FromImage(bm);
+
+            drawer.Clear(Color.White);
+
+            //imgTexto.Size = new Size(cmToPixel(3.3), cmToPixel(1.9));
+            Rectangle rect = new Rectangle(0, 0, cmToPixel(3.3), cmToPixel(1.9));
+
+            Pen caneta = new Pen(new SolidBrush(Color.Black));
+            drawer.DrawRectangle(caneta, rect);
+
+            drawer.DrawString(texto,
+                new Font("Consolas", 12, FontStyle.Regular, GraphicsUnit.Pixel),
+                new SolidBrush(Color.Black), rect);
+
+            imgTexto.BackgroundImage = bm;
+        }
+
         private void ImprimirEtiquetas_Load(object sender, EventArgs e)
         {
             atualizarGridFrom();
@@ -50,10 +75,18 @@ namespace situacaoChavesGolden
             gridTo.Columns.Add("codigo", "Cód.");
             gridTo.Columns.Add("endereco", "Endereço");
             gridTo.Columns.Add("indice", "indice");
+            gridTo.Columns.Add("situacao", "situacao");
 
             gridTo.Columns[0].Width = 30;
             gridTo.Columns[1].Width = 228;
             gridTo.Columns[2].Visible = false;
+            gridTo.Columns[3].Visible = false;
+
+            //descImovel.Size = new Size(cmToPixel(3.3), cmToPixel(1.9));
+
+
+
+            descImovel.Text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaz";
 
         }
 
@@ -186,7 +219,7 @@ namespace situacaoChavesGolden
 
                     _pages.Add(imagem.BackgroundImage);
 
-                    imagem.BackgroundImage.Save(@"C:\Users\Usuario\Desktop\Etiquetas\imageeem" + i.ToString() + ".jpg");
+                    //imagem.BackgroundImage.Save(@"C:\Users\Usuario\Desktop\Etiquetas\imageeem" + i.ToString() + ".jpg");
                     imagem.BackgroundImage = null;
 
 
@@ -315,6 +348,7 @@ namespace situacaoChavesGolden
 
 
             }
+            PrintImages();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -342,15 +376,6 @@ namespace situacaoChavesGolden
 
         }
 
-        private void Button2_Click(object sender, EventArgs e)
-        {
-
-
-            PrintImages();
-        }
-
-
-
 
         private void PrintDocument1_EndPrint(object sender, PrintEventArgs e)
         {
@@ -362,64 +387,7 @@ namespace situacaoChavesGolden
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-
-            List<string> tipo = new List<string>();
-            List<string> endereco = new List<string>();
-            List<string> cod = new List<string>();
-            List<string> quant = new List<string>();
-            for (int i = 0; i < 19; i++)
-            {
-                tipo.Add("");
-                endereco.Add("");
-                cod.Add(i.ToString());
-                quant.Add("");
-            }
-
-
-
-            //tipo.Add("Casa");
-            //tipo.Add("Apartamento");
-            //tipo.Add("Sala Comercial");
-            //tipo.Add("Terreno Comercial");
-            //tipo.Add("Casa");
-            //tipo.Add("Sala");
-            //tipo.Add("Casa");
-
-
-            //endereco.Add("Ed. João Pessoa\nRua Santa Clara, 4564 - Jardim Brasil (L1234)");
-            //endereco.Add("Rua Antônio Meneghel, 275 - Jardim São Luiz(L0123)");
-            //endereco.Add("Rua Ari Meireles, 390 - Sala 05 - Jardim Santa Catarina (L4594)");
-            //endereco.Add("Avenida Brasil, 450 - Jardim Frezzarin (L0154)");
-            //endereco.Add("Avenida Melody Belo, 789 - Jardim Santa Bárbara D'oeste (L0789)");
-            //endereco.Add("Edifício Office Home\n Rua José Roberto Lopes - Centro (L0459)");
-            //endereco.Add("Rua Pernambuco, 65456, Jardim Thelja (L0963)");
-
-            //cod.Add("1");
-            //cod.Add("14");
-            //cod.Add("120");
-            //cod.Add("40");
-            //cod.Add("12");
-            //cod.Add("11");
-            //cod.Add("12");
-
-            //quant.Add("1");
-            //quant.Add("2");
-            //quant.Add("6");
-            //quant.Add("4");
-            //quant.Add("5");
-            //quant.Add("14");
-            //quant.Add("7");
-
-
-            gerarEtiquetas(tipo, endereco, cod, quant);
-
-
-
-            Pen caneta1 = new Pen(Color.Black, 1);
-        }
+        
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
@@ -450,20 +418,183 @@ namespace situacaoChavesGolden
 
         private void btnPassSelec_Click(object sender, EventArgs e)
         {
-            
-
-            foreach(DataGridViewRow row in gridFrom.SelectedRows)
+            if(gridTo.Rows.Count + gridFrom.SelectedRows.Count >= 20)
             {
-                //MessageBox.Show(row.Cells[0].Value.ToString());
-                gridTo.Rows.Add(row.Cells[0].Value, (row.Cells[1].Value.ToString()));
-                gridFrom.Rows.RemoveAt(row.Index);
-
-                database.select(string.Format("SELECT categoria_imovel, (CASE WHEN cond is null THEN '' ELSE cond || ' - '  END) || rua || ', ' || numero || "+
-                                              " (CASE WHEN complemento = '' THEN '' ELSE '[' || complemento || ']' END) || ' - ' || bairro || "+
-                                              " ' (' || cod_imob || ')' as endereco, cod_chave, quant_chaves" +
-                                              " FROM chave" +
-                                              " WHERE indice_chave = '{0}'", ))
+                Message popup = new Message("O limite de plaquinhas foi atingido (Máx: 120)", "Erro", "erro", "confirma");
             }
+            else
+            {
+                foreach (DataGridViewRow row in gridFrom.SelectedRows)
+                {
+                    try
+                    {
+                        string codigo = row.Cells[2].Value.ToString();
+
+                        MessageBox.Show(row.Cells[0].Value.ToString());
+                        gridTo.Rows.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString());
+                        gridFrom.Rows.RemoveAt(row.Index);
+
+                        DataTable tabelaChaves = new DataTable();
+                        tabelaChaves = database.select(string.Format("SELECT categoria_imovel, (CASE WHEN cond is null THEN '' ELSE cond || ' - '  END) || rua || ', ' || numero || " +
+                                                      " (CASE WHEN complemento = '' THEN '' ELSE '[' || complemento || ']' END) || ' - ' || bairro || " +
+                                                      " ' (' || cod_imob || ')' as endereco, cod_chave, quant_chaves" +
+                                                      " FROM chave" +
+                                                      " WHERE indice_chave = '{0}'", codigo));
+
+                        foreach (DataRow linha in tabelaChaves.Rows)
+                        {
+                            tipo.Add(linha[0].ToString());
+                            endereco.Add(linha[1].ToString());
+                            codChave.Add(linha[2].ToString());
+                            quantChave.Add(linha[3].ToString());
+
+
+                            descImovel.Text = linha[1].ToString();
+
+
+                        }
+
+                    }
+                    catch (Exception erro)
+                    {
+                        MessageBox.Show(erro.Message);
+                    }
+
+                }
+            }
+
+
+        }
+
+        private void GridTo_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                DataGridViewRow row = gridTo.Rows[e.RowIndex];
+
+                if (row.Cells[1].Value.ToString().Length > 75)
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(255, 176, 176);
+                    row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(199, 76, 76);                }
+            }
+            catch { }
+            
+        }
+
+       
+        private void BtnEditar_Click(object sender, EventArgs e)
+        {
+            descImovel.Enabled = true;
+            btnEditar.Enabled = false;
+            btnSalvar.Enabled = true;
+        }
+
+        private void BtnSalvar_Click(object sender, EventArgs e)
+        {
+            descImovel.Enabled = false;
+            btnEditar.Enabled = true;
+            btnSalvar.Enabled = false;
+
+            endereco[gridTo.CurrentRow.Index] = descImovel.Text;
+
+            
+        }
+
+        private void GridTo_SelectionChanged(object sender, EventArgs e)
+        {
+            if(gridTo.CurrentRow.Selected)
+            {
+                descImovel.Text = "";
+            }
+
+            descImovel.Enabled = false;
+            btnEditar.Enabled = true;
+            btnSalvar.Enabled = false;
+            try
+            {
+                descImovel.Text = endereco[gridTo.CurrentRow.Index];
+
+            }
+            catch { }
+        }
+
+        private void DescImovel_TextChanged(object sender, EventArgs e)
+        {
+            atualizarRectTexto(descImovel.Text);
+        }
+
+        private void BtnSelecTudo_Click(object sender, EventArgs e)
+        {
+            gridFrom.SelectAll();
+        }
+
+      
+        private void BtnPassSelecBack_Click(object sender, EventArgs e)
+        {
+
+            gridTo.Rows.Clear();
+            tipo.Clear();
+            endereco.Clear();
+            codChave.Clear();
+            quantChave.Clear();
+
+            atualizarGridFrom();
+
+            descImovel.Text = "";
+
+            //foreach (DataGridViewRow row in gridTo.SelectedRows)
+            //{
+            //    try
+            //    {
+            //        string codigo = row.Cells[2].Value.ToString();
+
+            //        MessageBox.Show(row.Cells[0].Value.ToString());
+            //        gridFrom.Rows.Add(row.Cells[0].Value, row.Cells[1].Value.ToString(), row.Cells[2].Value);
+            //        gridTo.Rows.RemoveAt(row.Index);
+
+            //        tabelaChave.Rows.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString());
+
+            //        try
+            //        {
+            //            foreach (DataRow linha in tabelaChave.Rows)
+            //            {
+            //                tipo.RemoveAt(row.Index);
+            //                endereco.RemoveAt(row.Index);
+            //                codChave.RemoveAt(row.Index);
+            //                quantChave.RemoveAt(row.Index);
+
+            //                MessageBox.Show(linha[1].ToString().Length.ToString());
+
+            //                descImovel.Text = linha[1].ToString();
+
+
+            //            }
+            //        }
+            //        catch { }
+
+
+            //}
+            //catch (Exception erro)
+            //{
+            //    MessageBox.Show(erro.Message);
+            //}
+
+        }
+
+        private void BtnImprimir_Click(object sender, EventArgs e)
+        {
+            gerarEtiquetas(tipo, endereco, codChave, quantChave);
+        }
+
+        private void BtnSelecTudoTo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnPassSelectBack_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
+

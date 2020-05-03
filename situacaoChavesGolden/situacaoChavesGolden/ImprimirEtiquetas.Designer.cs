@@ -36,13 +36,26 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridFrom = new System.Windows.Forms.DataGridView();
             this.gridTo = new System.Windows.Forms.DataGridView();
-            this.imagem = new System.Windows.Forms.PictureBox();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.descImovel = new System.Windows.Forms.TextBox();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this.btnSelecTudo = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.imgTexto = new System.Windows.Forms.PictureBox();
             this.btnPassSelec = new System.Windows.Forms.PictureBox();
+            this.imagem = new System.Windows.Forms.PictureBox();
+            this.btnSelecTudoTo = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imagem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgTexto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPassSelec)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagem)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridFrom
@@ -71,7 +84,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridFrom.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridFrom.GridColor = System.Drawing.Color.White;
-            this.gridFrom.Location = new System.Drawing.Point(23, 43);
+            this.gridFrom.Location = new System.Drawing.Point(23, 92);
             this.gridFrom.Name = "gridFrom";
             this.gridFrom.ReadOnly = true;
             this.gridFrom.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -116,8 +129,7 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridTo.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridTo.GridColor = System.Drawing.Color.White;
-            this.gridTo.Location = new System.Drawing.Point(329, 43);
-            this.gridTo.MultiSelect = false;
+            this.gridTo.Location = new System.Drawing.Point(329, 92);
             this.gridTo.Name = "gridTo";
             this.gridTo.ReadOnly = true;
             this.gridTo.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -135,6 +147,109 @@
             this.gridTo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridTo.Size = new System.Drawing.Size(262, 325);
             this.gridTo.TabIndex = 47;
+            this.gridTo.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridTo_CellFormatting);
+            this.gridTo.SelectionChanged += new System.EventHandler(this.GridTo_SelectionChanged);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // descImovel
+            // 
+            this.descImovel.Enabled = false;
+            this.descImovel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descImovel.Location = new System.Drawing.Point(625, 273);
+            this.descImovel.Margin = new System.Windows.Forms.Padding(0);
+            this.descImovel.MaxLength = 75;
+            this.descImovel.Multiline = true;
+            this.descImovel.Name = "descImovel";
+            this.descImovel.Size = new System.Drawing.Size(135, 71);
+            this.descImovel.TabIndex = 50;
+            this.descImovel.TextChanged += new System.EventHandler(this.DescImovel_TextChanged);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(625, 242);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(135, 20);
+            this.btnEditar.TabIndex = 52;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
+            // 
+            // btnSalvar
+            // 
+            this.btnSalvar.Enabled = false;
+            this.btnSalvar.Location = new System.Drawing.Point(625, 349);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(135, 20);
+            this.btnSalvar.TabIndex = 53;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
+            // 
+            // btnSelecTudo
+            // 
+            this.btnSelecTudo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnSelecTudo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelecTudo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnSelecTudo.Location = new System.Drawing.Point(23, 423);
+            this.btnSelecTudo.Name = "btnSelecTudo";
+            this.btnSelecTudo.Size = new System.Drawing.Size(262, 23);
+            this.btnSelecTudo.TabIndex = 54;
+            this.btnSelecTudo.Text = "Selecionar Tudo";
+            this.btnSelecTudo.UseVisualStyleBackColor = true;
+            this.btnSelecTudo.Click += new System.EventHandler(this.BtnSelecTudo_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.White;
+            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(107)))));
+            this.btnCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnCancelar.Location = new System.Drawing.Point(596, 476);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 58;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnImprimir.FlatAppearance.BorderSize = 0;
+            this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(107)))));
+            this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
+            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimir.ForeColor = System.Drawing.Color.White;
+            this.btnImprimir.Location = new System.Drawing.Point(696, 477);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(75, 23);
+            this.btnImprimir.TabIndex = 57;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.BtnImprimir_Click);
+            // 
+            // imgTexto
+            // 
+            this.imgTexto.Location = new System.Drawing.Point(625, 163);
+            this.imgTexto.Name = "imgTexto";
+            this.imgTexto.Size = new System.Drawing.Size(135, 74);
+            this.imgTexto.TabIndex = 51;
+            this.imgTexto.TabStop = false;
+            // 
+            // btnPassSelec
+            // 
+            this.btnPassSelec.BackColor = System.Drawing.Color.White;
+            this.btnPassSelec.Image = global::situacaoChavesGolden.Properties.Resources.PassTo;
+            this.btnPassSelec.Location = new System.Drawing.Point(293, 239);
+            this.btnPassSelec.Name = "btnPassSelec";
+            this.btnPassSelec.Size = new System.Drawing.Size(30, 30);
+            this.btnPassSelec.TabIndex = 49;
+            this.btnPassSelec.TabStop = false;
+            this.btnPassSelec.Click += new System.EventHandler(this.btnPassSelec_Click);
             // 
             // imagem
             // 
@@ -145,29 +260,69 @@
             this.imagem.TabStop = false;
             this.imagem.Visible = false;
             // 
-            // printDocument1
+            // btnSelecTudoTo
             // 
-            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            this.btnSelecTudoTo.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.btnSelecTudoTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelecTudoTo.ForeColor = System.Drawing.Color.Red;
+            this.btnSelecTudoTo.Location = new System.Drawing.Point(329, 423);
+            this.btnSelecTudoTo.Name = "btnSelecTudoTo";
+            this.btnSelecTudoTo.Size = new System.Drawing.Size(262, 23);
+            this.btnSelecTudoTo.TabIndex = 55;
+            this.btnSelecTudoTo.Text = "Limpar";
+            this.btnSelecTudoTo.UseVisualStyleBackColor = true;
+            this.btnSelecTudoTo.Click += new System.EventHandler(this.BtnSelecTudoTo_Click);
             // 
-            // btnPassSelec
+            // groupBox1
             // 
-            this.btnPassSelec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnPassSelec.Location = new System.Drawing.Point(296, 177);
-            this.btnPassSelec.Name = "btnPassSelec";
-            this.btnPassSelec.Size = new System.Drawing.Size(24, 27);
-            this.btnPassSelec.TabIndex = 49;
-            this.btnPassSelec.TabStop = false;
-            this.btnPassSelec.Click += new System.EventHandler(this.btnPassSelec_Click);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(14, 22);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(756, 447);
+            this.groupBox1.TabIndex = 59;
+            this.groupBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Gray;
+            this.label1.Location = new System.Drawing.Point(56, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(171, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Chaves à serem selecionadas";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Gray;
+            this.label2.Location = new System.Drawing.Point(385, 52);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(123, 15);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Chaves selecionadas";
             // 
             // ImprimirEtiquetas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(793, 507);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnImprimir);
+            this.Controls.Add(this.btnSelecTudoTo);
+            this.Controls.Add(this.btnSelecTudo);
+            this.Controls.Add(this.btnSalvar);
+            this.Controls.Add(this.btnEditar);
+            this.Controls.Add(this.imgTexto);
+            this.Controls.Add(this.descImovel);
             this.Controls.Add(this.btnPassSelec);
             this.Controls.Add(this.imagem);
             this.Controls.Add(this.gridTo);
             this.Controls.Add(this.gridFrom);
+            this.Controls.Add(this.groupBox1);
             this.DisplayHeader = false;
             this.Name = "ImprimirEtiquetas";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
@@ -175,9 +330,13 @@
             this.Load += new System.EventHandler(this.ImprimirEtiquetas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imagem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgTexto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPassSelec)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagem)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -188,5 +347,16 @@
         private System.Windows.Forms.PictureBox imagem;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PictureBox btnPassSelec;
+        private System.Windows.Forms.TextBox descImovel;
+        private System.Windows.Forms.PictureBox imgTexto;
+        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.Button btnSelecTudo;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.Button btnSelecTudoTo;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

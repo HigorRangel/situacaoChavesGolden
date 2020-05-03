@@ -203,9 +203,39 @@ namespace situacaoChavesGolden.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap logoSaoBernardoWhite {
+            get {
+                object obj = ResourceManager.GetObject("logoSaoBernardoWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logoSbernardo {
             get {
                 object obj = ResourceManager.GetObject("logoSbernardo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PassBack {
+            get {
+                object obj = ResourceManager.GetObject("PassBack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PassTo {
+            get {
+                object obj = ResourceManager.GetObject("PassTo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -348,6 +348,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\logoSaoBernardoWhite.png" />
+    <None Include="Resources\PassBack.png" />
+    <None Include="Resources\PassTo.png" />
     <None Include="Resources\logoSbernardo.png" />
     <None Include="Resources\ProrrogarEmprestimoGray.png" />
     <None Include="Resources\BaixaEmprestimoGray.png" />

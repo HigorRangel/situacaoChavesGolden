@@ -37,12 +37,15 @@
             this.btnChaves = new System.Windows.Forms.Button();
             this.btnInicio = new System.Windows.Forms.Button();
             this.painelPrincipal = new System.Windows.Forms.Panel();
+            this.logoImob = new System.Windows.Forms.PictureBox();
             this.metroPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoImob)).BeginInit();
             this.SuspendLayout();
             // 
             // metroPanel1
             // 
             this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(63)))), ((int)(((byte)(79)))));
+            this.metroPanel1.Controls.Add(this.logoImob);
             this.metroPanel1.Controls.Add(this.btnClientes);
             this.metroPanel1.Controls.Add(this.button1);
             this.metroPanel1.Controls.Add(this.btnReservas);
@@ -182,6 +185,16 @@
             this.painelPrincipal.Size = new System.Drawing.Size(655, 427);
             this.painelPrincipal.TabIndex = 1;
             // 
+            // logoImob
+            // 
+            this.logoImob.Image = global::situacaoChavesGolden.Properties.Resources.logoSaoBernardoWhite;
+            this.logoImob.Location = new System.Drawing.Point(9, 19);
+            this.logoImob.Name = "logoImob";
+            this.logoImob.Size = new System.Drawing.Size(128, 50);
+            this.logoImob.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logoImob.TabIndex = 8;
+            this.logoImob.TabStop = false;
+            // 
             // TelaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -198,6 +211,7 @@
             this.Theme = MetroFramework.MetroThemeStyle.Light;
             this.Load += new System.EventHandler(this.TelaPrincipal_Load);
             this.metroPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logoImob)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -213,5 +227,6 @@
         private System.Windows.Forms.Button btnEmprestimos;
         public System.Windows.Forms.Button btnChaves;
         private System.Windows.Forms.Button btnClientes;
+        private System.Windows.Forms.PictureBox logoImob;
     }
 }
