@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.btnPropostas = new System.Windows.Forms.Button();
             this.logoImob = new System.Windows.Forms.PictureBox();
             this.btnClientes = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             // metroPanel1
             // 
             this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(63)))), ((int)(((byte)(79)))));
+            this.metroPanel1.Controls.Add(this.btnPropostas);
             this.metroPanel1.Controls.Add(this.logoImob);
             this.metroPanel1.Controls.Add(this.btnClientes);
             this.metroPanel1.Controls.Add(this.button1);
@@ -64,6 +66,22 @@
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
+            // 
+            // btnPropostas
+            // 
+            this.btnPropostas.FlatAppearance.BorderSize = 0;
+            this.btnPropostas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(16)))), ((int)(((byte)(20)))));
+            this.btnPropostas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(67)))), ((int)(((byte)(87)))));
+            this.btnPropostas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPropostas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPropostas.ForeColor = System.Drawing.Color.White;
+            this.btnPropostas.Location = new System.Drawing.Point(0, 312);
+            this.btnPropostas.Name = "btnPropostas";
+            this.btnPropostas.Size = new System.Drawing.Size(146, 35);
+            this.btnPropostas.TabIndex = 9;
+            this.btnPropostas.Text = "Propostas";
+            this.btnPropostas.UseVisualStyleBackColor = true;
+            this.btnPropostas.Click += new System.EventHandler(this.BtnPropostas_Click);
             // 
             // logoImob
             // 
@@ -204,6 +222,8 @@
             this.Controls.Add(this.painelPrincipal);
             this.Controls.Add(this.metroPanel1);
             this.DisplayHeader = false;
+            this.MaximizeBox = false;
+            this.Movable = false;
             this.Name = "TelaPrincipal";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Resizable = false;
@@ -229,5 +249,6 @@
         public System.Windows.Forms.Button btnChaves;
         private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.PictureBox logoImob;
+        private System.Windows.Forms.Button btnPropostas;
     }
 }

@@ -13,9 +13,11 @@ namespace situacaoChavesGolden
     public partial class Dashboard : MetroFramework.Forms.MetroForm
     {
         PostgreSQL database = new PostgreSQL();
-        public Dashboard()
+        string user = "";
+        public Dashboard(string usuario)
         {
             InitializeComponent();
+            user = usuario;
         }
 
         void atualizarInfo()
@@ -70,6 +72,25 @@ namespace situacaoChavesGolden
         private void Dashboard_Load(object sender, EventArgs e)
         {
             atualizarInfo();
+        }
+
+        private void EntregaAtrasadaPic_Click(object sender, EventArgs e)
+        {
+            Emprestimo emprestimo = new Emprestimo();
+            emprestimo.ShowDialog();
+        }
+
+        private void ReservasAtivasPic_Click(object sender, EventArgs e)
+        {
+            Reserva reserva = new Reserva(user);
+            reserva.ShowDialog();
+
+        }
+
+        private void EmprestAtivosPic_Click(object sender, EventArgs e)
+        {
+            Emprestimo emprestimo = new Emprestimo();
+            emprestimo.ShowDialog();
         }
     }
 }

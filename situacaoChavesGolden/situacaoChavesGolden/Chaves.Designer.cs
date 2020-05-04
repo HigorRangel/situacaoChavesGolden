@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridChaves = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.codigoImob = new System.Windows.Forms.Label();
@@ -58,7 +58,6 @@
             this.textBoxBusca = new MetroFramework.Controls.MetroTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnCadastrarChave = new System.Windows.Forms.Label();
             this.filtrosPanel = new System.Windows.Forms.Panel();
             this.btnRestaurar = new System.Windows.Forms.Label();
@@ -82,13 +81,13 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnPrintTags = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnReservar = new System.Windows.Forms.Button();
             this.btnEmprestar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnFiltro = new System.Windows.Forms.PictureBox();
-            this.btnPrintTags = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupMenuSup.SuspendLayout();
@@ -110,14 +109,14 @@
             this.gridChaves.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
             this.gridChaves.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridChaves.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridChaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridChaves.GridColor = System.Drawing.Color.White;
             this.gridChaves.Location = new System.Drawing.Point(23, 68);
@@ -125,14 +124,14 @@
             this.gridChaves.Name = "gridChaves";
             this.gridChaves.ReadOnly = true;
             this.gridChaves.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridChaves.RowHeadersVisible = false;
             this.gridChaves.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridChaves.RowTemplate.ReadOnly = true;
@@ -444,21 +443,11 @@
             this.metroLabel1.Text = "Chaves";
             this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(491, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
             // btnCadastrarChave
             // 
             this.btnCadastrarChave.AutoSize = true;
             this.btnCadastrarChave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCadastrarChave.Location = new System.Drawing.Point(242, 259);
+            this.btnCadastrarChave.Location = new System.Drawing.Point(229, 256);
             this.btnCadastrarChave.Name = "btnCadastrarChave";
             this.btnCadastrarChave.Size = new System.Drawing.Size(121, 13);
             this.btnCadastrarChave.TabIndex = 22;
@@ -674,6 +663,23 @@
             this.label10.TabIndex = 1;
             this.label10.Text = "Chave reservada";
             // 
+            // btnPrintTags
+            // 
+            this.btnPrintTags.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrintTags.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnPrintTags.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnPrintTags.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnPrintTags.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnPrintTags.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintTags.Image = global::situacaoChavesGolden.Properties.Resources.Print1;
+            this.btnPrintTags.Location = new System.Drawing.Point(138, 248);
+            this.btnPrintTags.Name = "btnPrintTags";
+            this.btnPrintTags.Size = new System.Drawing.Size(24, 22);
+            this.btnPrintTags.TabIndex = 46;
+            this.toolTipReservar.SetToolTip(this.btnPrintTags, "Imprimir Plaquinhas");
+            this.btnPrintTags.UseVisualStyleBackColor = true;
+            this.btnPrintTags.Click += new System.EventHandler(this.btnPrintTags_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(243)))), ((int)(((byte)(135)))));
@@ -765,23 +771,6 @@
             this.btnFiltro.TabStop = false;
             this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
             // 
-            // btnPrintTags
-            // 
-            this.btnPrintTags.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrintTags.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
-            this.btnPrintTags.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnPrintTags.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnPrintTags.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnPrintTags.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrintTags.Image = global::situacaoChavesGolden.Properties.Resources.Filter;
-            this.btnPrintTags.Location = new System.Drawing.Point(156, 248);
-            this.btnPrintTags.Name = "btnPrintTags";
-            this.btnPrintTags.Size = new System.Drawing.Size(24, 22);
-            this.btnPrintTags.TabIndex = 46;
-            this.toolTipReservar.SetToolTip(this.btnPrintTags, "Reservar Chave");
-            this.btnPrintTags.UseVisualStyleBackColor = true;
-            this.btnPrintTags.Click += new System.EventHandler(this.btnPrintTags_Click);
-            // 
             // Chaves
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -796,7 +785,6 @@
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnCadastrarChave);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.groupMenuSup);
             this.Controls.Add(this.tipoImovel);
@@ -871,7 +859,6 @@
         private MetroFramework.Controls.MetroTextBox textBoxBusca;
         private System.Windows.Forms.GroupBox groupBox2;
         private MetroFramework.Controls.MetroLabel metroLabel1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label btnCadastrarChave;
         public MetroFramework.Controls.MetroRadioButton radioTodos;
         public MetroFramework.Controls.MetroRadioButton radioVenda;

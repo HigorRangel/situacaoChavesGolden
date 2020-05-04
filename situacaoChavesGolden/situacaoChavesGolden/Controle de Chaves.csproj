@@ -232,6 +232,12 @@
     <Compile Include="PostgreSQL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Propostas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Propostas.Designer.cs">
+      <DependentUpon>Propostas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Proprietarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +320,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Propostas.resx">
+      <DependentUpon>Propostas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Proprietarios.resx">
       <DependentUpon>Proprietarios.cs</DependentUpon>
     </EmbeddedResource>
@@ -348,6 +357,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\Print1.png" />
+    <None Include="Resources\Print.png" />
     <None Include="Resources\propostaDash.png" />
     <None Include="Resources\emprestimoDash.png" />
     <None Include="Resources\reservaDash.png" />

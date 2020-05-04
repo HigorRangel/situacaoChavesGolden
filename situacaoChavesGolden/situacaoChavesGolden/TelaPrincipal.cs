@@ -56,14 +56,14 @@ namespace situacaoChavesGolden
 
         private void TelaPrincipal_Load(object sender, EventArgs e)
         {
-            Dashboard dashboard = new Dashboard();
+            Dashboard dashboard = new Dashboard(usuario);
             atualizarForm(dashboard);
         }
 
        
         private void BtnInicio_Click(object sender, EventArgs e)
         {
-            Dashboard dashboard = new Dashboard();
+            Dashboard dashboard = new Dashboard(usuario);
             atualizarForm(dashboard);
         }
 
@@ -98,6 +98,12 @@ namespace situacaoChavesGolden
         {
             Reserva telaReserva = new Reserva(usuario);
             atualizarForm(telaReserva);
+        }
+
+        private void BtnPropostas_Click(object sender, EventArgs e)
+        {
+            Propostas propostas = new Propostas();
+            atualizarForm(propostas);
         }
     }
 }

@@ -87,7 +87,7 @@ namespace situacaoChavesGolden
                 if (!(boxValor.Text == "" && boxCond.Text == "" && boxFormaLoc.Text == "" && boxOutros.Text == ""))
                 {
                     database.insertInto(string.Format("INSERT INTO proposta (valor, condominio, forma_locacao, outros, emprestimo, data)" +
-                                                      " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", boxValor.Text, boxCond.Text,
+                                                      " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", boxValor.Text, boxCond.Text,
                                                       boxFormaLoc.Text, boxOutros.Text, codigoEmprestimo, dataHoje));
                 }
 
