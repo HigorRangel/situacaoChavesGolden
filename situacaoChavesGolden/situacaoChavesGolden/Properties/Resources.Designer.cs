@@ -143,6 +143,26 @@ namespace situacaoChavesGolden.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap contraProposta {
+            get {
+                object obj = ResourceManager.GetObject("contraProposta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap contraPropostagGray {
+            get {
+                object obj = ResourceManager.GetObject("contraPropostagGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Delete {
             get {
                 object obj = ResourceManager.GetObject("Delete", resourceCulture);
@@ -156,6 +176,16 @@ namespace situacaoChavesGolden.Properties {
         internal static System.Drawing.Bitmap Delete1 {
             get {
                 object obj = ResourceManager.GetObject("Delete1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Delete2 {
+            get {
+                object obj = ResourceManager.GetObject("Delete2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -326,6 +356,36 @@ namespace situacaoChavesGolden.Properties {
         internal static System.Drawing.Bitmap reservaDash {
             get {
                 object obj = ResourceManager.GetObject("reservaDash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Sucess {
+            get {
+                object obj = ResourceManager.GetObject("Sucess", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SucessGray {
+            get {
+                object obj = ResourceManager.GetObject("SucessGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SucessGray1 {
+            get {
+                object obj = ResourceManager.GetObject("SucessGray1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -21,6 +21,7 @@ namespace situacaoChavesGolden
         List<string> codChave = new List<string>();
         List<string> quantChave = new List<string>();
         DataTable tabelaChave = new DataTable();
+        int qtdChaves = 0;
 
         PostgreSQL database = new PostgreSQL();
         public ImprimirEtiquetas()
@@ -46,6 +47,9 @@ namespace situacaoChavesGolden
             gridFrom.Columns[0].Width = 30;
             gridFrom.Columns[1].Width = 228;
 
+            qtdChaves = tabelaChave.Rows.Count;
+            contPlacas.Text = string.Format("{0}/{1}", gridTo.Rows.Count, qtdChaves);
+
         }
 
         void atualizarRectTexto(string texto)
@@ -61,9 +65,13 @@ namespace situacaoChavesGolden
             Pen caneta = new Pen(new SolidBrush(Color.Black));
             drawer.DrawRectangle(caneta, rect);
 
+            StringFormat sf = new StringFormat();
+            sf.Alignment = StringAlignment.Center;
+            sf.LineAlignment = StringAlignment.Center;
+
             drawer.DrawString(texto,
                 new Font("Consolas", 12, FontStyle.Regular, GraphicsUnit.Pixel),
-                new SolidBrush(Color.Black), rect);
+                new SolidBrush(Color.Black), rect, sf);
 
             imgTexto.BackgroundImage = bm;
         }
@@ -317,6 +325,7 @@ namespace situacaoChavesGolden
                     Brush brushTxtImovel = new SolidBrush(Color.Black);
                     StringFormat sfTxtImovel = new StringFormat();
                     sfTxtImovel.Alignment = StringAlignment.Center;
+                    sfTxtImovel.LineAlignment = StringAlignment.Center;
 
                     desenhador.DrawString(endereco[i], fonteTxtImovel, brushTxtImovel, rectTxt, sfTxtImovel);
                     //Ed.Morada do Sol\nRua João Paulo Rodrigues -Jardim São Domingos(L0157)
@@ -431,7 +440,7 @@ namespace situacaoChavesGolden
                         gridFrom.Rows.RemoveAt(row.Index);
 
                         DataTable tabelaChaves = new DataTable();
-                        tabelaChaves = database.select(string.Format("SELECT categoria_imovel, (CASE WHEN cond is null THEN '' ELSE cond || ' - '  END) || rua || ', ' || numero || " +
+                        tabelaChaves = database.select(string.Format("SELECT categoria_imovel, (CASE WHEN cond is null THEN '' ELSE cond || ' - '  END) || rua || ', ' || ' Nº ' || numero || " +
                                                       " (CASE WHEN complemento = '' THEN '' ELSE '[' || complemento || ']' END) || ' - ' || bairro || " +
                                                       " ' (' || cod_imob || ')' as endereco, cod_chave, quant_chaves" +
                                                       " FROM chave" +
@@ -563,6 +572,9 @@ namespace situacaoChavesGolden
 
         private void gridTo_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
+
+            contPlacas.Text = string.Format("{0}/{1}", gridTo.Rows.Count, qtdChaves);
+
             if (gridTo.Rows.Count == 0)
             {
                 btnImprimir.Enabled = false;
@@ -575,6 +587,8 @@ namespace situacaoChavesGolden
 
         private void gridTo_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
+            contPlacas.Text = string.Format("{0}/{1}", gridTo.Rows.Count, qtdChaves);
+
             if (gridTo.Rows.Count == 0)
             {
                 btnImprimir.Enabled = false;
@@ -583,6 +597,11 @@ namespace situacaoChavesGolden
             {
                 btnImprimir.Enabled = true;
             }
+        }
+
+        private void GroupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -101,9 +101,9 @@ namespace situacaoChavesGolden
                     boxEstado.Text = row[4].ToString();
                     comboLocalizacao.SelectedItem = row[8].ToString();
                     codImovel.Text = row[10].ToString();
-                    boxQtdChaves.Value = int.Parse(row[14].ToString());
-                    boxCond.Text = row[15].ToString();
-                    boxCategImov.Text = row[16].ToString();
+                    boxQtdChaves.Value = int.Parse(row[15].ToString());
+                    boxCond.Text = row[16].ToString();
+                    boxCategImov.Text = row[17].ToString();
                     
                     if(row[7].ToString() == "DISPONIVEL")
                     {
@@ -440,6 +440,31 @@ namespace situacaoChavesGolden
         }
 
         private void BoxCodProp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GroupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BoxOutraLocalizacao_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MetroLabel8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CodImovel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RadioChaveDisponivel_CheckedChanged(object sender, EventArgs e)
         {
 
         }

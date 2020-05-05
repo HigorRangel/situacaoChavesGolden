@@ -357,6 +357,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\contraPropostagGray.png" />
+    <None Include="Resources\SucessGray.png" />
+    <None Include="Resources\Delete1.png" />
+    <None Include="Resources\contraProposta.png" />
+    <None Include="Resources\Sucess.png" />
     <None Include="Resources\Print1.png" />
     <None Include="Resources\Print.png" />
     <None Include="Resources\propostaDash.png" />

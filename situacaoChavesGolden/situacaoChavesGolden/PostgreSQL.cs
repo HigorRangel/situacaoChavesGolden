@@ -19,7 +19,7 @@ namespace situacaoChavesGolden
 
             string connectionString = "";
             //connectionString = "Server=localhost;Port=5432;UserID=postgres;Password=123456;Database=" + nomeDB; //String para conexão no PostgreSQL
-            connectionString = "Server=192.168.1.39;Port=5432;UserID=postgres;Password=123456;Database=" + nomeDB; //String para conexão no PostgreSQL
+            connectionString = "Server=localhost;Port=5432;UserID=postgres;Password=123456;Database=" + nomeDB; //String para conexão no PostgreSQL
 
             NpgsqlConnection conn = new NpgsqlConnection(connectionString); //Cria objeto para conexão
 

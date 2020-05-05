@@ -106,7 +106,7 @@
             this.boxLogradouro.Location = new System.Drawing.Point(29, 175);
             this.boxLogradouro.Name = "boxLogradouro";
             this.boxLogradouro.Size = new System.Drawing.Size(374, 25);
-            this.boxLogradouro.TabIndex = 6;
+            this.boxLogradouro.TabIndex = 1;
             this.boxLogradouro.UseStyleColors = true;
             this.boxLogradouro.Click += new System.EventHandler(this.BoxLogradouro_Click);
             // 
@@ -128,7 +128,7 @@
             this.boxNumero.Location = new System.Drawing.Point(13, 81);
             this.boxNumero.Name = "boxNumero";
             this.boxNumero.Size = new System.Drawing.Size(62, 25);
-            this.boxNumero.TabIndex = 7;
+            this.boxNumero.TabIndex = 2;
             this.boxNumero.UseStyleColors = true;
             // 
             // boxCidade
@@ -150,7 +150,7 @@
             this.boxBairro.Location = new System.Drawing.Point(89, 81);
             this.boxBairro.Name = "boxBairro";
             this.boxBairro.Size = new System.Drawing.Size(124, 25);
-            this.boxBairro.TabIndex = 8;
+            this.boxBairro.TabIndex = 3;
             this.boxBairro.UseStyleColors = true;
             // 
             // boxEstado
@@ -223,7 +223,7 @@
             this.boxComplemento.Location = new System.Drawing.Point(226, 81);
             this.boxComplemento.Name = "boxComplemento";
             this.boxComplemento.Size = new System.Drawing.Size(158, 25);
-            this.boxComplemento.TabIndex = 9;
+            this.boxComplemento.TabIndex = 4;
             this.boxComplemento.UseStyleColors = true;
             // 
             // groupSitImovel
@@ -373,7 +373,7 @@
             this.groupBox5.Location = new System.Drawing.Point(16, 146);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(397, 268);
-            this.groupBox5.TabIndex = 3000;
+            this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             // 
             // excluiProp
@@ -444,8 +444,9 @@
             this.groupBox2.Location = new System.Drawing.Point(16, 24);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(397, 116);
-            this.groupBox2.TabIndex = 2000;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
             // metroLabel15
             // 
@@ -499,6 +500,7 @@
             this.radioChaveDisponivel.TabStop = true;
             this.radioChaveDisponivel.Text = "DISPONIVEL";
             this.radioChaveDisponivel.UseVisualStyleBackColor = true;
+            this.radioChaveDisponivel.CheckedChanged += new System.EventHandler(this.RadioChaveDisponivel_CheckedChanged);
             // 
             // boxOutraLocalizacao
             // 
@@ -509,9 +511,10 @@
             this.boxOutraLocalizacao.Name = "boxOutraLocalizacao";
             this.boxOutraLocalizacao.Size = new System.Drawing.Size(220, 25);
             this.boxOutraLocalizacao.Style = MetroFramework.MetroColorStyle.Silver;
-            this.boxOutraLocalizacao.TabIndex = 5;
+            this.boxOutraLocalizacao.TabIndex = 4;
             this.boxOutraLocalizacao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.boxOutraLocalizacao.UseStyleColors = true;
+            this.boxOutraLocalizacao.Click += new System.EventHandler(this.BoxOutraLocalizacao_Click);
             // 
             // metroLabel11
             // 
@@ -534,7 +537,7 @@
             this.comboLocalizacao.Location = new System.Drawing.Point(13, 76);
             this.comboLocalizacao.Name = "comboLocalizacao";
             this.comboLocalizacao.Size = new System.Drawing.Size(140, 29);
-            this.comboLocalizacao.TabIndex = 4;
+            this.comboLocalizacao.TabIndex = 3;
             // 
             // metroLabel8
             // 
@@ -545,6 +548,7 @@
             this.metroLabel8.Size = new System.Drawing.Size(75, 15);
             this.metroLabel8.TabIndex = 1000;
             this.metroLabel8.Text = "Cód. Imóvel *";
+            this.metroLabel8.Click += new System.EventHandler(this.MetroLabel8_Click);
             // 
             // codImovel
             // 
@@ -557,6 +561,7 @@
             this.codImovel.TabIndex = 1;
             this.codImovel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.codImovel.UseStyleColors = true;
+            this.codImovel.Click += new System.EventHandler(this.CodImovel_Click);
             // 
             // labelProp
             // 
@@ -619,7 +624,7 @@
             this.painelProp.Controls.Add(this.btnConfirmarProp);
             this.painelProp.Controls.Add(this.gridProprietarios);
             this.painelProp.Controls.Add(this.boxProcurarProp);
-            this.painelProp.Location = new System.Drawing.Point(27, 183);
+            this.painelProp.Location = new System.Drawing.Point(27, 149);
             this.painelProp.Name = "painelProp";
             this.painelProp.Size = new System.Drawing.Size(374, 225);
             this.painelProp.TabIndex = 25;
