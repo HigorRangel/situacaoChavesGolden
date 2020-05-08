@@ -183,14 +183,7 @@ namespace situacaoChavesGolden
 
         private void RetirarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string codigoChave = gridChaves.CurrentRow.Cells[0].Value.ToString();
-            RetirarChave telaRetirar = new RetirarChave(codigoChave);
-            telaRetirar.ShowDialog();
-
-            if(telaRetirar.DialogResult == DialogResult.OK)
-            {
-                atualizarGridChave();
-            }
+           
         }
     }
 }

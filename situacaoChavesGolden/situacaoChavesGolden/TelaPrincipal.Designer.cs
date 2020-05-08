@@ -39,6 +39,7 @@
             this.btnChaves = new System.Windows.Forms.Button();
             this.btnInicio = new System.Windows.Forms.Button();
             this.painelPrincipal = new System.Windows.Forms.Panel();
+            this.btnRetirados = new System.Windows.Forms.Button();
             this.metroPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoImob)).BeginInit();
             this.SuspendLayout();
@@ -46,6 +47,7 @@
             // metroPanel1
             // 
             this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(63)))), ((int)(((byte)(79)))));
+            this.metroPanel1.Controls.Add(this.btnRetirados);
             this.metroPanel1.Controls.Add(this.btnPropostas);
             this.metroPanel1.Controls.Add(this.logoImob);
             this.metroPanel1.Controls.Add(this.btnClientes);
@@ -212,6 +214,23 @@
             this.painelPrincipal.Name = "painelPrincipal";
             this.painelPrincipal.Size = new System.Drawing.Size(655, 427);
             this.painelPrincipal.TabIndex = 1;
+            this.painelPrincipal.Paint += new System.Windows.Forms.PaintEventHandler(this.PainelPrincipal_Paint);
+            // 
+            // btnRetirados
+            // 
+            this.btnRetirados.FlatAppearance.BorderSize = 0;
+            this.btnRetirados.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(16)))), ((int)(((byte)(20)))));
+            this.btnRetirados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(67)))), ((int)(((byte)(87)))));
+            this.btnRetirados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRetirados.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRetirados.ForeColor = System.Drawing.Color.White;
+            this.btnRetirados.Location = new System.Drawing.Point(0, 347);
+            this.btnRetirados.Name = "btnRetirados";
+            this.btnRetirados.Size = new System.Drawing.Size(146, 35);
+            this.btnRetirados.TabIndex = 10;
+            this.btnRetirados.Text = "Retirados";
+            this.btnRetirados.UseVisualStyleBackColor = true;
+            this.btnRetirados.Click += new System.EventHandler(this.BtnRetirados_Click);
             // 
             // TelaPrincipal
             // 
@@ -245,10 +264,11 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnReservas;
         private System.Windows.Forms.Button btnProprietarios;
-        private System.Windows.Forms.Button btnEmprestimos;
         public System.Windows.Forms.Button btnChaves;
         private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.PictureBox logoImob;
         private System.Windows.Forms.Button btnPropostas;
+        public System.Windows.Forms.Button btnEmprestimos;
+        private System.Windows.Forms.Button btnRetirados;
     }
 }

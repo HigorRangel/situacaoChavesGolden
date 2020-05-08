@@ -649,12 +649,13 @@
             // btnEmprestar
             // 
             this.btnEmprestar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEmprestar.Enabled = false;
             this.btnEmprestar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
             this.btnEmprestar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
             this.btnEmprestar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnEmprestar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnEmprestar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEmprestar.Image = global::situacaoChavesGolden.Properties.Resources.ChaveEmprestar;
+            this.btnEmprestar.Image = global::situacaoChavesGolden.Properties.Resources.ChaveEmprestarGray;
             this.btnEmprestar.Location = new System.Drawing.Point(51, 239);
             this.btnEmprestar.Name = "btnEmprestar";
             this.btnEmprestar.Size = new System.Drawing.Size(24, 22);
@@ -665,12 +666,13 @@
             // btnExcluir
             // 
             this.btnExcluir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluir.Enabled = false;
             this.btnExcluir.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
             this.btnExcluir.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
             this.btnExcluir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnExcluir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcluir.Image = global::situacaoChavesGolden.Properties.Resources.Delete1;
+            this.btnExcluir.Image = global::situacaoChavesGolden.Properties.Resources.DeleteGray;
             this.btnExcluir.Location = new System.Drawing.Point(21, 239);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(24, 22);

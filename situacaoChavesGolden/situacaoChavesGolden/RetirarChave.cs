@@ -16,12 +16,15 @@ namespace situacaoChavesGolden
         DateTime dataHora = DateTime.Now;
 
         string codigoChave = "";
+        string usuario = "";
 
-        public RetirarChave(string codChave)
+        public RetirarChave(string codChave, string user)
         {
             InitializeComponent();
 
             codigoChave = codChave;
+
+            usuario = user;
         }
 
         private void RetirarChave_Load(object sender, EventArgs e)
@@ -63,9 +66,9 @@ namespace situacaoChavesGolden
             {
                 try
                 {
-                    database.insertInto(string.Format("INSERT INTO retirado (cod_chave, tipo_retirada, quem_retirou, descricao, data_retirada)" +
-                                                    " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", codigoChave, tipoRetirada, quemRetirouBox.Text,
-                                                    descricaoBox.Text, dataAgora));
+                    database.insertInto(string.Format("INSERT INTO retirado (cod_chave, tipo_retirada, quem_retirou, descricao, data_retirada, cod_usuario)" +
+                                                    " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", codigoChave, tipoRetirada, quemRetirouBox.Text,
+                                                    descricaoBox.Text, dataAgora, usuario));
 
                     database.update(string.Format("UPDATE chave " +
                                                   " SET situacao = 'INDISPONIVEL', localizacao = '{0}'," +

@@ -79,11 +79,11 @@
             // entAtrasada
             // 
             this.entAtrasada.AutoSize = true;
-            this.entAtrasada.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.entAtrasada.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entAtrasada.ForeColor = System.Drawing.Color.DarkGray;
             this.entAtrasada.Location = new System.Drawing.Point(60, 105);
             this.entAtrasada.Name = "entAtrasada";
-            this.entAtrasada.Size = new System.Drawing.Size(11, 16);
+            this.entAtrasada.Size = new System.Drawing.Size(10, 14);
             this.entAtrasada.TabIndex = 2;
             this.entAtrasada.Text = " ";
             this.entAtrasada.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -91,23 +91,24 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label6.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(63)))), ((int)(((byte)(79)))));
-            this.label6.Location = new System.Drawing.Point(1, 86);
+            this.label6.Location = new System.Drawing.Point(3, 86);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(128, 16);
+            this.label6.Size = new System.Drawing.Size(124, 14);
             this.label6.TabIndex = 1;
             this.label6.Text = "ENTREGAS ATRASADAS";
             // 
             // entregaAtrasadaPic
             // 
+            this.entregaAtrasadaPic.Cursor = System.Windows.Forms.Cursors.Hand;
             this.entregaAtrasadaPic.Image = global::situacaoChavesGolden.Properties.Resources.ampulhetaDash;
             this.entregaAtrasadaPic.Location = new System.Drawing.Point(35, 13);
             this.entregaAtrasadaPic.Name = "entregaAtrasadaPic";
             this.entregaAtrasadaPic.Size = new System.Drawing.Size(61, 67);
             this.entregaAtrasadaPic.TabIndex = 0;
             this.entregaAtrasadaPic.TabStop = false;
-            this.entregaAtrasadaPic.Click += new System.EventHandler(this.EntregaAtrasadaPic_Click);
             // 
             // groupBox5
             // 
@@ -196,11 +197,11 @@
             // reservaAtiva
             // 
             this.reservaAtiva.AutoSize = true;
-            this.reservaAtiva.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.reservaAtiva.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reservaAtiva.ForeColor = System.Drawing.Color.DarkGray;
             this.reservaAtiva.Location = new System.Drawing.Point(60, 105);
             this.reservaAtiva.Name = "reservaAtiva";
-            this.reservaAtiva.Size = new System.Drawing.Size(11, 16);
+            this.reservaAtiva.Size = new System.Drawing.Size(10, 14);
             this.reservaAtiva.TabIndex = 2;
             this.reservaAtiva.Text = " ";
             this.reservaAtiva.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -208,16 +209,18 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label9.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.label9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(63)))), ((int)(((byte)(79)))));
-            this.label9.Location = new System.Drawing.Point(14, 86);
+            this.label9.Location = new System.Drawing.Point(17, 86);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(103, 16);
+            this.label9.Size = new System.Drawing.Size(96, 14);
             this.label9.TabIndex = 1;
             this.label9.Text = "RESERVAS ATIVAS";
             // 
             // reservasAtivasPic
             // 
+            this.reservasAtivasPic.Cursor = System.Windows.Forms.Cursors.Hand;
             this.reservasAtivasPic.Image = global::situacaoChavesGolden.Properties.Resources.reservaDash;
             this.reservasAtivasPic.Location = new System.Drawing.Point(35, 13);
             this.reservasAtivasPic.Name = "reservasAtivasPic";
@@ -225,7 +228,6 @@
             this.reservasAtivasPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.reservasAtivasPic.TabIndex = 0;
             this.reservasAtivasPic.TabStop = false;
-            this.reservasAtivasPic.Click += new System.EventHandler(this.ReservasAtivasPic_Click);
             // 
             // groupBox3
             // 
@@ -241,11 +243,11 @@
             // emprestAtivo
             // 
             this.emprestAtivo.AutoSize = true;
-            this.emprestAtivo.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.emprestAtivo.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emprestAtivo.ForeColor = System.Drawing.Color.DarkGray;
             this.emprestAtivo.Location = new System.Drawing.Point(60, 105);
             this.emprestAtivo.Name = "emprestAtivo";
-            this.emprestAtivo.Size = new System.Drawing.Size(11, 16);
+            this.emprestAtivo.Size = new System.Drawing.Size(10, 14);
             this.emprestAtivo.TabIndex = 2;
             this.emprestAtivo.Text = " ";
             this.emprestAtivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -253,16 +255,18 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label11.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.label11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(63)))), ((int)(((byte)(79)))));
-            this.label11.Location = new System.Drawing.Point(3, 86);
+            this.label11.Location = new System.Drawing.Point(4, 86);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(124, 16);
+            this.label11.Size = new System.Drawing.Size(122, 14);
             this.label11.TabIndex = 1;
             this.label11.Text = "EMPRÉSTIMOS ATIVOS";
             // 
             // emprestAtivosPic
             // 
+            this.emprestAtivosPic.Cursor = System.Windows.Forms.Cursors.Hand;
             this.emprestAtivosPic.Image = global::situacaoChavesGolden.Properties.Resources.emprestimoDash;
             this.emprestAtivosPic.Location = new System.Drawing.Point(35, 13);
             this.emprestAtivosPic.Name = "emprestAtivosPic";
@@ -270,7 +274,6 @@
             this.emprestAtivosPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.emprestAtivosPic.TabIndex = 0;
             this.emprestAtivosPic.TabStop = false;
-            this.emprestAtivosPic.Click += new System.EventHandler(this.EmprestAtivosPic_Click);
             // 
             // groupBox4
             // 
@@ -286,11 +289,11 @@
             // propostas
             // 
             this.propostas.AutoSize = true;
-            this.propostas.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.propostas.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.propostas.ForeColor = System.Drawing.Color.DarkGray;
             this.propostas.Location = new System.Drawing.Point(60, 105);
             this.propostas.Name = "propostas";
-            this.propostas.Size = new System.Drawing.Size(11, 16);
+            this.propostas.Size = new System.Drawing.Size(10, 14);
             this.propostas.TabIndex = 2;
             this.propostas.Text = " ";
             this.propostas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -298,16 +301,18 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label13.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.label13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(63)))), ((int)(((byte)(79)))));
-            this.label13.Location = new System.Drawing.Point(30, 86);
+            this.label13.Location = new System.Drawing.Point(32, 86);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(71, 16);
+            this.label13.Size = new System.Drawing.Size(66, 14);
             this.label13.TabIndex = 1;
             this.label13.Text = "PROPOSTAS";
             // 
             // propostasPic
             // 
+            this.propostasPic.Cursor = System.Windows.Forms.Cursors.Hand;
             this.propostasPic.Image = global::situacaoChavesGolden.Properties.Resources.propostaDash;
             this.propostasPic.Location = new System.Drawing.Point(24, 13);
             this.propostasPic.Name = "propostasPic";

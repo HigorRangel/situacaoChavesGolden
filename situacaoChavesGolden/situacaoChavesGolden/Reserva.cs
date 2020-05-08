@@ -141,6 +141,11 @@ namespace situacaoChavesGolden
 
             if (gridReserva.CurrentRow != null)
             {
+                btnExcluir.Enabled = true;
+                btnExcluir.Image = Properties.Resources.Delete;
+                btnEmprestar.Enabled = true;
+                btnEmprestar.Image = Properties.Resources.ChaveEmprestar;
+
                 DataTable dadosReserva = new DataTable();
 
                 dadosReserva = database.select(string.Format("SELECT c.cod_imob, c.cod_chave, r.situacao, " +
@@ -198,6 +203,11 @@ namespace situacaoChavesGolden
                 dataReserva.Text = "";
                 situacaoChave.Text = "";
                 funcionario.Text = "";
+
+                btnExcluir.Enabled = false;
+                btnExcluir.Image = Properties.Resources.DeleteGray;
+                btnEmprestar.Enabled = false;
+                btnEmprestar.Image = Properties.Resources.ChaveEmprestarGray;
             }
             
         }

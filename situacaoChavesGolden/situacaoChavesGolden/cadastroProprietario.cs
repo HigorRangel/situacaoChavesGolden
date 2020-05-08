@@ -77,7 +77,7 @@ namespace situacaoChavesGolden
                     contIgual++;    
                 }
 
-                else if (emailBox.Text.Trim() == row[3].ToString())
+                else if (emailBox.Text.Trim() == row[3].ToString() && emailBox.Text != "" && emailBox.Text != " ")
                 {
                     aviso = string.Format("Ja existe um cadastro com email {0}. ({1}) \nDeseja cadastrar mesmo assim?", 
                         row[3].ToString(), row[1]);

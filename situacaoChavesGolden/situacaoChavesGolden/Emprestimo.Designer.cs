@@ -488,6 +488,7 @@
             this.groupBox2.Size = new System.Drawing.Size(609, 133);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
             // funcionario
             // 

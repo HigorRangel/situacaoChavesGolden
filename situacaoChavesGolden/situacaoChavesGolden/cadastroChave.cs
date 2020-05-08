@@ -270,6 +270,7 @@ namespace situacaoChavesGolden
 
                 try
                 {
+                    string proxCod = proximoCodigo();
                     if (seletorTela == false)
                     {
                         database.insertInto(string.Format("" +
@@ -277,7 +278,27 @@ namespace situacaoChavesGolden
                         " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel, cod_chave, quant_chaves, cond, categoria_imovel)" +
                         " VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}'," +
                         " '{11}','{12}', '{13}', '{14}', '{15}', '{16}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
-                         localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, proximoCodigo(), boxQtdChaves.Value, boxCond.Text, boxCategImov.Text));
+                         localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, proxCod, boxQtdChaves.Value, boxCond.Text, boxCategImov.Text));
+
+                        Message popup = new Message("A chave foi cadastrada com o código " + proxCod + "!" +
+                           "\n Deseja imprimir a etiqueta da chave?", "", "sucesso", "escolha");
+                        popup.ShowDialog();
+
+                        if (popup.DialogResult == DialogResult.Yes)
+                        {
+                            try
+                            {
+                                ImprimirEtiquetas imprimir = new ImprimirEtiquetas(proxCod);
+                                imprimir.ShowDialog();
+                            }
+                            catch (Exception error)
+                            {
+                                Message erroMsg = new Message("Não foi possível imprimir a etiqueta. \n\nERRO: " + error.Message
+                                    , "", "erro", "confirma");
+                                erroMsg.ShowDialog();
+                            }
+                            
+                        }
 
                         this.Close();
 
@@ -294,11 +315,15 @@ namespace situacaoChavesGolden
                             " WHERE indice_chave = '{16}'", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
                             localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, boxQtdChaves.Value, boxCond.Text, boxCategImov.Text, codChave));
 
+                       
+
                         this.Close();
 
                         this.DialogResult = DialogResult.OK;
                     }
-            }
+
+                    
+                }
                 catch (Exception error)
             {
                 Message popup = new Message("Não foi possível cadastrar a chave pelo seguinte erro: \n\n" + error.Message, "Erro ao cadastrar", "erro", "confirma");

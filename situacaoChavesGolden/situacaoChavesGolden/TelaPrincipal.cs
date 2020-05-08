@@ -14,7 +14,7 @@ namespace situacaoChavesGolden
     public partial class TelaPrincipal : MetroFramework.Forms.MetroForm
     {
         //Método para atualizar o form
-        private void atualizarForm(MetroForm form)
+        public void atualizarForm(MetroForm form)
         {
             
             //Desativa o TopLevel
@@ -104,6 +104,18 @@ namespace situacaoChavesGolden
         {
             Propostas propostas = new Propostas();
             atualizarForm(propostas);
+        }
+
+        private void PainelPrincipal_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void BtnRetirados_Click(object sender, EventArgs e)
+        {
+            Retirados ret = new Retirados();
+
+            atualizarForm(ret);
         }
     }
 }

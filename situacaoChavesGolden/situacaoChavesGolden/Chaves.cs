@@ -44,7 +44,8 @@ namespace situacaoChavesGolden
 
             try
             {
-                chaves = database.select(string.Format("SELECT c.cod_chave, c.cod_imob, c.rua || ', ' || c.numero as endereco, c.bairro, c.situacao_imovel, c.indice_chave," +
+                chaves = database.select(string.Format("SELECT c.cod_chave, c.cod_imob, c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END)" +
+                                             " as endereco, c.bairro, c.situacao_imovel, c.indice_chave," +
                                              " (SELECT COUNT((CASE WHEN r.cod_reserva is not null AND " +
                                              " r.situacao != 'FINALIZADO' THEN 'RESERVADO' ELSE '' END)) " +
                                              " FROM reserva r " +
@@ -224,7 +225,7 @@ namespace situacaoChavesGolden
                         endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} [{5}]", row[1].ToString(),
                             row[5].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(),
                             row[6].ToString());
-                        proprietario.Text = row[15].ToString();
+                        proprietario.Text = row[18].ToString();
                         tipoImovel.Text = row[11].ToString();
                         sitChave.Text = row[7].ToString();
                         localizacao.Text = row[8].ToString();
@@ -251,12 +252,19 @@ namespace situacaoChavesGolden
                                             " SELECT e.cod_emprestimo" +
                                             " FROM emprestimo e" +
                                             " INNER JOIN chave c ON c.indice_chave = e.cod_chave" +
-                                            " WHERE e.cod_chave = {0} AND e.data_entrega is null", codigoChave));
+                                            " WHERE e.indice_chave = {0} AND e.data_entrega is null", codigoChave));
+
+
                         emprestimo.Text = codEmprestimo;
                         emprestimo.Cursor = Cursors.Hand;
 
+                        if(codEmprestimo == "")
+                        {
+                            emprestimo.Text = "N/A";
+                        }
+
                     }
-                    catch (NullReferenceException)
+                    catch 
                     {
                         emprestimo.Text = "N/A";
                         emprestimo.Cursor = Cursors.Default;
@@ -371,7 +379,7 @@ namespace situacaoChavesGolden
         {
             string codigoChaveRetirar = gridChaves.CurrentRow.Cells[5].Value.ToString();
 
-            RetirarChave telaRetirar = new RetirarChave(codigoChaveRetirar);
+            RetirarChave telaRetirar = new RetirarChave(codigoChaveRetirar, usuario);
             telaRetirar.ShowDialog();
 
             if (telaRetirar.DialogResult == DialogResult.OK)
@@ -399,8 +407,10 @@ namespace situacaoChavesGolden
 
         private void BtnEmprestar_Click(object sender, EventArgs e)
         {
-            if(emprestimo.Text == "N/A")
+
+            if (emprestimo.Text == "N/A")
             {
+                
                 CadastrarEmprestimo cadastrarEmp = new CadastrarEmprestimo(usuario, gridChaves.CurrentRow.Cells[5].Value.ToString());
                 cadastrarEmp.ShowDialog();
                 atualizarGridChaves();

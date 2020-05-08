@@ -18,15 +18,69 @@ namespace situacaoChavesGolden
 
         List<string> tipo = new List<string>();
         List<string> endereco = new List<string>();
-        List<string> codChave = new List<string>();
-        List<string> quantChave = new List<string>();
+        List<string> codQuantChave = new List<string>();
+        List<float> tamanhoFonte = new List<float>();
         DataTable tabelaChave = new DataTable();
         int qtdChaves = 0;
+        bool seletorTela = false;
 
         PostgreSQL database = new PostgreSQL();
         public ImprimirEtiquetas()
         {
             InitializeComponent();
+        }
+
+        public ImprimirEtiquetas(string codChave)
+        {
+            InitializeComponent();
+            seletorTela = true;
+            gridFrom.Enabled = false;
+            btnSelecTudo.Enabled = false;
+            btnSelecTudoTo.Enabled = false;
+            btnPassSelec.Enabled = false;
+            btnPassSelec.Cursor = Cursors.Arrow;
+
+            DataTable tabela = new DataTable();
+
+             tabela = database.select(string.Format("SELECT c.cod_chave::text, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, c.situacao_imovel" +
+                                                  " FROM chave c" +
+                                                  "  WHERE cod_chave = '{0}'" +
+                                                  " ORDER BY c.situacao_imovel, c.cod_chave " +
+                                                  "", codChave));
+
+            gridTo.DataSource = tabela.DefaultView;
+
+            gridTo.Columns[0].HeaderText = "Cód";
+            gridTo.Columns[1].HeaderText = "Endereço";
+            gridTo.Columns[2].Visible = false;
+            gridTo.Columns[3].Visible = false;
+
+            gridTo.Columns[0].Width = 30;
+            gridTo.Columns[1].Width = 228;
+
+
+
+            DataTable tabelaPlaca = new DataTable();
+
+            tabelaPlaca =  database.select(string.Format("SELECT categoria_imovel, (CASE WHEN cond is null OR cond = '' THEN '' ELSE cond || ' - '  END) || rua || ', ' || ' Nº ' || numero || " +
+                                                      " (CASE WHEN complemento = '' THEN '' ELSE '[' || complemento || ']' END) || ' - ' || bairro || " +
+                                                      " ' (' || cod_imob || ')' as endereco, cod_chave, quant_chaves" +
+                                                      " FROM chave" +
+                                                      " WHERE cod_chave = '{0}'", codChave));
+
+            foreach (DataRow linha in tabelaPlaca.Rows)
+            {
+                tipo.Add(linha[0].ToString());
+                endereco.Add(linha[1].ToString());
+                codQuantChave.Add(string.Format("Cód: {0}||Qtd: {1}", linha[2].ToString(), linha[3].ToString()));
+                tamanhoFonte.Add(12);
+
+                descImovel.Text = linha[1].ToString();
+                descTipo.Text = linha[0].ToString().ToUpper();
+                descCod.Text = string.Format("Cód: {0}||Qtd: {1}", linha[2].ToString(), linha[3].ToString());
+                tamFonte.Value = 12;
+            }
+           
         }
 
         void atualizarGridFrom()
@@ -70,10 +124,62 @@ namespace situacaoChavesGolden
             sf.LineAlignment = StringAlignment.Center;
 
             drawer.DrawString(texto,
-                new Font("Consolas", 12, FontStyle.Regular, GraphicsUnit.Pixel),
+                new Font("Consolas", (float)tamFonte.Value, FontStyle.Regular, GraphicsUnit.Pixel),
                 new SolidBrush(Color.Black), rect, sf);
 
             imgTexto.BackgroundImage = bm;
+
+        }
+        void atualizarRectTipo (string texto)
+        {
+            //>>>>>>>>>Gerar previsão de tipo do imóvel <<<<<<<<<<<<
+            Bitmap bmTipo = new Bitmap(imgTipo.Width, imgTipo.Height);
+            Graphics drawerTipo = Graphics.FromImage(bmTipo);
+
+            drawerTipo.Clear(Color.White);
+
+            //imgTexto.Size = new Size(cmToPixel(3.3), cmToPixel(1.9));
+            Rectangle rectTipo = new Rectangle(0, 0, cmToPixel(3.3), cmToPixel(0.4));
+
+            Pen caneta = new Pen(new SolidBrush(Color.Black));
+
+            drawerTipo.DrawRectangle(caneta, rectTipo);
+
+            StringFormat sfTipo = new StringFormat();
+            sfTipo.Alignment = StringAlignment.Center;
+            sfTipo.LineAlignment = StringAlignment.Center;
+
+            drawerTipo.DrawString(texto,
+                new Font("Consolas", (float)tamFonte.Value + 2, FontStyle.Bold, GraphicsUnit.Pixel),
+                new SolidBrush(Color.Black), rectTipo, sfTipo);
+
+            imgTipo.BackgroundImage = bmTipo;
+        }
+
+        void atualizarRectCodigo(string texto)
+        {
+            //>>>>>>>>>Gerar previsão de Cod do imóvel <<<<<<<<<<<<
+            Bitmap bmCod = new Bitmap(imgCod.Width, imgCod.Height);
+            Graphics drawerCod = Graphics.FromImage(bmCod);
+
+            drawerCod.Clear(Color.White);
+
+            //imgTexto.Size = new Size(cmToPixel(3.3), cmToPixel(1.9));
+            Rectangle rectCod = new Rectangle(0, 0, cmToPixel(3.3), cmToPixel(0.4));
+
+            Pen caneta = new Pen(new SolidBrush(Color.Black));
+
+            drawerCod.DrawRectangle(caneta, rectCod);
+
+            StringFormat sfCod = new StringFormat();
+            sfCod.Alignment = StringAlignment.Center;
+            sfCod.LineAlignment = StringAlignment.Center;
+
+            drawerCod.DrawString(texto,
+                new Font("Consolas", (float)tamFonte.Value, FontStyle.Bold, GraphicsUnit.Pixel),
+                new SolidBrush(Color.Black), rectCod, sfCod);
+
+            imgCod.BackgroundImage = bmCod;
         }
 
         private void ImprimirEtiquetas_Load(object sender, EventArgs e)
@@ -111,7 +217,7 @@ namespace situacaoChavesGolden
         }
 
         //gerarEtiquetas(List<string> tipo, List<string> endereco, List<string> codigoChave, List<string> codigoImob)
-        private void gerarEtiquetas(List<string> tipo, List<string> endereco, List<string> codChave, List<string> quantChaves)
+        private void gerarEtiquetas(List<string> tipo, List<string> endereco, List<string> codChave, List<float> tamanho)
         {
 
             int contador = tipo.Count;
@@ -306,7 +412,7 @@ namespace situacaoChavesGolden
                     //>>>>>>>>>>>>>>>>> DESENHA O RETANGULO DO TEXTO DO TIPO <<<<<<<<<<<<<<<<<<<<<<
                     Rectangle rectTxtTipo = new Rectangle(pRectTxtTipo, sRectTxtTipo);
 
-                    Font fonteTipo = new Font("Consolas", 14, FontStyle.Bold, GraphicsUnit.Pixel);
+                    Font fonteTipo = new Font("Consolas", tamanho[i] + 2, FontStyle.Bold, GraphicsUnit.Pixel);
                     Brush brushTipo = new SolidBrush(Color.Black);
                     StringFormat sfTipo = new StringFormat();
                     sfTipo.Alignment = StringAlignment.Center;
@@ -321,7 +427,7 @@ namespace situacaoChavesGolden
                     //>>>>>>>>>>>>>>>>> DESENHA O RETANGULO DA DESCRIÇÃO DO IMÓVEL <<<<<<<<<<<<<<<<<<<<<<
                     Rectangle rectTxt = new Rectangle(pRectTxtImovel, sRectTxtImovel);
 
-                    Font fonteTxtImovel = new Font("Consolas", 12, FontStyle.Regular, GraphicsUnit.Pixel);
+                    Font fonteTxtImovel = new Font("Consolas", tamanho[i], FontStyle.Regular, GraphicsUnit.Pixel);
                     Brush brushTxtImovel = new SolidBrush(Color.Black);
                     StringFormat sfTxtImovel = new StringFormat();
                     sfTxtImovel.Alignment = StringAlignment.Center;
@@ -331,14 +437,14 @@ namespace situacaoChavesGolden
                     //Ed.Morada do Sol\nRua João Paulo Rodrigues -Jardim São Domingos(L0157)
 
                     //>>>>>>>>>>>>>>>>> DESENHA O RETANGULO DA DESCRIÇÃO DA CHAVE <<<<<<<<<<<<<<<<<<<<<<
-                    Font fonteTxtCodigo = new Font("Consolas", 12, FontStyle.Regular, GraphicsUnit.Pixel);
+                    Font fonteTxtCodigo = new Font("Consolas", tamanho[i], FontStyle.Regular, GraphicsUnit.Pixel);
                     Brush brushTxtCodigo = new SolidBrush(Color.Black);
                     StringFormat sfTxtCodigo = new StringFormat();
                     sfTxtCodigo.Alignment = StringAlignment.Center;
 
                     Rectangle rectTxtCodigo = new Rectangle(pRectTxtCodigo, sRectTxtCodigo);
                     //desenhador.DrawRectangle(caneta, rectTxtCodigo);
-                    desenhador.DrawString(string.Format("cód: {0}||Qtd: {1}", codChave[i], quantChaves[i]), fonteTxtCodigo, brushTxtCodigo, rectTxtCodigo, sfTxtCodigo);
+                    desenhador.DrawString(codQuantChave[i], fonteTxtCodigo, brushTxtCodigo, rectTxtCodigo, sfTxtCodigo);
 
 
                     pRectBase.X += 200;
@@ -426,6 +532,7 @@ namespace situacaoChavesGolden
             if(gridTo.Rows.Count + gridFrom.SelectedRows.Count >= 20)
             {
                 Message popup = new Message("O limite de plaquinhas foi atingido (Máx: 120)", "Erro", "erro", "confirma");
+                popup.ShowDialog();
             }
             else
             {
@@ -440,7 +547,7 @@ namespace situacaoChavesGolden
                         gridFrom.Rows.RemoveAt(row.Index);
 
                         DataTable tabelaChaves = new DataTable();
-                        tabelaChaves = database.select(string.Format("SELECT categoria_imovel, (CASE WHEN cond is null THEN '' ELSE cond || ' - '  END) || rua || ', ' || ' Nº ' || numero || " +
+                        tabelaChaves = database.select(string.Format("SELECT categoria_imovel, (CASE WHEN cond is null OR cond = '' THEN '' ELSE cond || ' - '  END) || rua || ', ' || ' Nº ' || numero || " +
                                                       " (CASE WHEN complemento = '' THEN '' ELSE '[' || complemento || ']' END) || ' - ' || bairro || " +
                                                       " ' (' || cod_imob || ')' as endereco, cod_chave, quant_chaves" +
                                                       " FROM chave" +
@@ -450,12 +557,13 @@ namespace situacaoChavesGolden
                         {
                             tipo.Add(linha[0].ToString());
                             endereco.Add(linha[1].ToString());
-                            codChave.Add(linha[2].ToString());
-                            quantChave.Add(linha[3].ToString());
-
+                            codQuantChave.Add(string.Format("Cód: {0}||Qtd: {1}", linha[2].ToString(), linha[3].ToString()));
+                            tamanhoFonte.Add(12);
 
                             descImovel.Text = linha[1].ToString();
-
+                            descTipo.Text = linha[0].ToString().ToUpper();
+                            descCod.Text = string.Format("Cód: {0}||Qtd: {1}", linha[2].ToString(), linha[3].ToString());
+                            tamFonte.Value = 12;
 
                         }
 
@@ -478,7 +586,7 @@ namespace situacaoChavesGolden
             {
                 DataGridViewRow row = gridTo.Rows[e.RowIndex];
 
-                if (row.Cells[1].Value.ToString().Length > 75)
+                if (row.Cells[1].Value.ToString().Length > 70)
                 {
                     row.DefaultCellStyle.BackColor = Color.FromArgb(255, 176, 176);
                     row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(199, 76, 76);                }
@@ -491,19 +599,30 @@ namespace situacaoChavesGolden
         private void BtnEditar_Click(object sender, EventArgs e)
         {
             descImovel.Enabled = true;
+            descTipo.Enabled = true;
+            descCod.Enabled = true;
             btnEditar.Enabled = false;
             btnSalvar.Enabled = true;
+            tamFonte.Enabled = true;
         }
 
         private void BtnSalvar_Click(object sender, EventArgs e)
         {
             descImovel.Enabled = false;
+            descTipo.Enabled = false;
+            descCod.Enabled = false;
             btnEditar.Enabled = true;
             btnSalvar.Enabled = false;
+            tamFonte.Enabled = false;
 
             endereco[gridTo.CurrentRow.Index] = descImovel.Text;
+            tipo[gridTo.CurrentRow.Index] = descTipo.Text;
+            codQuantChave[gridTo.CurrentRow.Index] = descCod.Text;
+            tamanhoFonte[gridTo.CurrentRow.Index] = (float)tamFonte.Value;
 
-            
+
+
+
         }
 
         private void GridTo_SelectionChanged(object sender, EventArgs e)
@@ -511,15 +630,22 @@ namespace situacaoChavesGolden
             if(gridTo.CurrentRow.Selected)
             {
                 descImovel.Text = "";
+                descTipo.Text = "";
+                descCod.Text = "";
             }
 
             descImovel.Enabled = false;
+            descTipo.Enabled = false;
+            descCod.Enabled = false;
             btnEditar.Enabled = true;
             btnSalvar.Enabled = false;
             try
             {
+                descTipo.Text = tipo[gridTo.CurrentRow.Index];
+                descCod.Text = codQuantChave[gridTo.CurrentRow.Index];
                 descImovel.Text = endereco[gridTo.CurrentRow.Index];
-
+                tamFonte.Value = (int)tamanhoFonte[gridTo.CurrentRow.Index];
+               
             }
             catch { }
         }
@@ -539,7 +665,17 @@ namespace situacaoChavesGolden
 
         private void BtnImprimir_Click(object sender, EventArgs e)
         {
-            gerarEtiquetas(tipo, endereco, codChave, quantChave);
+            try
+            {
+                gerarEtiquetas(tipo, endereco, codQuantChave, tamanhoFonte);
+            }
+            catch (Exception erro)
+            {
+                Message popup = new Message("Não foi possível gerar as etiquetas pelo seguinte erro: \n\n" + erro.Message,
+                    "Erro", "erro", "confirma");
+                popup.ShowDialog();
+            }
+            
         }
 
         private void BtnSelecTudoTo_Click(object sender, EventArgs e)
@@ -547,8 +683,8 @@ namespace situacaoChavesGolden
             gridTo.Rows.Clear();
             tipo.Clear();
             endereco.Clear();
-            codChave.Clear();
-            quantChave.Clear();
+            codQuantChave.Clear();
+            tamanhoFonte.Clear();
 
             atualizarGridFrom();
 
@@ -592,6 +728,7 @@ namespace situacaoChavesGolden
             if (gridTo.Rows.Count == 0)
             {
                 btnImprimir.Enabled = false;
+
             }
             else
             {
@@ -602,6 +739,41 @@ namespace situacaoChavesGolden
         private void GroupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void PictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ImgTexto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DescTipo_TextChanged(object sender, EventArgs e)
+        {
+            atualizarRectTipo(descTipo.Text);
+        }
+
+        private void DescCod_TextChanged(object sender, EventArgs e)
+        {
+            atualizarRectCodigo(descCod.Text);
+        }
+
+        private void TamFonte_ValueChanged(object sender, EventArgs e)
+        {
+            atualizarRectCodigo(descCod.Text);
+            atualizarRectTipo(descTipo.Text);
+            atualizarRectTexto(descImovel.Text);
+
+            Font fonteTipo = new Font("Consolas", (float)tamFonte.Value, FontStyle.Bold, GraphicsUnit.Pixel);
+            Font fonteTexto = new Font("Consolas", (float)tamFonte.Value, FontStyle.Regular, GraphicsUnit.Pixel);
+            Font fonteCod = new Font("Consolas", (float)tamFonte.Value, FontStyle.Bold, GraphicsUnit.Pixel);
+
+            descTipo.Font = fonteTipo;
+            descImovel.Font = fonteTexto;
+            descCod.Font = fonteCod;
         }
     }
 }

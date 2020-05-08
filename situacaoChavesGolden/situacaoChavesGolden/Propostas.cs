@@ -20,6 +20,9 @@ namespace situacaoChavesGolden
 
         void atualizarGrid()
         {
+
+          
+
             string tipoImovel = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
             string situacaoProposta = groupBoxSitProposta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
             if(situacaoProposta == "TODOS") { situacaoProposta = ""; }
@@ -54,6 +57,38 @@ namespace situacaoChavesGolden
             gridPropostas.Columns[1].Width = 258;
             gridPropostas.Columns[2].Width = 145;
             gridPropostas.Columns[3].Width = 145;
+
+
+            string situacao = "";
+            try
+            {
+                gridPropostas.CurrentRow.Cells[3].Value.ToString();
+            }
+            catch
+            {
+                situacao = "REPROVADA";
+            }
+           
+            if (gridPropostas.CurrentRow != null && (situacao != "APROVADA" && situacao != "REPROVADA"))
+            {
+                btnAprovar.Enabled = true;
+                btnContraProposta.Enabled = true;
+                btnReprovar.Enabled = true;
+
+                btnAprovar.Image = new Bitmap(Properties.Resources.Sucess);
+                btnContraProposta.Image = new Bitmap(Properties.Resources.contraProposta);
+                btnReprovar.Image = new Bitmap(Properties.Resources.Delete);
+            }
+            else
+            {
+                btnAprovar.Enabled = false;
+                btnContraProposta.Enabled = false;
+                btnReprovar.Enabled = false;
+
+                btnAprovar.Image = new Bitmap(Properties.Resources.SucessGray);
+                btnContraProposta.Image = new Bitmap(Properties.Resources.contraPropostagGray);
+                btnReprovar.Image = new Bitmap(Properties.Resources.DeleteGray);
+            }
         }
 
         private void Propostas_Load(object sender, EventArgs e)

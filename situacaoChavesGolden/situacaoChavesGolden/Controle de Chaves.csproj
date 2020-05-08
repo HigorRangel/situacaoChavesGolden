@@ -262,6 +262,12 @@
     <Compile Include="Reserva.Designer.cs">
       <DependentUpon>Reserva.cs</DependentUpon>
     </Compile>
+    <Compile Include="Retirados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Retirados.Designer.cs">
+      <DependentUpon>Retirados.cs</DependentUpon>
+    </Compile>
     <Compile Include="RetirarChave.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -334,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reserva.resx">
       <DependentUpon>Reserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Retirados.resx">
+      <DependentUpon>Retirados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RetirarChave.resx">
       <DependentUpon>RetirarChave.cs</DependentUpon>

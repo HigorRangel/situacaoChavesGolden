@@ -22,6 +22,7 @@ namespace situacaoChavesGolden
 
         private void atualizarGridEmprestimo()
         {
+           
             try
             {
                 DataTable dadosEmprestimo = new DataTable();
@@ -89,7 +90,36 @@ namespace situacaoChavesGolden
             {
                 MessageBox.Show(erro.Message);
             }
-}
+
+            string sitEmprestimo = "";
+            try
+            {
+                sitEmprestimo = gridEmprestimo.CurrentRow.Cells[5].Value.ToString();
+
+            }
+            catch
+            {
+                sitEmprestimo = "FINALIZADO";
+            }
+
+            if (sitEmprestimo == "FINALIZADO" || gridEmprestimo.CurrentRow == null)
+            {
+                btnBaixa.Enabled = false;
+                btnProrrogar.Enabled = false;
+
+                btnBaixa.Image = Properties.Resources.BaixaEmprestimoGray;
+                btnProrrogar.Image = Properties.Resources.ProrrogarEmprestimoGray;
+            }
+            else
+            {
+                btnBaixa.Enabled = true;
+                btnProrrogar.Enabled = true;
+
+                btnBaixa.Image = Properties.Resources.BaixaEmprestimo;
+                btnProrrogar.Image = Properties.Resources.ProrrogarEmprestimo;
+            }
+
+        }
 
         private void Emprestimo_Load(object sender, EventArgs e)
         {
@@ -387,6 +417,11 @@ namespace situacaoChavesGolden
         }
 
         private void GridEmprestimo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void GroupBox2_Enter(object sender, EventArgs e)
         {
 
         }
