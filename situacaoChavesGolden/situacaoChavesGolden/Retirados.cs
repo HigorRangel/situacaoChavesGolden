@@ -160,5 +160,25 @@ namespace situacaoChavesGolden
         {
             atualizarGrid();
         }
+
+        private void Label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DataRetirada_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Funcionario_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

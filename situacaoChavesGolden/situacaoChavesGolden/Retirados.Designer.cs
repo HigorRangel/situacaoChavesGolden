@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -40,6 +41,8 @@
             this.descricao = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tipoRetirante = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.funcionario = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.dataRetirada = new System.Windows.Forms.Label();
@@ -65,14 +68,12 @@
             this.finalidade = new System.Windows.Forms.Label();
             this.gridRetirados = new System.Windows.Forms.DataGridView();
             this.groupMenuSup = new System.Windows.Forms.GroupBox();
-            this.btnFiltro = new System.Windows.Forms.PictureBox();
-            this.textBoxBusca = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.tipoRetirante = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.radioVenda = new MetroFramework.Controls.MetroRadioButton();
             this.radioLocacao = new MetroFramework.Controls.MetroRadioButton();
             this.radioTodos = new MetroFramework.Controls.MetroRadioButton();
+            this.btnFiltro = new System.Windows.Forms.PictureBox();
+            this.textBoxBusca = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -198,49 +199,75 @@
             this.groupBox5.TabIndex = 94;
             this.groupBox5.TabStop = false;
             // 
+            // tipoRetirante
+            // 
+            this.tipoRetirante.AutoSize = true;
+            this.tipoRetirante.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tipoRetirante.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.tipoRetirante.Location = new System.Drawing.Point(480, 16);
+            this.tipoRetirante.Name = "tipoRetirante";
+            this.tipoRetirante.Size = new System.Drawing.Size(10, 15);
+            this.tipoRetirante.TabIndex = 44;
+            this.tipoRetirante.Text = " ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label3.Location = new System.Drawing.Point(439, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 15);
+            this.label3.TabIndex = 43;
+            this.label3.Text = "Tipo:";
+            // 
             // funcionario
             // 
             this.funcionario.AutoSize = true;
             this.funcionario.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.funcionario.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.funcionario.Location = new System.Drawing.Point(514, 116);
+            this.funcionario.Location = new System.Drawing.Point(514, 112);
             this.funcionario.Name = "funcionario";
             this.funcionario.Size = new System.Drawing.Size(10, 15);
             this.funcionario.TabIndex = 42;
             this.funcionario.Text = " ";
+            this.funcionario.Click += new System.EventHandler(this.Funcionario_Click);
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label15.Location = new System.Drawing.Point(440, 115);
+            this.label15.Location = new System.Drawing.Point(440, 111);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(76, 15);
             this.label15.TabIndex = 41;
             this.label15.Text = "Funcionário:";
+            this.label15.Click += new System.EventHandler(this.Label15_Click);
             // 
             // dataRetirada
             // 
             this.dataRetirada.AutoSize = true;
             this.dataRetirada.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataRetirada.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.dataRetirada.Location = new System.Drawing.Point(41, 116);
+            this.dataRetirada.Location = new System.Drawing.Point(41, 112);
             this.dataRetirada.Name = "dataRetirada";
             this.dataRetirada.Size = new System.Drawing.Size(10, 15);
             this.dataRetirada.TabIndex = 40;
             this.dataRetirada.Text = " ";
+            this.dataRetirada.Click += new System.EventHandler(this.DataRetirada_Click);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label12.Location = new System.Drawing.Point(6, 115);
+            this.label12.Location = new System.Drawing.Point(6, 111);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(36, 15);
             this.label12.TabIndex = 39;
             this.label12.Text = "Data:";
+            this.label12.Click += new System.EventHandler(this.Label12_Click);
             // 
             // contato
             // 
@@ -469,29 +496,37 @@
             this.gridRetirados.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
             this.gridRetirados.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridRetirados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridRetirados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridRetirados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridRetirados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridRetirados.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridRetirados.GridColor = System.Drawing.Color.White;
             this.gridRetirados.Location = new System.Drawing.Point(20, 58);
             this.gridRetirados.MultiSelect = false;
             this.gridRetirados.Name = "gridRetirados";
             this.gridRetirados.ReadOnly = true;
             this.gridRetirados.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridRetirados.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridRetirados.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridRetirados.RowHeadersVisible = false;
             this.gridRetirados.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridRetirados.RowTemplate.ReadOnly = true;
@@ -514,6 +549,41 @@
             this.groupMenuSup.Size = new System.Drawing.Size(514, 40);
             this.groupMenuSup.TabIndex = 98;
             this.groupMenuSup.TabStop = false;
+            // 
+            // radioVenda
+            // 
+            this.radioVenda.AutoSize = true;
+            this.radioVenda.Location = new System.Drawing.Point(183, 15);
+            this.radioVenda.Name = "radioVenda";
+            this.radioVenda.Size = new System.Drawing.Size(55, 15);
+            this.radioVenda.TabIndex = 7;
+            this.radioVenda.Text = "Venda";
+            this.radioVenda.UseVisualStyleBackColor = true;
+            this.radioVenda.CheckedChanged += new System.EventHandler(this.radioTipo);
+            // 
+            // radioLocacao
+            // 
+            this.radioLocacao.AutoSize = true;
+            this.radioLocacao.Location = new System.Drawing.Point(96, 15);
+            this.radioLocacao.Name = "radioLocacao";
+            this.radioLocacao.Size = new System.Drawing.Size(67, 15);
+            this.radioLocacao.TabIndex = 6;
+            this.radioLocacao.Text = "Locação";
+            this.radioLocacao.UseVisualStyleBackColor = true;
+            this.radioLocacao.CheckedChanged += new System.EventHandler(this.radioTipo);
+            // 
+            // radioTodos
+            // 
+            this.radioTodos.AutoSize = true;
+            this.radioTodos.Checked = true;
+            this.radioTodos.Location = new System.Drawing.Point(23, 15);
+            this.radioTodos.Name = "radioTodos";
+            this.radioTodos.Size = new System.Drawing.Size(54, 15);
+            this.radioTodos.TabIndex = 5;
+            this.radioTodos.TabStop = true;
+            this.radioTodos.Text = "Todos";
+            this.radioTodos.UseVisualStyleBackColor = true;
+            this.radioTodos.CheckedChanged += new System.EventHandler(this.radioTipo);
             // 
             // btnFiltro
             // 
@@ -556,63 +626,6 @@
             this.metroLabel1.TabIndex = 99;
             this.metroLabel1.Text = "Retirados";
             this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
-            // tipoRetirante
-            // 
-            this.tipoRetirante.AutoSize = true;
-            this.tipoRetirante.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tipoRetirante.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.tipoRetirante.Location = new System.Drawing.Point(480, 16);
-            this.tipoRetirante.Name = "tipoRetirante";
-            this.tipoRetirante.Size = new System.Drawing.Size(10, 15);
-            this.tipoRetirante.TabIndex = 44;
-            this.tipoRetirante.Text = " ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label3.Location = new System.Drawing.Point(439, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 15);
-            this.label3.TabIndex = 43;
-            this.label3.Text = "Tipo:";
-            // 
-            // radioVenda
-            // 
-            this.radioVenda.AutoSize = true;
-            this.radioVenda.Location = new System.Drawing.Point(183, 15);
-            this.radioVenda.Name = "radioVenda";
-            this.radioVenda.Size = new System.Drawing.Size(55, 15);
-            this.radioVenda.TabIndex = 7;
-            this.radioVenda.Text = "Venda";
-            this.radioVenda.UseVisualStyleBackColor = true;
-            this.radioVenda.CheckedChanged += new System.EventHandler(this.radioTipo);
-            // 
-            // radioLocacao
-            // 
-            this.radioLocacao.AutoSize = true;
-            this.radioLocacao.Location = new System.Drawing.Point(96, 15);
-            this.radioLocacao.Name = "radioLocacao";
-            this.radioLocacao.Size = new System.Drawing.Size(67, 15);
-            this.radioLocacao.TabIndex = 6;
-            this.radioLocacao.Text = "Locação";
-            this.radioLocacao.UseVisualStyleBackColor = true;
-            this.radioLocacao.CheckedChanged += new System.EventHandler(this.radioTipo);
-            // 
-            // radioTodos
-            // 
-            this.radioTodos.AutoSize = true;
-            this.radioTodos.Checked = true;
-            this.radioTodos.Location = new System.Drawing.Point(23, 15);
-            this.radioTodos.Name = "radioTodos";
-            this.radioTodos.Size = new System.Drawing.Size(54, 15);
-            this.radioTodos.TabIndex = 5;
-            this.radioTodos.TabStop = true;
-            this.radioTodos.Text = "Todos";
-            this.radioTodos.UseVisualStyleBackColor = true;
-            this.radioTodos.CheckedChanged += new System.EventHandler(this.radioTipo);
             // 
             // Retirados
             // 
