@@ -328,7 +328,6 @@ namespace situacaoChavesGolden
                 {
 
                     _pages.Add(imagem.BackgroundImage);
-
                     //imagem.BackgroundImage.Save(@"C:\Users\Usuario\Desktop\Etiquetas\imageeem" + i.ToString() + ".jpg");
                     imagem.BackgroundImage = null;
 

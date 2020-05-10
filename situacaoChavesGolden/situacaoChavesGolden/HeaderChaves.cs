@@ -26,7 +26,7 @@ namespace situacaoChavesGolden
             //base.OnStartPage(writer, document);
 
 
-            iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(new Uri(@"C:\Users\Higor Rangel\Desktop\Dropbox\LOGO.PNG"));
+            iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(new Uri(@"C:\Users\Usuario\Dropbox\LOGO.PNG"));
 
 
 
@@ -99,6 +99,8 @@ namespace situacaoChavesGolden
             rect.BackgroundColor = BaseColor.DARK_GRAY;
 
             document.Add(rect);
+
+            document.Add(new Paragraph("\n\n"));
         }
 
         public override void OnEndPage(PdfWriter writer, Document document)
@@ -114,7 +116,7 @@ namespace situacaoChavesGolden
 
             ColumnText.ShowTextAligned(
               canvas, Element.ALIGN_CENTER,
-              new Phrase("Página 1 de 2", FONT), PageSize.A4.Width / 2, 10, 0);
+              new Phrase(string.Format("Página {0}", document.PageNumber), FONT), PageSize.A4.Width / 2, 10, 0);
         }
     }
 }

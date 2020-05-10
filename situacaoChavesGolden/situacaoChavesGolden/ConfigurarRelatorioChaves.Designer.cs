@@ -48,9 +48,9 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.groupBoxOrdenar = new System.Windows.Forms.GroupBox();
+            this.metroRadioButton15 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton13 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton14 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroRadioButton15 = new MetroFramework.Controls.MetroRadioButton();
             this.groupBoxTipoImovel.SuspendLayout();
             this.groupBoxSituacaoCh.SuspendLayout();
             this.groupBoxSituacaoIm.SuspendLayout();
@@ -266,7 +266,6 @@
             // btnImprimir
             // 
             this.btnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
-            this.btnImprimir.Enabled = false;
             this.btnImprimir.FlatAppearance.BorderSize = 0;
             this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(107)))));
             this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
@@ -278,6 +277,7 @@
             this.btnImprimir.TabIndex = 59;
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // groupBoxOrdenar
             // 
@@ -293,26 +293,6 @@
             this.groupBoxOrdenar.Text = "Ordenar por";
             this.groupBoxOrdenar.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
-            // metroRadioButton13
-            // 
-            this.metroRadioButton13.AutoSize = true;
-            this.metroRadioButton13.Location = new System.Drawing.Point(81, 18);
-            this.metroRadioButton13.Name = "metroRadioButton13";
-            this.metroRadioButton13.Size = new System.Drawing.Size(81, 15);
-            this.metroRadioButton13.TabIndex = 2;
-            this.metroRadioButton13.Text = "Cod Chave";
-            this.metroRadioButton13.UseVisualStyleBackColor = true;
-            // 
-            // metroRadioButton14
-            // 
-            this.metroRadioButton14.AutoSize = true;
-            this.metroRadioButton14.Location = new System.Drawing.Point(5, 18);
-            this.metroRadioButton14.Name = "metroRadioButton14";
-            this.metroRadioButton14.Size = new System.Drawing.Size(72, 15);
-            this.metroRadioButton14.TabIndex = 1;
-            this.metroRadioButton14.Text = "Endereço";
-            this.metroRadioButton14.UseVisualStyleBackColor = true;
-            // 
             // metroRadioButton15
             // 
             this.metroRadioButton15.AutoSize = true;
@@ -322,6 +302,28 @@
             this.metroRadioButton15.TabIndex = 3;
             this.metroRadioButton15.Text = "Cod Imob";
             this.metroRadioButton15.UseVisualStyleBackColor = true;
+            // 
+            // metroRadioButton13
+            // 
+            this.metroRadioButton13.AutoSize = true;
+            this.metroRadioButton13.Checked = true;
+            this.metroRadioButton13.Location = new System.Drawing.Point(6, 18);
+            this.metroRadioButton13.Name = "metroRadioButton13";
+            this.metroRadioButton13.Size = new System.Drawing.Size(81, 15);
+            this.metroRadioButton13.TabIndex = 2;
+            this.metroRadioButton13.TabStop = true;
+            this.metroRadioButton13.Text = "Cod Chave";
+            this.metroRadioButton13.UseVisualStyleBackColor = true;
+            // 
+            // metroRadioButton14
+            // 
+            this.metroRadioButton14.AutoSize = true;
+            this.metroRadioButton14.Location = new System.Drawing.Point(93, 18);
+            this.metroRadioButton14.Name = "metroRadioButton14";
+            this.metroRadioButton14.Size = new System.Drawing.Size(72, 15);
+            this.metroRadioButton14.TabIndex = 1;
+            this.metroRadioButton14.Text = "Endereço";
+            this.metroRadioButton14.UseVisualStyleBackColor = true;
             // 
             // ConfigurarRelatorioChaves
             // 

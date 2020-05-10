@@ -15,7 +15,7 @@ namespace situacaoChavesGolden
     {
         PostgreSQL database = new PostgreSQL();
         List<string> ListaCodigos = new List<string>();
-
+        string codigo = "";
 
         public Form1()
         {
@@ -47,6 +47,7 @@ namespace situacaoChavesGolden
             {
                 comboUsuarios.Items.Add(row[1].ToString());
                 ListaCodigos.Add(row[0].ToString());
+
             }
 
         }
@@ -93,6 +94,12 @@ namespace situacaoChavesGolden
 
             //database.backup(caminho, "\\backupDados.dump");
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ConfigurarRelatorioChaves configurar = new ConfigurarRelatorioChaves(ListaCodigos[comboUsuarios.SelectedIndex]);
+            configurar.ShowDialog();
         }
     }
 }
