@@ -380,6 +380,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\LogoRelatorio.png" />
+    <None Include="Resources\LOGO.png" />
     <None Include="Resources\contraPropostagGray.png" />
     <None Include="Resources\SucessGray.png" />
     <None Include="Resources\Delete1.png" />

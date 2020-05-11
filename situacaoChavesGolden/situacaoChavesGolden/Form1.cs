@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.IO;
 
 namespace situacaoChavesGolden
 {
@@ -24,9 +25,29 @@ namespace situacaoChavesGolden
             
         }
                       
+        private void limparTemp()
+        {
+            try
+            {
+                DirectoryInfo diretorio = new DirectoryInfo(Environment.CurrentDirectory + @"\temp");
 
+                FileInfo[] arquivos = diretorio.GetFiles();
+
+                foreach(FileInfo file in arquivos)
+                {
+                    try
+                    {
+                        file.Delete();
+                    }
+                    catch { }
+                    
+                }
+            }
+            catch { }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
+            limparTemp();
             //string caminho = Environment.CurrentDirectory;
             //caminho = caminho.Replace("bin\\Debug", "");
 

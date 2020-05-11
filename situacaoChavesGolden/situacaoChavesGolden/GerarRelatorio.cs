@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
 using System.IO;
+using System.Diagnostics;
 
 namespace situacaoChavesGolden
 {
@@ -26,6 +27,28 @@ namespace situacaoChavesGolden
         public string ordenar { get; set; }
 
         
+        private void showDocument(string caminho)
+        {
+            try
+            {
+                Process process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        CreateNoWindow = true,
+                        Verb = "open",
+                        FileName = caminho,
+                    },
+                };
+                process.Start();
+            }
+            catch (Exception erro)
+            {
+                Message msg = new Message("Não foi possível abrir o relatório gerado!\nMotivo: " + erro.Message, "", "erro", "confirma");
+                msg.ShowDialog();
+            }
+            
+        }
 
         private DataTable buscarDadosChaves()
         {
@@ -73,7 +96,7 @@ namespace situacaoChavesGolden
             //    widths[contadorCol] = column.Width;
             //}
 
-            tabela.SetWidths(new float[] { 1,2, 7,1,1,1,1 });
+            tabela.SetWidths(new float[] { 1,2, 8,1,1,1,1 });
 
 
             PdfPCell header = new PdfPCell();
@@ -104,42 +127,62 @@ namespace situacaoChavesGolden
 
 
             int contador = 1;
-            
-            foreach (DataRow row in tabelaDados.Rows)
+
+            for (int i = 0; i < tabelaDados.Rows.Count + 30; i++)
             {
                 
-                for (int i = 0; i < tabelaDados.Columns.Count; i++)
+                try
                 {
-                             
-                    PdfPCell dado = new PdfPCell(new Phrase(row[i].ToString() + "\n\n", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 10)));
-                    dado.BackgroundColor = BaseColor.WHITE;
-                    dado.BorderColor = BaseColor.GRAY;
-                    dado.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
-                    
+                    bool colorir = false;
 
-                    tabela.AddCell(dado); 
+                    for (int j = 0; j < tabelaDados.Columns.Count; j++)
+                    {
+                        if(i % 2  == 0)
+                        {
+                            colorir = true;
+                        }
+
+                        PdfPCell dado = new PdfPCell(new Phrase(tabelaDados.Rows[i][j].ToString() + "\n", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 10)));
+                        if(colorir == true) { dado.BackgroundColor = new BaseColor(Color.FromArgb(222, 222, 222)); }
+                        else { dado.BackgroundColor = new BaseColor(Color.White); }
+                        dado.BorderColor = BaseColor.GRAY;
+                        dado.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+
+
+                        tabela.AddCell(dado);
+                    }
+                    //colorir = true;
+
+                    if (contador % 40 == 0 && contador != 0)
+                    {
+                        //MessageBox.Show(contador.ToString());
+                        doc.Add(tabela);
+                        doc.NewPage();
+                        tabela.DeleteBodyRows();
+                    }
+                    contador++;
                 }
-
-                if (contador % 30 == 0 && contador != 0)
+                catch
                 {
-                    //MessageBox.Show(contador.ToString());
-                    doc.NewPage();
                     doc.Add(tabela);
-                    tabela.DeleteBodyRows();
+                    break;
+
                 }
 
-                contador++;
+
+               
             }
             
-
-
-
-
         }
+
+        
         public void chaves()
         {
+            string caminho = Environment.CurrentDirectory + @"\temp\relatorio-" +
+                DateTime.Now.ToString("yyyy-MM-dd hh.mm.ss") + ".pdf";
+
             Document doc = new Document(PageSize.A4, 5, 5, 5, 0);
-            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(Environment.CurrentDirectory + @"\arquivo.pdf", FileMode.Create));
+            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(caminho, FileMode.Create));
 
             
             HeaderChaves pdf = new HeaderChaves();
@@ -158,21 +201,19 @@ namespace situacaoChavesGolden
             iTextSharp.text.Font fontTitulo = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 12,
                iTextSharp.text.Font.BOLD, BaseColor.BLACK);
 
-            iTextSharp.text.Paragraph pgTitulo = new iTextSharp.text.Paragraph("RELATÓRIO DE CHAVES\n", fontTitulo);
+            iTextSharp.text.Paragraph pgTitulo = new iTextSharp.text.Paragraph("RELATÓRIO DE CHAVES\n\n", fontTitulo);
             pgTitulo.Alignment = 1;
             doc.Add(pgTitulo);
 
             gerarTabela(buscarDadosChaves(), doc);
 
-
-
-          
-
             doc.Close();
 
+            showDocument(caminho);
 
             doc.Dispose();  
             
+
 
             //pgFuncionarios.SetLeading(0, 0);
 

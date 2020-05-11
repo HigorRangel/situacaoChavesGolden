@@ -127,6 +127,9 @@
   <data name="contraProposta" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\contraProposta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="contraPropostagGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\contraPropostagGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="BaixaEmprestimo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BaixaEmprestimo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -138,6 +141,9 @@
   </data>
   <data name="ChaveReservar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ChaveReservar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LOGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LOGO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="emprestimoDash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\emprestimoDash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -214,7 +220,7 @@
   <data name="ChaveReservarGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ChaveReservarGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="contraPropostagGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\contraPropostagGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LogoRelatorio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogoRelatorio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

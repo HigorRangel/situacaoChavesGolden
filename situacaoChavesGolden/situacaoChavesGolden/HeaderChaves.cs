@@ -26,7 +26,7 @@ namespace situacaoChavesGolden
             //base.OnStartPage(writer, document);
 
 
-            iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(new Uri(@"C:\Users\Usuario\Dropbox\LOGO.PNG"));
+            iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.LogoRelatorio, BaseColor.WHITE, false);
 
 
 
@@ -100,7 +100,7 @@ namespace situacaoChavesGolden
 
             document.Add(rect);
 
-            document.Add(new Paragraph("\n\n"));
+            document.Add(new Paragraph("\n"));
         }
 
         public override void OnEndPage(PdfWriter writer, Document document)
