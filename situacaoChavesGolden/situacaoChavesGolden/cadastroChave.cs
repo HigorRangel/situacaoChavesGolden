@@ -241,17 +241,17 @@ namespace situacaoChavesGolden
                 contErro++;
             }
 
-
+            FormatarStrings format = new FormatarStrings();
 
             if (contErro == 0)
             {
-                string codigoImovel = codImovel.Text.Trim();
-                string logradouro = boxLogradouro.Text.Trim();
-                string cidade = boxCidade.Text.Trim();
-                string bairro = boxBairro.Text.Trim();
-                string estado = boxEstado.Text.Trim();
-                string numero = boxNumero.Text.Trim();
-                string complemento = boxComplemento.Text.Trim();
+                string codigoImovel = codImovel.Text.Trim() ;
+                string logradouro = format.inserirBD(boxLogradouro.Text.Trim());
+                string cidade = format.inserirBD(boxCidade.Text.Trim());
+                string bairro = format.inserirBD(boxBairro.Text.Trim());
+                string estado = format.inserirBD(boxEstado.Text.Trim());
+                string numero = format.inserirBD(boxNumero.Text.Trim());
+                string complemento = format.inserirBD(boxComplemento.Text.Trim());
                 string codProprietario = boxCodProp.Text.Trim();
                 string situacaoChave = groupSitChave.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
                 string situacaoImovel = groupSitImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
@@ -261,7 +261,7 @@ namespace situacaoChavesGolden
 
                 if(comboLocalizacao.SelectedItem.ToString() == "Outro")
                 {
-                    localizacao = boxOutraLocalizacao.Text.Trim();
+                    localizacao = format.inserirBD(boxOutraLocalizacao.Text.Trim()) ;
                 }
                 else
                 {
@@ -492,6 +492,21 @@ namespace situacaoChavesGolden
         private void RadioChaveDisponivel_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void PainelProp_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void CodImovel_Leave(object sender, EventArgs e)
+        {
+            codImovel.Text = codImovel.Text.ToUpper();
+        }
+
+        private void BoxEstado_Leave(object sender, EventArgs e)
+        {
+            boxEstado.Text = boxEstado.Text.ToUpper();
         }
     }
 }

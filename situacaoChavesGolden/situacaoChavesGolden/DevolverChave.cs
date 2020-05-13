@@ -84,11 +84,13 @@ namespace situacaoChavesGolden
                                 " SET situacao = 'DISPONIVEL'" +
                                 " WHERE indice_chave = '{0}'", indiceChave));
 
+                FormatarStrings format = new FormatarStrings();
+
                 if (!(boxValor.Text == "" && boxCond.Text == "" && boxFormaLoc.Text == "" && boxOutros.Text == ""))
                 {
                     database.insertInto(string.Format("INSERT INTO proposta (valor, condominio, forma_locacao, outros, emprestimo, data)" +
-                                                      " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", boxValor.Text, boxCond.Text,
-                                                      boxFormaLoc.Text, boxOutros.Text, codigoEmprestimo, dataHoje));
+                                                      " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", format.inserirBD(boxValor.Text), format.inserirBD(boxCond.Text),
+                                                      format.inserirBD(boxFormaLoc.Text), format.inserirBD(boxOutros.Text), codigoEmprestimo, dataHoje));
                 }
 
                 this.DialogResult = DialogResult.OK;

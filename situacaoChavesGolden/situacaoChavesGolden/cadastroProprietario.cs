@@ -12,6 +12,8 @@ namespace situacaoChavesGolden
 {
     public partial class cadastroProprietario : MetroFramework.Forms.MetroForm
     {
+        FormatarStrings format = new FormatarStrings();
+
         PostgreSQL database = new PostgreSQL();
 
         string codProprietario = "";
@@ -136,14 +138,14 @@ namespace situacaoChavesGolden
 
                 if (contErros == 0)
                 {
-
+                    FormatarStrings format = new FormatarStrings();
                     try
                     {
                         if (seletorTela == false)
                         {
                             database.insertInto(string.Format("INSERT INTO proprietario (nome, contato, email)" +
-                                " VALUES ('{0}', '{1}', '{2}')", nomeBox.Text.Trim(), contatoBox.Text.Trim(),
-                                emailBox.Text.Trim()));
+                                " VALUES ('{0}', '{1}', '{2}')", format.inserirBD(nomeBox.Text.Trim()), contatoBox.Text.Trim(),
+                                format.inserirBD(emailBox.Text.Trim())));
 
                             Message caixaMensagem = new Message("O cadastro foi efetuado com sucesso!",
                            "Sucesso", "sucesso", "confirma");
@@ -158,7 +160,7 @@ namespace situacaoChavesGolden
                         {
                             database.update(string.Format("UPDATE proprietario " +
                                 " SET nome = '{0}', contato = '{1}', email = '{2}'" +
-                                " WHERE cod_proprietario = '{3}'", nomeBox.Text.Trim(), contatoBox.Text.Trim(), emailBox.Text.Trim(), codProprietario));
+                                " WHERE cod_proprietario = '{3}'", format.inserirBD(nomeBox.Text.Trim()), contatoBox.Text.Trim(), format.inserirBD(emailBox.Text.Trim()), codProprietario));
 
                             Message caixaMensagem = new Message("O cadastro foi atualizado com sucesso!",
                            "Sucesso", "sucesso", "confirma");
@@ -193,6 +195,11 @@ namespace situacaoChavesGolden
         {
             this.Close();
             this.DialogResult = DialogResult.Cancel;    
+        }
+
+        private void ContatoBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            format.permitirNumeros(e);
         }
     }
 }

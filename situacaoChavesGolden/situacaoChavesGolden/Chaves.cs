@@ -42,8 +42,8 @@ namespace situacaoChavesGolden
             if (filtro == "TODOS") { filtro = ""; }
 
 
-            try
-            {
+            //try
+            //{
                 chaves = database.select(string.Format("SELECT c.cod_chave, c.cod_imob, c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END)" +
                                              " as endereco, c.bairro, c.situacao_imovel, c.indice_chave," +
                                              " (SELECT COUNT((CASE WHEN r.cod_reserva is not null AND " +
@@ -52,7 +52,7 @@ namespace situacaoChavesGolden
                                              " WHERE cod_chave = c.indice_chave AND situacao = 'EM ANDAMENTO') as emprestimo" +
                                              " FROM chave C" +
                                              " LEFT JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
-                                             " WHERE (c.rua ILIKE '%{0}%' OR c.bairro ILIKE '%{0}%' OR c.cidade ILIKE '%{0}%' OR c.estado ILIKE '%{0}%' OR" +
+                                             " W HERE (c.rua ILIKE '%{0}%' OR c.bairro ILIKE '%{0}%' OR c.cidade ILIKE '%{0}%' OR c.estado ILIKE '%{0}%' OR" +
                                              " c.numero  ILIKE '%{0}%' OR c.complemento ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%' OR p.nome ILIKE '%{0}%') AND" +
                                              " (c.finalidade ILIKE '%{1}%' AND c.situacao ILIKE '{2}%' AND c.situacao_imovel ILIKE '{3}%' AND " +
                                              "  c.tipo_imovel ILIKE '%{4}%')" +
@@ -124,12 +124,12 @@ namespace situacaoChavesGolden
                 }
 
 
-            }
-            catch (Exception erro)
-            {
+            //}
+            //catch (Exception erro)
+            //{
 
-                MessageBox.Show(erro.Message);
-            }
+            //    MessageBox.Show(erro.Message);
+            //}
 
 
         }
@@ -452,6 +452,12 @@ namespace situacaoChavesGolden
         {
             ImprimirEtiquetas imprimirTags = new ImprimirEtiquetas();
             imprimirTags.ShowDialog();
+        }
+
+        private void Button1_Click_1(object sender, EventArgs e)
+        {
+            ConfigurarRelatorioChaves configurar = new ConfigurarRelatorioChaves(usuario);
+            configurar.ShowDialog();
         }
     }
 }

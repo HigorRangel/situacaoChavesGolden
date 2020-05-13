@@ -278,6 +278,7 @@
             this.codigoChaveBox.CustomForeColor = true;
             this.codigoChaveBox.ForeColor = System.Drawing.Color.Gray;
             this.codigoChaveBox.Location = new System.Drawing.Point(15, 26);
+            this.codigoChaveBox.MaxLength = 12;
             this.codigoChaveBox.Name = "codigoChaveBox";
             this.codigoChaveBox.ReadOnly = true;
             this.codigoChaveBox.Size = new System.Drawing.Size(64, 26);
@@ -354,6 +355,7 @@
             this.boxDescDoc.CustomForeColor = true;
             this.boxDescDoc.ForeColor = System.Drawing.Color.Gray;
             this.boxDescDoc.Location = new System.Drawing.Point(136, 75);
+            this.boxDescDoc.MaxLength = 14;
             this.boxDescDoc.Name = "boxDescDoc";
             this.boxDescDoc.Size = new System.Drawing.Size(246, 26);
             this.boxDescDoc.TabIndex = 15;
@@ -657,11 +659,12 @@
             this.painelProp.Controls.Add(this.btnConfirmarProp);
             this.painelProp.Controls.Add(this.gridPessoas);
             this.painelProp.Controls.Add(this.boxProcurarProp);
-            this.painelProp.Location = new System.Drawing.Point(29, 120);
+            this.painelProp.Location = new System.Drawing.Point(25, 166);
             this.painelProp.Name = "painelProp";
             this.painelProp.Size = new System.Drawing.Size(374, 225);
             this.painelProp.TabIndex = 26;
             this.painelProp.Visible = false;
+            this.painelProp.Paint += new System.Windows.Forms.PaintEventHandler(this.PainelProp_Paint);
             // 
             // btnNovoProp
             // 

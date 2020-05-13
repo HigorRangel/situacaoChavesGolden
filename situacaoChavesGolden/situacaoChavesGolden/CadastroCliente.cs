@@ -12,6 +12,8 @@ namespace situacaoChavesGolden
 {
     public partial class CadastroCliente : MetroFramework.Forms.MetroForm
     {
+        FormatarStrings format = new FormatarStrings();
+
         PostgreSQL database = new PostgreSQL();
         bool seletorTela = false;
         string codigoCliente = "";
@@ -121,6 +123,8 @@ namespace situacaoChavesGolden
                         contErros++;
                     }
 
+                    FormatarStrings format = new FormatarStrings();
+
 
                     if (contErros == 0)
                     {
@@ -130,9 +134,9 @@ namespace situacaoChavesGolden
                             {
                                 database.insertInto(string.Format("" +
                                 "INSERT INTO cliente (nome_cliente, cpf, email, tipo_documento, documento, contato_principal, contato_secundario, endereco)" +
-                                " VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}')", boxNome.Text.Trim(),
-                                boxCpf.Text.Trim(), boxEmail.Text.Trim(), comboDoc.SelectedItem.ToString().Trim(),
-                                boxNumDoc.Text.Trim(), boxContato.Text.Trim(), boxContato2.Text.Trim(), boxEndereco.Text.Trim()));
+                                " VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}')", format.inserirBD(boxNome.Text.Trim()),
+                                boxCpf.Text.Trim(), format.inserirBD(boxEmail.Text.Trim()), comboDoc.SelectedItem.ToString().Trim(),
+                                boxNumDoc.Text.Trim(), boxContato.Text.Trim(), boxContato2.Text.Trim(), format.inserirBD(boxEndereco.Text.Trim())));
 
                                 Message caixaMessage = new Message("Cliente cadastrado com sucesso!", "Sucesso", "sucesso", "confirma");
                                 caixaMessage.ShowDialog();
@@ -154,9 +158,9 @@ namespace situacaoChavesGolden
                                 "UPDATE cliente" +
                                 " SET nome_cliente = '{0}', cpf = '{1}', email = '{2}', tipo_documento = '{3}', documento = '{4}'," +
                                 " contato_principal = '{5}', contato_secundario = '{6}', endereco = '{7}'," +
-                                " WHERE cod_cliente = '{8}'", boxNome.Text.Trim(),
-                                boxCpf.Text.Trim(), boxEmail.Text.Trim(), comboDoc.SelectedItem.ToString().Trim(),
-                                boxNumDoc.Text.Trim(), boxContato.Text.Trim(), boxContato2.Text.Trim(), boxEndereco.Text.Trim(), codigoCliente));
+                                " WHERE cod_cliente = '{8}'", format.inserirBD(boxNome.Text.Trim()),
+                                boxCpf.Text.Trim(), format.inserirBD(boxEmail.Text.Trim()), comboDoc.SelectedItem.ToString().Trim(),
+                                boxNumDoc.Text.Trim(), boxContato.Text.Trim(), boxContato2.Text.Trim(), format.inserirBD(boxEndereco.Text.Trim()), codigoCliente));
                         }
                     }
                     else
@@ -175,6 +179,21 @@ namespace situacaoChavesGolden
         {
             this.Close();
             this.DialogResult = DialogResult.Cancel;    
+        }
+
+        private void BoxCpf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            format.permitirNumeros(e);
+        }
+
+        private void BoxContato_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            format.permitirNumeros(e);
+        }
+
+        private void BoxContato2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            format.permitirNumeros(e);
         }
     }
 }

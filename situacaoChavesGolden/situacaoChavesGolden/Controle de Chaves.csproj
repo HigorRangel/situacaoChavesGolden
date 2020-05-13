@@ -225,6 +225,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormatarStrings.cs" />
     <Compile Include="GerarRelatorio.cs" />
     <Compile Include="HeaderChaves.cs" />
     <Compile Include="ImprimirEtiquetas.cs">
@@ -380,6 +381,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\Relatorio2.png" />
+    <None Include="Resources\Relatorio1.png" />
+    <None Include="Resources\Relatorio.png" />
     <None Include="Resources\LogoRelatorio.png" />
     <None Include="Resources\LOGO.png" />
     <None Include="Resources\contraPropostagGray.png" />

@@ -91,6 +91,7 @@
             this.boxEndereco.CustomForeColor = true;
             this.boxEndereco.ForeColor = System.Drawing.Color.Gray;
             this.boxEndereco.Location = new System.Drawing.Point(9, 199);
+            this.boxEndereco.MaxLength = 50;
             this.boxEndereco.Name = "boxEndereco";
             this.boxEndereco.Size = new System.Drawing.Size(308, 23);
             this.boxEndereco.TabIndex = 8;
@@ -113,11 +114,13 @@
             this.boxContato2.CustomForeColor = true;
             this.boxContato2.ForeColor = System.Drawing.Color.Gray;
             this.boxContato2.Location = new System.Drawing.Point(186, 155);
+            this.boxContato2.MaxLength = 12;
             this.boxContato2.Name = "boxContato2";
             this.boxContato2.Size = new System.Drawing.Size(100, 23);
             this.boxContato2.TabIndex = 7;
             this.boxContato2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.boxContato2.UseStyleColors = true;
+            this.boxContato2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BoxContato2_KeyPress);
             // 
             // metroLabel6
             // 
@@ -135,11 +138,13 @@
             this.boxContato.CustomForeColor = true;
             this.boxContato.ForeColor = System.Drawing.Color.Gray;
             this.boxContato.Location = new System.Drawing.Point(31, 155);
+            this.boxContato.MaxLength = 12;
             this.boxContato.Name = "boxContato";
             this.boxContato.Size = new System.Drawing.Size(100, 23);
             this.boxContato.TabIndex = 6;
             this.boxContato.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.boxContato.UseStyleColors = true;
+            this.boxContato.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BoxContato_KeyPress);
             // 
             // metroLabel5
             // 
@@ -157,6 +162,7 @@
             this.boxEmail.CustomForeColor = true;
             this.boxEmail.ForeColor = System.Drawing.Color.Gray;
             this.boxEmail.Location = new System.Drawing.Point(6, 111);
+            this.boxEmail.MaxLength = 50;
             this.boxEmail.Name = "boxEmail";
             this.boxEmail.Size = new System.Drawing.Size(311, 23);
             this.boxEmail.TabIndex = 5;
@@ -209,6 +215,7 @@
             this.boxNumDoc.CustomForeColor = true;
             this.boxNumDoc.ForeColor = System.Drawing.Color.Gray;
             this.boxNumDoc.Location = new System.Drawing.Point(212, 24);
+            this.boxNumDoc.MaxLength = 20;
             this.boxNumDoc.Name = "boxNumDoc";
             this.boxNumDoc.Size = new System.Drawing.Size(105, 23);
             this.boxNumDoc.TabIndex = 3;
@@ -220,6 +227,7 @@
             this.boxNome.CustomForeColor = true;
             this.boxNome.ForeColor = System.Drawing.Color.Gray;
             this.boxNome.Location = new System.Drawing.Point(6, 69);
+            this.boxNome.MaxLength = 50;
             this.boxNome.Name = "boxNome";
             this.boxNome.Size = new System.Drawing.Size(311, 23);
             this.boxNome.TabIndex = 4;
@@ -247,6 +255,7 @@
             this.boxCpf.Size = new System.Drawing.Size(86, 23);
             this.boxCpf.TabIndex = 1;
             this.boxCpf.UseStyleColors = true;
+            this.boxCpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BoxCpf_KeyPress);
             // 
             // metroLabel9
             // 

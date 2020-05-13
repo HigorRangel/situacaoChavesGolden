@@ -17,6 +17,7 @@ namespace situacaoChavesGolden
         PostgreSQL database = new PostgreSQL();
         List<string> ListaCodigos = new List<string>();
         string codigo = "";
+        FormatarStrings format = new FormatarStrings();
 
         public Form1()
         {
@@ -119,8 +120,22 @@ namespace situacaoChavesGolden
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ConfigurarRelatorioChaves configurar = new ConfigurarRelatorioChaves(ListaCodigos[comboUsuarios.SelectedIndex]);
-            configurar.ShowDialog();
+           
+        }
+
+        private void MaskedTextBox1_Leave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void TextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            format.permitirNumeros( e);
+        }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

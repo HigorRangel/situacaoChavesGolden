@@ -33,11 +33,13 @@
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.emailBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.contatoBox = new MetroFramework.Controls.MetroTextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.contatoBox = new MetroFramework.Controls.MetroTextBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // nomeBox
@@ -46,6 +48,7 @@
             this.nomeBox.CustomForeColor = true;
             this.nomeBox.ForeColor = System.Drawing.Color.Gray;
             this.nomeBox.Location = new System.Drawing.Point(19, 58);
+            this.nomeBox.MaxLength = 50;
             this.nomeBox.Name = "nomeBox";
             this.nomeBox.Size = new System.Drawing.Size(319, 23);
             this.nomeBox.TabIndex = 0;
@@ -79,6 +82,7 @@
             this.emailBox.CustomForeColor = true;
             this.emailBox.ForeColor = System.Drawing.Color.Gray;
             this.emailBox.Location = new System.Drawing.Point(19, 106);
+            this.emailBox.MaxLength = 100;
             this.emailBox.Name = "emailBox";
             this.emailBox.Size = new System.Drawing.Size(198, 23);
             this.emailBox.TabIndex = 2;
@@ -95,19 +99,6 @@
             this.metroLabel3.Size = new System.Drawing.Size(56, 15);
             this.metroLabel3.TabIndex = 5;
             this.metroLabel3.Text = "Contato *";
-            // 
-            // contatoBox
-            // 
-            this.contatoBox.CustomBackground = true;
-            this.contatoBox.CustomForeColor = true;
-            this.contatoBox.ForeColor = System.Drawing.Color.Gray;
-            this.contatoBox.Location = new System.Drawing.Point(227, 106);
-            this.contatoBox.Name = "contatoBox";
-            this.contatoBox.Size = new System.Drawing.Size(111, 23);
-            this.contatoBox.TabIndex = 4;
-            this.contatoBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.contatoBox.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.contatoBox.UseStyleColors = true;
             // 
             // btnCancelar
             // 
@@ -153,11 +144,34 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.maskedTextBox1);
             this.groupBox1.Location = new System.Drawing.Point(11, 29);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(334, 114);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Location = new System.Drawing.Point(216, 77);
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBox1.TabIndex = 29;
+            // 
+            // contatoBox
+            // 
+            this.contatoBox.CustomBackground = true;
+            this.contatoBox.CustomForeColor = true;
+            this.contatoBox.ForeColor = System.Drawing.Color.Gray;
+            this.contatoBox.Location = new System.Drawing.Point(227, 105);
+            this.contatoBox.MaxLength = 12;
+            this.contatoBox.Name = "contatoBox";
+            this.contatoBox.Size = new System.Drawing.Size(111, 23);
+            this.contatoBox.TabIndex = 4;
+            this.contatoBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.contatoBox.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.contatoBox.UseStyleColors = true;
+            this.contatoBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ContatoBox_KeyPress);
             // 
             // cadastroProprietario
             // 
@@ -182,6 +196,8 @@
             this.Style = MetroFramework.MetroColorStyle.Silver;
             this.Text = "cadastroProprietario";
             this.Load += new System.EventHandler(this.CadastroProprietario_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,10 +210,11 @@
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroTextBox emailBox;
         private MetroFramework.Controls.MetroLabel metroLabel3;
-        private MetroFramework.Controls.MetroTextBox contatoBox;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnCadastrar;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private MetroFramework.Controls.MetroTextBox contatoBox;
     }
 }

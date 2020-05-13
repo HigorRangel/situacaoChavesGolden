@@ -64,11 +64,12 @@ namespace situacaoChavesGolden
 
             if(contErros == 0)
             {
+                FormatarStrings format = new FormatarStrings();
                 try
                 {
                     database.insertInto(string.Format("INSERT INTO retirado (cod_chave, tipo_retirada, quem_retirou, descricao, data_retirada, cod_usuario)" +
-                                                    " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", codigoChave, tipoRetirada, quemRetirouBox.Text,
-                                                    descricaoBox.Text, dataAgora, usuario));
+                                                    " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", codigoChave, tipoRetirada, format.inserirBD(quemRetirouBox.Text),
+                                                    format.inserirBD(descricaoBox.Text), dataAgora, usuario));
 
                     database.update(string.Format("UPDATE chave " +
                                                   " SET situacao = 'INDISPONIVEL', localizacao = '{0}'," +

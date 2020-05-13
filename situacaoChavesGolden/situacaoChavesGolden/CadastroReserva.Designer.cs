@@ -61,6 +61,8 @@
             this.labelCodChave = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupDadosEmp = new System.Windows.Forms.GroupBox();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.dateRetirada = new System.Windows.Forms.DateTimePicker();
             this.descBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.groupQuemEmpresta = new System.Windows.Forms.GroupBox();
@@ -72,8 +74,6 @@
             this.btnAdicionarPessoa = new System.Windows.Forms.Label();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.excluiProp = new System.Windows.Forms.Label();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.dateRetirada = new System.Windows.Forms.DateTimePicker();
             this.painelProp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPessoas)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -91,7 +91,7 @@
             this.painelProp.Controls.Add(this.btnConfirmarProp);
             this.painelProp.Controls.Add(this.gridPessoas);
             this.painelProp.Controls.Add(this.boxProcurarProp);
-            this.painelProp.Location = new System.Drawing.Point(47, 138);
+            this.painelProp.Location = new System.Drawing.Point(43, 111);
             this.painelProp.Name = "painelProp";
             this.painelProp.Size = new System.Drawing.Size(374, 225);
             this.painelProp.TabIndex = 38;
@@ -484,10 +484,33 @@
             this.groupDadosEmp.TabIndex = 34;
             this.groupDadosEmp.TabStop = false;
             // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel3.Location = new System.Drawing.Point(301, 35);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(89, 15);
+            this.metroLabel3.TabIndex = 11;
+            this.metroLabel3.Text = "Data de retirada";
+            this.metroLabel3.Click += new System.EventHandler(this.MetroLabel3_Click);
+            // 
+            // dateRetirada
+            // 
+            this.dateRetirada.CalendarForeColor = System.Drawing.Color.Gray;
+            this.dateRetirada.CalendarTitleForeColor = System.Drawing.Color.Gray;
+            this.dateRetirada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateRetirada.Location = new System.Drawing.Point(297, 52);
+            this.dateRetirada.Name = "dateRetirada";
+            this.dateRetirada.Size = new System.Drawing.Size(97, 20);
+            this.dateRetirada.TabIndex = 10;
+            this.dateRetirada.ValueChanged += new System.EventHandler(this.DatePrevisao_ValueChanged);
+            // 
             // descBox
             // 
             this.descBox.CustomBackground = true;
             this.descBox.Location = new System.Drawing.Point(15, 27);
+            this.descBox.MaxLength = 256;
             this.descBox.Multiline = true;
             this.descBox.Name = "descBox";
             this.descBox.Size = new System.Drawing.Size(270, 56);
@@ -615,28 +638,6 @@
             this.excluiProp.Text = "X";
             this.excluiProp.Visible = false;
             this.excluiProp.Click += new System.EventHandler(this.ExcluiProp_Click_1);
-            // 
-            // metroLabel3
-            // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel3.Location = new System.Drawing.Point(301, 35);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(89, 15);
-            this.metroLabel3.TabIndex = 11;
-            this.metroLabel3.Text = "Data de retirada";
-            this.metroLabel3.Click += new System.EventHandler(this.MetroLabel3_Click);
-            // 
-            // dateRetirada
-            // 
-            this.dateRetirada.CalendarForeColor = System.Drawing.Color.Gray;
-            this.dateRetirada.CalendarTitleForeColor = System.Drawing.Color.Gray;
-            this.dateRetirada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateRetirada.Location = new System.Drawing.Point(297, 52);
-            this.dateRetirada.Name = "dateRetirada";
-            this.dateRetirada.Size = new System.Drawing.Size(97, 20);
-            this.dateRetirada.TabIndex = 10;
-            this.dateRetirada.ValueChanged += new System.EventHandler(this.DatePrevisao_ValueChanged);
             // 
             // CadastroReserva
             // 

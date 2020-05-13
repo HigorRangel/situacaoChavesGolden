@@ -339,12 +339,14 @@ namespace situacaoChavesGolden
                 int contErros = 0;
                 string erros = "";
 
+                FormatarStrings format = new FormatarStrings();
+
                 string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToLower();
                 decimal quantChaves = qtdChaves.Value;
                 decimal quantControles = qtdControles.Value;
-                string descricao = descBox.Text;
+                string descricao = format.inserirBD(descBox.Text);
                 string codigo = codPessoaBox.Text;
-                string descricaoDocumento = boxDescDoc.Text;
+                string descricaoDocumento = format.inserirBD(boxDescDoc.Text);
                 string documentoDeixado = "";
                 string codCliente = "";
                 DateTime dataHojeUs = new DateTime();
@@ -637,6 +639,11 @@ namespace situacaoChavesGolden
         }
 
         private void GroupBox4_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PainelProp_Paint(object sender, PaintEventArgs e)
         {
 
         }

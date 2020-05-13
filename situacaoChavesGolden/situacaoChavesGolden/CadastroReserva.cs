@@ -361,8 +361,10 @@ namespace situacaoChavesGolden
             int contErros = 0;
             string erros = "";
 
+            FormatarStrings format = new FormatarStrings();
+
             string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToLower();
-            string descricao = descBox.Text;
+            string descricao = format.inserirBD(descBox.Text);
             string codigo = codPessoaBox.Text;
             DateTime dataHojeUs = new DateTime();
 
@@ -389,18 +391,18 @@ namespace situacaoChavesGolden
                     {
                         database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_proprietario, cod_usuario, descricao)" +
                                                             " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", codigoChave, dateRetirada.Value,
-                                                            codPessoaBox.Text, user, descBox.Text));
+                                                            codPessoaBox.Text, user, format.inserirBD(descBox.Text)));
                     }
                     else if (tipo == "cliente")
                     {
                         database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_cliente, cod_usuario, descricao)" +
                                                             " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", codigoChave, dateRetirada.Value,
-                                                            codPessoaBox.Text, user, descBox.Text));
+                                                            codPessoaBox.Text, user, format.inserirBD(descBox.Text)));
                     }
                     else
                     {
                         database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_usuario, descricao)" +
-                                                           " VALUES ('{0}', '{1}', '{2}', '{3}')", codigoChave, dateRetirada.Value, user, descBox.Text));
+                                                           " VALUES ('{0}', '{1}', '{2}', '{3}')", codigoChave, dateRetirada.Value, user, format.inserirBD(descBox.Text)));
                     }
 
                     Message popup = new Message("Reserva efetuada com sucesso!", "", "sucesso", "confirma");

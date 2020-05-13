@@ -104,6 +104,7 @@
             this.boxLogradouro.CustomForeColor = true;
             this.boxLogradouro.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.boxLogradouro.Location = new System.Drawing.Point(29, 175);
+            this.boxLogradouro.MaxLength = 100;
             this.boxLogradouro.Name = "boxLogradouro";
             this.boxLogradouro.Size = new System.Drawing.Size(374, 25);
             this.boxLogradouro.TabIndex = 1;
@@ -126,6 +127,7 @@
             this.boxNumero.CustomForeColor = true;
             this.boxNumero.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.boxNumero.Location = new System.Drawing.Point(13, 81);
+            this.boxNumero.MaxLength = 8;
             this.boxNumero.Name = "boxNumero";
             this.boxNumero.Size = new System.Drawing.Size(62, 25);
             this.boxNumero.TabIndex = 2;
@@ -137,6 +139,7 @@
             this.boxCidade.CustomForeColor = true;
             this.boxCidade.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.boxCidade.Location = new System.Drawing.Point(13, 134);
+            this.boxCidade.MaxLength = 50;
             this.boxCidade.Name = "boxCidade";
             this.boxCidade.Size = new System.Drawing.Size(157, 25);
             this.boxCidade.TabIndex = 10;
@@ -148,6 +151,7 @@
             this.boxBairro.CustomForeColor = true;
             this.boxBairro.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.boxBairro.Location = new System.Drawing.Point(89, 81);
+            this.boxBairro.MaxLength = 50;
             this.boxBairro.Name = "boxBairro";
             this.boxBairro.Size = new System.Drawing.Size(124, 25);
             this.boxBairro.TabIndex = 3;
@@ -159,11 +163,13 @@
             this.boxEstado.CustomForeColor = true;
             this.boxEstado.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.boxEstado.Location = new System.Drawing.Point(176, 134);
+            this.boxEstado.MaxLength = 2;
             this.boxEstado.Name = "boxEstado";
             this.boxEstado.Size = new System.Drawing.Size(26, 25);
             this.boxEstado.TabIndex = 11;
             this.boxEstado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.boxEstado.UseStyleColors = true;
+            this.boxEstado.Leave += new System.EventHandler(this.BoxEstado_Leave);
             // 
             // metroLabel2
             // 
@@ -221,6 +227,7 @@
             this.boxComplemento.CustomForeColor = true;
             this.boxComplemento.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.boxComplemento.Location = new System.Drawing.Point(226, 81);
+            this.boxComplemento.MaxLength = 50;
             this.boxComplemento.Name = "boxComplemento";
             this.boxComplemento.Size = new System.Drawing.Size(158, 25);
             this.boxComplemento.TabIndex = 4;
@@ -508,6 +515,7 @@
             this.boxOutraLocalizacao.CustomForeColor = true;
             this.boxOutraLocalizacao.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.boxOutraLocalizacao.Location = new System.Drawing.Point(162, 79);
+            this.boxOutraLocalizacao.MaxLength = 50;
             this.boxOutraLocalizacao.Name = "boxOutraLocalizacao";
             this.boxOutraLocalizacao.Size = new System.Drawing.Size(220, 25);
             this.boxOutraLocalizacao.Style = MetroFramework.MetroColorStyle.Silver;
@@ -556,12 +564,14 @@
             this.codImovel.CustomForeColor = true;
             this.codImovel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.codImovel.Location = new System.Drawing.Point(13, 23);
+            this.codImovel.MaxLength = 15;
             this.codImovel.Name = "codImovel";
             this.codImovel.Size = new System.Drawing.Size(79, 25);
             this.codImovel.TabIndex = 1;
             this.codImovel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.codImovel.UseStyleColors = true;
             this.codImovel.Click += new System.EventHandler(this.CodImovel_Click);
+            this.codImovel.Leave += new System.EventHandler(this.CodImovel_Leave);
             // 
             // labelProp
             // 
@@ -624,11 +634,12 @@
             this.painelProp.Controls.Add(this.btnConfirmarProp);
             this.painelProp.Controls.Add(this.gridProprietarios);
             this.painelProp.Controls.Add(this.boxProcurarProp);
-            this.painelProp.Location = new System.Drawing.Point(27, 149);
+            this.painelProp.Location = new System.Drawing.Point(32, 11);
             this.painelProp.Name = "painelProp";
             this.painelProp.Size = new System.Drawing.Size(374, 225);
             this.painelProp.TabIndex = 25;
             this.painelProp.Visible = false;
+            this.painelProp.Paint += new System.Windows.Forms.PaintEventHandler(this.PainelProp_Paint);
             // 
             // btnNovoProp
             // 
@@ -765,6 +776,7 @@
             this.boxCategImov.CustomForeColor = true;
             this.boxCategImov.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.boxCategImov.Location = new System.Drawing.Point(160, 30);
+            this.boxCategImov.MaxLength = 30;
             this.boxCategImov.Name = "boxCategImov";
             this.boxCategImov.Size = new System.Drawing.Size(142, 25);
             this.boxCategImov.Style = MetroFramework.MetroColorStyle.Silver;
@@ -788,6 +800,7 @@
             this.boxCond.CustomForeColor = true;
             this.boxCond.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.boxCond.Location = new System.Drawing.Point(7, 30);
+            this.boxCond.MaxLength = 30;
             this.boxCond.Name = "boxCond";
             this.boxCond.Size = new System.Drawing.Size(138, 25);
             this.boxCond.Style = MetroFramework.MetroColorStyle.Silver;
