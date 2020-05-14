@@ -397,6 +397,7 @@ namespace situacaoChavesGolden
                     if (data < dataHoje)
                     {
                         row.DefaultCellStyle.BackColor = Color.FromArgb(255, 176, 176);
+                        row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(212, 55, 61);
                     }
 
                 }

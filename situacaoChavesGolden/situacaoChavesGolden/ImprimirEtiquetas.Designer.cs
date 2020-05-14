@@ -360,6 +360,7 @@
             this.descTipo.TabIndex = 60;
             this.descTipo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.descTipo.TextChanged += new System.EventHandler(this.DescTipo_TextChanged);
+            this.descTipo.Leave += new System.EventHandler(this.DescTipo_Leave);
             // 
             // imgCod
             // 

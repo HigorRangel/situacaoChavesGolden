@@ -42,8 +42,8 @@ namespace situacaoChavesGolden
             if (filtro == "TODOS") { filtro = ""; }
 
 
-            //try
-            //{
+            try
+            {
                 chaves = database.select(string.Format("SELECT c.cod_chave, c.cod_imob, c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END)" +
                                              " as endereco, c.bairro, c.situacao_imovel, c.indice_chave," +
                                              " (SELECT COUNT((CASE WHEN r.cod_reserva is not null AND " +
@@ -52,8 +52,8 @@ namespace situacaoChavesGolden
                                              " WHERE cod_chave = c.indice_chave AND situacao = 'EM ANDAMENTO') as emprestimo" +
                                              " FROM chave C" +
                                              " LEFT JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
-                                             " W HERE (c.rua ILIKE '%{0}%' OR c.bairro ILIKE '%{0}%' OR c.cidade ILIKE '%{0}%' OR c.estado ILIKE '%{0}%' OR" +
-                                             " c.numero  ILIKE '%{0}%' OR c.complemento ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%' OR p.nome ILIKE '%{0}%') AND" +
+                                             " WHERE ((unaccent(lower(c.rua))) ILIKE '%{0}%' OR (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR (unaccent(lower(c.cidade))) ILIKE '%{0}%' OR (unaccent(lower(c.estado))) ILIKE '%{0}%' OR" +
+                                             " (unaccent(lower(c.numero)))  ILIKE '%{0}%' OR (unaccent(lower(c.complemento))) ILIKE '%{0}%' OR (unaccent(lower(c.cod_imob))) ILIKE '%{0}%' OR (unaccent(lower(p.nome))) ILIKE '%{0}%') AND" +
                                              " (c.finalidade ILIKE '%{1}%' AND c.situacao ILIKE '{2}%' AND c.situacao_imovel ILIKE '{3}%' AND " +
                                              "  c.tipo_imovel ILIKE '%{4}%')" +
                                              " ORDER BY c.situacao_imovel, c.rua, c.cod_imob", textoBusca, filtro, filtroSitChave,
@@ -124,15 +124,15 @@ namespace situacaoChavesGolden
                 }
 
 
-            //}
-            //catch (Exception erro)
-            //{
-
-            //    MessageBox.Show(erro.Message);
-            //}
-
-
         }
+            catch (Exception erro)
+            {
+
+                MessageBox.Show(erro.Message);
+            }
+
+
+}
 
         string usuario = "";
         public Chaves(string codUser)
@@ -221,7 +221,7 @@ namespace situacaoChavesGolden
                     {
                         codigoImob.Text = row[10].ToString();
                         finalidade.Text = row[12].ToString();
-                        sitImovel.Text = row[13].ToString();
+                        sitImovel.Text = row[13].ToString().Replace("/", " E ");
                         endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} [{5}]", row[1].ToString(),
                             row[5].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(),
                             row[6].ToString());

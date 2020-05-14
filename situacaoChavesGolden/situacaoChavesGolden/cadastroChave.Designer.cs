@@ -46,8 +46,6 @@
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
             this.groupFinalImovel = new System.Windows.Forms.GroupBox();
-            this.radioFinalidadeVenda = new MetroFramework.Controls.MetroRadioButton();
-            this.radioFinalidadeLoc = new MetroFramework.Controls.MetroRadioButton();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
             this.groupTipoImovel = new System.Windows.Forms.GroupBox();
             this.radioTipoCom = new MetroFramework.Controls.MetroRadioButton();
@@ -86,6 +84,8 @@
             this.boxCategImov = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
             this.boxCond = new MetroFramework.Controls.MetroTextBox();
+            this.checkLocacao = new MetroFramework.Controls.MetroCheckBox();
+            this.checkVenda = new MetroFramework.Controls.MetroCheckBox();
             this.groupSitImovel.SuspendLayout();
             this.groupFinalImovel.SuspendLayout();
             this.groupTipoImovel.SuspendLayout();
@@ -288,41 +288,19 @@
             // 
             // groupFinalImovel
             // 
-            this.groupFinalImovel.Controls.Add(this.radioFinalidadeVenda);
-            this.groupFinalImovel.Controls.Add(this.radioFinalidadeLoc);
-            this.groupFinalImovel.Location = new System.Drawing.Point(249, 325);
+            this.groupFinalImovel.Controls.Add(this.checkVenda);
+            this.groupFinalImovel.Controls.Add(this.checkLocacao);
+            this.groupFinalImovel.Location = new System.Drawing.Point(228, 325);
             this.groupFinalImovel.Name = "groupFinalImovel";
-            this.groupFinalImovel.Size = new System.Drawing.Size(153, 32);
+            this.groupFinalImovel.Size = new System.Drawing.Size(174, 32);
             this.groupFinalImovel.TabIndex = 15;
             this.groupFinalImovel.TabStop = false;
-            // 
-            // radioFinalidadeVenda
-            // 
-            this.radioFinalidadeVenda.AutoSize = true;
-            this.radioFinalidadeVenda.Location = new System.Drawing.Point(90, 11);
-            this.radioFinalidadeVenda.Name = "radioFinalidadeVenda";
-            this.radioFinalidadeVenda.Size = new System.Drawing.Size(61, 15);
-            this.radioFinalidadeVenda.TabIndex = 17;
-            this.radioFinalidadeVenda.TabStop = true;
-            this.radioFinalidadeVenda.Text = "VENDA";
-            this.radioFinalidadeVenda.UseVisualStyleBackColor = true;
-            // 
-            // radioFinalidadeLoc
-            // 
-            this.radioFinalidadeLoc.AutoSize = true;
-            this.radioFinalidadeLoc.Location = new System.Drawing.Point(5, 11);
-            this.radioFinalidadeLoc.Name = "radioFinalidadeLoc";
-            this.radioFinalidadeLoc.Size = new System.Drawing.Size(79, 15);
-            this.radioFinalidadeLoc.TabIndex = 16;
-            this.radioFinalidadeLoc.TabStop = true;
-            this.radioFinalidadeLoc.Text = "LOCAÇÃO";
-            this.radioFinalidadeLoc.UseVisualStyleBackColor = true;
             // 
             // metroLabel10
             // 
             this.metroLabel10.AutoSize = true;
             this.metroLabel10.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel10.Location = new System.Drawing.Point(89, 315);
+            this.metroLabel10.Location = new System.Drawing.Point(81, 315);
             this.metroLabel10.Name = "metroLabel10";
             this.metroLabel10.Size = new System.Drawing.Size(89, 15);
             this.metroLabel10.TabIndex = 1000;
@@ -334,14 +312,14 @@
             this.groupTipoImovel.Controls.Add(this.radioTipoRes);
             this.groupTipoImovel.Location = new System.Drawing.Point(29, 325);
             this.groupTipoImovel.Name = "groupTipoImovel";
-            this.groupTipoImovel.Size = new System.Drawing.Size(214, 32);
+            this.groupTipoImovel.Size = new System.Drawing.Size(193, 32);
             this.groupTipoImovel.TabIndex = 17;
             this.groupTipoImovel.TabStop = false;
             // 
             // radioTipoCom
             // 
             this.radioTipoCom.AutoSize = true;
-            this.radioTipoCom.Location = new System.Drawing.Point(116, 11);
+            this.radioTipoCom.Location = new System.Drawing.Point(102, 11);
             this.radioTipoCom.Name = "radioTipoCom";
             this.radioTipoCom.Size = new System.Drawing.Size(89, 15);
             this.radioTipoCom.TabIndex = 15;
@@ -808,6 +786,26 @@
             this.boxCond.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.boxCond.UseStyleColors = true;
             // 
+            // checkLocacao
+            // 
+            this.checkLocacao.AutoSize = true;
+            this.checkLocacao.Location = new System.Drawing.Point(7, 10);
+            this.checkLocacao.Name = "checkLocacao";
+            this.checkLocacao.Size = new System.Drawing.Size(79, 15);
+            this.checkLocacao.TabIndex = 0;
+            this.checkLocacao.Text = "LOCAÇÃO";
+            this.checkLocacao.UseVisualStyleBackColor = true;
+            // 
+            // checkVenda
+            // 
+            this.checkVenda.AutoSize = true;
+            this.checkVenda.Location = new System.Drawing.Point(107, 10);
+            this.checkVenda.Name = "checkVenda";
+            this.checkVenda.Size = new System.Drawing.Size(61, 15);
+            this.checkVenda.TabIndex = 1;
+            this.checkVenda.Text = "VENDA";
+            this.checkVenda.UseVisualStyleBackColor = true;
+            // 
             // cadastroChave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -881,8 +879,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel7;
         private MetroFramework.Controls.MetroLabel metroLabel9;
         private System.Windows.Forms.GroupBox groupFinalImovel;
-        private MetroFramework.Controls.MetroRadioButton radioFinalidadeVenda;
-        private MetroFramework.Controls.MetroRadioButton radioFinalidadeLoc;
         private MetroFramework.Controls.MetroLabel metroLabel10;
         private System.Windows.Forms.GroupBox groupTipoImovel;
         private MetroFramework.Controls.MetroRadioButton radioTipoCom;
@@ -921,5 +917,7 @@
         private MetroFramework.Controls.MetroLabel metroLabel13;
         private MetroFramework.Controls.MetroTextBox boxCond;
         private System.Windows.Forms.NumericUpDown boxQtdChaves;
+        private MetroFramework.Controls.MetroCheckBox checkVenda;
+        private MetroFramework.Controls.MetroCheckBox checkLocacao;
     }
 }

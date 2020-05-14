@@ -123,12 +123,20 @@ namespace situacaoChavesGolden
                     }
                     if(row[13].ToString() == "LOCAÇÃO")
                     {
-                        radioFinalidadeLoc.Checked = true;
+                        checkLocacao.Checked = true;
+                        checkVenda.Checked = false;
+                    }
+                    else if( row[13].ToString() == "VENDA")
+                    {
+                        checkLocacao.Checked = false;
+                        checkVenda.Checked = true;
                     }
                     else
                     {
-                        radioFinalidadeVenda.Checked = true;
+                        checkVenda.Checked = true;
+                        checkLocacao.Checked = true;
                     }
+
                     if(row[11].ToString() == "ATIVO")
                     {
                         radioImovAtivo.Checked = true;
@@ -224,7 +232,7 @@ namespace situacaoChavesGolden
                 erro += "\n- Tipo do imóvel (Seleção Obrigatória)";
                 contErro++;
             }
-            if(radioFinalidadeLoc.Checked == false && radioFinalidadeVenda.Checked == false)
+            if(checkLocacao.Checked == false && checkVenda.Checked == false)
             {
                 erro += "\n- Finalidade (Seleção Obrigatória)";
                 contErro++;
@@ -256,7 +264,22 @@ namespace situacaoChavesGolden
                 string situacaoChave = groupSitChave.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
                 string situacaoImovel = groupSitImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
                 string tipoImovel = groupTipoImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text; ;
-                string finalidadeImovel = groupFinalImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text; ;
+                string finalidadeImovel = "";
+
+                if(checkLocacao.Checked && checkVenda.Checked)
+                {
+                    finalidadeImovel = "LOCAÇÃO/VENDA";
+                }
+                else if(checkLocacao.Checked && !checkVenda.Checked)
+                {
+                    finalidadeImovel = "LOCAÇÃO";
+                }
+                else if(!checkLocacao.Checked && checkVenda.Checked)
+                {
+                    finalidadeImovel = "VENDA";
+                }
+                
+                
                 string localizacao = "";
 
                 if(comboLocalizacao.SelectedItem.ToString() == "Outro")

@@ -149,7 +149,7 @@ namespace situacaoChavesGolden
             sfTipo.Alignment = StringAlignment.Center;
             sfTipo.LineAlignment = StringAlignment.Center;
 
-            drawerTipo.DrawString(texto,
+            drawerTipo.DrawString(texto.ToUpper(),
                 new Font("Consolas", (float)tamFonte.Value + 2, FontStyle.Bold, GraphicsUnit.Pixel),
                 new SolidBrush(Color.Black), rectTipo, sfTipo);
 
@@ -773,6 +773,11 @@ namespace situacaoChavesGolden
             descTipo.Font = fonteTipo;
             descImovel.Font = fonteTexto;
             descCod.Font = fonteCod;
+        }
+
+        private void DescTipo_Leave(object sender, EventArgs e)
+        {
+            descTipo.Text = descTipo.Text.ToUpper();
         }
     }
 }
