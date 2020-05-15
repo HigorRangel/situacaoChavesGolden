@@ -155,6 +155,18 @@ namespace situacaoChavesGolden
 
         private void buscarDadosChave()
         {
+            DataTable dadosChaveEscolhida = new DataTable();
+
+            dadosChaveEscolhida = database.select(string.Format("SELECT c.cod_chave, c.cod_imob,  c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave " +
+                                                                    " FROM CHAVE c " +
+                                                                    " WHERE indice_chave = '{0}'", codigoChave));
+
+            foreach(DataRow  linha in dadosChaveEscolhida.Rows)
+            {
+                gridChaves.Rows.Add(linha[0].ToString(), linha[1].ToString(), linha[2].ToString(), linha[3].ToString());
+            }
+
+
 
             DataTable dadosChave = new DataTable();
             if (seletorTela == true)
@@ -180,9 +192,9 @@ namespace situacaoChavesGolden
 
                 foreach (DataRow row in dadosChave.Rows)
                 {
-                    codigoChaveBox.Text = row[0].ToString();
-                    textoCodChave.Text = row[0].ToString();
-                    endereco.Text = string.Format("{0}, {1} ({2}) - {3} - {4}/{5}", row[1], row[2], row[3], row[4], row[5], row[6]);
+                    //codigoChaveBox.Text = row[0].ToString();
+                    //textoCodChave.Text = row[0].ToString();
+                    //endereco.Text = string.Format("{0}, {1} ({2}) - {3} - {4}/{5}", row[1], row[2], row[3], row[4], row[5], row[6]);
                     if(row[7].ToString() == "CLIENTE") {
                         codPessoaBox.Text = row[8].ToString();
                         nomePessoaBox.Text = row[9].ToString();
@@ -211,9 +223,9 @@ namespace situacaoChavesGolden
 
                 foreach (DataRow row in dadosChave.Rows)
                 {
-                    codigoChaveBox.Text = row[0].ToString();
-                    textoCodChave.Text = row[0].ToString();
-                    endereco.Text = string.Format("{0}, {1} ({2}) - {3} - {4}/{5}", row[1], row[2], row[3], row[4], row[5], row[6]);
+                    //codigoChaveBox.Text = row[0].ToString();
+                    //textoCodChave.Text = row[0].ToString();
+                    //endereco.Text = string.Format("{0}, {1} ({2}) - {3} - {4}/{5}", row[1], row[2], row[3], row[4], row[5], row[6]);
                 }
             }
 
@@ -225,25 +237,49 @@ namespace situacaoChavesGolden
 
         private void CadastrarEmprestimo_Load(object sender, EventArgs e)
         {
-            buscarDadosChave();
-
-            endereco.MaximumSize = new Size(160, 49);
-            endereco.AutoSize = true;
-
-            email.MaximumSize = new Size(160, 25);
-            email.AutoSize = true;
 
 
-           
+
+
+
+            gridChaves.Columns.Add("codigo", "Cód.");
+            gridChaves.Columns.Add("codimob", "Cód Imob");
+            gridChaves.Columns.Add("endereco", "Endereço");
+            gridChaves.Columns.Add("indice", "");
+            DataGridViewImageColumn cellImage = new DataGridViewImageColumn();
+            cellImage.Image = new Bitmap(Properties.Resources.Delete);
+
+            gridChaves.Columns.Insert(4, cellImage);
+
+
+
+
+            gridChaves.Columns[0].Width = 30;
+            gridChaves.Columns[1].Width = 75;
+            gridChaves.Columns[2].Width = 265;
+            gridChaves.Columns[4].Width = 20;
+            gridChaves.Columns[3].Visible = false;
+
+
+         
+            //endereco.MaximumSize = new Size(160, 49);
+            //endereco.AutoSize = true;
+
+            //email.MaximumSize = new Size(160, 25);
+            //email.AutoSize = true;
+
+
+
 
             datePrevisao.Value = dataHoje.AddDays(1);
             datePrevisao.MinDate = dataHoje.AddDays(1);
             datePrevisao.MaxDate = dataHoje.AddDays(30);
 
-           
+            buscarDadosChave();
+
         }
 
-        
+
 
         private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -488,7 +524,7 @@ namespace situacaoChavesGolden
             groupQuemEmpresta.Enabled = false;
             groupDadosEmp.Enabled = false;
             groupDadosCliente.Enabled = false;
-            groupBox4.Enabled = false;
+            //groupBox4.Enabled = false;
             btnConfirmar.Enabled = false;
         }
 
@@ -533,7 +569,7 @@ namespace situacaoChavesGolden
             groupQuemEmpresta.Enabled = true;
             groupDadosEmp.Enabled = true;
             groupDadosCliente.Enabled = true;
-            groupBox4.Enabled = true;
+            //groupBox4.Enabled = true;
             btnConfirmar.Enabled = true;
         }
 
@@ -548,7 +584,7 @@ namespace situacaoChavesGolden
                 groupQuemEmpresta.Enabled = true;
                 groupDadosEmp.Enabled = true;
                 groupDadosCliente.Enabled = true;
-                groupBox4.Enabled = true;
+                //groupBox4.Enabled = true;
                 btnConfirmar.Enabled = true;
                 btnAdicionarPessoa.Visible = false;
                 labelProp.Visible = true;
@@ -570,9 +606,9 @@ namespace situacaoChavesGolden
 
                     foreach (DataRow row in dados.Rows)
                     {
-                        labelTel1.Text = row[0].ToString();;
-                        email.Text = row[1].ToString();
-                        nome.Text = row[2].ToString();
+                        //labelTel1.Text = row[0].ToString();;
+                        //email.Text = row[1].ToString();
+                        //nome.Text = row[2].ToString();
                     }
                 }
                 else if(tipo == "CLIENTE")
@@ -583,18 +619,18 @@ namespace situacaoChavesGolden
 
                     foreach (DataRow row in dados.Rows)
                     {
-                        labelCpf.Text = row[0].ToString();
-                        labelTel1.Text = row[1].ToString();
-                        labelTel2.Text = row[2].ToString();
-                        email.Text = row[3].ToString();
-                        nome.Text = row[4].ToString();
+                        //labelCpf.Text = row[0].ToString();
+                        //labelTel1.Text = row[1].ToString();
+                        //labelTel2.Text = row[2].ToString();
+                        //email.Text = row[3].ToString();
+                        //nome.Text = row[4].ToString();
                     }
                 }
                 else
                 {
-                    nome.Text = database.selectScalar(string.Format("SELECT nome_usuario" +
-                                                        " FROM usuario" +
-                                                        " WHERE cod_usuario = '{0}'", codPessoaBox.Text));
+                    //nome.Text = database.selectScalar(string.Format("SELECT nome_usuario" +
+                    //                                    " FROM usuario" +
+                    //                                    " WHERE cod_usuario = '{0}'", codPessoaBox.Text));
                 }
                 
             }
@@ -630,11 +666,11 @@ namespace situacaoChavesGolden
             labelProp.Visible = false;
             btnAdicionarPessoa.Visible = true;
 
-            nome.Text = "";
-            labelCpf.Text = "";
-            textoTel1.Text = "";
-            textoTel2.Text = "";
-            email.Text = "";
+            //nome.Text = "";
+            //labelCpf.Text = "";
+            //textoTel1.Text = "";
+            //textoTel2.Text = "";
+            //email.Text = "";
 
         }
 
@@ -646,6 +682,150 @@ namespace situacaoChavesGolden
         private void PainelProp_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void MetroLabel3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnAddChave_Click(object sender, EventArgs e)
+        {
+            panelChaves.Visible = true;
+            atualizarGridChaves(gridChaves);
+
+
+        }
+
+        private void atualizarGridChaves(DataGridView tabela)
+        {
+
+            //List<string> codigos = new List<string>();
+            string codigos = "";
+            int cont = 0;
+
+           
+            foreach(DataGridViewRow row in tabela.Rows)
+            {
+                if (cont != tabela.Rows.Count)
+                {
+                    codigos += " AND ";
+                }
+
+                codigos += string.Format(" c.indice_chave != {0} ", row.Cells[3].Value.ToString());
+
+               
+
+                cont++;
+                        
+            }
+
+            DataTable tabelaChaves = new DataTable();
+
+            tabelaChaves = database.select(string.Format("" +
+                "SELECT c.cod_chave, c.cod_imob,  c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave " +
+                " FROM CHAVE c " +
+                " WHERE c.situacao = 'DISPONIVEL' AND (c.rua ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%' OR (unaccent(lower(c.rua))) ILIKE '%{0}%' OR" +
+                " (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR c.cod_chave::text ILIKE '%{0}%') {1} ", boxBusca.Text, codigos));
+
+            gridChavesTotal.DataSource = tabelaChaves;
+
+            gridChavesTotal.Columns[0].HeaderText = "Cód";
+            gridChavesTotal.Columns[1].HeaderText = "Cód Imob";
+            gridChavesTotal.Columns[2].HeaderText = "Endereço";
+
+            gridChavesTotal.Columns[0].Width = 35;
+            gridChavesTotal.Columns[1].Width = 75;
+            gridChavesTotal.Columns[2].Width = 290;
+            gridChavesTotal.Columns[3].Visible = false;
+            
+        }
+
+        private void BtnConfirmChave_Click(object sender, EventArgs e)
+        {
+            if(gridChaves.Rows.Count + gridChavesTotal.SelectedRows.Count > 10)
+            {
+                Message txtMsg = new Message("Limite de empréstimos atingido (10)!", "Erro", "erro", "confirma");
+                txtMsg.ShowDialog();
+            }
+            else
+            {
+                foreach (DataGridViewRow row in gridChavesTotal.SelectedRows)
+                {
+
+                    gridChaves.Rows.Add(row.Cells[0].Value.ToString(),
+                                   row.Cells[1].Value.ToString(),
+                                   row.Cells[2].Value.ToString(),
+                                   row.Cells[3].Value.ToString());
+
+                    gridChavesTotal.Rows.RemoveAt(row.Index);
+
+                    panelChaves.Visible = false;
+                }
+            }
+   
+        }
+
+        private void GridChaves_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == 4)
+            {
+
+                gridChaves.Cursor = Cursors.Hand;
+            }
+            if(e.ColumnIndex != 4)
+            {
+                gridChaves.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void GridChaves_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 4)
+            {
+                gridChaves.Rows.RemoveAt(e.RowIndex);
+            }
+        }
+
+        private void BtnCancelarChave_Click(object sender, EventArgs e)
+        {
+            panelChaves.Visible = false;
+        }
+
+        private void BoxBusca_TextChanged(object sender, EventArgs e)
+        {
+            atualizarGridChaves(gridChaves);
+        }
+
+        private void GridChaves_AllowUserToOrderColumnsChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GridChaves_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            if(gridChaves.Rows.Count >= 10)
+            {
+                btnAddChave.Enabled = false;
+            }
+            else
+            {
+                btnAddChave.Enabled = true;
+
+            }
+        }
+
+        private void GridChaves_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            if (gridChaves.Rows.Count >= 10)
+            {
+                btnAddChave.Enabled = false;
+            }
+            else
+            {
+                btnAddChave.Enabled = true;
+
+            }
         }
     }
 }

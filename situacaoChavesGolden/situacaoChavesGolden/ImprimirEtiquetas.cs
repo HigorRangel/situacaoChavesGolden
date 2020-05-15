@@ -528,7 +528,7 @@ namespace situacaoChavesGolden
 
         private void btnPassSelec_Click(object sender, EventArgs e)
         {
-            if(gridTo.Rows.Count + gridFrom.SelectedRows.Count >= 20)
+            if(gridTo.Rows.Count + gridFrom.SelectedRows.Count >= 120)
             {
                 Message popup = new Message("O limite de plaquinhas foi atingido (Máx: 120)", "Erro", "erro", "confirma");
                 popup.ShowDialog();
