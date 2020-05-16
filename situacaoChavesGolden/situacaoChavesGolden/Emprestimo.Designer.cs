@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupMenuSup = new System.Windows.Forms.GroupBox();
             this.btnFiltro = new System.Windows.Forms.PictureBox();
             this.radioVenda = new MetroFramework.Controls.MetroRadioButton();
@@ -96,6 +98,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.gridChavesEmprestimo = new System.Windows.Forms.DataGridView();
             this.groupMenuSup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             this.filtrosPanel.SuspendLayout();
@@ -108,6 +111,7 @@
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridChavesEmprestimo)).BeginInit();
             this.SuspendLayout();
             // 
             // groupMenuSup
@@ -199,7 +203,7 @@
             this.filtrosPanel.Controls.Add(this.btnFiltrar);
             this.filtrosPanel.Controls.Add(this.groupBoxSituacaoCh);
             this.filtrosPanel.Controls.Add(this.groupTipoEmprestimo);
-            this.filtrosPanel.Location = new System.Drawing.Point(341, 55);
+            this.filtrosPanel.Location = new System.Drawing.Point(122, 90);
             this.filtrosPanel.Name = "filtrosPanel";
             this.filtrosPanel.Size = new System.Drawing.Size(289, 261);
             this.filtrosPanel.TabIndex = 43;
@@ -692,7 +696,7 @@
             this.gridEmprestimo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridEmprestimo.RowTemplate.ReadOnly = true;
             this.gridEmprestimo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridEmprestimo.Size = new System.Drawing.Size(609, 177);
+            this.gridEmprestimo.Size = new System.Drawing.Size(334, 177);
             this.gridEmprestimo.TabIndex = 24;
             this.gridEmprestimo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridEmprestimo_CellContentClick);
             this.gridEmprestimo.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridEmprestimo_CellFormatting);
@@ -885,6 +889,46 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // gridChavesEmprestimo
+            // 
+            this.gridChavesEmprestimo.AllowUserToAddRows = false;
+            this.gridChavesEmprestimo.AllowUserToDeleteRows = false;
+            this.gridChavesEmprestimo.AllowUserToResizeColumns = false;
+            this.gridChavesEmprestimo.AllowUserToResizeRows = false;
+            this.gridChavesEmprestimo.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
+            this.gridChavesEmprestimo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridChavesEmprestimo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChavesEmprestimo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.gridChavesEmprestimo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.gridChavesEmprestimo.GridColor = System.Drawing.Color.White;
+            this.gridChavesEmprestimo.Location = new System.Drawing.Point(364, 57);
+            this.gridChavesEmprestimo.MultiSelect = false;
+            this.gridChavesEmprestimo.Name = "gridChavesEmprestimo";
+            this.gridChavesEmprestimo.ReadOnly = true;
+            this.gridChavesEmprestimo.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChavesEmprestimo.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.gridChavesEmprestimo.RowHeadersVisible = false;
+            this.gridChavesEmprestimo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.gridChavesEmprestimo.RowTemplate.ReadOnly = true;
+            this.gridChavesEmprestimo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridChavesEmprestimo.Size = new System.Drawing.Size(266, 177);
+            this.gridChavesEmprestimo.TabIndex = 45;
+            this.gridChavesEmprestimo.SelectionChanged += new System.EventHandler(this.gridChavesEmprestimo_SelectionChanged);
+            // 
             // Emprestimo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -892,6 +936,7 @@
             this.ClientSize = new System.Drawing.Size(655, 430);
             this.ControlBox = false;
             this.Controls.Add(this.filtrosPanel);
+            this.Controls.Add(this.gridChavesEmprestimo);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnBaixa);
             this.Controls.Add(this.groupMenuSup);
@@ -936,6 +981,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridChavesEmprestimo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1008,5 +1054,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridView gridChavesEmprestimo;
     }
 }

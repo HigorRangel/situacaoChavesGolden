@@ -23,8 +23,8 @@ namespace situacaoChavesGolden
         private void atualizarGridEmprestimo()
         {
            
-            try
-            {
+            //try
+            //{
                 DataTable dadosEmprestimo = new DataTable();
 
                 string situacao = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
@@ -43,11 +43,11 @@ namespace situacaoChavesGolden
 
                 if(busca == "Buscar") { busca = ""; }
 
-                dadosEmprestimo = database.select(string.Format("SELECT e.cod_emprestimo, c.cod_chave, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco," +
-                                                  "  e.data_retirada, e.entrega_prevista, " +
-                                                  " (CASE WHEN e.data_entrega is null THEN 'EM ANDAMENTO' ELSE 'FINALIZADO' END) as situacao, c.indice_chave " +
+                dadosEmprestimo = database.select(string.Format("SELECT e.cod_emprestimo, e.data_retirada, e.entrega_prevista, " +
+                                                  " (CASE WHEN e.data_entrega is null THEN 'EM ANDAMENTO' ELSE 'FINALIZADO' END) as situacao" +
                                                   " FROM emprestimo e " +
-                                                  " LEFT JOIN chave c on c.indice_chave = e.cod_chave " +
+                                                  " INNER JOIN chaves_emprestimo ce ON ce.cod_emprestimo = e.cod_emprestimo" +
+                                                  " LEFT JOIN chave c ON ce.cod_chave = c.indice_chave " +
                                                   " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente " +
                                                   " LEFT JOIN usuario u ON u.cod_usuario = e.cod_usuario " +
                                                   " LEFT JOIN proprietario p ON p.cod_proprietario = e.cod_proprietario " +
@@ -61,7 +61,8 @@ namespace situacaoChavesGolden
                                                             " {4} ) " +
                                                          " AND (cl.nome_cliente ILIKE '%{5}%' OR e.descricao ILIKE '%{5}%' OR " +
                                                          " c.rua ILIKE '%{5}%' OR u.nome_usuario ILIKE '%{5}%' OR  p.nome  ILIKE '%{5}%'OR" +
-                                                         " c.cod_chave::TEXT ILIKE '%{5}%' OR c.cod_imob::TEXT ILIKE '%{5}%')", 
+                                                         " c.cod_chave::TEXT ILIKE '%{5}%' OR c.cod_imob::TEXT ILIKE '%{5}%')" +
+                                                         " GROUP BY e.cod_emprestimo", 
                                                          situacao, tipo,  dataRetirada, entregaPrevista, dataRetirada, busca));
 
                 gridEmprestimo.DataSource = dadosEmprestimo;
@@ -71,25 +72,20 @@ namespace situacaoChavesGolden
                 
 
                 gridEmprestimo.Columns[0].HeaderText = "Código";        
-                gridEmprestimo.Columns[1].HeaderText = "Chave";
-                gridEmprestimo.Columns[2].HeaderText = "Endereço";
-                gridEmprestimo.Columns[3].HeaderText = "Data retirada";
-                gridEmprestimo.Columns[4].HeaderText = "Previsão de entrega";
-                gridEmprestimo.Columns[5].HeaderText = "Situação";
-                gridEmprestimo.Columns[6].Visible = false;
+                gridEmprestimo.Columns[1].HeaderText = "Data retirada";
+                gridEmprestimo.Columns[2].HeaderText = "Previsão de entrega";
+                gridEmprestimo.Columns[3].HeaderText = "Situação";
 
                 gridEmprestimo.Columns[0].Width = 40;
-                gridEmprestimo.Columns[1].Width = 40;
-                gridEmprestimo.Columns[2].Width = 234;
+                gridEmprestimo.Columns[1].Width = 98;
+                gridEmprestimo.Columns[2].Width = 97;
                 gridEmprestimo.Columns[3].Width = 98;
-                gridEmprestimo.Columns[4].Width = 98;
-                gridEmprestimo.Columns[5].Width = 98;
 
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show(erro.Message);
-            }
+            //}
+            //catch (Exception erro)
+            //{
+            //    MessageBox.Show(erro.Message);
+            //}
 
             string sitEmprestimo = "";
             try
@@ -138,11 +134,41 @@ namespace situacaoChavesGolden
             dpMaxDataEntrega.MaxDate = dataHoje;
         }
 
-        private void GridEmprestimo_SelectionChanged(object sender, EventArgs e)
+        void atulizarGridChavesEmprestimo(string codigo)
         {
+            DataTable dadosEmprestimo = new DataTable();
+
             try
             {
-                if (gridEmprestimo.CurrentRow.Cells[5].Value.ToString() == "FINALIZADO")
+                dadosEmprestimo = database.select(string.Format("SELECT c.cod_chave," +
+                                                               " c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END)" +
+                                                               " as endereco" +
+                                                               " FROM chave c" +
+                                                               " INNER JOIN chaves_emprestimo ce ON ce.cod_chave = c.indice_chave" +
+                                                               " INNER JOIN emprestimo e ON e.cod_emprestimo = ce.cod_emprestimo" +
+                                                               " WHERE e.cod_emprestimo = '{0}'" +
+                                                               " ORDER BY c.cod_chave", codigo));
+
+                gridChavesEmprestimo.DataSource = dadosEmprestimo;
+
+                gridChavesEmprestimo.Columns[0].Width = 40;
+                gridChavesEmprestimo.Columns[1].Width = 225;
+
+                gridChavesEmprestimo.Columns[0].HeaderText = "Chave";
+                gridChavesEmprestimo.Columns[1].HeaderText = "Endereço";
+            }
+            catch { }
+
+        }
+
+        private void GridEmprestimo_SelectionChanged(object sender, EventArgs e)
+        {
+
+            atulizarGridChavesEmprestimo(gridEmprestimo.CurrentRow.Cells[0].Value.ToString());
+
+            try
+            {
+                if (gridEmprestimo.CurrentRow.Cells[3].Value.ToString() == "FINALIZADO")
                 {
                     btnBaixa.Enabled = false;
                     btnProrrogar.Enabled = false;
@@ -165,61 +191,56 @@ namespace situacaoChavesGolden
             try
             {
                 DataTable dadosEmprestimo = new DataTable();
-                string filtrarSituacao = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
-
-                if (filtrarSituacao == "EM ANDAMENTO") { filtrarSituacao = "e.data_entrega is null"; }
-                else if (filtrarSituacao == "FINALIZADO") { filtrarSituacao = "e.data_entrega is not null"; }
-                else { filtrarSituacao = ""; }
+               
 
                 dadosEmprestimo = database.select(string.Format("" +
-                    "SELECT c.cod_imob, c.cod_chave, " +
+                    "SELECT  " +
                     " (CASE WHEN e.data_entrega is null THEN 'EM ANDAMENTO' ELSE 'FINALIZADO' END) as situacao, " +
                     " (CASE WHEN e.cod_proprietario is null AND e.cod_cliente is null THEN 'FUNCIONARIO' " +
                           "  WHEN e.cod_proprietario is null AND e.cod_cliente is not null THEN 'CLIENTE' " +
                            " WHEN e.cod_proprietario is not null AND e.cod_cliente is null THEN 'PROPRIETARIO' END) as tipo, " +
                            " '(' || cl.cod_cliente || ') - ' || cl.nome_cliente, cl.contato_principal || ' / ' || cl.contato_secundario, " +
-                           " '(' || p.cod_proprietario || ') - ' || p.nome as proprietario, p.contato, u.nome_usuario, e.descricao, e.quant_chaves, " +
-                           " e.quant_controles, e.data_retirada, e.entrega_prevista, e.data_entrega " +
+                           " '(' || p.cod_proprietario || ') - ' || p.nome as proprietario, p.contato, u.nome_usuario, e.descricao, " +
+                           "  e.data_retirada, e.entrega_prevista, e.data_entrega " +
                     " FROM emprestimo e " +
-                    " LEFT JOIN chave c on c.indice_chave = e.cod_chave " +
                     " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente " +
                     " LEFT JOIN usuario u ON u.cod_usuario = e.cod_usuario " +
                     " LEFT JOIN proprietario p ON p.cod_proprietario = e.cod_proprietario" +
                     " WHERE cod_emprestimo = '{0}'", gridEmprestimo.CurrentRow.Cells[0].Value.ToString()));
 
 
-
                 foreach (DataRow row in dadosEmprestimo.Rows)
-                {
-                    codigoImob.Text = row[0].ToString();
-                    codChave.Text = row[1].ToString();
-                    sitEmprestimo.Text = row[2].ToString();
-                    if (row[3].ToString() == "FUNCIONARIO")
                     {
-                        dadosRetirante.Text = string.Format("{0} [{1}]", row[8].ToString(), row[3].ToString());
+               
+
+                    sitEmprestimo.Text = row[0].ToString();
+
+                    if (row[1].ToString() == "FUNCIONARIO")
+                    {
+                        dadosRetirante.Text = string.Format("{0} [{1}]", row[6].ToString(), row[1].ToString());
 
                     }
-                    else if (row[3].ToString() == "CLIENTE")
+                    else if (row[1].ToString() == "CLIENTE")
                     {
-                        dadosRetirante.Text = string.Format("{0} [{1}]", row[4].ToString(), row[3].ToString());
-                        contato.Text = row[5].ToString();
+                        dadosRetirante.Text = string.Format("{0} [{1}]", row[2].ToString(), row[1].ToString());
+                        contato.Text = row[3].ToString();
                     }
                     else
                     {
-                        dadosRetirante.Text = string.Format("{0} [{1}]", row[6].ToString(), row[3].ToString());
-                        contato.Text = row[7].ToString();
+                        dadosRetirante.Text = string.Format("{0} [{1}]", row[4].ToString(), row[1].ToString());
+                        contato.Text = row[5].ToString();
                     }
-                    descricao.Text = row[9].ToString();
-                    qtdChaves.Text = row[10].ToString();
-                    qtdControles.Text = row[11].ToString();
-                    funcionario.Text = row[8].ToString();
-                    dataRetirada.Text = row[12].ToString();
-                    previsEntrega.Text = row[13].ToString();
-                    dataEntrega.Text = row[14].ToString();
+
+                    descricao.Text = row[7].ToString();
+                    funcionario.Text = row[6].ToString();
+                    dataRetirada.Text = row[8].ToString();
+                    previsEntrega.Text = row[9].ToString();
+                    dataEntrega.Text = row[10].ToString();
+
                 }
             }
             catch { }
-           
+
         }
 
 
@@ -425,6 +446,11 @@ namespace situacaoChavesGolden
         private void GroupBox2_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void gridChavesEmprestimo_SelectionChanged(object sender, EventArgs e)
+        {
+            DataTable dadosChaves
         }
     }
 }
