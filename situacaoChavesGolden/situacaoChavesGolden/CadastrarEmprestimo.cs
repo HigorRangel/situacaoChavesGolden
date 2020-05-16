@@ -15,23 +15,23 @@ namespace situacaoChavesGolden
     public partial class CadastrarEmprestimo : MetroFramework.Forms.MetroForm
     {
         bool seletorTela = false;
-        string codigoChave = "";
+        List<string> codigosChaves = new List<string>();
         string user = "";
         string codigoReserva = "";
 
-        public CadastrarEmprestimo(string usuario, string codReserva, string codChave)
+        public CadastrarEmprestimo(string usuario, string codReserva, List<string> codChaves)
         {
             InitializeComponent();
             seletorTela = true;
             user = usuario;
             codigoReserva = codReserva;
-            codigoChave = codChave;
+            codigosChaves = codChaves;
         }
 
-        public CadastrarEmprestimo(string usuario, string codChave)
+        public CadastrarEmprestimo(string usuario, List<string> codChaves)
         {
             InitializeComponent();
-            codigoChave = codChave;
+            codigosChaves = codChaves;
             user = usuario;
         }
 
@@ -45,7 +45,7 @@ namespace situacaoChavesGolden
         string codigoCliente = "";
 
 
-        private string verificarReservaPessoa()
+        private List<string> verificarReservaPessoa()
         {
             string quem = "";
             if (radioCliente.Checked) { quem = "r.cod_cliente"; }
@@ -53,8 +53,12 @@ namespace situacaoChavesGolden
             if (radioProprietario.Checked) { quem = "r.cod_proprietario"; }
 
             DataTable tabelaReserva = new DataTable();
+            List<string> codigosReservas = new List<string>();
 
-            tabelaReserva = database.select(string.Format("SELECT r.cod_reserva, " +
+
+            foreach (string chave in codigosChaves)
+            {
+                tabelaReserva = database.select(string.Format("SELECT r.cod_reserva, " +
                                                         " (CASE  " +
 
                                                                 " WHEN " +
@@ -79,159 +83,171 @@ namespace situacaoChavesGolden
                                                                                " ) " +
                                                         " FROM reserva r " +
                                                         " INNER JOIN chave c ON c.indice_chave = r.cod_chave " +
-                                                        " WHERE indice_chave = '{0}' AND {1} = '{2}' AND r.situacao != 'FINALIZADO'", codigoChave, quem, codPessoaBox.Text));
+                                                        " WHERE indice_chave = '{0}' AND {1} = '{2}' AND r.situacao != 'FINALIZADO'", chave, quem, codPessoaBox.Text));
 
-            string codigoReserva = "";
 
-            if (tabelaReserva.Rows.Count == 0)
-            {
-                codigoReserva = "";
-            }
-            else
-            {
-                codigoReserva = tabelaReserva.Rows[0][0].ToString();
-
-            }
-
-            return codigoReserva;
-        }
-
-       private DialogResult verificarReserva()
-        {
-
-            DataTable reservas = new DataTable();
-
-            reservas = database.select(string.Format("SELECT cod_reserva, (CASE " +
-
-                                                                 " WHEN " +
-                                                                     " (CASE " +
-                                                                         " WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
-                                                                         " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
-                                                                         " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
-                                                                           " = 'CLIENTE' THEN('(' || cl.cod_cliente || ') - ' || cl.nome_cliente || ' - ' || to_char(r.data_reserva, 'DD/MM/YYYY') || ' (CLIENTE)') " +
-                                                                   " WHEN " +
-                                                                       " (CASE " +
-                                                                           " WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
-                                                                         " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
-                                                                         " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
-                                                                          "  = 'PROPRIETARIO' THEN('(' || p.cod_proprietario || ') - ' || p.nome || ' - ' || to_char(r.data_reserva, 'DD/MM/YYYY') || ' (PROPRIETÁRIO)') " +
-                                                                  " WHEN " +
-                                                                       " (CASE " +
-                                                                          "  WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
-                                                                        "  WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
-                                                                        "  WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
-                                                                          "  = 'FUNCIONARIO' THEN('(' || u.cod_usuario || ') - ' || u.nome_usuario || ' - ' || to_char(r.data_reserva, 'DD/MM/YYYY') || ' (FUNCIONÁRIO)') END " +
-                                                                                " ) " +
-                                                                " FROM reserva r " +
-                                                                " LEFT JOIN cliente cl ON cl.cod_cliente = r.cod_cliente " +
-                                                                " LEFT JOIN proprietario p ON r.cod_proprietario = p.cod_proprietario " +
-                                                                " LEFT JOIN usuario u ON r.cod_usuario = u.cod_usuario " +
-                                                                " WHERE r.situacao != 'FINALIZADO' AND r.cod_chave = {0} " +
-                                                                " ORDER BY r.data_reserva", codigoChave));
-
-            string textoReserva = "ATENÇÃO! Há uma ou mais reservas para esta chave descritas abaixo." +
-                " Deseja realmente emprestar esta chave?\n";
-            DialogResult resultado = new DialogResult();
-
-            if(reservas.Rows.Count != 0 && (verificarReservaPessoa() != "" && reservas.Rows.Count == 1) == false)
-            {
-                foreach(DataRow row in reservas.Rows)
+                if (tabelaReserva.Rows.Count == 0)
                 {
-                    textoReserva += string.Format("\n - Reserva: {0} || {1}",row[0].ToString(), row[1].ToString());
+                    codigosReservas.Clear();
                 }
+                else
+                {
+                    codigosReservas.Add(tabelaReserva.Rows[0][0].ToString());
 
-                Message telaAviso = new Message(textoReserva, "Aviso", "aviso", "escolha");
-                telaAviso.ShowDialog();
-
-                resultado = telaAviso.DialogResult;
+                }
             }
-            else
-            {
-                resultado = DialogResult.Yes;
-            }
+            
 
-            return resultado;            
+            return codigosReservas;
         }
+
+       //private DialogResult verificarReserva()
+       // {
+
+       //     //DataTable reservas = new DataTable();
+
+       //     //foreach(string codigo in codigosChaves)
+       //     //{
+
+       //     //    reservas = database.select(string.Format("SELECT cod_reserva, (CASE " +
+
+       //     //                                                         " WHEN " +
+       //     //                                                             " (CASE " +
+       //     //                                                                 " WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
+       //     //                                                                 " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
+       //     //                                                                 " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
+       //     //                                                                   " = 'CLIENTE' THEN('(' || cl.cod_cliente || ') - ' || cl.nome_cliente || ' - ' || to_char(r.data_reserva, 'DD/MM/YYYY') || ' (CLIENTE)') " +
+       //     //                                                           " WHEN " +
+       //     //                                                               " (CASE " +
+       //     //                                                                   " WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
+       //     //                                                                 " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
+       //     //                                                                 " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
+       //     //                                                                  "  = 'PROPRIETARIO' THEN('(' || p.cod_proprietario || ') - ' || p.nome || ' - ' || to_char(r.data_reserva, 'DD/MM/YYYY') || ' (PROPRIETÁRIO)') " +
+       //     //                                                          " WHEN " +
+       //     //                                                               " (CASE " +
+       //     //                                                                  "  WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
+       //     //                                                                "  WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
+       //     //                                                                "  WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
+       //     //                                                                  "  = 'FUNCIONARIO' THEN('(' || u.cod_usuario || ') - ' || u.nome_usuario || ' - ' || to_char(r.data_reserva, 'DD/MM/YYYY') || ' (FUNCIONÁRIO)') END " +
+       //     //                                                                        " ) " +
+       //     //                                                        " FROM reserva r " +
+       //     //                                                        " LEFT JOIN cliente cl ON cl.cod_cliente = r.cod_cliente " +
+       //     //                                                        " LEFT JOIN proprietario p ON r.cod_proprietario = p.cod_proprietario " +
+       //     //                                                        " LEFT JOIN usuario u ON r.cod_usuario = u.cod_usuario " +
+       //     //                                                        " WHERE r.situacao != 'FINALIZADO' AND r.cod_chave = {0} " +
+       //     //                                                        " ORDER BY r.data_reserva", codigo));
+
+       //     //    string textoReserva = "ATENÇÃO! Há uma ou mais reservas para a(s) chave(s) descrita(s) abaixo." +
+       //     //        " Deseja realmente emprestar esta chave?\n";
+       //     //    DialogResult resultado = new DialogResult();
+
+       //     //    if (reservas.Rows.Count != 0 && (verificarReservaPessoa() != "" && reservas.Rows.Count == 1) == false)
+       //     //    {
+       //     //        foreach (DataRow row in reservas.Rows)
+       //     //        {
+       //     //            textoReserva += string.Format("\n - Reserva: {0} || {1}", row[0].ToString(), row[1].ToString());
+       //     //        }
+
+       //     //        Message telaAviso = new Message(textoReserva, "Aviso", "aviso", "escolha");
+       //     //        telaAviso.ShowDialog();
+
+       //     //        resultado = telaAviso.DialogResult;
+       //     //    }
+       //     //    else
+       //     //    {
+       //     //        resultado = DialogResult.Yes;
+       //     //    }
+
+       //     //}
+
+       //     //return resultado;            
+       // }
 
         private void buscarDadosChave()
         {
             DataTable dadosChaveEscolhida = new DataTable();
 
-            dadosChaveEscolhida = database.select(string.Format("SELECT c.cod_chave, c.cod_imob,  c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave " +
-                                                                    " FROM CHAVE c " +
-                                                                    " WHERE indice_chave = '{0}'", codigoChave));
-
-            foreach(DataRow  linha in dadosChaveEscolhida.Rows)
+            foreach (string codigo in codigosChaves)
             {
-                gridChaves.Rows.Add(linha[0].ToString(), linha[1].ToString(), linha[2].ToString(), linha[3].ToString());
-            }
+                dadosChaveEscolhida = database.select(string.Format("SELECT c.cod_chave, c.cod_imob,  c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave " +
+                                                                   " FROM CHAVE c " +
+                                                                   " WHERE indice_chave = '{0}'", codigo));
 
-
-
-            DataTable dadosChave = new DataTable();
-            if (seletorTela == true)
-            {
-                btnAdicionarPessoa.Visible = false;
-                codPessoaBox.Visible = true;
-                nomePessoaBox.Visible = true;
-                excluiProp.Enabled = false;
-                groupQuemEmpresta.Enabled = false;
-
-                dadosChave = database.select(string.Format("" +
-               "SELECT c.cod_imob, c.rua, c.numero, c.complemento, c.bairro, c.cidade, c.estado, " +
-               " (CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
-                       " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
-                       " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) as tipo, " +
-                        " cl.cod_cliente, cl.nome_cliente, p.cod_proprietario, p.nome, u.cod_usuario, u.nome_usuario " +
-               " FROM reserva r " +
-               " LEFT JOIN cliente cl ON cl.cod_cliente = r.cod_cliente " +
-               " LEFT JOIN proprietario p ON p.cod_proprietario = r.cod_proprietario " +
-               " LEFT JOIN usuario u ON u.cod_usuario = r.cod_usuario " +
-               " LEFT JOIN chave c ON r.cod_chave = c.indice_chave " +
-               " WHERE r.cod_reserva = '{0}'", codigoReserva));
-
-                foreach (DataRow row in dadosChave.Rows)
+                foreach (DataRow linha in dadosChaveEscolhida.Rows)
                 {
-                    //codigoChaveBox.Text = row[0].ToString();
-                    //textoCodChave.Text = row[0].ToString();
-                    //endereco.Text = string.Format("{0}, {1} ({2}) - {3} - {4}/{5}", row[1], row[2], row[3], row[4], row[5], row[6]);
-                    if(row[7].ToString() == "CLIENTE") {
-                        codPessoaBox.Text = row[8].ToString();
-                        nomePessoaBox.Text = row[9].ToString();
-                        radioCliente.Checked = true;
-                    }
-                    else if (row[7].ToString() == "PROPRIETARIO")
+                    gridChaves.Rows.Add(linha[0].ToString(), linha[1].ToString(), linha[2].ToString(), linha[3].ToString(),0 ,0 );
+                }
+
+
+
+                DataTable dadosChave = new DataTable();
+                if (seletorTela == true)
+                {
+                    btnAdicionarPessoa.Visible = false;
+                    codPessoaBox.Visible = true;
+                    nomePessoaBox.Visible = true;
+                    excluiProp.Enabled = false;
+                    groupQuemEmpresta.Enabled = false;
+
+                    dadosChave = database.select(string.Format("" +
+                   "SELECT c.cod_imob, c.rua, c.numero, c.complemento, c.bairro, c.cidade, c.estado, " +
+                   " (CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
+                           " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
+                           " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) as tipo, " +
+                            " cl.cod_cliente, cl.nome_cliente, p.cod_proprietario, p.nome, u.cod_usuario, u.nome_usuario " +
+                   " FROM reserva r " +
+                   " LEFT JOIN cliente cl ON cl.cod_cliente = r.cod_cliente " +
+                   " LEFT JOIN proprietario p ON p.cod_proprietario = r.cod_proprietario " +
+                   " LEFT JOIN usuario u ON u.cod_usuario = r.cod_usuario " +
+                   " LEFT JOIN chave c ON r.cod_chave = c.indice_chave " +
+                   " WHERE r.cod_reserva = '{0}'", codigoReserva));
+
+                    foreach (DataRow row in dadosChave.Rows)
                     {
-                        codPessoaBox.Text = row[10].ToString();
-                        nomePessoaBox.Text = row[11].ToString();
-                        radioProprietario.Checked = true;
-                    }
-                    else
-                    {
-                        codPessoaBox.Text = row[12].ToString();
-                        nomePessoaBox.Text = row[13].ToString();
-                        radioFuncionario.Checked = true;
+                        //codigoChaveBox.Text = row[0].ToString();
+                        //textoCodChave.Text = row[0].ToString();
+                        //endereco.Text = string.Format("{0}, {1} ({2}) - {3} - {4}/{5}", row[1], row[2], row[3], row[4], row[5], row[6]);
+                        if (row[7].ToString() == "CLIENTE")
+                        {
+                            codPessoaBox.Text = row[8].ToString();
+                            nomePessoaBox.Text = row[9].ToString();
+                            radioCliente.Checked = true;
+                        }
+                        else if (row[7].ToString() == "PROPRIETARIO")
+                        {
+                            codPessoaBox.Text = row[10].ToString();
+                            nomePessoaBox.Text = row[11].ToString();
+                            radioProprietario.Checked = true;
+                        }
+                        else
+                        {
+                            codPessoaBox.Text = row[12].ToString();
+                            nomePessoaBox.Text = row[13].ToString();
+                            radioFuncionario.Checked = true;
+                        }
                     }
                 }
-            }
-            else
-            {
-                dadosChave = database.select(string.Format("" +
-                "SELECT cod_imob, rua, numero, complemento, bairro, cidade, estado" +
-                " FROM chave" +
-                " WHERE indice_chave = '{0}'", codigoChave));
-
-                foreach (DataRow row in dadosChave.Rows)
+                else
                 {
-                    //codigoChaveBox.Text = row[0].ToString();
-                    //textoCodChave.Text = row[0].ToString();
-                    //endereco.Text = string.Format("{0}, {1} ({2}) - {3} - {4}/{5}", row[1], row[2], row[3], row[4], row[5], row[6]);
+                    dadosChave = database.select(string.Format("" +
+                    "SELECT cod_imob, rua, numero, complemento, bairro, cidade, estado" +
+                    " FROM chave" +
+                    " WHERE indice_chave = '{0}'", codigo));
+
+                    foreach (DataRow row in dadosChave.Rows)
+                    {
+                        //codigoChaveBox.Text = row[0].ToString();
+                        //textoCodChave.Text = row[0].ToString();
+                        //endereco.Text = string.Format("{0}, {1} ({2}) - {3} - {4}/{5}", row[1], row[2], row[3], row[4], row[5], row[6]);
+                    }
                 }
+
+
             }
 
-            
 
-           
+
+
         }
 
 
@@ -240,16 +256,17 @@ namespace situacaoChavesGolden
 
 
 
-
-
             gridChaves.Columns.Add("codigo", "Cód.");
             gridChaves.Columns.Add("codimob", "Cód Imob");
             gridChaves.Columns.Add("endereco", "Endereço");
             gridChaves.Columns.Add("indice", "");
+            gridChaves.Columns.Add("quantChave", "");
+            gridChaves.Columns.Add("quantCtrl", "");
+
             DataGridViewImageColumn cellImage = new DataGridViewImageColumn();
             cellImage.Image = new Bitmap(Properties.Resources.Delete);
 
-            gridChaves.Columns.Insert(4, cellImage);
+            gridChaves.Columns.Insert(6, cellImage);
 
 
 
@@ -257,11 +274,14 @@ namespace situacaoChavesGolden
             gridChaves.Columns[0].Width = 30;
             gridChaves.Columns[1].Width = 75;
             gridChaves.Columns[2].Width = 265;
-            gridChaves.Columns[4].Width = 20;
+            gridChaves.Columns[6].Width = 20;
             gridChaves.Columns[3].Visible = false;
+            gridChaves.Columns[4].Visible = false;
+            gridChaves.Columns[5].Visible = false;
 
 
-         
+
+
             //endereco.MaximumSize = new Size(160, 49);
             //endereco.AutoSize = true;
 
@@ -306,7 +326,7 @@ namespace situacaoChavesGolden
                 dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
                                                            " FROM proprietario p " +
                                                            " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
-                                                           " WHERE c.indice_chave = '{0}'", codigoChave));
+                                                           " WHERE c.indice_chave = '{0}'", codigosChaves[0]));
 
                 nomePessoaBox.Visible = true;
                 codPessoaBox.Visible = true;
@@ -370,7 +390,9 @@ namespace situacaoChavesGolden
 
         private void BtnConfirmar_Click(object sender, EventArgs e)
         {
-            if(verificarReserva() == DialogResult.Yes)
+            //if(verificarReserva() == DialogResult.Yes)
+            //{
+            if(0 == 0)
             {
                 int contErros = 0;
                 string erros = "";
@@ -443,76 +465,96 @@ namespace situacaoChavesGolden
 
                 if (contErros == 0)
                 {
-                    try
-                    {
-                            if (tipo == "proprietario")
+                    //try
+                    //{
+                        if (tipo == "proprietario")
                         {
+                            //database.insertInto(string.Format("" +
+                            //   "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
+                            //   " cod_usuario, quant_controles, tipo_doc, cod_proprietario)" +
+                            //   " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
+                            //   quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
+                            //   user, quantControles, documentoDeixado, codPessoaBox.Text));
+
                             database.insertInto(string.Format("" +
-                               "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
-                               " cod_usuario, quant_controles, tipo_doc, cod_proprietario)" +
-                               " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
-                               quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
-                               user, quantControles, documentoDeixado, codPessoaBox.Text));
+                              "INSERT INTO emprestimo (documento, data_retirada, entrega_prevista, descricao," +
+                              " cod_usuario, tipo_doc, cod_proprietario)" +
+                              " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
+                              descricaoDocumento, dataHoje, dataPrevisao, descricao,
+                              user, documentoDeixado, codPessoaBox.Text));
                         }
                         else if (tipo == "cliente")
                         {
                             database.insertInto(string.Format("" +
-                               "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
-                               " cod_usuario, quant_controles, tipo_doc, cod_cliente)" +
-                               " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
-                               quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
-                               user, quantControles, documentoDeixado, codPessoaBox.Text));
+                               "INSERT INTO emprestimo (documento, data_retirada, entrega_prevista, descricao," +
+                               " cod_usuario, tipo_doc, cod_cliente)" +
+                               " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
+                               descricaoDocumento, dataHoje, dataPrevisao, descricao,
+                               user, documentoDeixado, codPessoaBox.Text));
                         }
                         else
                         {
                             database.insertInto(string.Format("" +
-                               "INSERT INTO emprestimo (quant_chaves, documento, data_retirada, entrega_prevista, descricao, cod_chave," +
-                               " cod_usuario, quant_controles, tipo_doc)" +
-                               " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')",
-                               quantChaves, descricaoDocumento, dataHoje, dataPrevisao, descricao, codigoChave,
-                               user, quantControles, documentoDeixado));
+                               "INSERT INTO emprestimo (documento, data_retirada, entrega_prevista, descricao," +
+                               " cod_usuario, tipo_doc)" +
+                               " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
+                                descricaoDocumento, dataHoje, dataPrevisao, descricao,
+                               user, documentoDeixado));
                         }
 
-                        database.update(string.Format("UPDATE chave" +
-                                                      " SET situacao = 'INDISPONIVEL', localizacao = '{0}'" +
-                                                      " WHERE indice_chave = '{1}'", tipo.ToUpper(), codigoChave));
-
-                        if (seletorTela == true)
+                        foreach (DataGridViewRow row in gridChaves.Rows)
                         {
-                            database.update(string.Format("UPDATE reserva" +
-                                                      " SET situacao = 'FINALIZADO'" +
-                                                      " WHERE cod_reserva = '{0}'", codigoReserva));
+                            database.update(string.Format("UPDATE chave" +
+                                                     " SET situacao = 'INDISPONIVEL', localizacao = '{0}'" +
+                                                     " WHERE indice_chave = '{1}'", tipo.ToUpper(), row.Cells[3].Value.ToString()));
+
+                        MessageBox.Show(row.Cells[4].Value.ToString());
+
+                            database.insertInto(string.Format("INSERT INTO chaves_emprestimo" +
+                                                                " VALUES ((SELECT MAX(cod_emprestimo) FROM emprestimo)," +
+                                                                " '{0}', '{1}', '{2}')", row.Cells[3].Value.ToString(), row.Cells[4].Value, row.Cells[5].Value.ToString()));
+
+                            if (seletorTela == true)
+                            {
+                                database.update(string.Format("UPDATE reserva" +
+                                                          " SET situacao = 'FINALIZADO'" +
+                                                          " WHERE cod_reserva = '{0}'", codigoReserva));
+                            }
                         }
 
-                        string codReserva = verificarReservaPessoa();
+                       
 
-                        if (codReserva != "")
-                        {
-                            database.update(string.Format("UPDATE reserva" +
-                                            " SET situacao = 'FINALIZADO'" +
-                                            " WHERE cod_reserva = '{0}'", codReserva));
-                        }
+                        //string codReserva = verificarReservaPessoa();
+
+                        //if (codReserva != "")
+                        //{
+                        //    database.update(string.Format("UPDATE reserva" +
+                        //                    " SET situacao = 'FINALIZADO'" +
+                        //                    " WHERE cod_reserva = '{0}'", codReserva));
+                        //}
 
                         Message caixaMensagem = new Message("Empréstimo cadastrado com sucesso!", "", "sucesso", "confirma");
                         caixaMensagem.ShowDialog();
 
                         this.Close();
                         this.DialogResult = DialogResult.OK;
-                    }
-                    catch (Exception erro)
-                    {
-                        Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
-                        caixaMensagem.ShowDialog();
-                    }
+                    //}
+                    //catch (Exception erro)
+                    //{
+                    //    Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
+                    //    caixaMensagem.ShowDialog();
+                    //}
 
                 }
-                else
-                {
-                    Message caixaMensagem = new Message("Corrija os erros abaixo antes de continuar!\n-" + erros, "Erro de preenchimento",
-                        "erro", "confirma");
-                    caixaMensagem.ShowDialog();
-                }
+
+            //}
+            else
+            {
+                Message caixaMensagem = new Message("Corrija os erros abaixo antes de continuar!\n-" + erros, "Erro de preenchimento",
+                    "erro", "confirma");
+                caixaMensagem.ShowDialog();
             }
+        }
             
 
         }
@@ -723,7 +765,7 @@ namespace situacaoChavesGolden
             DataTable tabelaChaves = new DataTable();
 
             tabelaChaves = database.select(string.Format("" +
-                "SELECT c.cod_chave, c.cod_imob,  c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave " +
+                "SELECT c.cod_chave, c.cod_imob,  c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, 0, 0 " +
                 " FROM CHAVE c " +
                 " WHERE c.situacao = 'DISPONIVEL' AND (c.rua ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%' OR (unaccent(lower(c.rua))) ILIKE '%{0}%' OR" +
                 " (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR c.cod_chave::text ILIKE '%{0}%') {1} ", boxBusca.Text, codigos));
@@ -738,7 +780,9 @@ namespace situacaoChavesGolden
             gridChavesTotal.Columns[1].Width = 75;
             gridChavesTotal.Columns[2].Width = 290;
             gridChavesTotal.Columns[3].Visible = false;
-            
+            gridChavesTotal.Columns[4].Visible = false;
+            gridChavesTotal.Columns[5].Visible = false;
+
         }
 
         private void BtnConfirmChave_Click(object sender, EventArgs e)
@@ -752,13 +796,19 @@ namespace situacaoChavesGolden
             {
                 foreach (DataGridViewRow row in gridChavesTotal.SelectedRows)
                 {
+                    MessageBox.Show(row.Cells[3].Value.ToString());
 
                     gridChaves.Rows.Add(row.Cells[0].Value.ToString(),
                                    row.Cells[1].Value.ToString(),
                                    row.Cells[2].Value.ToString(),
-                                   row.Cells[3].Value.ToString());
+                                   row.Cells[3].Value.ToString(),
+                                   row.Cells[4].Value,
+                                   row.Cells[5].Value);
 
                     gridChavesTotal.Rows.RemoveAt(row.Index);
+
+
+
 
                     panelChaves.Visible = false;
                 }
@@ -768,12 +818,12 @@ namespace situacaoChavesGolden
 
         private void GridChaves_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == 4)
+            if(e.ColumnIndex == 6)
             {
 
                 gridChaves.Cursor = Cursors.Hand;
             }
-            if(e.ColumnIndex != 4)
+            if(e.ColumnIndex != 6)
             {
                 gridChaves.Cursor = Cursors.Arrow;
             }
@@ -781,7 +831,7 @@ namespace situacaoChavesGolden
 
         private void GridChaves_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 6)
             {
                 gridChaves.Rows.RemoveAt(e.RowIndex);
             }
@@ -826,6 +876,26 @@ namespace situacaoChavesGolden
                 btnAddChave.Enabled = true;
 
             }
+        }
+
+        private void GridChaves_SelectionChanged(object sender, EventArgs e)
+        {
+            qtdChaves.Value = decimal.Parse(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[4].Value.ToString());
+            qtdControles.Value = decimal.Parse(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[5].Value.ToString());
+
+
+        }
+
+        private void QtdChaves_ValueChanged(object sender, EventArgs e)
+        {
+            gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[4].Value = qtdChaves.Value;
+
+        }
+
+        private void QtdControles_ValueChanged(object sender, EventArgs e)
+        {
+            gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[5].Value = qtdControles.Value;
+
         }
     }
 }

@@ -411,7 +411,7 @@ namespace situacaoChavesGolden
             if (emprestimo.Text == "N/A")
             {
                 
-                CadastrarEmprestimo cadastrarEmp = new CadastrarEmprestimo(usuario, gridChaves.CurrentRow.Cells[5].Value.ToString());
+                CadastrarEmprestimo cadastrarEmp = new CadastrarEmprestimo(usuario, new List<string> { gridChaves.CurrentRow.Cells[5].Value.ToString() });
                 cadastrarEmp.ShowDialog();
                 atualizarGridChaves();
             }

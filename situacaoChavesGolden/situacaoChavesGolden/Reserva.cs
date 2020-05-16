@@ -242,7 +242,7 @@ namespace situacaoChavesGolden
         private void BtnEmprestar_Click(object sender, EventArgs e)
         {
             CadastrarEmprestimo emprestimo = new CadastrarEmprestimo(usuario, gridReserva.CurrentRow.Cells[0].Value.ToString(),
-                gridReserva.CurrentRow.Cells[6].Value.ToString());
+                new List<string> { gridReserva.CurrentRow.Cells[6].Value.ToString() });
             emprestimo.ShowDialog();
 
             atualizarGrid();
