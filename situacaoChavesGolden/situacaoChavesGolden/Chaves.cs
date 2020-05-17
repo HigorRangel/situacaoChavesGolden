@@ -460,5 +460,10 @@ namespace situacaoChavesGolden
             ConfigurarRelatorioChaves configurar = new ConfigurarRelatorioChaves(usuario);
             configurar.ShowDialog();
         }
+
+        private void gridChaves_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+           
+        }
     }
 }

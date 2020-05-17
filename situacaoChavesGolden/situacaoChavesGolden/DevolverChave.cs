@@ -14,6 +14,10 @@ namespace situacaoChavesGolden
     {
         DateTime dataHoje = DateTime.Now;
 
+        Dictionary<string, string> dictChaves = new Dictionary<string, string>();
+        Dictionary<string, string> dictControles = new Dictionary<string, string>();
+
+
         string codigoEmprestimo = "";
         int quantChaves = 0;
         int quantControles = 0;
@@ -30,8 +34,8 @@ namespace situacaoChavesGolden
         {
             DataTable tabela = new DataTable();
 
-            tabela = database.select(string.Format("SELECT c.cod_imob, ce.cod_chave, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco," +
-                                                    " ce.quant_chaves, ce.quant_controles, c.indice_chave" +
+            tabela = database.select(string.Format("SELECT c.cod_imob, c.cod_chave, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco," +
+                                                    " ce.quant_chaves, ce.quant_controles, c.indice_chave, 0, 0, '', '', '', ''" +
                                                     " FROM chaves_emprestimo ce" +
                                                     " INNER JOIN chave c ON c.indice_chave = ce.cod_chave" +
                                                     " WHERE cod_emprestimo = '{0}'", codigoEmprestimo));
@@ -44,10 +48,27 @@ namespace situacaoChavesGolden
             gridChaves.Columns[3].Visible = false;
             gridChaves.Columns[4].Visible = false;
             gridChaves.Columns[5].Visible = false;
+            gridChaves.Columns[6].Visible = false;
+            gridChaves.Columns[7].Visible = false;
+            gridChaves.Columns[8].Visible = false;
+            gridChaves.Columns[9].Visible = false;
+            gridChaves.Columns[10].Visible = false;
+            gridChaves.Columns[11].Visible = false;
+
 
             gridChaves.Columns[0].HeaderText = "Cód Imob";
             gridChaves.Columns[1].HeaderText = "Cód";
             gridChaves.Columns[2].HeaderText = "Endereço";
+
+            dictChaves.Clear();
+            dictControles.Clear();
+
+            foreach(DataRow row in tabela.Rows)
+            {
+                dictChaves.Add(row[5].ToString(), row[3].ToString());
+                dictControles.Add(row[5].ToString(), row[4].ToString());
+
+            }
 
 
 
@@ -96,53 +117,115 @@ namespace situacaoChavesGolden
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            try
+            int contErros = 0;
+            foreach(DataGridViewRow row in gridChaves.Rows)
             {
-                dataHoje = Convert.ToDateTime(dataHoje.ToString("yyyy-MM-dd HH:mm:ss"));
-
-                DialogResult verificar = DialogResult.Yes;
-
-                if (qtdChaves.Value != quantChaves || qtdControles.Value != quantControles)
+                
+                if(row.Cells[6].Value.ToString() == "0" && row.Cells[7].Value.ToString() == "0")
                 {
-                    Message caixMensagem = new Message(string.Format("Há divergências na quantidade de chaves ou de controles." +
-                        " Foram retirados:\n - {0} chaves\n - {1} controles\n\nDeseja registrar a devolução mesmo assim?", quantChaves, quantControles),
-                        "", "aviso", "escolha");
-                    caixMensagem.ShowDialog();
-                    verificar = caixMensagem.DialogResult;
+                    contErros++;
                 }
-
-                database.update(string.Format("UPDATE emprestimo" +
-                                " SET data_entrega = '{0}'" +
-                                " WHERE cod_emprestimo = '{1}'", dataHoje, codigoEmprestimo));
-
-                string indiceChave = database.selectScalar(string.Format("SELECT cod_chave FROM emprestimo WHERE cod_emprestimo = '{0}'", codigoEmprestimo));
-
-                database.update(string.Format("UPDATE chave" +
-                                " SET situacao = 'DISPONIVEL'" +
-                                " WHERE indice_chave = '{0}'", indiceChave));
-
-                FormatarStrings format = new FormatarStrings();
-
-                if (!(boxValor.Text == "" && boxCond.Text == "" && boxFormaLoc.Text == "" && boxOutros.Text == ""))
-                {
-                    database.insertInto(string.Format("INSERT INTO proposta (valor, condominio, forma_locacao, outros, emprestimo, data)" +
-                                                      " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", format.inserirBD(boxValor.Text), format.inserirBD(boxCond.Text),
-                                                      format.inserirBD(boxFormaLoc.Text), format.inserirBD(boxOutros.Text), codigoEmprestimo, dataHoje));
-                }
-
-                this.DialogResult = DialogResult.OK;
-
-                Message popup = new Message("A chave foi devolvida com sucesso! Por favor, coloque-a no quadro.", "", "sucesso", "confirma");
-                popup.ShowDialog();
-                this.Close();
             }
 
-            catch (Exception erro)
+            if(contErros > 0)
             {
-                Message popup = new Message("Não foi possível realizar a solicitação pelo seguinte erro:\n\n" + erro.Message, "Erro", "erro", "confirma");
-                popup.ShowDialog();
+                Message msg = new Message("Nem todas as chaves possui quantidade de chaves/controle devolvidos! Preencha-os e tente novamente.",
+                    "", "erro", "confirma");
+                msg.ShowDialog();
             }
-            
+
+            else
+            {
+                try
+                {
+
+                    string aviso = "Há divergências na quantidade de chaves ou de controles. Verifique abaixo:";
+
+
+                    int contDivergencia = 0;
+                    foreach (DataGridViewRow row in gridChaves.Rows)
+                    {
+                        if(row.Cells[3].Value.ToString() != row.Cells[6].Value.ToString() || row.Cells[4].Value.ToString() != row.Cells[7].Value.ToString())
+                        {
+                            contDivergencia++;
+                            aviso += string.Format("\n\nCódigo: {0} - Foram devolvidos {1} chave(s) e {2} controle(s). \nForam retirados: {3} chave(s) e {4} controle(s)",
+                                row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), row.Cells[7].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString());
+                        }
+
+                      
+                    }
+
+                    DialogResult verificar = DialogResult.Yes;
+
+                    if (contDivergencia > 0)
+                    {
+                        Message caixMensagem = new Message(aviso,
+                            "", "aviso", "escolha");
+                        caixMensagem.ShowDialog();
+                        verificar = caixMensagem.DialogResult;
+                    }
+
+                    if(verificar == DialogResult.Yes)
+                    {
+                        FormatarStrings format = new FormatarStrings();
+
+                        foreach (DataGridViewRow row in gridChaves.Rows)
+                        {
+                            database.update(string.Format("UPDATE chave" +
+                                       " SET situacao = 'DISPONIVEL'" +
+                                       " WHERE indice_chave = '{0}'", row.Cells[5].Value.ToString()));
+
+
+                            if (!(row.Cells[8].Value.ToString() == "" && row.Cells[9].Value.ToString() == "" && row.Cells[10].Value.ToString() == "" && row.Cells[11].Value.ToString() == ""))
+                            {
+                                database.insertInto(string.Format("INSERT INTO proposta (cod_chave, valor, condominio, forma_locacao, outros, emprestimo, data)" +
+                                                                  " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')", row.Cells[5].Value.ToString(), format.inserirBD(row.Cells[8].Value.ToString()), format.inserirBD(row.Cells[9].Value.ToString()),
+                                                                  format.inserirBD(row.Cells[10].Value.ToString()), format.inserirBD(row.Cells[11].Value.ToString()), codigoEmprestimo, dataHoje));
+                            }
+                        }
+
+                        dataHoje = Convert.ToDateTime(dataHoje.ToString("yyyy-MM-dd HH:mm:ss"));
+
+
+                        //if (qtdChaves.Value != quantChaves || qtdControles.Value != quantControles)
+                        //{
+                        //    Message caixMensagem = new Message(string.Format("Há divergências na quantidade de chaves ou de controles." +
+                        //        " Foram retirados:\n - {0} chaves\n - {1} controles\n\nDeseja registrar a devolução mesmo assim?", quantChaves, quantControles),
+                        //        "", "aviso", "escolha");
+                        //    caixMensagem.ShowDialog();
+                        //    verificar = caixMensagem.DialogResult;
+                        //}
+
+                        database.update(string.Format("UPDATE emprestimo" +
+                                        " SET data_entrega = '{0}'" +
+                                        " WHERE cod_emprestimo = '{1}'", dataHoje, codigoEmprestimo));
+
+
+
+
+
+                       
+
+                        this.DialogResult = DialogResult.OK;
+
+                        Message popup = new Message("A chave foi devolvida com sucesso! Por favor, coloque-a no quadro.", "", "sucesso", "confirma");
+                        popup.ShowDialog();
+                        this.Close();
+                    }                 
+
+                   
+
+
+                }
+
+                catch (Exception erro)
+                {
+                    Message popup = new Message("Não foi possível realizar a solicitação pelo seguinte erro:\n\n" + erro.Message, "Erro", "erro", "confirma");
+                    popup.ShowDialog();
+                }
+            }
+
+                      
 
         }
 
@@ -158,9 +241,47 @@ namespace situacaoChavesGolden
 
         private void GridChaves_SelectionChanged(object sender, EventArgs e)
         {
-            qtdChaves.Value = int.Parse(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[3].Value.ToString());
-            qtdControles.Value = int.Parse(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[4].Value.ToString());
+            qtdChaves.Value = int.Parse(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[6].Value.ToString());
+            qtdControles.Value = int.Parse(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[7].Value.ToString());
 
+            boxValor.Text = gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[8].Value.ToString();
+            boxCond.Text = gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[9].Value.ToString();
+            boxFormaLoc.Text = gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[10].Value.ToString();
+            boxOutros.Text = gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[11].Value.ToString();
+        }
+
+        private void qtdChaves_ValueChanged(object sender, EventArgs e)
+        {
+            gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[6].Value = qtdChaves.Value;
+
+        }
+
+        private void qtdControles_ValueChanged(object sender, EventArgs e)
+        {
+            gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[7].Value = qtdControles.Value;
+        }
+
+        private void boxValor_TextChanged(object sender, EventArgs e)
+        {
+            gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[8].Value = boxValor.Text.Trim();
+            
+        }
+
+        private void boxCond_TextChanged(object sender, EventArgs e)
+        {
+            gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[9].Value = boxCond.Text.Trim();
+            
+        }
+
+        private void boxFormaLoc_TextChanged(object sender, EventArgs e)
+        {
+            gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[10].Value = boxFormaLoc.Text.Trim();
+           
+        }
+
+        private void boxOutros_TextChanged(object sender, EventArgs e)
+        {
+            gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[11].Value = boxOutros.Text.Trim();
         }
     }
 }

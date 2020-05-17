@@ -37,11 +37,11 @@ namespace situacaoChavesGolden
 
             gridPropostas.DataSource = database.select(string.Format("SELECT p.cod_proposta, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, p.data, p.situacao " +
                                                         " FROM proposta p " +
-                                                        " INNER JOIN emprestimo e ON p.emprestimo = e.cod_emprestimo " +
-                                                        " INNER JOIN chave c ON c.indice_chave = e.cod_chave" +
-                                                        " INNER JOIN usuario u ON u.cod_usuario = e.cod_usuario" +
-                                                        " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente" +
-                                                        " LEFT JOIN proprietario pr ON pr.cod_proprietario = e.cod_proprietario" +
+                                                        " INNER JOIN chave c ON c.indice_chave = p.cod_chave " +
+                                                        " INNER JOIN emprestimo e ON e.cod_emprestimo = p.emprestimo " +
+                                                        " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente " +
+                                                        " LEFT JOIN usuario u ON u.cod_usuario = e.cod_usuario " +
+                                                        " LEFT JOIN proprietario pr ON pr.cod_proprietario = e.cod_proprietario " +
                                                         " WHERE (p.situacao ILIKE '%{0}%' AND c.finalidade ILIKE '%{1}%' {2})" +
                                                          " AND (cl.nome_cliente ILIKE '%{3}%' OR p.outros ILIKE '%{3}%' OR " +
                                                          " c.rua ILIKE '%{3}%' OR u.nome_usuario ILIKE '%{3}%' OR  pr.nome  ILIKE '%{3}%' OR" +
@@ -126,8 +126,8 @@ namespace situacaoChavesGolden
             {
 
             }
-            try
-            {
+            //try
+            //{
                 
 
                 DataTable tabelaPropostas = new DataTable();
@@ -193,30 +193,30 @@ namespace situacaoChavesGolden
                     formaLoc.Text = row[14].ToString();
                 }
             }
-            catch (Exception erro)
-            {//{
-            //    codigoImob.Text = "";
-            //    codChave.Text = "";
-            //    sitProposta.Text = "";
-            //    dadosPropostante.Text = "";
-            //    descricao.Text = "";
-            //    codEmprestimo.Text = "";
-            //    dataProposta.Text = "";
-            //    funcionario.Text = "";
-            //    valorProposta.Text = "";
-            //    valorCond.Text = "";
-            //    formaLoc.Text = "";
+        //    catch (Exception erro)
+        //    {//{
+        //    //    codigoImob.Text = "";
+        //    //    codChave.Text = "";
+        //    //    sitProposta.Text = "";
+        //    //    dadosPropostante.Text = "";
+        //    //    descricao.Text = "";
+        //    //    codEmprestimo.Text = "";
+        //    //    dataProposta.Text = "";
+        //    //    funcionario.Text = "";
+        //    //    valorProposta.Text = "";
+        //    //    valorCond.Text = "";
+        //    //    formaLoc.Text = "";
 
 
-            //    btnAprovar.Enabled = false;
-            //    btnAprovar.Image = Properties.Resources.SucessGray;
-            //    btnContraProposta.Enabled = false;
-            //    btnContraProposta.Image = Properties.Resources.contraPropostagGray;
-            //    btnReprovar.Enabled = false;
-            //    btnReprovar.Image = Properties.Resources.DeleteGray;
-            }
+        //    //    btnAprovar.Enabled = false;
+        //    //    btnAprovar.Image = Properties.Resources.SucessGray;
+        //    //    btnContraProposta.Enabled = false;
+        //    //    btnContraProposta.Image = Properties.Resources.contraPropostagGray;
+        //    //    btnReprovar.Enabled = false;
+        //    //    btnReprovar.Image = Properties.Resources.DeleteGray;
+        //    }
            
-        }
+        //}
 
         private void RadioVenda_CheckedChanged(object sender, EventArgs e)
         {

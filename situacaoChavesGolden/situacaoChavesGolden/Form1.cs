@@ -46,8 +46,22 @@ namespace situacaoChavesGolden
             }
             catch { }
         }
+
+        private void criarPastaTemp()
+        {
+            string folder = Environment.CurrentDirectory + @"\temp";
+            if (!Directory.Exists(folder))
+            {
+
+                //Criamos um com o nome folder
+                Directory.CreateDirectory(folder);
+
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            criarPastaTemp();
             limparTemp();
             //string caminho = Environment.CurrentDirectory;
             //caminho = caminho.Replace("bin\\Debug", "");

@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelDoc = new System.Windows.Forms.Label();
             this.qtdControles = new System.Windows.Forms.NumericUpDown();
             this.metroLabel11 = new MetroFramework.Controls.MetroLabel();
             this.qtdChaves = new System.Windows.Forms.NumericUpDown();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.labelFuncionario = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,7 +55,6 @@
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.gridChaves = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.qtdControles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qtdChaves)).BeginInit();
@@ -83,6 +83,7 @@
             this.qtdControles.Size = new System.Drawing.Size(60, 20);
             this.qtdControles.TabIndex = 2;
             this.qtdControles.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.qtdControles.ValueChanged += new System.EventHandler(this.qtdControles_ValueChanged);
             // 
             // metroLabel11
             // 
@@ -102,6 +103,7 @@
             this.qtdChaves.Size = new System.Drawing.Size(60, 20);
             this.qtdChaves.TabIndex = 1;
             this.qtdChaves.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.qtdChaves.ValueChanged += new System.EventHandler(this.qtdChaves_ValueChanged);
             // 
             // metroLabel4
             // 
@@ -129,6 +131,16 @@
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(113, 14);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Deixou documento:";
             // 
             // label4
             // 
@@ -238,6 +250,7 @@
             this.boxOutros.Name = "boxOutros";
             this.boxOutros.Size = new System.Drawing.Size(172, 75);
             this.boxOutros.TabIndex = 6;
+            this.boxOutros.TextChanged += new System.EventHandler(this.boxOutros_TextChanged);
             // 
             // metroLabel3
             // 
@@ -256,6 +269,7 @@
             this.boxFormaLoc.Name = "boxFormaLoc";
             this.boxFormaLoc.Size = new System.Drawing.Size(172, 20);
             this.boxFormaLoc.TabIndex = 5;
+            this.boxFormaLoc.TextChanged += new System.EventHandler(this.boxFormaLoc_TextChanged);
             // 
             // metroLabel2
             // 
@@ -274,6 +288,7 @@
             this.boxCond.Name = "boxCond";
             this.boxCond.Size = new System.Drawing.Size(79, 20);
             this.boxCond.TabIndex = 4;
+            this.boxCond.TextChanged += new System.EventHandler(this.boxCond_TextChanged);
             // 
             // metroLabel1
             // 
@@ -292,6 +307,7 @@
             this.boxValor.Name = "boxValor";
             this.boxValor.Size = new System.Drawing.Size(87, 20);
             this.boxValor.TabIndex = 3;
+            this.boxValor.TextChanged += new System.EventHandler(this.boxValor_TextChanged);
             // 
             // metroLabel6
             // 
@@ -335,16 +351,6 @@
             this.btnConfirmar.UseVisualStyleBackColor = false;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 14);
-            this.label1.TabIndex = 33;
-            this.label1.Text = "Deixou documento:";
-            // 
             // gridChaves
             // 
             this.gridChaves.AllowUserToAddRows = false;
@@ -353,14 +359,14 @@
             this.gridChaves.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gridChaves.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridChaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridChaves.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridChaves.DefaultCellStyle = dataGridViewCellStyle7;
             this.gridChaves.Location = new System.Drawing.Point(16, 144);
             this.gridChaves.MultiSelect = false;
             this.gridChaves.Name = "gridChaves";

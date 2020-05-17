@@ -67,9 +67,13 @@ namespace situacaoChavesGolden
                                                 " (CASE WHEN c.tipo_imovel = 'RESIDENCIAL' THEN 'RES' ELSE 'COM' END), " +
                                                 " (CASE WHEN c.finalidade = 'LOCAÇÃO' THEN 'LOC' ELSE 'VENDA' END), " +
                                                 " (CASE WHEN c.situacao = 'DISPONIVEL' THEN 'SIM' ELSE 'NÃO' END), " +
-                                                " (SELECT MAX(cod_emprestimo) FROM emprestimo WHERE data_entrega is null AND cod_chave = c.indice_chave) " +
+                                                " (SELECT MAX(e.cod_emprestimo) " +
+                                                "       FROM emprestimo e" +
+                                                "       INNER JOIN chaves_emprestimo ce ON ce.cod_emprestimo = e.cod_emprestimo" +
+                                                "       WHERE data_entrega is null AND ce.cod_chave = c.indice_chave) " +
                                                 " FROM chave c " +
-                                                " LEFT JOIN emprestimo e ON e.cod_chave = c.indice_chave " +
+                                                " LEFT JOIN chaves_emprestimo ce ON c.indice_chave = ce.cod_chave" +
+                                                " LEFT JOIN emprestimo e ON e.cod_emprestimo = ce.cod_emprestimo " +
                                                 " WHERE c.situacao ILIKE '{0}%' AND c.tipo_imovel ILIKE '%{1}%' " +
                                                 " AND c.finalidade ILIKE '%{2}%' AND c.situacao_imovel ILIKE '{3}%' " +
                                                 " GROUP BY c.indice_chave " +
@@ -143,7 +147,7 @@ namespace situacaoChavesGolden
                         }
 
                         PdfPCell dado = new PdfPCell(new Phrase(tabelaDados.Rows[i][j].ToString() + "\n", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 10)));
-                        if(colorir == true) { dado.BackgroundColor = new BaseColor(Color.FromArgb(222, 222, 222)); }
+                        if(colorir == true) { dado.BackgroundColor = new BaseColor(Color.FromArgb(237, 237, 237)); }
                         else { dado.BackgroundColor = new BaseColor(Color.White); }
                         dado.BorderColor = BaseColor.GRAY;
                         dado.HorizontalAlignment = PdfPCell.ALIGN_CENTER;

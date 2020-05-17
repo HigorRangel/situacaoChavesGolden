@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridChaves = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.codigoImob = new System.Windows.Forms.Label();
@@ -52,7 +52,6 @@
             this.emprestimo = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
             this.groupMenuSup = new System.Windows.Forms.GroupBox();
-            this.btnFiltro = new System.Windows.Forms.PictureBox();
             this.radioVenda = new MetroFramework.Controls.MetroRadioButton();
             this.radioLocacao = new MetroFramework.Controls.MetroRadioButton();
             this.radioTodos = new MetroFramework.Controls.MetroRadioButton();
@@ -76,23 +75,23 @@
             this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
             this.toolTipRetirar = new System.Windows.Forms.ToolTip(this.components);
-            this.btnExcluir = new System.Windows.Forms.Button();
             this.toolTipEditar = new System.Windows.Forms.ToolTip(this.components);
-            this.btnEditar = new System.Windows.Forms.Button();
             this.ToolTipEmprestar = new System.Windows.Forms.ToolTip(this.components);
-            this.btnEmprestar = new System.Windows.Forms.Button();
             this.toolTipReservar = new System.Windows.Forms.ToolTip(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnPrintTags = new System.Windows.Forms.Button();
-            this.btnReservar = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnPrintTags = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnReservar = new System.Windows.Forms.Button();
+            this.btnEmprestar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnFiltro = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupMenuSup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.filtrosPanel.SuspendLayout();
             this.groupBoxTipoImovel.SuspendLayout();
@@ -100,6 +99,7 @@
             this.groupBoxSituacaoIm.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             this.SuspendLayout();
             // 
             // gridChaves
@@ -111,14 +111,14 @@
             this.gridChaves.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
             this.gridChaves.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridChaves.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridChaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridChaves.GridColor = System.Drawing.Color.White;
             this.gridChaves.Location = new System.Drawing.Point(23, 68);
@@ -126,14 +126,14 @@
             this.gridChaves.Name = "gridChaves";
             this.gridChaves.ReadOnly = true;
             this.gridChaves.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridChaves.RowHeadersVisible = false;
             this.gridChaves.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridChaves.RowTemplate.ReadOnly = true;
@@ -144,6 +144,7 @@
             this.gridChaves.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridChaves_CellContentClick);
             this.gridChaves.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridChaves_CellFormatting);
             this.gridChaves.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridChaves_CellMouseClick);
+            this.gridChaves.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridChaves_RowsAdded);
             this.gridChaves.SelectionChanged += new System.EventHandler(this.GridChaves_SelectionChanged);
             // 
             // label1
@@ -374,19 +375,6 @@
             this.groupMenuSup.Size = new System.Drawing.Size(494, 40);
             this.groupMenuSup.TabIndex = 18;
             this.groupMenuSup.TabStop = false;
-            // 
-            // btnFiltro
-            // 
-            this.btnFiltro.BackColor = System.Drawing.Color.Transparent;
-            this.btnFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFiltro.Image = global::situacaoChavesGolden.Properties.Resources.Filter1;
-            this.btnFiltro.Location = new System.Drawing.Point(454, 9);
-            this.btnFiltro.Name = "btnFiltro";
-            this.btnFiltro.Size = new System.Drawing.Size(29, 27);
-            this.btnFiltro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnFiltro.TabIndex = 4;
-            this.btnFiltro.TabStop = false;
-            this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
             // 
             // radioVenda
             // 
@@ -657,56 +645,34 @@
             this.toolTipRetirar.AutomaticDelay = 300;
             this.toolTipRetirar.Tag = "Retirar";
             // 
-            // btnExcluir
+            // groupBox4
             // 
-            this.btnExcluir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExcluir.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
-            this.btnExcluir.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnExcluir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnExcluir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcluir.Image = global::situacaoChavesGolden.Properties.Resources.Delete1;
-            this.btnExcluir.Location = new System.Drawing.Point(31, 247);
-            this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(24, 22);
-            this.btnExcluir.TabIndex = 24;
-            this.toolTipRetirar.SetToolTip(this.btnExcluir, "Retirar Chave");
-            this.btnExcluir.UseVisualStyleBackColor = true;
-            this.btnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.pictureBox1);
+            this.groupBox4.Location = new System.Drawing.Point(437, 247);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(195, 28);
+            this.groupBox4.TabIndex = 45;
+            this.groupBox4.TabStop = false;
             // 
-            // btnEditar
+            // label14
             // 
-            this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEditar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
-            this.btnEditar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnEditar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnEditar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.Image = global::situacaoChavesGolden.Properties.Resources.Edit;
-            this.btnEditar.Location = new System.Drawing.Point(57, 247);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(24, 22);
-            this.btnEditar.TabIndex = 25;
-            this.toolTipEditar.SetToolTip(this.btnEditar, "Editar Chave");
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(10, 10);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(52, 13);
+            this.label14.TabIndex = 2;
+            this.label14.Text = "Legenda:";
             // 
-            // btnEmprestar
+            // label10
             // 
-            this.btnEmprestar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEmprestar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
-            this.btnEmprestar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnEmprestar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnEmprestar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnEmprestar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEmprestar.Image = global::situacaoChavesGolden.Properties.Resources.ChaveEmprestar;
-            this.btnEmprestar.Location = new System.Drawing.Point(83, 247);
-            this.btnEmprestar.Name = "btnEmprestar";
-            this.btnEmprestar.Size = new System.Drawing.Size(24, 22);
-            this.btnEmprestar.TabIndex = 26;
-            this.ToolTipEmprestar.SetToolTip(this.btnEmprestar, "Registrar Empréstimo");
-            this.btnEmprestar.UseVisualStyleBackColor = true;
-            this.btnEmprestar.Click += new System.EventHandler(this.BtnEmprestar_Click);
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(85, 10);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(88, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Chave reservada";
             // 
             // button1
             // 
@@ -742,6 +708,16 @@
             this.btnPrintTags.UseVisualStyleBackColor = true;
             this.btnPrintTags.Click += new System.EventHandler(this.btnPrintTags_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(243)))), ((int)(((byte)(135)))));
+            this.pictureBox1.Location = new System.Drawing.Point(68, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(15, 15);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
+            // 
             // btnReservar
             // 
             this.btnReservar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -759,44 +735,69 @@
             this.btnReservar.UseVisualStyleBackColor = true;
             this.btnReservar.Click += new System.EventHandler(this.BtnReservar_Click);
             // 
-            // groupBox4
+            // btnEmprestar
             // 
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.pictureBox1);
-            this.groupBox4.Location = new System.Drawing.Point(437, 247);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(195, 28);
-            this.groupBox4.TabIndex = 45;
-            this.groupBox4.TabStop = false;
+            this.btnEmprestar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEmprestar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnEmprestar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnEmprestar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnEmprestar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnEmprestar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmprestar.Image = global::situacaoChavesGolden.Properties.Resources.ChaveEmprestar;
+            this.btnEmprestar.Location = new System.Drawing.Point(83, 247);
+            this.btnEmprestar.Name = "btnEmprestar";
+            this.btnEmprestar.Size = new System.Drawing.Size(24, 22);
+            this.btnEmprestar.TabIndex = 26;
+            this.ToolTipEmprestar.SetToolTip(this.btnEmprestar, "Registrar Empréstimo");
+            this.btnEmprestar.UseVisualStyleBackColor = true;
+            this.btnEmprestar.Click += new System.EventHandler(this.BtnEmprestar_Click);
             // 
-            // label14
+            // btnEditar
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 10);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(52, 13);
-            this.label14.TabIndex = 2;
-            this.label14.Text = "Legenda:";
+            this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnEditar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnEditar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnEditar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar.Image = global::situacaoChavesGolden.Properties.Resources.Edit;
+            this.btnEditar.Location = new System.Drawing.Point(57, 247);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(24, 22);
+            this.btnEditar.TabIndex = 25;
+            this.toolTipEditar.SetToolTip(this.btnEditar, "Editar Chave");
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
-            // label10
+            // btnExcluir
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(85, 10);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(88, 13);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Chave reservada";
+            this.btnExcluir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluir.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnExcluir.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnExcluir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnExcluir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcluir.Image = global::situacaoChavesGolden.Properties.Resources.Delete1;
+            this.btnExcluir.Location = new System.Drawing.Point(31, 247);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(24, 22);
+            this.btnExcluir.TabIndex = 24;
+            this.toolTipRetirar.SetToolTip(this.btnExcluir, "Retirar Chave");
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
             // 
-            // pictureBox1
+            // btnFiltro
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(243)))), ((int)(((byte)(135)))));
-            this.pictureBox1.Location = new System.Drawing.Point(68, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(15, 15);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
+            this.btnFiltro.BackColor = System.Drawing.Color.Transparent;
+            this.btnFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiltro.Image = global::situacaoChavesGolden.Properties.Resources.Filter1;
+            this.btnFiltro.Location = new System.Drawing.Point(454, 9);
+            this.btnFiltro.Name = "btnFiltro";
+            this.btnFiltro.Size = new System.Drawing.Size(29, 27);
+            this.btnFiltro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnFiltro.TabIndex = 4;
+            this.btnFiltro.TabStop = false;
+            this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
             // 
             // Chaves
             // 
@@ -839,7 +840,6 @@
             this.panel1.PerformLayout();
             this.groupMenuSup.ResumeLayout(false);
             this.groupMenuSup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.filtrosPanel.ResumeLayout(false);
@@ -853,6 +853,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

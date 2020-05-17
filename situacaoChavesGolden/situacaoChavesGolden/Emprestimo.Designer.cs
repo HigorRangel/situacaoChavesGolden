@@ -700,6 +700,8 @@
             this.gridEmprestimo.TabIndex = 24;
             this.gridEmprestimo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridEmprestimo_CellContentClick);
             this.gridEmprestimo.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridEmprestimo_CellFormatting);
+            this.gridEmprestimo.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridEmprestimo_RowsAdded);
+            this.gridEmprestimo.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gridEmprestimo_RowsRemoved);
             this.gridEmprestimo.SelectionChanged += new System.EventHandler(this.GridEmprestimo_SelectionChanged);
             // 
             // codigoImob

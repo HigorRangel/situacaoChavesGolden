@@ -532,7 +532,7 @@ namespace situacaoChavesGolden
                                " cod_usuario, tipo_doc)" +
                                " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
                                 descricaoDocumento, dataHoje, dataPrevisao, descricao,
-                               user, documentoDeixado));
+                               codPessoaBox.Text, documentoDeixado));
                         }
 
                         foreach (DataGridViewRow row in gridChaves.Rows)
@@ -789,9 +789,15 @@ namespace situacaoChavesGolden
             string codigos = "";
             string proprietario = "";
 
-            if (radioProprietario.Checked)
+            if (radioProprietario.Checked == true)
             {
-                string.Format("AND proprietario = '{0}'", codPessoaBox.Text);
+                string codProp = codPessoaBox.Text;
+
+                if(codPessoaBox.Text == "")
+                {
+                    codProp = "%%";
+                }
+                proprietario = string.Format("AND proprietario::text = '{0}'", codProp);
             }
 
             int cont = 0;
@@ -813,6 +819,8 @@ namespace situacaoChavesGolden
             }
 
             DataTable tabelaChaves = new DataTable();
+
+            
 
             tabelaChaves = database.select(string.Format("" +
                 "SELECT c.cod_chave, c.cod_imob,  c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, 0, 0 " +
@@ -854,7 +862,6 @@ namespace situacaoChavesGolden
             {
                 foreach (DataGridViewRow row in gridChavesTotal.SelectedRows)
                 {
-                    MessageBox.Show(row.Cells[3].Value.ToString());
 
                     gridChaves.Rows.Add(row.Cells[0].Value.ToString(),
                                    row.Cells[1].Value.ToString(),
@@ -920,7 +927,7 @@ namespace situacaoChavesGolden
         {
             if (radioProprietario.Checked)
             {
-                radioCliente.Checked = true;
+                radioProprietario.Checked = true;
             }
 
             if(gridChaves.Rows.Count >= 10)
