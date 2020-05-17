@@ -26,29 +26,66 @@ namespace situacaoChavesGolden
             codigoEmprestimo = codEmprestimo;
         }
 
+        void atualizarGrid()
+        {
+            DataTable tabela = new DataTable();
+
+            tabela = database.select(string.Format("SELECT c.cod_imob, ce.cod_chave, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco," +
+                                                    " ce.quant_chaves, ce.quant_controles, c.indice_chave" +
+                                                    " FROM chaves_emprestimo ce" +
+                                                    " INNER JOIN chave c ON c.indice_chave = ce.cod_chave" +
+                                                    " WHERE cod_emprestimo = '{0}'", codigoEmprestimo));
+
+            gridChaves.DataSource = tabela;
+
+            gridChaves.Columns[0].Width = 80;
+            gridChaves.Columns[1].Width = 40;
+            gridChaves.Columns[2].Width = 265;
+            gridChaves.Columns[3].Visible = false;
+            gridChaves.Columns[4].Visible = false;
+            gridChaves.Columns[5].Visible = false;
+
+            gridChaves.Columns[0].HeaderText = "Cód Imob";
+            gridChaves.Columns[1].HeaderText = "Cód";
+            gridChaves.Columns[2].HeaderText = "Endereço";
+
+
+
+        }
+
         private void DevolverChave_Load(object sender, EventArgs e)
         {
             DataTable dadosEmprestimo = new DataTable();
+            atualizarGrid();
 
-            dadosEmprestimo = database.select(string.Format("SELECT (CASE WHEN e.tipo_doc is null THEN 'NÃO'" +
-                                                                " ELSE 'SIM' END) as deixou_doc," +
-                                                                " e.quant_chaves, e.quant_controles, c.cod_chave, c.cod_imob," +
-                                                                " cl.nome_cliente, e.data_retirada, e.cod_usuario" +
-                                                                " FROM emprestimo e" +
-                                                                " LEFT JOIN chave c ON c.cod_chave = e.cod_chave" +
-                                                                " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente" +
-                                                                " WHERE e.cod_emprestimo = '{0}'", codigoEmprestimo));
+            dadosEmprestimo = database.select(string.Format("SELECT (CASE WHEN e.tipo_doc is null OR e.tipo_doc = '' THEN 'NÃO' " +
+                                                                " ELSE 'SIM' END) as deixou_doc, " +
+                                                                " e.data_retirada, u.nome_usuario, " +
+                                                                " CASE WHEN" +
+                                                                    " (CASE WHEN e.cod_proprietario is null AND e.cod_cliente is null THEN 'FUNCIONARIO'" +
+                                                                          "  WHEN e.cod_proprietario is null AND e.cod_cliente is not null THEN 'CLIENTE'" +
+                                                                          "  WHEN e.cod_proprietario is not null AND e.cod_cliente is null THEN 'PROPRIETARIO' END) = 'FUNCIONARIO'" +
+                                                                          "  THEN(SELECT nome_usuario FROM usuario WHERE cod_usuario = e.cod_usuario)" +
+                                                                    " WHEN" +
+                                                                    " (CASE WHEN e.cod_proprietario is null AND e.cod_cliente is null THEN 'FUNCIONARIO'" +
+                                                                           " WHEN e.cod_proprietario is null AND e.cod_cliente is not null THEN 'CLIENTE'" +
+                                                                           " WHEN e.cod_proprietario is not null AND e.cod_cliente is null THEN 'PROPRIETARIO' END) = 'CLIENTE'" +
+                                                                               " THEN(select nome_cliente FROM cliente WHERE cod_cliente = e.cod_cliente)" +
+
+                                                                    " ELSE(SELECT nome FROM proprietario WHERE cod_proprietario = e.cod_proprietario) END" +
+                                                                    " FROM emprestimo e" +
+                                                                    " LEFT JOIN usuario u ON e.cod_usuario = u.cod_usuario" +
+                                                                    " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente" +
+                                                                    " WHERE e.cod_emprestimo = '{0}'", codigoEmprestimo));
         
             foreach(DataRow row in dadosEmprestimo.Rows)
             {
                 labelDoc.Text = row[0].ToString();
-                quantChaves = int.Parse(row[1].ToString());
-                quantControles = int.Parse(row[2].ToString());
-                labelCodChave.Text = row[3].ToString();
-                labelCodImovel.Text = row[4].ToString();
-                labelNome.Text = row[5].ToString();
-                labelDataRetirada.Text = row[6].ToString();
-                labelFuncionario.Text = row[7].ToString();
+                labelDataRetirada.Text = row[1].ToString();
+                //labelCodChave.Text = row[3].ToString();
+                //labelCodImovel.Text = row[4].ToString();
+                labelNome.Text = row[3].ToString();
+                labelFuncionario.Text = row[2].ToString();
             }
         }
 
@@ -116,6 +153,13 @@ namespace situacaoChavesGolden
 
         private void GroupBox2_Enter(object sender, EventArgs e)
         {
+
+        }
+
+        private void GridChaves_SelectionChanged(object sender, EventArgs e)
+        {
+            qtdChaves.Value = int.Parse(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[3].Value.ToString());
+            qtdControles.Value = int.Parse(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[4].Value.ToString());
 
         }
     }

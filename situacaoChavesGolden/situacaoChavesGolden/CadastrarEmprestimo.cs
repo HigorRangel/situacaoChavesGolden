@@ -253,7 +253,7 @@ namespace situacaoChavesGolden
 
         private void CadastrarEmprestimo_Load(object sender, EventArgs e)
         {
-
+            radioCliente.Checked = true;
 
 
             gridChaves.Columns.Add("codigo", "Cód.");
@@ -316,18 +316,9 @@ namespace situacaoChavesGolden
 
         private void radio_CheckedChanged(object sender, EventArgs e)
         {
+           
             if (radioProprietario.Checked)
             {
-                comboDocs.Enabled = false;
-                boxDescDoc.Enabled = false;
-
-                DataTable dadosProp = new DataTable();
-
-                dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
-                                                           " FROM proprietario p " +
-                                                           " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
-                                                           " WHERE c.indice_chave = '{0}'", codigosChaves[0]));
-
                 nomePessoaBox.Visible = true;
                 codPessoaBox.Visible = true;
                 excluiProp.Enabled = false;
@@ -335,12 +326,32 @@ namespace situacaoChavesGolden
                 labelCod.Visible = true;
                 labelProp.Visible = true;
                 btnAdicionarPessoa.Visible = false;
-
-                foreach (DataRow row in dadosProp.Rows)
+                try
                 {
-                    codPessoaBox.Text = row[0].ToString();
-                    nomePessoaBox.Text = row[1].ToString();
+                    comboDocs.Enabled = false;
+                    boxDescDoc.Enabled = false;
+
+                    DataTable dadosProp = new DataTable();
+
+                    dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
+                                                               " FROM proprietario p " +
+                                                               " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
+                                                               " WHERE c.indice_chave = '{0}'", gridChaves.Rows[0].Cells[3].Value.ToString()));
+
+                   
+
+                    foreach (DataRow row in dadosProp.Rows)
+                    {
+                        codPessoaBox.Text = row[0].ToString();
+                        nomePessoaBox.Text = row[1].ToString();
+                    }
                 }
+                catch
+                {
+                    codPessoaBox.Text = "";
+                    nomePessoaBox.Text = "";
+                }
+                
 
             }
             else if(radioFuncionario.Checked)
@@ -438,18 +449,7 @@ namespace situacaoChavesGolden
                     contErros++;
                     erros += "\n-Previsão de entrega (Seleção obrigatória)";
                 }
-                //Quantidade de chaves
-                if (quantChaves == 0 && quantControles == 0)
-                {
-                    contErros++;
-                    erros += "\n-Quantidade de chaves (Inserção obrigatória)";
-                }
-                //Quantidade de controles
-                if (quantControles == 0 && quantChaves == 0)
-                {
-                    contErros++;
-                    erros += "\n-Quantidade de controles (Inserção obrigatória)";
-                }
+                
 
                 if (comboDocs.SelectedIndex != -1 && descricaoDocumento.Length == 0)
                 {
@@ -463,6 +463,39 @@ namespace situacaoChavesGolden
                     erros += "\n-Dados do cliente/funcionário (Inserção obrigatória)";
                 }
 
+                int contErrosQuant = 0;
+                int contErrosProp = 0;
+                foreach (DataGridViewRow row in gridChaves.Rows)
+                {
+                    if (row.Cells[4].Value.ToString() == "0" && row.Cells[5].Value.ToString() == "0")
+                    {
+                        contErrosQuant++;
+                        contErros++;
+                    }
+
+                    string proprietario = database.selectScalar(string.Format("SELECT proprietario" +
+                                                                " FROM chave" +
+                                                                " WHERE indice_chave = '{0}'", row.Cells[3].Value.ToString()));
+
+                    if(proprietario != codPessoaBox.Text && radioProprietario.Checked)
+                    {
+                        contErrosProp++;
+                        contErros++;
+                    }
+
+                }
+
+
+                if (contErrosQuant > 0)
+                {
+                    erros += "\n-Quantidades de chaves ou controles devem ser preenchidos!";
+
+                }
+
+                if(contErrosProp > 0)
+                {
+                    erros += "\n-Nem todas as chaves pertencem ao mesmo proprietário!";
+                }
                 if (contErros == 0)
                 {
                     //try
@@ -508,7 +541,6 @@ namespace situacaoChavesGolden
                                                      " SET situacao = 'INDISPONIVEL', localizacao = '{0}'" +
                                                      " WHERE indice_chave = '{1}'", tipo.ToUpper(), row.Cells[3].Value.ToString()));
 
-                        MessageBox.Show(row.Cells[4].Value.ToString());
 
                             database.insertInto(string.Format("INSERT INTO chaves_emprestimo" +
                                                                 " VALUES ((SELECT MAX(cod_emprestimo) FROM emprestimo)," +
@@ -572,37 +604,42 @@ namespace situacaoChavesGolden
 
         private void atualizarGrid (string tipo)
         {
-            if(tipo == "CLIENTE")
+            try
             {
-                gridPessoas.DataSource = database.select(string.Format("SELECT cod_cliente, nome_cliente" +
-                                                                       " FROM cliente" +
-                                                                       " WHERE nome_cliente ILIKE '%{0}%'" +
-                                                                       " ORDER BY nome_cliente", boxProcurarProp.Text));
+                if (tipo == "CLIENTE")
+                {
+                    gridPessoas.DataSource = database.select(string.Format("SELECT cod_cliente, nome_cliente" +
+                                                                           " FROM cliente" +
+                                                                           " WHERE nome_cliente ILIKE '%{0}%'" +
+                                                                           " ORDER BY nome_cliente", boxProcurarProp.Text));
 
-                gridPessoas.Columns[0].HeaderText = "Código";
-                gridPessoas.Columns[1].HeaderText = "Nome do Cliente";
+                    gridPessoas.Columns[0].HeaderText = "Código";
+                    gridPessoas.Columns[1].HeaderText = "Nome do Cliente";
 
-                btnNovoProp.Visible = true;
+                    btnNovoProp.Visible = true;
 
 
+                }
+                else if (tipo == "FUNCIONARIO")
+                {
+                    gridPessoas.DataSource = database.select(string.Format("SELECT cod_usuario, nome_usuario" +
+                                                                           " FROM usuario" +
+                                                                           " WHERE nome_usuario ILIKE '%{0}%'" +
+                                                                           " ORDER BY nome_usuario", boxProcurarProp.Text));
+                    gridPessoas.Columns[0].HeaderText = "Código";
+                    gridPessoas.Columns[1].HeaderText = "Nome do Usuário";
+
+                    btnNovoProp.Visible = false;
+                }
+
+                gridPessoas.Columns[0].Width = 45;
+                gridPessoas.Columns[1].Width = 270;
+
+                gridPessoas.Columns[0].MinimumWidth = 45;
+                gridPessoas.Columns[1].MinimumWidth = 265;
             }
-            else if (tipo == "FUNCIONARIO")
-            {
-                gridPessoas.DataSource = database.select(string.Format("SELECT cod_usuario, nome_usuario" +
-                                                                       " FROM usuario" +
-                                                                       " WHERE nome_usuario ILIKE '%{0}%'" +
-                                                                       " ORDER BY nome_usuario", boxProcurarProp.Text));
-                gridPessoas.Columns[0].HeaderText = "Código";
-                gridPessoas.Columns[1].HeaderText = "Nome do Usuário";
-
-                btnNovoProp.Visible = false;
-            }
-
-            gridPessoas.Columns[0].Width = 45;
-            gridPessoas.Columns[1].Width = 270;
-
-            gridPessoas.Columns[0].MinimumWidth = 45;
-            gridPessoas.Columns[1].MinimumWidth = 265;
+            catch { }
+           
         }
 
         private void btnCancelarProp_Click(object sender, EventArgs e)
@@ -617,6 +654,8 @@ namespace situacaoChavesGolden
 
         private void btnConfirmarProp_Click(object sender, EventArgs e)
         {
+
+
             if(gridPessoas.CurrentRow.Index != -1)
             {
                 codPessoaBox.Text = gridPessoas.CurrentRow.Cells[0].Value.ToString();
@@ -736,7 +775,11 @@ namespace situacaoChavesGolden
             panelChaves.Visible = true;
             atualizarGridChaves(gridChaves);
 
-
+            groupQuemEmpresta.Enabled = false;
+            groupDadosEmp.Enabled = false;
+            groupDadosCliente.Enabled = false;
+            //groupBox4.Enabled = false;
+            btnConfirmar.Enabled = false;
         }
 
         private void atualizarGridChaves(DataGridView tabela)
@@ -744,6 +787,13 @@ namespace situacaoChavesGolden
 
             //List<string> codigos = new List<string>();
             string codigos = "";
+            string proprietario = "";
+
+            if (radioProprietario.Checked)
+            {
+                string.Format("AND proprietario = '{0}'", codPessoaBox.Text);
+            }
+
             int cont = 0;
 
            
@@ -767,8 +817,9 @@ namespace situacaoChavesGolden
             tabelaChaves = database.select(string.Format("" +
                 "SELECT c.cod_chave, c.cod_imob,  c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, 0, 0 " +
                 " FROM CHAVE c " +
+                " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario" +
                 " WHERE c.situacao = 'DISPONIVEL' AND (c.rua ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%' OR (unaccent(lower(c.rua))) ILIKE '%{0}%' OR" +
-                " (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR c.cod_chave::text ILIKE '%{0}%') {1} ", boxBusca.Text, codigos));
+                " (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR c.cod_chave::text ILIKE '%{0}%') {1} {2}", boxBusca.Text, codigos, proprietario));
 
             gridChavesTotal.DataSource = tabelaChaves;
 
@@ -787,7 +838,14 @@ namespace situacaoChavesGolden
 
         private void BtnConfirmChave_Click(object sender, EventArgs e)
         {
-            if(gridChaves.Rows.Count + gridChavesTotal.SelectedRows.Count > 10)
+            panelChaves.Visible = false;
+            groupQuemEmpresta.Enabled = true;
+            groupDadosEmp.Enabled = true;
+            groupDadosCliente.Enabled = true;
+            btnConfirmar.Enabled = true;
+
+
+            if (gridChaves.Rows.Count + gridChavesTotal.SelectedRows.Count > 10)
             {
                 Message txtMsg = new Message("Limite de empréstimos atingido (10)!", "Erro", "erro", "confirma");
                 txtMsg.ShowDialog();
@@ -840,6 +898,12 @@ namespace situacaoChavesGolden
         private void BtnCancelarChave_Click(object sender, EventArgs e)
         {
             panelChaves.Visible = false;
+            groupQuemEmpresta.Enabled = true;
+            groupDadosEmp.Enabled = true;
+            groupDadosCliente.Enabled = true;
+            btnConfirmar.Enabled = true;
+
+
         }
 
         private void BoxBusca_TextChanged(object sender, EventArgs e)
@@ -854,6 +918,11 @@ namespace situacaoChavesGolden
 
         private void GridChaves_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
+            if (radioProprietario.Checked)
+            {
+                radioCliente.Checked = true;
+            }
+
             if(gridChaves.Rows.Count >= 10)
             {
                 btnAddChave.Enabled = false;
@@ -867,6 +936,19 @@ namespace situacaoChavesGolden
 
         private void GridChaves_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
+            if(radioProprietario.Checked && gridChaves.Rows.Count == 0)
+            {
+                nomePessoaBox.Text = "";
+                codPessoaBox.Text = "";
+                nomePessoaBox.Visible = false;
+                codPessoaBox.Visible = false;
+                excluiProp.Visible = false;
+                labelCod.Visible = false;
+                labelProp.Visible = false;
+                btnAdicionarPessoa.Visible = true;
+                radioCliente.Checked = true;
+            }
+
             if (gridChaves.Rows.Count >= 10)
             {
                 btnAddChave.Enabled = false;
@@ -880,8 +962,12 @@ namespace situacaoChavesGolden
 
         private void GridChaves_SelectionChanged(object sender, EventArgs e)
         {
-            qtdChaves.Value = decimal.Parse(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[4].Value.ToString());
-            qtdControles.Value = decimal.Parse(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[5].Value.ToString());
+            try
+            {
+                qtdChaves.Value = decimal.Parse(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[4].Value.ToString());
+                qtdControles.Value = decimal.Parse(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[5].Value.ToString());
+            }
+            catch { }
 
 
         }

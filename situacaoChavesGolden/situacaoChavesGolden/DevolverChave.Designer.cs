@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelDoc = new System.Windows.Forms.Label();
-            this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
             this.qtdControles = new System.Windows.Forms.NumericUpDown();
             this.metroLabel11 = new MetroFramework.Controls.MetroLabel();
             this.qtdChaves = new System.Windows.Forms.NumericUpDown();
@@ -40,12 +39,8 @@
             this.labelFuncionario = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.labelDataRetirada = new System.Windows.Forms.Label();
-            this.labelCodImovel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.labelNome = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.labelCodChave = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
@@ -59,54 +54,31 @@
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
-            this.groupBox1.SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.gridChaves = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.qtdControles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qtdChaves)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.labelDoc);
-            this.groupBox1.Controls.Add(this.metroLabel9);
-            this.groupBox1.Controls.Add(this.qtdControles);
-            this.groupBox1.Controls.Add(this.metroLabel11);
-            this.groupBox1.Controls.Add(this.qtdChaves);
-            this.groupBox1.Controls.Add(this.metroLabel4);
-            this.groupBox1.Location = new System.Drawing.Point(10, 63);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(272, 61);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
             // 
             // labelDoc
             // 
             this.labelDoc.AutoSize = true;
             this.labelDoc.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDoc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelDoc.Location = new System.Drawing.Point(211, 36);
+            this.labelDoc.Location = new System.Drawing.Point(124, 16);
             this.labelDoc.Name = "labelDoc";
             this.labelDoc.Size = new System.Drawing.Size(10, 14);
             this.labelDoc.TabIndex = 33;
             this.labelDoc.Text = " ";
             this.labelDoc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // metroLabel9
-            // 
-            this.metroLabel9.AutoSize = true;
-            this.metroLabel9.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel9.Location = new System.Drawing.Point(188, 16);
-            this.metroLabel9.Name = "metroLabel9";
-            this.metroLabel9.Size = new System.Drawing.Size(68, 15);
-            this.metroLabel9.TabIndex = 17;
-            this.metroLabel9.Text = "Deixou doc?";
-            // 
             // qtdControles
             // 
             this.qtdControles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.qtdControles.Location = new System.Drawing.Point(105, 33);
+            this.qtdControles.Location = new System.Drawing.Point(336, 256);
             this.qtdControles.Name = "qtdControles";
             this.qtdControles.Size = new System.Drawing.Size(60, 20);
             this.qtdControles.TabIndex = 2;
@@ -116,7 +88,7 @@
             // 
             this.metroLabel11.AutoSize = true;
             this.metroLabel11.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel11.Location = new System.Drawing.Point(96, 15);
+            this.metroLabel11.Location = new System.Drawing.Point(327, 238);
             this.metroLabel11.Name = "metroLabel11";
             this.metroLabel11.Size = new System.Drawing.Size(78, 15);
             this.metroLabel11.TabIndex = 16;
@@ -125,7 +97,7 @@
             // qtdChaves
             // 
             this.qtdChaves.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.qtdChaves.Location = new System.Drawing.Point(22, 33);
+            this.qtdChaves.Location = new System.Drawing.Point(253, 256);
             this.qtdChaves.Name = "qtdChaves";
             this.qtdChaves.Size = new System.Drawing.Size(60, 20);
             this.qtdChaves.TabIndex = 1;
@@ -135,7 +107,7 @@
             // 
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel4.Location = new System.Drawing.Point(22, 15);
+            this.metroLabel4.Location = new System.Drawing.Point(253, 238);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(65, 15);
             this.metroLabel4.TabIndex = 14;
@@ -143,19 +115,17 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.labelDoc);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.labelFuncionario);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.labelDataRetirada);
-            this.groupBox2.Controls.Add(this.labelCodImovel);
-            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.labelNome);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.labelCodChave);
-            this.groupBox2.Location = new System.Drawing.Point(10, 130);
+            this.groupBox2.Location = new System.Drawing.Point(16, 41);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(272, 119);
+            this.groupBox2.Size = new System.Drawing.Size(385, 92);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
@@ -164,7 +134,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(13, 97);
+            this.label4.Location = new System.Drawing.Point(215, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 14);
             this.label4.TabIndex = 31;
@@ -175,7 +145,7 @@
             this.labelFuncionario.AutoSize = true;
             this.labelFuncionario.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFuncionario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelFuncionario.Location = new System.Drawing.Point(85, 97);
+            this.labelFuncionario.Location = new System.Drawing.Point(287, 16);
             this.labelFuncionario.Name = "labelFuncionario";
             this.labelFuncionario.Size = new System.Drawing.Size(10, 14);
             this.labelFuncionario.TabIndex = 32;
@@ -202,27 +172,6 @@
             this.labelDataRetirada.TabIndex = 30;
             this.labelDataRetirada.Text = " ";
             // 
-            // labelCodImovel
-            // 
-            this.labelCodImovel.AutoSize = true;
-            this.labelCodImovel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCodImovel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelCodImovel.Location = new System.Drawing.Point(208, 16);
-            this.labelCodImovel.Name = "labelCodImovel";
-            this.labelCodImovel.Size = new System.Drawing.Size(10, 14);
-            this.labelCodImovel.TabIndex = 28;
-            this.labelCodImovel.Text = " ";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(162, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 14);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Imóvel:";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -244,27 +193,6 @@
             this.labelNome.TabIndex = 26;
             this.labelNome.Text = " ";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 14);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Código da chave:";
-            // 
-            // labelCodChave
-            // 
-            this.labelCodChave.AutoSize = true;
-            this.labelCodChave.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCodChave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelCodChave.Location = new System.Drawing.Point(115, 16);
-            this.labelCodChave.Name = "labelCodChave";
-            this.labelCodChave.Size = new System.Drawing.Size(10, 14);
-            this.labelCodChave.TabIndex = 24;
-            this.labelCodChave.Text = " ";
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.metroLabel8);
@@ -276,9 +204,9 @@
             this.groupBox3.Controls.Add(this.boxCond);
             this.groupBox3.Controls.Add(this.metroLabel1);
             this.groupBox3.Controls.Add(this.boxValor);
-            this.groupBox3.Location = new System.Drawing.Point(297, 63);
+            this.groupBox3.Location = new System.Drawing.Point(410, 41);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(211, 186);
+            this.groupBox3.Size = new System.Drawing.Size(211, 235);
             this.groupBox3.TabIndex = 22;
             this.groupBox3.TabStop = false;
             // 
@@ -308,7 +236,7 @@
             this.boxOutros.MaxLength = 100;
             this.boxOutros.Multiline = true;
             this.boxOutros.Name = "boxOutros";
-            this.boxOutros.Size = new System.Drawing.Size(172, 58);
+            this.boxOutros.Size = new System.Drawing.Size(172, 75);
             this.boxOutros.TabIndex = 6;
             // 
             // metroLabel3
@@ -383,7 +311,7 @@
             this.btnCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
-            this.btnCancelar.Location = new System.Drawing.Point(333, 265);
+            this.btnCancelar.Location = new System.Drawing.Point(453, 281);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 30;
@@ -399,7 +327,7 @@
             this.btnConfirmar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmar.ForeColor = System.Drawing.Color.White;
-            this.btnConfirmar.Location = new System.Drawing.Point(433, 266);
+            this.btnConfirmar.Location = new System.Drawing.Point(553, 282);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(75, 23);
             this.btnConfirmar.TabIndex = 29;
@@ -407,49 +335,75 @@
             this.btnConfirmar.UseVisualStyleBackColor = false;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // metroLabel7
+            // label1
             // 
-            this.metroLabel7.AutoSize = true;
-            this.metroLabel7.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel7.Location = new System.Drawing.Point(121, 61);
-            this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(40, 15);
-            this.metroLabel7.TabIndex = 31;
-            this.metroLabel7.Text = "Dados";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(113, 14);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Deixou documento:";
+            // 
+            // gridChaves
+            // 
+            this.gridChaves.AllowUserToAddRows = false;
+            this.gridChaves.AllowUserToDeleteRows = false;
+            this.gridChaves.AllowUserToResizeRows = false;
+            this.gridChaves.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.gridChaves.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridChaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridChaves.DefaultCellStyle = dataGridViewCellStyle1;
+            this.gridChaves.Location = new System.Drawing.Point(16, 144);
+            this.gridChaves.MultiSelect = false;
+            this.gridChaves.Name = "gridChaves";
+            this.gridChaves.ReadOnly = true;
+            this.gridChaves.RowHeadersVisible = false;
+            this.gridChaves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridChaves.Size = new System.Drawing.Size(385, 92);
+            this.gridChaves.TabIndex = 31;
+            this.gridChaves.SelectionChanged += new System.EventHandler(this.GridChaves_SelectionChanged);
             // 
             // DevolverChave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 299);
-            this.Controls.Add(this.metroLabel7);
+            this.ClientSize = new System.Drawing.Size(635, 327);
+            this.Controls.Add(this.qtdControles);
+            this.Controls.Add(this.metroLabel11);
+            this.Controls.Add(this.gridChaves);
+            this.Controls.Add(this.qtdChaves);
             this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.DisplayHeader = false;
             this.Name = "DevolverChave";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Text = "DevolverChave";
             this.Load += new System.EventHandler(this.DevolverChave_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qtdControles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.qtdChaves)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.NumericUpDown qtdControles;
         private MetroFramework.Controls.MetroLabel metroLabel11;
         private System.Windows.Forms.NumericUpDown qtdChaves;
@@ -457,10 +411,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label labelNome;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label labelCodChave;
-        private System.Windows.Forms.Label labelCodImovel;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label labelFuncionario;
         private System.Windows.Forms.Label label2;
@@ -478,8 +428,8 @@
         private MetroFramework.Controls.MetroLabel metroLabel8;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
-        private MetroFramework.Controls.MetroLabel metroLabel7;
-        private MetroFramework.Controls.MetroLabel metroLabel9;
         private System.Windows.Forms.Label labelDoc;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView gridChaves;
     }
 }

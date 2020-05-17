@@ -251,8 +251,9 @@ namespace situacaoChavesGolden
                         codEmprestimo = database.selectScalar(string.Format("" +
                                             " SELECT e.cod_emprestimo" +
                                             " FROM emprestimo e" +
-                                            " INNER JOIN chave c ON c.indice_chave = e.cod_chave" +
-                                            " WHERE e.indice_chave = {0} AND e.data_entrega is null", codigoChave));
+                                            " INNER JOIN chaves_emprestimo ce ON ce.cod_emprestimo = e.cod_emprestimo" +
+                                            " INNER JOIN chave c ON c.indice_chave = ce.cod_chave" +
+                                            " WHERE c.indice_chave = {0} AND e.data_entrega is null", codigoChave));
 
 
                         emprestimo.Text = codEmprestimo;

@@ -134,7 +134,7 @@ namespace situacaoChavesGolden
             dpMaxDataEntrega.MaxDate = dataHoje;
         }
 
-        void atulizarGridChavesEmprestimo(string codigo)
+        void atualizarGridChavesEmprestimo(string codigo)
         {
             DataTable dadosEmprestimo = new DataTable();
 
@@ -142,7 +142,7 @@ namespace situacaoChavesGolden
             {
                 dadosEmprestimo = database.select(string.Format("SELECT c.cod_chave," +
                                                                " c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END)" +
-                                                               " as endereco" +
+                                                               " as endereco, c.indice_chave" +
                                                                " FROM chave c" +
                                                                " INNER JOIN chaves_emprestimo ce ON ce.cod_chave = c.indice_chave" +
                                                                " INNER JOIN emprestimo e ON e.cod_emprestimo = ce.cod_emprestimo" +
@@ -153,6 +153,7 @@ namespace situacaoChavesGolden
 
                 gridChavesEmprestimo.Columns[0].Width = 40;
                 gridChavesEmprestimo.Columns[1].Width = 225;
+                gridChavesEmprestimo.Columns[2].Visible = false;
 
                 gridChavesEmprestimo.Columns[0].HeaderText = "Chave";
                 gridChavesEmprestimo.Columns[1].HeaderText = "Endereço";
@@ -164,7 +165,7 @@ namespace situacaoChavesGolden
         private void GridEmprestimo_SelectionChanged(object sender, EventArgs e)
         {
 
-            atulizarGridChavesEmprestimo(gridEmprestimo.CurrentRow.Cells[0].Value.ToString());
+            atualizarGridChavesEmprestimo(gridEmprestimo.CurrentRow.Cells[0].Value.ToString());
 
             try
             {
@@ -450,7 +451,23 @@ namespace situacaoChavesGolden
 
         private void gridChavesEmprestimo_SelectionChanged(object sender, EventArgs e)
         {
-            DataTable dadosChaves
+            DataTable dadosChaves = new DataTable();
+
+            
+            dadosChaves = database.select(string.Format("SELECT c.cod_imob, ce.cod_chave, ce.quant_chaves, ce.quant_controles " +
+                                                        " FROM chave c " +
+                                                        " INNER JOIN chaves_emprestimo ce ON ce.cod_chave = c.indice_chave " +
+                                                        " WHERE c.indice_chave = '{0}' AND ce.cod_emprestimo = '{1}'",
+                                                         gridChavesEmprestimo.CurrentRow.Cells[2].Value.ToString(), gridEmprestimo.CurrentRow.Cells[0].Value.ToString()));
+
+            foreach(DataRow row in dadosChaves.Rows)
+            {
+                codigoImob.Text = row[0].ToString();
+                codChave.Text = row[1].ToString();
+                qtdChaves.Text = row[2].ToString();
+                qtdControles.Text = row[3].ToString();
+            }
+            
         }
     }
 }

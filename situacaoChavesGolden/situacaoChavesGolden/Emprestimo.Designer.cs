@@ -203,7 +203,7 @@
             this.filtrosPanel.Controls.Add(this.btnFiltrar);
             this.filtrosPanel.Controls.Add(this.groupBoxSituacaoCh);
             this.filtrosPanel.Controls.Add(this.groupTipoEmprestimo);
-            this.filtrosPanel.Location = new System.Drawing.Point(122, 90);
+            this.filtrosPanel.Location = new System.Drawing.Point(341, 51);
             this.filtrosPanel.Name = "filtrosPanel";
             this.filtrosPanel.Size = new System.Drawing.Size(289, 261);
             this.filtrosPanel.TabIndex = 43;
