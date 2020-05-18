@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(cadastroChave));
             this.boxLogradouro = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.boxNumero = new MetroFramework.Controls.MetroTextBox();
@@ -46,6 +47,8 @@
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
             this.groupFinalImovel = new System.Windows.Forms.GroupBox();
+            this.checkVenda = new MetroFramework.Controls.MetroCheckBox();
+            this.checkLocacao = new MetroFramework.Controls.MetroCheckBox();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
             this.groupTipoImovel = new System.Windows.Forms.GroupBox();
             this.radioTipoCom = new MetroFramework.Controls.MetroRadioButton();
@@ -84,8 +87,6 @@
             this.boxCategImov = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
             this.boxCond = new MetroFramework.Controls.MetroTextBox();
-            this.checkLocacao = new MetroFramework.Controls.MetroCheckBox();
-            this.checkVenda = new MetroFramework.Controls.MetroCheckBox();
             this.groupSitImovel.SuspendLayout();
             this.groupFinalImovel.SuspendLayout();
             this.groupTipoImovel.SuspendLayout();
@@ -127,7 +128,7 @@
             this.boxNumero.CustomForeColor = true;
             this.boxNumero.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.boxNumero.Location = new System.Drawing.Point(13, 81);
-            this.boxNumero.MaxLength = 8;
+            this.boxNumero.MaxLength = 20;
             this.boxNumero.Name = "boxNumero";
             this.boxNumero.Size = new System.Drawing.Size(62, 25);
             this.boxNumero.TabIndex = 2;
@@ -295,6 +296,26 @@
             this.groupFinalImovel.Size = new System.Drawing.Size(174, 32);
             this.groupFinalImovel.TabIndex = 15;
             this.groupFinalImovel.TabStop = false;
+            // 
+            // checkVenda
+            // 
+            this.checkVenda.AutoSize = true;
+            this.checkVenda.Location = new System.Drawing.Point(107, 10);
+            this.checkVenda.Name = "checkVenda";
+            this.checkVenda.Size = new System.Drawing.Size(61, 15);
+            this.checkVenda.TabIndex = 1;
+            this.checkVenda.Text = "VENDA";
+            this.checkVenda.UseVisualStyleBackColor = true;
+            // 
+            // checkLocacao
+            // 
+            this.checkLocacao.AutoSize = true;
+            this.checkLocacao.Location = new System.Drawing.Point(7, 10);
+            this.checkLocacao.Name = "checkLocacao";
+            this.checkLocacao.Size = new System.Drawing.Size(79, 15);
+            this.checkLocacao.TabIndex = 0;
+            this.checkLocacao.Text = "LOCAÇÃO";
+            this.checkLocacao.UseVisualStyleBackColor = true;
             // 
             // metroLabel10
             // 
@@ -491,6 +512,7 @@
             // 
             this.boxOutraLocalizacao.CustomBackground = true;
             this.boxOutraLocalizacao.CustomForeColor = true;
+            this.boxOutraLocalizacao.Enabled = false;
             this.boxOutraLocalizacao.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.boxOutraLocalizacao.Location = new System.Drawing.Point(162, 79);
             this.boxOutraLocalizacao.MaxLength = 50;
@@ -524,6 +546,7 @@
             this.comboLocalizacao.Name = "comboLocalizacao";
             this.comboLocalizacao.Size = new System.Drawing.Size(140, 29);
             this.comboLocalizacao.TabIndex = 3;
+            this.comboLocalizacao.SelectedIndexChanged += new System.EventHandler(this.ComboLocalizacao_SelectedIndexChanged);
             // 
             // metroLabel8
             // 
@@ -542,7 +565,7 @@
             this.codImovel.CustomForeColor = true;
             this.codImovel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.codImovel.Location = new System.Drawing.Point(13, 23);
-            this.codImovel.MaxLength = 15;
+            this.codImovel.MaxLength = 25;
             this.codImovel.Name = "codImovel";
             this.codImovel.Size = new System.Drawing.Size(79, 25);
             this.codImovel.TabIndex = 1;
@@ -602,7 +625,9 @@
             this.btnCancelar.TabIndex = 24;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             this.btnCancelar.MouseEnter += new System.EventHandler(this.BtnCancelar_MouseEnter);
+            this.btnCancelar.MouseLeave += new System.EventHandler(this.BtnCancelar_MouseLeave);
             // 
             // painelProp
             // 
@@ -612,7 +637,7 @@
             this.painelProp.Controls.Add(this.btnConfirmarProp);
             this.painelProp.Controls.Add(this.gridProprietarios);
             this.painelProp.Controls.Add(this.boxProcurarProp);
-            this.painelProp.Location = new System.Drawing.Point(32, 11);
+            this.painelProp.Location = new System.Drawing.Point(32, 146);
             this.painelProp.Name = "painelProp";
             this.painelProp.Size = new System.Drawing.Size(374, 225);
             this.painelProp.TabIndex = 25;
@@ -786,26 +811,6 @@
             this.boxCond.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.boxCond.UseStyleColors = true;
             // 
-            // checkLocacao
-            // 
-            this.checkLocacao.AutoSize = true;
-            this.checkLocacao.Location = new System.Drawing.Point(7, 10);
-            this.checkLocacao.Name = "checkLocacao";
-            this.checkLocacao.Size = new System.Drawing.Size(79, 15);
-            this.checkLocacao.TabIndex = 0;
-            this.checkLocacao.Text = "LOCAÇÃO";
-            this.checkLocacao.UseVisualStyleBackColor = true;
-            // 
-            // checkVenda
-            // 
-            this.checkVenda.AutoSize = true;
-            this.checkVenda.Location = new System.Drawing.Point(107, 10);
-            this.checkVenda.Name = "checkVenda";
-            this.checkVenda.Size = new System.Drawing.Size(61, 15);
-            this.checkVenda.TabIndex = 1;
-            this.checkVenda.Text = "VENDA";
-            this.checkVenda.UseVisualStyleBackColor = true;
-            // 
             // cadastroChave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -830,6 +835,7 @@
             this.Controls.Add(this.boxLogradouro);
             this.Controls.Add(this.groupBox5);
             this.DisplayHeader = false;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "cadastroChave";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.None;

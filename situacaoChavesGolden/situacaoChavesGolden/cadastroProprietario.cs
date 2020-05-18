@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+
 
 namespace situacaoChavesGolden
 {
@@ -199,7 +201,12 @@ namespace situacaoChavesGolden
 
         private void ContatoBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            format.permitirNumeros(e);
+            //format.permitirNumeros(e);
+        }
+
+        private void ContatoBox_Leave(object sender, EventArgs e)
+        {
+            contatoBox.Text = Regex.Replace(contatoBox.Text, @"\D", "");
         }
     }
 }

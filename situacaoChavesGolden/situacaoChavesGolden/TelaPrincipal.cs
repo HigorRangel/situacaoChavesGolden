@@ -85,7 +85,8 @@ namespace situacaoChavesGolden
         private void BtnClientes_Click(object sender, EventArgs e)
         {
             Cliente cliente = new Cliente();
-            atualizarForm(cliente);
+            EmManutencao telaManut = new EmManutencao("PREVISÃO DE RETORNO: 23/05/2020");
+            atualizarForm(telaManut);
         }
 
         private void BtnEmprestimos_Click(object sender, EventArgs e)

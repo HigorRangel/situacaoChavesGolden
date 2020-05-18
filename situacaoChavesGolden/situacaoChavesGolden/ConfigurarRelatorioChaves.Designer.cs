@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigurarRelatorioChaves));
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.groupBoxTipoImovel = new System.Windows.Forms.GroupBox();
             this.metroRadioButton7 = new MetroFramework.Controls.MetroRadioButton();
@@ -341,6 +342,7 @@
             this.Controls.Add(this.groupBoxSituacaoIm);
             this.Controls.Add(this.metroLabel1);
             this.DisplayHeader = false;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfigurarRelatorioChaves";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Resizable = false;

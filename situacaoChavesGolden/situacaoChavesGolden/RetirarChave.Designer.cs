@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RetirarChave));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -178,6 +179,8 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
+            this.btnCancelar.MouseEnter += new System.EventHandler(this.BtnCancelar_MouseEnter);
+            this.btnCancelar.MouseLeave += new System.EventHandler(this.BtnCancelar_MouseLeave);
             // 
             // btnCadastrar
             // 
@@ -220,6 +223,7 @@
             this.Controls.Add(this.groupTipo);
             this.Controls.Add(this.groupBox1);
             this.DisplayHeader = false;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RetirarChave";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Style = MetroFramework.MetroColorStyle.Silver;

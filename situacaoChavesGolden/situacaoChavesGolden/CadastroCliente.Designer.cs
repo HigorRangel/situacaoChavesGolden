@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CadastroCliente));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.boxEndereco = new MetroFramework.Controls.MetroTextBox();
@@ -310,6 +311,7 @@
             this.Controls.Add(this.metroLabel9);
             this.Controls.Add(this.groupBox1);
             this.DisplayHeader = false;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CadastroCliente";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Resizable = false;

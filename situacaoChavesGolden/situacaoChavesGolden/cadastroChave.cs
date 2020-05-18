@@ -82,6 +82,8 @@ namespace situacaoChavesGolden
         }
         private void CadastroChave_Load(object sender, EventArgs e)
         {
+            
+
             codImovel.Focus();
 
             if(seletorTela == true)
@@ -168,6 +170,7 @@ namespace situacaoChavesGolden
         private void BtnCancelar_MouseEnter(object sender, EventArgs e)
         {
             btnCancelar.ForeColor = Color.White;
+            btnCancelar.BackColor = Color.FromArgb(1, 66, 94);
         }
 
 
@@ -187,7 +190,7 @@ namespace situacaoChavesGolden
                 erro += "\n- Localização do imóvel (Não pode ficar vazio)";
                 contErro++;
             }
-            if (boxOutraLocalizacao.Text.Length < 0 && comboLocalizacao.SelectedItem.ToString() == "Outro")
+            if (boxOutraLocalizacao.Text.Length <= 0 && comboLocalizacao.SelectedItem.ToString() == "Outro")
             {
                 erro += "\n- Outra localização (Não pode ficar vazio)";
                 contErro++;
@@ -530,6 +533,29 @@ namespace situacaoChavesGolden
         private void BoxEstado_Leave(object sender, EventArgs e)
         {
             boxEstado.Text = boxEstado.Text.ToUpper();
+        }
+
+        private void ComboLocalizacao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboLocalizacao.SelectedItem.ToString() == "Outro")
+            {
+                boxOutraLocalizacao.Enabled = true;
+            }
+            else
+            {
+                boxOutraLocalizacao.Enabled = false;
+            }
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnCancelar_MouseLeave(object sender, EventArgs e)
+        {
+            btnCancelar.ForeColor = Color.FromArgb(0, 109, 156);
+            btnCancelar.BackColor = Color.White;
         }
     }
 }

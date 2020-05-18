@@ -149,7 +149,7 @@ namespace situacaoChavesGolden
                         {
                             contDivergencia++;
                             aviso += string.Format("\n\nCódigo: {0} - Foram devolvidos {1} chave(s) e {2} controle(s). \nForam retirados: {3} chave(s) e {4} controle(s)",
-                                row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), row.Cells[7].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString());
+                                row.Cells[1].Value.ToString(), row.Cells[6].Value.ToString(), row.Cells[7].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString());
                         }
 
                       

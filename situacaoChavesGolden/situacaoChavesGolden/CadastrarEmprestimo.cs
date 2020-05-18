@@ -253,6 +253,11 @@ namespace situacaoChavesGolden
 
         private void CadastrarEmprestimo_Load(object sender, EventArgs e)
         {
+            comboDocs.Items.Add("RG");
+            comboDocs.Items.Add("RNE");
+            comboDocs.Items.Add("CNH");
+            comboDocs.Items.Add("Outro");
+
             radioCliente.Checked = true;
 
 
@@ -435,7 +440,14 @@ namespace situacaoChavesGolden
                     erros += "\n-Previsão de entrega (Escolha obrigatória)";
                 }
 
-
+                try
+                {
+                    documentoDeixado = comboDocs.SelectedItem.ToString();
+                }
+                catch
+                {
+                    documentoDeixado = "";
+                }
 
                 //Quem está emprestando
                 if (tipo.Length == 0)

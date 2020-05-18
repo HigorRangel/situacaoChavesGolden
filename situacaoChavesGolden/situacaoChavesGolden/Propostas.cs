@@ -156,7 +156,7 @@ namespace situacaoChavesGolden
                                                                            " pr.valor, pr.condominio, pr.forma_locacao " +
                                                 " FROM proposta pr " +
                                                 " INNER JOIN emprestimo e ON e.cod_emprestimo = pr.emprestimo " +
-                                                " INNER JOIN chave c ON c.indice_chave = e.cod_chave " +
+                                                " INNER JOIN chave c ON c.indice_chave = pr.cod_chave " +
                                                 " LEFT JOIN cliente cl ON e.cod_cliente = cl.cod_cliente " +
                                                 " LEFT JOIN proprietario p ON p.cod_proprietario = e.cod_proprietario " +
                                                 " LEFT JOIN usuario u ON u.cod_usuario = e.cod_usuario" +

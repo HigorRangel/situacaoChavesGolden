@@ -164,7 +164,7 @@
             this.contatoBox.CustomForeColor = true;
             this.contatoBox.ForeColor = System.Drawing.Color.Gray;
             this.contatoBox.Location = new System.Drawing.Point(227, 105);
-            this.contatoBox.MaxLength = 12;
+            this.contatoBox.MaxLength = 16;
             this.contatoBox.Name = "contatoBox";
             this.contatoBox.Size = new System.Drawing.Size(111, 23);
             this.contatoBox.TabIndex = 4;
@@ -172,6 +172,7 @@
             this.contatoBox.Theme = MetroFramework.MetroThemeStyle.Light;
             this.contatoBox.UseStyleColors = true;
             this.contatoBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ContatoBox_KeyPress);
+            this.contatoBox.Leave += new System.EventHandler(this.ContatoBox_Leave);
             // 
             // cadastroProprietario
             // 

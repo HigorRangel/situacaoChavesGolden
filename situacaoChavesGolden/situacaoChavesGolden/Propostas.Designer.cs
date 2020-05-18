@@ -47,10 +47,6 @@
             this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
             this.tipoImovel = new System.Windows.Forms.Label();
             this.finalidade = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupMenuSup = new System.Windows.Forms.GroupBox();
             this.btnFiltro = new System.Windows.Forms.PictureBox();
             this.radioVenda = new MetroFramework.Controls.MetroRadioButton();
@@ -90,12 +86,9 @@
             this.btnReprovar = new System.Windows.Forms.Button();
             this.btnContraProposta = new System.Windows.Forms.Button();
             this.btnAprovar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.filtrosPanel.SuspendLayout();
             this.groupBoxSituacaoCh.SuspendLayout();
             this.groupBoxSitProposta.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupMenuSup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridPropostas)).BeginInit();
@@ -286,44 +279,6 @@
             this.finalidade.Size = new System.Drawing.Size(10, 15);
             this.finalidade.TabIndex = 55;
             this.finalidade.Text = " ";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.pictureBox1);
-            this.groupBox4.Location = new System.Drawing.Point(435, 234);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(195, 28);
-            this.groupBox4.TabIndex = 79;
-            this.groupBox4.TabStop = false;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 10);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(52, 13);
-            this.label14.TabIndex = 2;
-            this.label14.Text = "Legenda:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(85, 10);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(103, 13);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Devolução atrasada";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.pictureBox1.Location = new System.Drawing.Point(68, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(15, 15);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // groupMenuSup
             // 
@@ -823,30 +778,12 @@
             this.btnAprovar.UseVisualStyleBackColor = true;
             this.btnAprovar.Click += new System.EventHandler(this.BtnAprovar_Click);
             // 
-            // button1
-            // 
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
-            this.button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(234, 239);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(24, 22);
-            this.button1.TabIndex = 81;
-            this.toolTip1.SetToolTip(this.button1, "Recusar Proposta");
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // Propostas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 430);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnReprovar);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnContraProposta);
             this.Controls.Add(this.groupMenuSup);
             this.Controls.Add(this.btnAprovar);
@@ -878,9 +815,6 @@
             this.groupBoxSituacaoCh.PerformLayout();
             this.groupBoxSitProposta.ResumeLayout(false);
             this.groupBoxSitProposta.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupMenuSup.ResumeLayout(false);
             this.groupMenuSup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).EndInit();
@@ -911,10 +845,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dpMaxDataProposta;
         private System.Windows.Forms.DateTimePicker dpMinDataProposta;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnContraProposta;
         private System.Windows.Forms.GroupBox groupMenuSup;
         private System.Windows.Forms.PictureBox btnFiltro;
@@ -954,6 +884,5 @@
         private System.Windows.Forms.Label formaLoc;
         private System.Windows.Forms.Button btnReprovar;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button button1;
     }
 }

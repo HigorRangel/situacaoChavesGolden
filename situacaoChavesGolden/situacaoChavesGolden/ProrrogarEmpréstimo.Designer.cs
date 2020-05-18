@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProrrogarEmpréstimo));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.novaData = new System.Windows.Forms.DateTimePicker();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.novaData = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +47,23 @@
             this.groupBox1.Size = new System.Drawing.Size(198, 62);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(24, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(147, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Nova previsão de empréstimo";
+            // 
+            // novaData
+            // 
+            this.novaData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.novaData.Location = new System.Drawing.Point(27, 27);
+            this.novaData.Name = "novaData";
+            this.novaData.Size = new System.Drawing.Size(144, 20);
+            this.novaData.TabIndex = 0;
             // 
             // metroLabel1
             // 
@@ -89,23 +107,6 @@
             this.btnConfirmar.UseVisualStyleBackColor = false;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // novaData
-            // 
-            this.novaData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.novaData.Location = new System.Drawing.Point(27, 27);
-            this.novaData.Name = "novaData";
-            this.novaData.Size = new System.Drawing.Size(144, 20);
-            this.novaData.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Nova previsão de empréstimo";
-            // 
             // ProrrogarEmpréstimo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -117,6 +118,7 @@
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.groupBox1);
             this.DisplayHeader = false;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProrrogarEmpréstimo";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Text = "ProrrogarEmpréstimo";

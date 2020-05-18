@@ -12,14 +12,14 @@ using System.IO;
 
 namespace situacaoChavesGolden
 {
-    public partial class Form1 : MetroFramework.Forms.MetroForm
+    public partial class Login : MetroFramework.Forms.MetroForm
     {
         PostgreSQL database = new PostgreSQL();
         List<string> ListaCodigos = new List<string>();
         string codigo = "";
         FormatarStrings format = new FormatarStrings();
 
-        public Form1()
+        public Login()
         {
             InitializeComponent();
             
@@ -148,6 +148,11 @@ namespace situacaoChavesGolden
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ComboUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CadastroReserva));
             this.painelProp = new System.Windows.Forms.Panel();
             this.btnNovoProp = new System.Windows.Forms.Button();
             this.btnCancelarProp = new System.Windows.Forms.Button();
@@ -235,6 +236,9 @@
             this.btnCancelar.TabIndex = 40;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click_1);
+            this.btnCancelar.MouseEnter += new System.EventHandler(this.BtnCancelar_MouseEnter);
+            this.btnCancelar.MouseLeave += new System.EventHandler(this.BtnCancelar_MouseLeave);
             // 
             // btnConfirmar
             // 
@@ -643,6 +647,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(468, 432);
             this.Controls.Add(this.painelProp);
             this.Controls.Add(this.btnCancelar);
@@ -653,6 +658,7 @@
             this.Controls.Add(this.groupQuemEmpresta);
             this.Controls.Add(this.groupDadosCliente);
             this.DisplayHeader = false;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CadastroReserva";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Text = "ReservarChave";

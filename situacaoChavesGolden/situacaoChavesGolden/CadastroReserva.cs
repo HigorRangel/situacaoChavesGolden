@@ -492,5 +492,22 @@ namespace situacaoChavesGolden
         {
 
         }
+
+        private void BtnCancelar_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnCancelar_MouseEnter(object sender, EventArgs e)
+        {
+            btnCancelar.ForeColor = Color.White;
+        }
+
+        private void BtnCancelar_MouseLeave(object sender, EventArgs e)
+        {
+            btnCancelar.ForeColor = Color.FromArgb(0, 109, 156);
+
+        }
     }
+
 }
