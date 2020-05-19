@@ -28,6 +28,22 @@ namespace situacaoChavesGolden
 
         }
 
+        private void buscarDadosChave()
+        {
+            DataTable dadosChaveEscolhida = new DataTable();
+
+          
+            dadosChaveEscolhida = database.select(string.Format("SELECT c.cod_chave, c.cod_imob,  c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave " +
+                                                                " FROM CHAVE c " +
+                                                                " WHERE indice_chave = '{0}'", codigoChave));
+
+            foreach (DataRow linha in dadosChaveEscolhida.Rows)
+            {
+                gridChaves.Rows.Add(linha[0].ToString(), linha[1].ToString(), linha[2].ToString(), linha[3].ToString(), 0, 0);
+            }
+
+        }
+
         private void btnAdicionarPessoa_Click(object sender, EventArgs e)
         {
             atualizarGrid(groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper());
@@ -35,7 +51,6 @@ namespace situacaoChavesGolden
             groupQuemEmpresta.Enabled = false;
             groupDadosEmp.Enabled = false;
             groupDadosCliente.Enabled = false;
-            groupBox4.Enabled = false;
             btnConfirmar.Enabled = false;
         }
 
@@ -74,37 +89,47 @@ namespace situacaoChavesGolden
             gridPessoas.Columns[1].MinimumWidth = 265;
         }
 
-        private void buscarDadosChave()
-        {
-            DataTable dadosChave = new DataTable();
-
-            dadosChave = database.select(string.Format("" +
-                "SELECT cod_imob, rua, numero, complemento, bairro, cidade, estado" +
-                " FROM chave" +
-                " WHERE indice_chave = '{0}'", codigoChave));
-
-            foreach (DataRow row in dadosChave.Rows)
-            {
-                textoCodChave.Text = row[0].ToString();
-                endereco.Text = string.Format("{0}, {1} ({2}) - {3} - {4}/{5}", row[1], row[2], row[3], row[4], row[5], row[6]);
-            }
-        }
-
+       
         private void ReservarChave_Load(object sender, EventArgs e)
         {
             dateRetirada.MinDate = dataHoje;
-            buscarDadosChave();
 
-            endereco.MaximumSize = new Size(160, 49);
-            endereco.AutoSize = true;
+            //endereco.MaximumSize = new Size(160, 49);
+            //endereco.AutoSize = true;
 
-            email.MaximumSize = new Size(160, 25);
-            email.AutoSize = true;
+            //email.MaximumSize = new Size(160, 25);
+            //email.AutoSize = true;
 
+
+            gridChaves.Columns.Add("codigo", "Cód.");
+            gridChaves.Columns.Add("codimob", "Cód Imob");
+            gridChaves.Columns.Add("endereco", "Endereço");
+            gridChaves.Columns.Add("indice", "");
+            gridChaves.Columns.Add("quantChave", "");
+            gridChaves.Columns.Add("quantCtrl", "");
+
+            DataGridViewImageColumn cellImage = new DataGridViewImageColumn();
+            cellImage.Image = new Bitmap(Properties.Resources.Delete);
+
+            gridChaves.Columns.Insert(6, cellImage);
+
+
+
+
+            gridChaves.Columns[0].Width = 30;
+            gridChaves.Columns[1].Width = 75;
+            gridChaves.Columns[2].Width = 265;
+            gridChaves.Columns[6].Width = 20;
+            gridChaves.Columns[3].Visible = false;
+            gridChaves.Columns[4].Visible = false;
+            gridChaves.Columns[5].Visible = false;
 
 
             radioCliente.Checked = true;
             radioProprietario.Checked = false;
+
+            buscarDadosChave();
+
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
@@ -134,7 +159,6 @@ namespace situacaoChavesGolden
             groupQuemEmpresta.Enabled = true;
             groupDadosEmp.Enabled = true;
             groupDadosCliente.Enabled = true;
-            groupBox4.Enabled = true;
             btnConfirmar.Enabled = true;
         }
 
@@ -149,7 +173,6 @@ namespace situacaoChavesGolden
                 groupQuemEmpresta.Enabled = true;
                 groupDadosEmp.Enabled = true;
                 groupDadosCliente.Enabled = true;
-                groupBox4.Enabled = true;
                 btnConfirmar.Enabled = true;
                 btnAdicionarPessoa.Visible = false;
                 labelProp.Visible = true;
@@ -163,40 +186,40 @@ namespace situacaoChavesGolden
 
                 DataTable dados = new DataTable();
 
-                if (tipo == "PROPRIETARIO")
-                {
-                    dados = database.select(string.Format("SELECT contato, email, nome" +
-                                                          " FROM proprietario" +
-                                                          " WHERE cod_proprietario = '{0}'", codPessoaBox.Text));
+                //if (tipo == "PROPRIETARIO")
+                //{
+                //    dados = database.select(string.Format("SELECT contato, email, nome" +
+                //                                          " FROM proprietario" +
+                //                                          " WHERE cod_proprietario = '{0}'", codPessoaBox.Text));
 
-                    foreach (DataRow row in dados.Rows)
-                    {
-                        labelTel1.Text = row[0].ToString(); ;
-                        email.Text = row[1].ToString();
-                        nome.Text = row[2].ToString();
-                    }
-                }
-                else if (tipo == "CLIENTE")
-                {
-                    dados = database.select(string.Format("SELECT cpf, contato_principal, contato_secundario, email, nome_cliente" +
-                                            " FROM cliente" +
-                                            " WHERE cod_cliente = '{0}'", codPessoaBox.Text));
+                //    foreach (DataRow row in dados.Rows)
+                //    {
+                //        labelTel1.Text = row[0].ToString(); ;
+                //        email.Text = row[1].ToString();
+                //        nome.Text = row[2].ToString();
+                //    }
+                //}
+                //else if (tipo == "CLIENTE")
+                //{
+                //    dados = database.select(string.Format("SELECT cpf, contato_principal, contato_secundario, email, nome_cliente" +
+                //                            " FROM cliente" +
+                //                            " WHERE cod_cliente = '{0}'", codPessoaBox.Text));
 
-                    foreach (DataRow row in dados.Rows)
-                    {
-                        labelCpf.Text = row[0].ToString();
-                        labelTel1.Text = row[1].ToString();
-                        labelTel2.Text = row[2].ToString();
-                        email.Text = row[3].ToString();
-                        nome.Text = row[4].ToString();
-                    }
-                }
-                else
-                {
-                    nome.Text = database.selectScalar(string.Format("SELECT nome_usuario" +
-                                                        " FROM usuario" +
-                                                        " WHERE cod_usuario = '{0}'", codPessoaBox.Text));
-                }
+                //    foreach (DataRow row in dados.Rows)
+                //    {
+                //        labelCpf.Text = row[0].ToString();
+                //        labelTel1.Text = row[1].ToString();
+                //        labelTel2.Text = row[2].ToString();
+                //        email.Text = row[3].ToString();
+                //        nome.Text = row[4].ToString();
+                //    }
+                //}
+                //else
+                //{
+                //    nome.Text = database.selectScalar(string.Format("SELECT nome_usuario" +
+                //                                        " FROM usuario" +
+                //                                        " WHERE cod_usuario = '{0}'", codPessoaBox.Text));
+                //}
 
             }
 
@@ -231,12 +254,6 @@ namespace situacaoChavesGolden
             labelProp.Visible = false;
             btnAdicionarPessoa.Visible = true;
 
-            nome.Text = "";
-            labelCpf.Text = "";
-            textoTel1.Text = "";
-            textoTel2.Text = "";
-            email.Text = "";
-
         }
 
         private void BtnAdicionarPessoa_Click_1(object sender, EventArgs e)
@@ -246,7 +263,6 @@ namespace situacaoChavesGolden
             groupQuemEmpresta.Enabled = false;
             groupDadosEmp.Enabled = false;
             groupDadosCliente.Enabled = false;
-            groupBox4.Enabled = false;
             btnConfirmar.Enabled = false;
         }
 
@@ -261,7 +277,6 @@ namespace situacaoChavesGolden
                 groupQuemEmpresta.Enabled = true;
                 groupDadosEmp.Enabled = true;
                 groupDadosCliente.Enabled = true;
-                groupBox4.Enabled = true;
                 btnConfirmar.Enabled = true;
                 btnAdicionarPessoa.Visible = false;
                 labelProp.Visible = true;
@@ -273,42 +288,42 @@ namespace situacaoChavesGolden
 
                 string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
 
-                DataTable dados = new DataTable();
+                //DataTable dados = new DataTable();
 
-                if (tipo == "PROPRIETARIO")
-                {
-                    dados = database.select(string.Format("SELECT contato, email, nome" +
-                                                          " FROM proprietario" +
-                                                          " WHERE cod_proprietario = '{0}'", codPessoaBox.Text));
+                //if (tipo == "PROPRIETARIO")
+                //{
+                //    dados = database.select(string.Format("SELECT contato, email, nome" +
+                //                                          " FROM proprietario" +
+                //                                          " WHERE cod_proprietario = '{0}'", codPessoaBox.Text));
 
-                    foreach (DataRow row in dados.Rows)
-                    {
-                        labelTel1.Text = row[0].ToString(); ;
-                        email.Text = row[1].ToString();
-                        nome.Text = row[2].ToString();
-                    }
-                }
-                else if (tipo == "CLIENTE")
-                {
-                    dados = database.select(string.Format("SELECT cpf, contato_principal, contato_secundario, email, nome_cliente" +
-                                            " FROM cliente" +
-                                            " WHERE cod_cliente = '{0}'", codPessoaBox.Text));
+                //    foreach (DataRow row in dados.Rows)
+                //    {
+                //        labelTel1.Text = row[0].ToString(); ;
+                //        email.Text = row[1].ToString();
+                //        nome.Text = row[2].ToString();
+                //    }
+                //}
+                //else if (tipo == "CLIENTE")
+                //{
+                //    dados = database.select(string.Format("SELECT cpf, contato_principal, contato_secundario, email, nome_cliente" +
+                //                            " FROM cliente" +
+                //                            " WHERE cod_cliente = '{0}'", codPessoaBox.Text));
 
-                    foreach (DataRow row in dados.Rows)
-                    {
-                        labelCpf.Text = row[0].ToString();
-                        labelTel1.Text = row[1].ToString();
-                        labelTel2.Text = row[2].ToString();
-                        email.Text = row[3].ToString();
-                        nome.Text = row[4].ToString();
-                    }
-                }
-                else
-                {
-                    nome.Text = database.selectScalar(string.Format("SELECT nome_usuario" +
-                                                        " FROM usuario" +
-                                                        " WHERE cod_usuario = '{0}'", codPessoaBox.Text));
-                }
+                //    foreach (DataRow row in dados.Rows)
+                //    {
+                //        labelCpf.Text = row[0].ToString();
+                //        labelTel1.Text = row[1].ToString();
+                //        labelTel2.Text = row[2].ToString();
+                //        email.Text = row[3].ToString();
+                //        nome.Text = row[4].ToString();
+                //    }
+                //}
+                //else
+                //{
+                //    nome.Text = database.selectScalar(string.Format("SELECT nome_usuario" +
+                //                                        " FROM usuario" +
+                //                                        " WHERE cod_usuario = '{0}'", codPessoaBox.Text));
+                //}
 
             }
 
@@ -325,11 +340,6 @@ namespace situacaoChavesGolden
             labelProp.Visible = false;
             btnAdicionarPessoa.Visible = true;
 
-            nome.Text = "";
-            labelCpf.Text = "";
-            textoTel1.Text = "";
-            textoTel2.Text = "";
-            email.Text = "";
 
         }
 
@@ -339,7 +349,6 @@ namespace situacaoChavesGolden
             groupQuemEmpresta.Enabled = true;
             groupDadosEmp.Enabled = true;
             groupDadosCliente.Enabled = true;
-            groupBox4.Enabled = true;
             btnConfirmar.Enabled = true;
         }
 
@@ -366,15 +375,37 @@ namespace situacaoChavesGolden
             string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToLower();
             string descricao = format.inserirBD(descBox.Text);
             string codigo = codPessoaBox.Text;
+            string codCliente = "";
             DateTime dataHojeUs = new DateTime();
+            DateTime dataRetirada = new DateTime();
 
 
+            //Data de previsão
+            try
+            {
+                dataRetirada = dateRetirada.Value;
+
+                dataRetirada = Convert.ToDateTime(dataRetirada.ToString("yyyy-MM-dd HH:mm:ss"));
+            }
+            catch
+            {
+                contErros++;
+                erros += "\n-Previsão de entrega (Escolha obrigatória)";
+            }
+
+            
 
             //Quem está emprestando
             if (tipo.Length == 0)
             {
                 contErros++;
-                erros += "\n-Quem está reservando (Seleção obrigatória)";
+                erros += "\n-Quem está emprestando (Seleção obrigatória)";
+            }
+            //Data previsão
+            if (dataRetirada.Date == null)
+            {
+                contErros++;
+                erros += "\n-Previsão de entrega (Seleção obrigatória)";
             }
 
             if (codPessoaBox.Text.Length <= 0)
@@ -382,56 +413,167 @@ namespace situacaoChavesGolden
                 contErros++;
                 erros += "\n-Dados do cliente/funcionário (Inserção obrigatória)";
             }
+            if(gridChaves.Rows.Count == 0)
+            {
+                contErros++;
+                erros += "\n-Nenhuma chave selecionada!";
+            }
 
+            int contErrosProp = 0;
+            foreach (DataGridViewRow row in gridChaves.Rows)
+            {
+             
+                string proprietario = database.selectScalar(string.Format("SELECT proprietario" +
+                                                            " FROM chave" +
+                                                            " WHERE indice_chave = '{0}'", row.Cells[3].Value.ToString()));
+
+                if (proprietario != codPessoaBox.Text && radioProprietario.Checked)
+                {
+                    contErrosProp++;
+                    contErros++;
+                }
+
+            }
+
+
+            if (contErrosProp > 0)
+            {
+                erros += "\n-Nem todas as chaves pertencem ao mesmo proprietário!";
+            }
             if (contErros == 0)
             {
                 //try
                 //{
-                    if (tipo == "proprietario")
-                    {
-                        database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_proprietario, cod_usuario, descricao)" +
-                                                            " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", codigoChave, dateRetirada.Value,
-                                                            codPessoaBox.Text, user, format.inserirBD(descBox.Text)));
-                    }
-                    else if (tipo == "cliente")
-                    {
-                        database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_cliente, cod_usuario, descricao)" +
-                                                            " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", codigoChave, dateRetirada.Value,
-                                                            codPessoaBox.Text, user, format.inserirBD(descBox.Text)));
-                    }
-                    else
-                    {
-                        database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_usuario, descricao)" +
-                                                           " VALUES ('{0}', '{1}', '{2}', '{3}')", codigoChave, dateRetirada.Value, user, format.inserirBD(descBox.Text)));
-                    }
+                if (tipo == "proprietario")
+                {
+                   
 
-                    Message popup = new Message("Reserva efetuada com sucesso!", "", "sucesso", "confirma");
-                    popup.ShowDialog();
 
-                    this.Close();
+                    database.insertInto(string.Format("" +
+                      "INSERT INTO reserva (data_reserva, descricao, cod_usuario, cod_proprietario)" +
+                      " VALUES ('{0}', '{1}', '{2}', '{3}')",
+                      dataHoje, descricao, user, codPessoaBox.Text));
+                }
+                else if (tipo == "cliente")
+                {
+                    database.insertInto(string.Format("" +
+                       "INSERT INTO reserva (data_reserva, descricao, cod_usuario, cod_cliente)" +
+                       " VALUES ('{0}', '{1}', '{2}', '{3}')",
+                       dataHoje, descricao, user, codPessoaBox.Text));
+                }
+                else
+                {
+                    database.insertInto(string.Format("" +
+                      "INSERT INTO reserva (data_reserva, descricao, cod_usuario)" +
+                      " VALUES ('{0}', '{1}', '{2}')",
+                      dataHoje, descricao,  codPessoaBox.Text));
+                }
+
+                foreach (DataGridViewRow row in gridChaves.Rows)
+                {
+
+                    database.insertInto(string.Format("INSERT INTO chaves_reserva" +
+                                                        " VALUES ((SELECT MAX(cod_reserva) FROM reserva), '{0}')", row.Cells[3].Value.ToString()));
+
+                   
+                }
+
+
+                Message caixaMensagem = new Message("Reserva cadastrada com sucesso!", "", "sucesso", "confirma");
+                caixaMensagem.ShowDialog();
+
+                this.Close();
+                this.DialogResult = DialogResult.OK;
                 //}
                 //catch (Exception erro)
                 //{
-                //    Message popup = new Message("Não foi possível reservar a chave pelo seguinte erro: \n\n- " + erro.Message,
-                //        "", "erro", "confirma");
-                //    popup.ShowDialog();
-
+                //    Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
+                //    caixaMensagem.ShowDialog();
                 //}
 
             }
-        }
 
-        private void radioChanged(object sender, EventArgs e)
+            //}
+            else
+            {
+                Message caixaMensagem = new Message("Corrija os erros abaixo antes de continuar!\n-" + erros, "Erro de preenchimento",
+                    "erro", "confirma");
+                caixaMensagem.ShowDialog();
+            }
+        
+
+
+
+
+
+        //    int contErros = 0;
+        //    string erros = "";
+
+        //    FormatarStrings format = new FormatarStrings();
+
+        //    string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToLower();
+        //    string descricao = format.inserirBD(descBox.Text);
+        //    string codigo = codPessoaBox.Text;
+        //    DateTime dataHojeUs = new DateTime();
+
+
+
+        //    //Quem está emprestando
+        //    if (tipo.Length == 0)
+        //    {
+        //        contErros++;
+        //        erros += "\n-Quem está reservando (Seleção obrigatória)";
+        //    }
+
+        //    if (codPessoaBox.Text.Length <= 0)
+        //    {
+        //        contErros++;
+        //        erros += "\n-Dados do cliente/funcionário (Inserção obrigatória)";
+        //    }
+
+        //    if (contErros == 0)
+        //    {
+        //        //try
+        //        //{
+        //            if (tipo == "proprietario")
+        //            {
+        //                database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_proprietario, cod_usuario, descricao)" +
+        //                                                    " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", codigoChave, dateRetirada.Value,
+        //                                                    codPessoaBox.Text, user, format.inserirBD(descBox.Text)));
+        //            }
+        //            else if (tipo == "cliente")
+        //            {
+        //                database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_cliente, cod_usuario, descricao)" +
+        //                                                    " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", codigoChave, dateRetirada.Value,
+        //                                                    codPessoaBox.Text, user, format.inserirBD(descBox.Text)));
+        //            }
+        //            else
+        //            {
+        //                database.insertInto(string.Format("INSERT INTO reserva (cod_chave, data_reserva, cod_usuario, descricao)" +
+        //                                                   " VALUES ('{0}', '{1}', '{2}', '{3}')", codigoChave, dateRetirada.Value, user, format.inserirBD(descBox.Text)));
+        //            }
+
+        //            Message popup = new Message("Reserva efetuada com sucesso!", "", "sucesso", "confirma");
+        //            popup.ShowDialog();
+
+        //            this.Close();
+        //        //}
+        //        //catch (Exception erro)
+        //        //{
+        //        //    Message popup = new Message("Não foi possível reservar a chave pelo seguinte erro: \n\n- " + erro.Message,
+        //        //        "", "erro", "confirma");
+        //        //    popup.ShowDialog();
+
+        //        //}
+
+        //    }
+    }
+
+    private void radioChanged(object sender, EventArgs e)
         {
+           
             if (radioProprietario.Checked)
             {
-                DataTable dadosProp = new DataTable();
-
-                dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
-                                                           " FROM proprietario p " +
-                                                           " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
-                                                           " WHERE c.indice_chave = '{0}'", codigoChave));
-
                 nomePessoaBox.Visible = true;
                 codPessoaBox.Visible = true;
                 excluiProp.Enabled = false;
@@ -439,12 +581,25 @@ namespace situacaoChavesGolden
                 labelCod.Visible = true;
                 labelProp.Visible = true;
                 btnAdicionarPessoa.Visible = false;
-
-                foreach (DataRow row in dadosProp.Rows)
+                try
                 {
-                    codPessoaBox.Text = row[0].ToString();
-                    nomePessoaBox.Text = row[1].ToString();
+                    DataTable dadosProp = new DataTable();
+
+                    dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
+                                                               " FROM proprietario p " +
+                                                               " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
+                                                               " WHERE c.indice_chave = '{0}'", gridChaves.Rows[0].Cells[3].Value.ToString()));
+
+                   
+
+                    foreach (DataRow row in dadosProp.Rows)
+                    {
+                        codPessoaBox.Text = row[0].ToString();
+                        nomePessoaBox.Text = row[1].ToString();
+                    }
                 }
+                catch { }
+                
 
             }
             else if (radioFuncionario.Checked)
@@ -507,6 +662,257 @@ namespace situacaoChavesGolden
         {
             btnCancelar.ForeColor = Color.FromArgb(0, 109, 156);
 
+        }
+
+        private void BtnAddChave_Click(object sender, EventArgs e)
+        {
+            panelChaves.Visible = true;
+            atualizarGridChaves(gridChaves);
+
+            groupQuemEmpresta.Enabled = false;
+            groupDadosEmp.Enabled = false;
+            groupDadosCliente.Enabled = false;
+            //groupBox4.Enabled = false;
+            btnConfirmar.Enabled = false;
+        }
+
+        private void atualizarGridChaves(DataGridView tabela)
+        {
+
+            //List<string> codigos = new List<string>();
+            string codigos = "";
+            string proprietario = "";
+
+            if (radioProprietario.Checked == true)
+            {
+                string codProp = codPessoaBox.Text;
+
+                if (codPessoaBox.Text == "")
+                {
+                    codProp = "%%";
+                }
+                proprietario = string.Format("AND proprietario::text ILIKE '{0}'", codProp);
+            }
+
+            int cont = 0;
+
+
+            foreach (DataGridViewRow row in tabela.Rows)
+            {
+                if (cont != tabela.Rows.Count)
+                {
+                    codigos += " AND ";
+                }
+
+                codigos += string.Format(" c.indice_chave != {0} ", row.Cells[3].Value.ToString());
+
+
+
+                cont++;
+
+            }
+
+            DataTable tabelaChaves = new DataTable();
+
+
+
+            tabelaChaves = database.select(string.Format("" +
+                "SELECT c.cod_chave, c.cod_imob,  c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, 0, 0 " +
+                " FROM CHAVE c " +
+                " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario" +
+                " WHERE c.situacao = 'DISPONIVEL' AND (c.rua ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%' OR (unaccent(lower(c.rua))) ILIKE '%{0}%' OR" +
+                " (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR c.cod_chave::text ILIKE '%{0}%') {1} {2}", boxBusca.Text, codigos, proprietario));
+
+            gridChavesTotal.DataSource = tabelaChaves;
+
+            gridChavesTotal.Columns[0].HeaderText = "Cód";
+            gridChavesTotal.Columns[1].HeaderText = "Cód Imob";
+            gridChavesTotal.Columns[2].HeaderText = "Endereço";
+
+            gridChavesTotal.Columns[0].Width = 35;
+            gridChavesTotal.Columns[1].Width = 75;
+            gridChavesTotal.Columns[2].Width = 290;
+            gridChavesTotal.Columns[3].Visible = false;
+            gridChavesTotal.Columns[4].Visible = false;
+            gridChavesTotal.Columns[5].Visible = false;
+
+        }
+
+        private void BtnCancelarChave_Click(object sender, EventArgs e)
+        {
+            panelChaves.Visible = false;
+            groupQuemEmpresta.Enabled = true;
+            groupDadosEmp.Enabled = true;
+            groupDadosCliente.Enabled = true;
+            btnConfirmar.Enabled = true;
+
+        }
+
+        private void BtnConfirmChave_Click(object sender, EventArgs e)
+        {
+            panelChaves.Visible = false;
+            groupQuemEmpresta.Enabled = true;
+            groupDadosEmp.Enabled = true;
+            groupDadosCliente.Enabled = true;
+            btnConfirmar.Enabled = true;
+
+
+            if (gridChaves.Rows.Count + gridChavesTotal.SelectedRows.Count > 10)
+            {
+                Message txtMsg = new Message("Limite de reserva atingido (10)!", "Erro", "erro", "confirma");
+                txtMsg.ShowDialog();
+            }
+            else
+            {
+                foreach (DataGridViewRow row in gridChavesTotal.SelectedRows)
+                {
+
+                    gridChaves.Rows.Add(row.Cells[0].Value.ToString(),
+                                   row.Cells[1].Value.ToString(),
+                                   row.Cells[2].Value.ToString(),
+                                   row.Cells[3].Value.ToString(),
+                                   row.Cells[4].Value,
+                                   row.Cells[5].Value);
+
+                    gridChavesTotal.Rows.RemoveAt(row.Index);
+
+
+
+
+                    panelChaves.Visible = false;
+                }
+            }
+        }
+
+        private void GridChaves_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            try
+            {
+                DataTable dadosProp = new DataTable();
+
+                dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
+                                                           " FROM proprietario p " +
+                                                           " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
+                                                           " WHERE c.indice_chave = '{0}'", gridChaves.Rows[0].Cells[3].Value.ToString()));
+
+
+
+                foreach (DataRow row in dadosProp.Rows)
+                {
+                    codPessoaBox.Text = row[0].ToString();
+                    nomePessoaBox.Text = row[1].ToString();
+                }
+            }
+            catch
+            {
+                codPessoaBox.Text = "";
+                nomePessoaBox.Text = "";
+            }
+           
+
+
+            if (gridChaves.Rows.Count == 0)
+            {
+                btnConfirmar.Enabled = false;
+            }
+            else
+            {
+                btnConfirmar.Enabled = true;
+            }
+
+            if (radioProprietario.Checked)
+            {
+                radioProprietario.Checked = true;
+            }
+
+            if (gridChaves.Rows.Count >= 10)
+            {
+                btnAddChave.Enabled = false;
+            }
+            else
+            {
+                btnAddChave.Enabled = true;
+
+            }
+        }
+
+        private void GridChaves_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            try
+            {
+                DataTable dadosProp = new DataTable();
+
+                dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
+                                                           " FROM proprietario p " +
+                                                           " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
+                                                           " WHERE c.indice_chave = '{0}'", gridChaves.Rows[0].Cells[3].Value.ToString()));
+
+
+
+                foreach (DataRow row in dadosProp.Rows)
+                {
+                    codPessoaBox.Text = row[0].ToString();
+                    nomePessoaBox.Text = row[1].ToString();
+                }
+            }
+            catch
+            {
+                codPessoaBox.Text = "";
+                nomePessoaBox.Text = "";
+            }
+
+            if (gridChaves.Rows.Count == 0)
+            {
+                btnConfirmar.Enabled = false;
+            }
+            else
+            {
+                btnConfirmar.Enabled = true;
+            }
+
+            if (radioProprietario.Checked && gridChaves.Rows.Count == 0)
+            {
+                nomePessoaBox.Text = "";
+                codPessoaBox.Text = "";
+                nomePessoaBox.Visible = false;
+                codPessoaBox.Visible = false;
+                excluiProp.Visible = false;
+                labelCod.Visible = false;
+                labelProp.Visible = false;
+                btnAdicionarPessoa.Visible = true;
+                radioCliente.Checked = true;
+            }
+
+            if (gridChaves.Rows.Count >= 10)
+            {
+                btnAddChave.Enabled = false;
+            }
+            else
+            {
+                btnAddChave.Enabled = true;
+
+            }
+        }
+
+        private void GridChaves_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 6)
+            {
+                gridChaves.Rows.RemoveAt(e.RowIndex);
+            }
+        }
+
+        private void GridChaves_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 6)
+            {
+
+                gridChaves.Cursor = Cursors.Hand;
+            }
+            if (e.ColumnIndex != 6)
+            {
+                gridChaves.Cursor = Cursors.Arrow;
+            }
         }
     }
 

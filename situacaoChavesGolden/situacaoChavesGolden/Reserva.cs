@@ -38,11 +38,15 @@ namespace situacaoChavesGolden
             if (tipo == "TODOS") { tipo = ""; }
             if (busca == "Buscar") { busca = ""; }
 
-            tabelaReserva = database.select(string.Format("SELECT r.cod_reserva, c.cod_chave, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, r.data_reserva, r.situacao," +
-                                                            " (CASE WHEN(SELECT COUNT(*) FROM emprestimo WHERE cod_chave = c.indice_chave AND data_entrega is null) != 0 THEN 'EMPRESTADA' " +
-                                                                       " ELSE 'LIVRE' END), c.indice_chave" +
+            tabelaReserva = database.select(string.Format("SELECT DISTINCT r.cod_reserva,  r.data_reserva, r.situacao," +
+                                                            " (CASE WHEN(SELECT COUNT(*) " +
+                                                            "      FROM emprestimo e" +
+                                                            "      INNER JOIN chaves_emprestimo ce ON e.cod_emprestimo = ce.cod_emprestimo" +
+                                                            "      WHERE ce.cod_chave = c.indice_chave AND data_entrega is null) != 0 THEN 'EMPRESTADA' " +
+                                                                       " ELSE 'LIVRE' END)" +
                                                            " FROM reserva r" +
-                                                           " LEFT JOIN chave c ON c.indice_chave = r.cod_chave " +
+                                                           " INNER JOIN chaves_reserva cr ON cr.cod_reserva = r.cod_reserva" +
+                                                           " LEFT JOIN chave c ON c.indice_chave = cr.cod_chave " +
                                                            " LEFT JOIN proprietario p ON p.cod_proprietario = r.cod_proprietario " +
                                                            " LEFT JOIN cliente cl ON cl.cod_cliente = r.cod_cliente " +
                                                            " WHERE(r.cod_reserva::TEXT ILIKE '%{0}%' OR c.cod_chave::TEXT ILIKE '%{0}%' OR c.rua  ILIKE '%{0}%' OR c.bairro  ILIKE '%{0}%' OR " +
@@ -56,19 +60,14 @@ namespace situacaoChavesGolden
 
             gridReserva.DataSource = tabelaReserva.DefaultView;
 
-            gridReserva.Columns[0].HeaderText = "Código";
-            gridReserva.Columns[1].HeaderText = "Chave";
-            gridReserva.Columns[2].HeaderText = "Endereço";
-            gridReserva.Columns[3].HeaderText = "Data de Reserva";
-            gridReserva.Columns[4].HeaderText = "Situação";
-            gridReserva.Columns[5].Visible = false;
-            gridReserva.Columns[6].Visible = false;
+            gridReserva.Columns[0].HeaderText = "Reserva";
+            gridReserva.Columns[1].HeaderText = "Data Reserva";
+            gridReserva.Columns[2].HeaderText = "Situação";
+            gridReserva.Columns[3].Visible = false;
 
             gridReserva.Columns[0].Width = 60;
-            gridReserva.Columns[1].Width = 60;
-            gridReserva.Columns[2].Width = 268;
-            gridReserva.Columns[3].Width = 110;
-            gridReserva.Columns[4].Width = 110;
+            gridReserva.Columns[1].Width = 137;
+            gridReserva.Columns[2].Width = 136;
         }
 
         private void Reserva_Load(object sender, EventArgs e)
@@ -248,6 +247,56 @@ namespace situacaoChavesGolden
             atualizarGrid();
 
            
+        }
+
+        private void GridReserva_SelectionChanged_1(object sender, EventArgs e)
+        {
+            atualizarGridChavesReserva();
+        }
+
+        void atualizarGridChavesReserva()
+        {
+            //DataTable dadosEmprestimo = new DataTable();
+
+            //try
+            //{
+
+            //    dadosEmprestimo = database.select(string.Format("SELECT c.cod_chave," +
+            //                                                   " c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END)" +
+            //                                                   " as endereco, c.indice_chave" +
+            //                                                   " FROM chave c" +
+            //                                                   " INNER JOIN chaves_emprestimo ce ON ce.cod_chave = c.indice_chave" +
+            //                                                   " INNER JOIN emprestimo e ON e.cod_emprestimo = ce.cod_emprestimo" +
+            //                                                   " WHERE e.cod_emprestimo = '{0}'" +
+            //                                                   " ORDER BY c.cod_chave", gridEmprestimo.CurrentRow.Cells[0].Value.ToString()));
+
+            //    if (dadosEmprestimo.Rows.Count == 0)
+            //    {
+            //        dadosEmprestimo.Clear();
+            //        gridChavesEmprestimo.DataSource = null;
+            //        gridChavesEmprestimo.Rows.Clear();
+
+            //    }
+            //    else
+            //    {
+            //        gridChavesEmprestimo.DataSource = dadosEmprestimo;
+
+            //        gridChavesEmprestimo.Columns[0].Width = 40;
+            //        gridChavesEmprestimo.Columns[1].Width = 225;
+            //        gridChavesEmprestimo.Columns[2].Visible = false;
+
+            //        gridChavesEmprestimo.Columns[0].HeaderText = "Chave";
+            //        gridChavesEmprestimo.Columns[1].HeaderText = "Endereço";
+            //    }
+
+            //}
+            //catch
+            //{
+            //    dadosEmprestimo.Clear();
+            //    gridChavesEmprestimo.DataSource = null;
+            //    gridChavesEmprestimo.Rows.Clear();
+            //}
+
         }
     }
 }

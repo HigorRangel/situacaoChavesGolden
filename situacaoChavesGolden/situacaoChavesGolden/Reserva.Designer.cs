@@ -31,6 +31,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.filtrosPanel = new System.Windows.Forms.Panel();
             this.btnRestaurar = new System.Windows.Forms.Label();
             this.btnFiltrar = new System.Windows.Forms.Button();
@@ -55,7 +57,6 @@
             this.radioTodos = new MetroFramework.Controls.MetroRadioButton();
             this.textBoxBusca = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.gridReserva = new System.Windows.Forms.DataGridView();
             this.codigoImob = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -78,6 +79,8 @@
             this.dadosReservante = new System.Windows.Forms.Label();
             this.btnEmprestar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
+            this.gridChavesReserva = new System.Windows.Forms.DataGridView();
+            this.gridReserva = new System.Windows.Forms.DataGridView();
             this.filtrosPanel.SuspendLayout();
             this.groupBoxSituacaoCh.SuspendLayout();
             this.groupTipoReserva.SuspendLayout();
@@ -85,9 +88,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupMenuSup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridReserva)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridChavesReserva)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridReserva)).BeginInit();
             this.SuspendLayout();
             // 
             // filtrosPanel
@@ -368,55 +372,6 @@
             this.metroLabel1.Text = "Reserva";
             this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
-            // gridReserva
-            // 
-            this.gridReserva.AllowUserToAddRows = false;
-            this.gridReserva.AllowUserToDeleteRows = false;
-            this.gridReserva.AllowUserToResizeColumns = false;
-            this.gridReserva.AllowUserToResizeRows = false;
-            this.gridReserva.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
-            this.gridReserva.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridReserva.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridReserva.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridReserva.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridReserva.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gridReserva.GridColor = System.Drawing.Color.White;
-            this.gridReserva.Location = new System.Drawing.Point(21, 57);
-            this.gridReserva.MultiSelect = false;
-            this.gridReserva.Name = "gridReserva";
-            this.gridReserva.ReadOnly = true;
-            this.gridReserva.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridReserva.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.gridReserva.RowHeadersVisible = false;
-            this.gridReserva.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.gridReserva.RowTemplate.ReadOnly = true;
-            this.gridReserva.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridReserva.Size = new System.Drawing.Size(609, 177);
-            this.gridReserva.TabIndex = 45;
-            this.gridReserva.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridReserva_CellFormatting);
-            this.gridReserva.SelectionChanged += new System.EventHandler(this.gridReserva_SelectionChanged);
-            // 
             // codigoImob
             // 
             this.codigoImob.AutoSize = true;
@@ -680,6 +635,93 @@
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
             // 
+            // gridChavesReserva
+            // 
+            this.gridChavesReserva.AllowUserToAddRows = false;
+            this.gridChavesReserva.AllowUserToDeleteRows = false;
+            this.gridChavesReserva.AllowUserToResizeColumns = false;
+            this.gridChavesReserva.AllowUserToResizeRows = false;
+            this.gridChavesReserva.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
+            this.gridChavesReserva.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridChavesReserva.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChavesReserva.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridChavesReserva.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.gridChavesReserva.GridColor = System.Drawing.Color.White;
+            this.gridChavesReserva.Location = new System.Drawing.Point(364, 56);
+            this.gridChavesReserva.MultiSelect = false;
+            this.gridChavesReserva.Name = "gridChavesReserva";
+            this.gridChavesReserva.ReadOnly = true;
+            this.gridChavesReserva.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChavesReserva.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.gridChavesReserva.RowHeadersVisible = false;
+            this.gridChavesReserva.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.gridChavesReserva.RowTemplate.ReadOnly = true;
+            this.gridChavesReserva.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridChavesReserva.Size = new System.Drawing.Size(266, 177);
+            this.gridChavesReserva.TabIndex = 60;
+            // 
+            // gridReserva
+            // 
+            this.gridReserva.AllowUserToAddRows = false;
+            this.gridReserva.AllowUserToDeleteRows = false;
+            this.gridReserva.AllowUserToResizeColumns = false;
+            this.gridReserva.AllowUserToResizeRows = false;
+            this.gridReserva.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
+            this.gridReserva.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridReserva.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridReserva.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.gridReserva.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridReserva.DefaultCellStyle = dataGridViewCellStyle4;
+            this.gridReserva.GridColor = System.Drawing.Color.White;
+            this.gridReserva.Location = new System.Drawing.Point(21, 56);
+            this.gridReserva.MultiSelect = false;
+            this.gridReserva.Name = "gridReserva";
+            this.gridReserva.ReadOnly = true;
+            this.gridReserva.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridReserva.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.gridReserva.RowHeadersVisible = false;
+            this.gridReserva.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.gridReserva.RowTemplate.ReadOnly = true;
+            this.gridReserva.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridReserva.Size = new System.Drawing.Size(334, 177);
+            this.gridReserva.TabIndex = 59;
+            this.gridReserva.SelectionChanged += new System.EventHandler(this.GridReserva_SelectionChanged_1);
+            // 
             // Reserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -691,7 +733,6 @@
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupMenuSup);
             this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.gridReserva);
             this.Controls.Add(this.codigoImob);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
@@ -699,6 +740,8 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gridChavesReserva);
+            this.Controls.Add(this.gridReserva);
             this.DisplayHeader = false;
             this.Movable = false;
             this.Name = "Reserva";
@@ -721,11 +764,12 @@
             this.groupMenuSup.ResumeLayout(false);
             this.groupMenuSup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridReserva)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridChavesReserva)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridReserva)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -757,7 +801,6 @@
         public MetroFramework.Controls.MetroRadioButton radioTodos;
         private MetroFramework.Controls.MetroTextBox textBoxBusca;
         private MetroFramework.Controls.MetroLabel metroLabel1;
-        private System.Windows.Forms.DataGridView gridReserva;
         private System.Windows.Forms.Label codigoImob;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -780,5 +823,7 @@
         private System.Windows.Forms.Label dadosReservante;
         private System.Windows.Forms.Button btnEmprestar;
         private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.DataGridView gridChavesReserva;
+        private System.Windows.Forms.DataGridView gridReserva;
     }
 }

@@ -475,6 +475,12 @@ namespace situacaoChavesGolden
                     erros += "\n-Dados do cliente/funcionário (Inserção obrigatória)";
                 }
 
+                if (gridChaves.Rows.Count == 0)
+                {
+                    contErros++;
+                    erros += "\n-Nenhuma chave selecionada!";
+                }
+
                 int contErrosQuant = 0;
                 int contErrosProp = 0;
                 foreach (DataGridViewRow row in gridChaves.Rows)
@@ -809,7 +815,7 @@ namespace situacaoChavesGolden
                 {
                     codProp = "%%";
                 }
-                proprietario = string.Format("AND proprietario::text = '{0}'", codProp);
+                proprietario = string.Format("AND proprietario::text ILIKE '{0}'", codProp);
             }
 
             int cont = 0;
@@ -951,6 +957,38 @@ namespace situacaoChavesGolden
                 btnAddChave.Enabled = true;
 
             }
+
+            if (gridChaves.Rows.Count == 0)
+            {
+                btnConfirmar.Enabled = false;
+            }
+            else
+            {
+                btnConfirmar.Enabled = true;
+            }
+
+            try
+            {
+                DataTable dadosProp = new DataTable();
+
+                dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
+                                                           " FROM proprietario p " +
+                                                           " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
+                                                           " WHERE c.indice_chave = '{0}'", gridChaves.Rows[0].Cells[3].Value.ToString()));
+
+
+
+                foreach (DataRow row in dadosProp.Rows)
+                {
+                    codPessoaBox.Text = row[0].ToString();
+                    nomePessoaBox.Text = row[1].ToString();
+                }
+            }
+            catch
+            {
+                codPessoaBox.Text = "";
+                nomePessoaBox.Text = "";
+            }
         }
 
         private void GridChaves_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
@@ -976,6 +1014,38 @@ namespace situacaoChavesGolden
             {
                 btnAddChave.Enabled = true;
 
+            }
+
+            if (gridChaves.Rows.Count == 0)
+            {
+                btnConfirmar.Enabled = false;
+            }
+            else
+            {
+                btnConfirmar.Enabled = true;
+            }
+
+            try
+            {
+                DataTable dadosProp = new DataTable();
+
+                dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
+                                                           " FROM proprietario p " +
+                                                           " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
+                                                           " WHERE c.indice_chave = '{0}'", gridChaves.Rows[0].Cells[3].Value.ToString()));
+
+
+
+                foreach (DataRow row in dadosProp.Rows)
+                {
+                    codPessoaBox.Text = row[0].ToString();
+                    nomePessoaBox.Text = row[1].ToString();
+                }
+            }
+            catch
+            {
+                codPessoaBox.Text = "";
+                nomePessoaBox.Text = "";
             }
         }
 
