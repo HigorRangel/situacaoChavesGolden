@@ -430,12 +430,12 @@ namespace situacaoChavesGolden
 
             //MessageBox.Show(row.Cells[4].Value.ToString());
 
-            if (situacao == "EM ANDAMENTO" || situacao == "TODOS" && row.Cells[5].Value.ToString() != "FINALIZADO")
+            if (situacao == "EM ANDAMENTO" || situacao == "TODOS" && row.Cells[3].Value.ToString() != "FINALIZADO")
             {
                 try
                 {
                     
-                    DateTime data = DateTime.Parse(row.Cells[4].Value.ToString());
+                    DateTime data = DateTime.Parse(row.Cells[2].Value.ToString());
 
                     if (data < dataHoje)
                     {

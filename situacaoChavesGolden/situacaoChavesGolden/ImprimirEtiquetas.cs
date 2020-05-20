@@ -585,7 +585,7 @@ namespace situacaoChavesGolden
             {
                 DataGridViewRow row = gridTo.Rows[e.RowIndex];
 
-                if (row.Cells[1].Value.ToString().Length > 70)
+                if (row.Cells[1].Value.ToString().Length > 50)
                 {
                     row.DefaultCellStyle.BackColor = Color.FromArgb(255, 176, 176);
                     row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(199, 76, 76);                }

@@ -97,11 +97,11 @@ namespace situacaoChavesGolden
 
         private void btnReservas_Click(object sender, EventArgs e)
         {
-            //Reserva telaReserva = new Reserva(usuario);
-            //atualizarForm(telaReserva);
+            Reserva telaReserva = new Reserva(usuario);
+            atualizarForm(telaReserva);
 
-            EmManutencao telaManut = new EmManutencao("PREVISÃO DE RETORNO: 20/05/2020");
-            atualizarForm(telaManut);
+            //EmManutencao telaManut = new EmManutencao("PREVISÃO DE RETORNO: 20/05/2020");
+            //atualizarForm(telaManut);
         }
 
         private void BtnPropostas_Click(object sender, EventArgs e)

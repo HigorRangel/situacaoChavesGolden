@@ -38,12 +38,7 @@ namespace situacaoChavesGolden
             if (tipo == "TODOS") { tipo = ""; }
             if (busca == "Buscar") { busca = ""; }
 
-            tabelaReserva = database.select(string.Format("SELECT DISTINCT r.cod_reserva,  r.data_reserva, r.situacao," +
-                                                            " (CASE WHEN(SELECT COUNT(*) " +
-                                                            "      FROM emprestimo e" +
-                                                            "      INNER JOIN chaves_emprestimo ce ON e.cod_emprestimo = ce.cod_emprestimo" +
-                                                            "      WHERE ce.cod_chave = c.indice_chave AND data_entrega is null) != 0 THEN 'EMPRESTADA' " +
-                                                                       " ELSE 'LIVRE' END)" +
+            tabelaReserva = database.select(string.Format("SELECT DISTINCT r.cod_reserva,  r.data_reserva, r.situacao" +
                                                            " FROM reserva r" +
                                                            " INNER JOIN chaves_reserva cr ON cr.cod_reserva = r.cod_reserva" +
                                                            " LEFT JOIN chave c ON c.indice_chave = cr.cod_chave " +
@@ -63,7 +58,7 @@ namespace situacaoChavesGolden
             gridReserva.Columns[0].HeaderText = "Reserva";
             gridReserva.Columns[1].HeaderText = "Data Reserva";
             gridReserva.Columns[2].HeaderText = "Situação";
-            gridReserva.Columns[3].Visible = false;
+
 
             gridReserva.Columns[0].Width = 60;
             gridReserva.Columns[1].Width = 137;
@@ -231,7 +226,7 @@ namespace situacaoChavesGolden
             {
                 database.update(string.Format("UPDATE reserva" +
                                                   " SET situacao = 'FINALIZADO'" +
-                                                  " WHERE cod_chave = '{0}'", gridReserva.CurrentRow.Cells[6].Value.ToString()));
+                                                  " WHERE cod_reserva = '{0}'", gridReserva.CurrentRow.Cells[0].Value.ToString()));
                 atualizarGrid();
             }
 
@@ -251,11 +246,136 @@ namespace situacaoChavesGolden
 
         private void GridReserva_SelectionChanged_1(object sender, EventArgs e)
         {
-            atualizarGridChavesReserva();
+            if (gridReserva.CurrentRow != null)
+            {
+                btnExcluir.Enabled = true;
+                btnExcluir.Image = Properties.Resources.Delete;
+                btnEmprestar.Enabled = true;
+                btnEmprestar.Image = Properties.Resources.ChaveEmprestar;
+                atualizarGridChavesReserva();
+
+
+                try
+                {
+                    DataTable dadosEmprestimo = new DataTable();
+
+
+                    dadosEmprestimo = database.select(string.Format("" +
+                        "SELECT  " +
+                        " situacao, " +
+                        " (CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
+                              "  WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
+                               " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) as tipo, " +
+                               " '(' || cl.cod_cliente || ') - ' || cl.nome_cliente, cl.contato_principal || ' / ' || cl.contato_secundario, " +
+                               " '(' || p.cod_proprietario || ') - ' || p.nome as proprietario, p.contato, u.nome_usuario, r.descricao, " +
+                               "  r.data_reserva " +
+                        " FROM reserva r " +
+                        " LEFT JOIN cliente cl ON cl.cod_cliente = r.cod_cliente " +
+                        " LEFT JOIN usuario u ON u.cod_usuario = r.cod_usuario " +
+                        " LEFT JOIN proprietario p ON p.cod_proprietario = r.cod_proprietario" +
+                        " WHERE cod_reserva = '{0}'", gridReserva.CurrentRow.Cells[0].Value.ToString()));
+
+
+                    foreach (DataRow row in dadosEmprestimo.Rows)
+                    {
+
+
+                        sitReserva.Text = row[0].ToString();
+
+                        if (row[1].ToString() == "FUNCIONARIO")
+                        {
+                            dadosReservante.Text = string.Format("{0} [{1}]", row[5].ToString(), row[1].ToString());
+
+                        }
+                        else if (row[1].ToString() == "CLIENTE")
+                        {
+                            dadosReservante.Text = string.Format("{0} [{1}]", row[2].ToString(), row[1].ToString());
+                            contato.Text = row[3].ToString();
+                        }
+                        else
+                        {
+                            dadosReservante.Text = string.Format("{0} [{1}]", row[4].ToString(), row[1].ToString());
+                            contato.Text = row[5].ToString();
+                        }
+
+                        descricao.Text = row[7].ToString();
+                        funcionario.Text = row[6].ToString();
+                        dataReserva.Text = row[8].ToString();
+
+                    }
+                }
+                catch { }
+            }
+            else
+            {
+                codigoImob.Text = "";
+                codChave.Text = "";
+                sitReserva.Text = "";
+                dadosReservante.Text = "";
+                contato.Text = "";
+                descricao.Text = "";
+                dataReserva.Text = "";
+                situacaoChave.Text = "";
+                funcionario.Text = "";
+
+                btnExcluir.Enabled = false;
+                btnExcluir.Image = Properties.Resources.DeleteGray;
+                btnEmprestar.Enabled = false;
+                btnEmprestar.Image = Properties.Resources.ChaveEmprestarGray;
+            }
+
+
         }
 
         void atualizarGridChavesReserva()
         {
+            DataTable dadosEmprestimo = new DataTable();
+
+            try
+            {
+
+                dadosEmprestimo = database.select(string.Format("SELECT c.cod_chave," +
+                                                               " c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END)" +
+                                                               " as endereco, c.indice_chave," +
+                                                               " (CASE WHEN(SELECT COUNT(*) " +
+                                                            "      FROM emprestimo e" +
+                                                            "      INNER JOIN chaves_emprestimo ce ON e.cod_emprestimo = ce.cod_emprestimo" +
+                                                            "      WHERE ce.cod_chave = c.indice_chave AND data_entrega is null) != 0 THEN 'EMPRESTADA' " +
+                                                                       " ELSE 'LIVRE' END)" +
+                                                               " FROM chave c" +
+                                                               " INNER JOIN chaves_reserva cr ON cr.cod_chave = c.indice_chave" +
+                                                               " INNER JOIN reserva r ON r.cod_reserva = cr.cod_reserva" +
+                                                               " WHERE r.cod_reserva = '{0}'" +
+                                                               " ORDER BY c.cod_chave", gridReserva.CurrentRow.Cells[0].Value.ToString()));
+
+                if (dadosEmprestimo.Rows.Count == 0)
+                {
+                    dadosEmprestimo.Clear();
+                    gridChavesReserva.DataSource = null;
+                    gridChavesReserva.Rows.Clear();
+
+                }
+                else
+                {
+                    gridChavesReserva.DataSource = dadosEmprestimo;
+
+                    gridChavesReserva.Columns[0].Width = 40;
+                    gridChavesReserva.Columns[1].Width = 225;
+                    gridChavesReserva.Columns[2].Visible = false;
+                    gridChavesReserva.Columns[3].Visible = false;
+
+
+                    gridChavesReserva.Columns[0].HeaderText = "Chave";
+                    gridChavesReserva.Columns[1].HeaderText = "Endereço";
+                }
+
+            }
+            catch
+            {
+                dadosEmprestimo.Clear();
+                gridChavesReserva.DataSource = null;
+                gridChavesReserva.Rows.Clear();
+            }
             //DataTable dadosEmprestimo = new DataTable();
 
             //try
@@ -296,6 +416,85 @@ namespace situacaoChavesGolden
             //    gridChavesEmprestimo.DataSource = null;
             //    gridChavesEmprestimo.Rows.Clear();
             //}
+
+        }
+
+        private void GridChavesReserva_SelectionChanged(object sender, EventArgs e)
+        {
+
+            //try
+            //{
+                DataTable dadosChaves = new DataTable();
+
+                
+                dadosChaves = database.select(string.Format("SELECT c.cod_imob, c.cod_chave, " +
+                                                            " (CASE WHEN(SELECT COUNT(*) " +
+                                                            "      FROM emprestimo e" +
+                                                            "      INNER JOIN chaves_emprestimo ce ON e.cod_emprestimo = ce.cod_emprestimo" +
+                                                            "      WHERE ce.cod_chave = c.indice_chave AND data_entrega is null) != 0 THEN 'EMPRESTADA' " +
+                                                                       " ELSE 'LIVRE' END)" +
+                                                            " FROM chave c " +
+                                                            " INNER JOIN chaves_reserva cr ON cr.cod_chave = c.indice_chave " +
+                                                            " WHERE c.indice_chave = '{0}' AND cr.cod_reserva = '{1}'",
+                                                             gridChavesReserva.CurrentRow.Cells[2].Value.ToString(), gridReserva.CurrentRow.Cells[0].Value.ToString()));
+
+                foreach (DataRow row in dadosChaves.Rows)
+                {
+                    codigoImob.Text = row[0].ToString();
+                    codChave.Text = row[1].ToString();
+                    situacaoChave.Text = row[2].ToString();
+                    
+                }
+
+            //}
+            //catch { }
+        }
+
+        private void GridReserva_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            
+        }
+
+        private void GridChavesReserva_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                DataGridViewRow row = gridChavesReserva.Rows[e.RowIndex];
+                string situacao = gridChavesReserva.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+                if (situacao == "LIVRE")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(182, 255, 145);
+                    row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(105, 184, 66);
+
+                    int contLivres = 0;
+
+                    foreach (DataGridViewRow linha in gridChavesReserva.Rows)
+                    {
+                        if (linha.Cells[3].Value.ToString() == "LIVRE")
+                        {
+                            contLivres++;
+                        }
+                    }
+
+
+                    if (contLivres == gridChavesReserva.Rows.Count)
+                    {
+                        gridReserva.CurrentRow.DefaultCellStyle.BackColor = Color.FromArgb(182, 255, 145);
+                        gridReserva.CurrentRow.DefaultCellStyle.SelectionBackColor = Color.FromArgb(105, 184, 66);
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            
+
+        }
+
+        private void GridReserva_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

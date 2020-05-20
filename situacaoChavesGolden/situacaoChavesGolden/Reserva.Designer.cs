@@ -673,6 +673,8 @@
             this.gridChavesReserva.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridChavesReserva.Size = new System.Drawing.Size(266, 177);
             this.gridChavesReserva.TabIndex = 60;
+            this.gridChavesReserva.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridChavesReserva_CellFormatting);
+            this.gridChavesReserva.SelectionChanged += new System.EventHandler(this.GridChavesReserva_SelectionChanged);
             // 
             // gridReserva
             // 
@@ -720,6 +722,8 @@
             this.gridReserva.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridReserva.Size = new System.Drawing.Size(334, 177);
             this.gridReserva.TabIndex = 59;
+            this.gridReserva.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridReserva_CellContentClick);
+            this.gridReserva.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridReserva_CellFormatting_1);
             this.gridReserva.SelectionChanged += new System.EventHandler(this.GridReserva_SelectionChanged_1);
             // 
             // Reserva

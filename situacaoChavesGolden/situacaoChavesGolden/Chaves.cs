@@ -49,6 +49,7 @@ namespace situacaoChavesGolden
                                              " (SELECT COUNT((CASE WHEN r.cod_reserva is not null AND " +
                                              " r.situacao != 'FINALIZADO' THEN 'RESERVADO' ELSE '' END)) " +
                                              " FROM reserva r " +
+                                             " INNER JOIN chaves_reserva cr ON cr.cod_reserva = r.cod_reserva" +
                                              " WHERE cod_chave = c.indice_chave AND situacao = 'EM ANDAMENTO') as emprestimo" +
                                              " FROM chave C" +
                                              " LEFT JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
