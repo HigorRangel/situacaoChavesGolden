@@ -442,54 +442,54 @@ namespace situacaoChavesGolden
             }
             if (contErros == 0)
             {
-                //try
-                //{
-                if (tipo == "proprietario")
+                try
                 {
+                    if (tipo == "proprietario")
+                    {
                    
 
 
-                    database.insertInto(string.Format("" +
-                      "INSERT INTO reserva (data_reserva, descricao, cod_usuario, cod_proprietario)" +
-                      " VALUES ('{0}', '{1}', '{2}', '{3}')",
-                      dataHoje, descricao, user, codPessoaBox.Text));
-                }
-                else if (tipo == "cliente")
-                {
-                    database.insertInto(string.Format("" +
-                       "INSERT INTO reserva (data_reserva, descricao, cod_usuario, cod_cliente)" +
-                       " VALUES ('{0}', '{1}', '{2}', '{3}')",
-                       dataHoje, descricao, user, codPessoaBox.Text));
-                }
-                else
-                {
-                    database.insertInto(string.Format("" +
-                      "INSERT INTO reserva (data_reserva, descricao, cod_usuario)" +
-                      " VALUES ('{0}', '{1}', '{2}')",
-                      dataHoje, descricao,  codPessoaBox.Text));
-                }
+                        database.insertInto(string.Format("" +
+                          "INSERT INTO reserva (data_reserva, descricao, cod_usuario, cod_proprietario)" +
+                          " VALUES ('{0}', '{1}', '{2}', '{3}')",
+                          dataHoje, descricao, user, codPessoaBox.Text));
+                    }
+                    else if (tipo == "cliente")
+                    {
+                        database.insertInto(string.Format("" +
+                           "INSERT INTO reserva (data_reserva, descricao, cod_usuario, cod_cliente)" +
+                           " VALUES ('{0}', '{1}', '{2}', '{3}')",
+                           dataHoje, descricao, user, codPessoaBox.Text));
+                    }
+                    else
+                    {
+                        database.insertInto(string.Format("" +
+                          "INSERT INTO reserva (data_reserva, descricao, cod_usuario)" +
+                          " VALUES ('{0}', '{1}', '{2}')",
+                          dataHoje, descricao,  codPessoaBox.Text));
+                    }
 
-                foreach (DataGridViewRow row in gridChaves.Rows)
-                {
+                    foreach (DataGridViewRow row in gridChaves.Rows)
+                    {
 
-                    database.insertInto(string.Format("INSERT INTO chaves_reserva" +
-                                                        " VALUES ((SELECT MAX(cod_reserva) FROM reserva), '{0}')", row.Cells[3].Value.ToString()));
+                        database.insertInto(string.Format("INSERT INTO chaves_reserva" +
+                                                            " VALUES ((SELECT MAX(cod_reserva) FROM reserva), '{0}')", row.Cells[3].Value.ToString()));
 
                    
+                    }
+
+
+                    Message caixaMensagem = new Message("Reserva cadastrada com sucesso!", "", "sucesso", "confirma");
+                    caixaMensagem.ShowDialog();
+
+                    this.Close();
+                    this.DialogResult = DialogResult.OK;
                 }
-
-
-                Message caixaMensagem = new Message("Reserva cadastrada com sucesso!", "", "sucesso", "confirma");
-                caixaMensagem.ShowDialog();
-
-                this.Close();
-                this.DialogResult = DialogResult.OK;
-                //}
-                //catch (Exception erro)
-                //{
-                //    Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
-                //    caixaMensagem.ShowDialog();
-                //}
+                catch (Exception erro)
+                {
+                    Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
+                    caixaMensagem.ShowDialog();
+                }
 
             }
 

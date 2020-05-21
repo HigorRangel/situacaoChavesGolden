@@ -183,6 +183,9 @@ namespace situacaoChavesGolden
                 DataTable dadosChave = new DataTable();
                 if (seletorTela == true)
                 {
+                   
+
+
                     btnAdicionarPessoa.Visible = false;
                     codPessoaBox.Visible = true;
                     nomePessoaBox.Visible = true;
@@ -199,7 +202,8 @@ namespace situacaoChavesGolden
                    " LEFT JOIN cliente cl ON cl.cod_cliente = r.cod_cliente " +
                    " LEFT JOIN proprietario p ON p.cod_proprietario = r.cod_proprietario " +
                    " LEFT JOIN usuario u ON u.cod_usuario = r.cod_usuario " +
-                   " LEFT JOIN chave c ON r.cod_chave = c.indice_chave " +
+                   " LEFT JOIN chaves_reserva cr ON cr.cod_reserva = r.cod_reserva" +
+                   "  LEFT JOIN chave c ON cr.cod_chave = c.indice_chave" +
                    " WHERE r.cod_reserva = '{0}'", codigoReserva));
 
                     foreach (DataRow row in dadosChave.Rows)

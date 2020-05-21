@@ -361,7 +361,7 @@
             this.painelProp.Controls.Add(this.btnConfirmarProp);
             this.painelProp.Controls.Add(this.gridPessoas);
             this.painelProp.Controls.Add(this.boxProcurarProp);
-            this.painelProp.Location = new System.Drawing.Point(71, 81);
+            this.painelProp.Location = new System.Drawing.Point(43, 75);
             this.painelProp.Name = "painelProp";
             this.painelProp.Size = new System.Drawing.Size(374, 225);
             this.painelProp.TabIndex = 26;

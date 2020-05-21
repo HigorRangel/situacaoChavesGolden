@@ -390,6 +390,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\icon.ico" />
     <None Include="Resources\TelaManutenção1.png" />
     <None Include="Resources\TelaManutenção.png" />
     <None Include="Resources\Relatorio2.png" />

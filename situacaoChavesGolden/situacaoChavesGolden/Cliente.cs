@@ -32,26 +32,105 @@ namespace situacaoChavesGolden
 
             gridCliente.DataSource = clientes.DefaultView;
 
-            gridCliente.Columns[0].HeaderText = "Código";
+            gridCliente.Columns[0].HeaderText = "Cód";
             gridCliente.Columns[1].HeaderText = "Nome do Cliente";
             gridCliente.Columns[2].HeaderText = "Email";
             gridCliente.Columns[3].HeaderText = "Contato 1";
             gridCliente.Columns[4].HeaderText = "Contato 2";
-            gridCliente.Columns[5].HeaderText = "Empréstimos";
+            gridCliente.Columns[5].HeaderText = "Emprést";
 
-            gridCliente.Columns[0].Width = 50;
-            gridCliente.Columns[1].Width = 188;
-            gridCliente.Columns[2].Width = 160;
-            gridCliente.Columns[3].Width = 70;
-            gridCliente.Columns[4].Width = 70;
-            gridCliente.Columns[5].Width = 70;
+            DataGridViewImageColumn cellImageEdit = new DataGridViewImageColumn();
+            cellImageEdit.Image = new Bitmap(Properties.Resources.Edit);
+
+            gridCliente.Columns.Insert(6, cellImageEdit);
+
+            DataGridViewImageColumn cellImageDelete = new DataGridViewImageColumn();
+            cellImageDelete.Image = new Bitmap(Properties.Resources.Delete);
+
+            gridCliente.Columns.Insert(7, cellImageDelete);
+
+            gridCliente.Columns[0].Width = 30;
+            gridCliente.Columns[1].Width = 180;
+            gridCliente.Columns[2].Width = 150;
+            gridCliente.Columns[3].Width = 80;
+            gridCliente.Columns[4].Width = 80;
+            gridCliente.Columns[5].Width = 50;
+            gridCliente.Columns[6].Width = 30;
+            gridCliente.Columns[7].Width = 30;
 
             gridCliente.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            
+
+          
         }
 
         private void Cliente_Load(object sender, EventArgs e)
         {
             atualizarClientes();
+        }
+
+        private void GridCliente_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if(e.ColumnIndex == 0 || e.ColumnIndex == 1)
+            {
+                gridCliente.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                gridCliente.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void GridCliente_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                CadastroCliente cadastrar = new CadastroCliente(gridCliente.Rows[e.RowIndex].Cells[2].Value.ToString());
+                cadastrar.ShowDialog();
+
+                atualizarClientes();
+            }
+
+
+            if (e.ColumnIndex == 1)
+            {
+                gridCliente.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                gridCliente.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void GridCliente_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable tabelaDados = new DataTable();
+
+                tabelaDados = database.select(string.Format("SELECT e.cod_emprestimo, e.data_retirada, e.data_entrega, u.nome_usuario" +
+                    " FROM emprestimo e" +
+                    " INNER JOIN usuario u ON u.cod_usuario = e.cod_usuario" +
+                    " WHERE cod_cliente = '{0}'", gridCliente.Rows[gridCliente.CurrentRow.Index].Cells[2].Value.ToString()));
+
+                gridEmprestimos.DataSource = tabelaDados;
+
+
+                gridEmprestimos.Columns[0].Width = 158;
+                gridEmprestimos.Columns[1].Width = 158;
+                gridEmprestimos.Columns[2].Width = 158;
+                gridEmprestimos.Columns[3].Width = 158;
+
+                gridEmprestimos.Columns[0].HeaderText = "Código Empréstimo";
+                gridEmprestimos.Columns[1].HeaderText = "Data de Retirada";
+                gridEmprestimos.Columns[2].HeaderText = "Data de Entrega";
+                gridEmprestimos.Columns[3].HeaderText = "Funcionário";
+            }
+            catch { }
+            
+                                                  
         }
     }
 }

@@ -33,7 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.gridChaves = new System.Windows.Forms.DataGridView();
+            this.gridEmprestimos = new System.Windows.Forms.DataGridView();
             this.btnCadastrarProprietario = new System.Windows.Forms.Label();
             this.groupMenuSup = new System.Windows.Forms.GroupBox();
             this.radioVenda = new MetroFramework.Controls.MetroRadioButton();
@@ -41,7 +41,7 @@
             this.radioTodos = new MetroFramework.Controls.MetroRadioButton();
             this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
             this.gridCliente = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridEmprestimos)).BeginInit();
             this.groupMenuSup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCliente)).BeginInit();
             this.SuspendLayout();
@@ -55,15 +55,15 @@
             this.metroLabel1.TabIndex = 32;
             this.metroLabel1.Text = "Chaves:";
             // 
-            // gridChaves
+            // gridEmprestimos
             // 
-            this.gridChaves.AllowUserToAddRows = false;
-            this.gridChaves.AllowUserToDeleteRows = false;
-            this.gridChaves.AllowUserToResizeColumns = false;
-            this.gridChaves.AllowUserToResizeRows = false;
-            this.gridChaves.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
-            this.gridChaves.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridChaves.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.gridEmprestimos.AllowUserToAddRows = false;
+            this.gridEmprestimos.AllowUserToDeleteRows = false;
+            this.gridEmprestimos.AllowUserToResizeColumns = false;
+            this.gridEmprestimos.AllowUserToResizeRows = false;
+            this.gridEmprestimos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
+            this.gridEmprestimos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridEmprestimos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -71,14 +71,14 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridChaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.gridChaves.GridColor = System.Drawing.Color.White;
-            this.gridChaves.Location = new System.Drawing.Point(23, 261);
-            this.gridChaves.MultiSelect = false;
-            this.gridChaves.Name = "gridChaves";
-            this.gridChaves.ReadOnly = true;
-            this.gridChaves.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.gridEmprestimos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridEmprestimos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.gridEmprestimos.GridColor = System.Drawing.Color.White;
+            this.gridEmprestimos.Location = new System.Drawing.Point(10, 261);
+            this.gridEmprestimos.MultiSelect = false;
+            this.gridEmprestimos.Name = "gridEmprestimos";
+            this.gridEmprestimos.ReadOnly = true;
+            this.gridEmprestimos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -86,13 +86,13 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.gridChaves.RowHeadersVisible = false;
-            this.gridChaves.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.gridChaves.RowTemplate.ReadOnly = true;
-            this.gridChaves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridChaves.Size = new System.Drawing.Size(609, 127);
-            this.gridChaves.TabIndex = 31;
+            this.gridEmprestimos.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.gridEmprestimos.RowHeadersVisible = false;
+            this.gridEmprestimos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.gridEmprestimos.RowTemplate.ReadOnly = true;
+            this.gridEmprestimos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridEmprestimos.Size = new System.Drawing.Size(635, 127);
+            this.gridEmprestimos.TabIndex = 31;
             // 
             // btnCadastrarProprietario
             // 
@@ -182,7 +182,7 @@
             this.gridCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridCliente.GridColor = System.Drawing.Color.White;
-            this.gridCliente.Location = new System.Drawing.Point(23, 63);
+            this.gridCliente.Location = new System.Drawing.Point(10, 63);
             this.gridCliente.MultiSelect = false;
             this.gridCliente.Name = "gridCliente";
             this.gridCliente.ReadOnly = true;
@@ -199,8 +199,11 @@
             this.gridCliente.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridCliente.RowTemplate.ReadOnly = true;
             this.gridCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridCliente.Size = new System.Drawing.Size(609, 177);
+            this.gridCliente.Size = new System.Drawing.Size(635, 177);
             this.gridCliente.TabIndex = 28;
+            this.gridCliente.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridCliente_CellMouseClick);
+            this.gridCliente.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridCliente_CellMouseEnter);
+            this.gridCliente.SelectionChanged += new System.EventHandler(this.GridCliente_SelectionChanged);
             // 
             // Cliente
             // 
@@ -208,12 +211,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 430);
             this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.gridChaves);
+            this.Controls.Add(this.gridEmprestimos);
             this.Controls.Add(this.btnCadastrarProprietario);
             this.Controls.Add(this.groupMenuSup);
             this.Controls.Add(this.gridCliente);
             this.DisplayHeader = false;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Movable = false;
             this.Name = "Cliente";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
@@ -223,7 +227,7 @@
             this.Style = MetroFramework.MetroColorStyle.White;
             this.Text = "Cliente";
             this.Load += new System.EventHandler(this.Cliente_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridEmprestimos)).EndInit();
             this.groupMenuSup.ResumeLayout(false);
             this.groupMenuSup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCliente)).EndInit();
@@ -235,7 +239,7 @@
         #endregion
 
         private MetroFramework.Controls.MetroLabel metroLabel1;
-        private System.Windows.Forms.DataGridView gridChaves;
+        private System.Windows.Forms.DataGridView gridEmprestimos;
         private System.Windows.Forms.Label btnCadastrarProprietario;
         private System.Windows.Forms.GroupBox groupMenuSup;
         public MetroFramework.Controls.MetroRadioButton radioVenda;

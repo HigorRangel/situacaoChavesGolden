@@ -235,13 +235,30 @@ namespace situacaoChavesGolden
 
         private void BtnEmprestar_Click(object sender, EventArgs e)
         {
-            CadastrarEmprestimo emprestimo = new CadastrarEmprestimo(usuario, gridReserva.CurrentRow.Cells[0].Value.ToString(),
-                new List<string> { gridReserva.CurrentRow.Cells[6].Value.ToString() });
-            emprestimo.ShowDialog();
+            try
+            {
+                List<string> lista = new List<string>();
 
-            atualizarGrid();
+                foreach (DataGridViewRow row in gridChavesReserva.Rows)
+                {
+                    lista.Add(row.Cells[2].Value.ToString());
+                }
 
-           
+                CadastrarEmprestimo emprestimo = new CadastrarEmprestimo(usuario, gridReserva.CurrentRow.Cells[0].Value.ToString(),
+                    lista);
+                emprestimo.ShowDialog();
+
+                atualizarGrid();
+            }
+            catch
+            {
+                Message msg = new Message("Opção indisponível no momento! Tente novamente mais tarde.",
+                    "Erro", "erro", "confirma");
+
+                msg.ShowDialog();
+            }
+
+
         }
 
         private void GridReserva_SelectionChanged_1(object sender, EventArgs e)
@@ -422,8 +439,8 @@ namespace situacaoChavesGolden
         private void GridChavesReserva_SelectionChanged(object sender, EventArgs e)
         {
 
-            //try
-            //{
+            try
+            {
                 DataTable dadosChaves = new DataTable();
 
                 
@@ -446,8 +463,8 @@ namespace situacaoChavesGolden
                     
                 }
 
-            //}
-            //catch { }
+            }
+            catch { }
         }
 
         private void GridReserva_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)

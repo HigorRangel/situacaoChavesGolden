@@ -35,7 +35,7 @@ namespace situacaoChavesGolden
             string proxCodigo = "";
             DataTable codigos = new DataTable();
 
-            codigos = database.select("SELECT cod_chave FROM chave ORDER BY cod_chave");
+            codigos = database.select("SELECT cod_chave FROM chave  WHERE cod_chave is not null ORDER BY cod_chave");
             List<int> arrayCodigos = new List<int>();
             // int[] arrayCodigos = new int[codigos.Rows.Count];
 
@@ -43,6 +43,7 @@ namespace situacaoChavesGolden
             {
                 foreach (DataRow row in codigos.Rows)
                 {
+                    //MessageBox.Show(row[0].ToString());
                     try
                     {
                         arrayCodigos.Add(int.Parse(row[0].ToString()));
@@ -82,7 +83,9 @@ namespace situacaoChavesGolden
         }
         private void CadastroChave_Load(object sender, EventArgs e)
         {
-            
+            MessageBox.Show(proximoCodigo());
+
+            //proximoCodigo();
 
             codImovel.Focus();
 

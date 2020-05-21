@@ -63,6 +63,8 @@ namespace situacaoChavesGolden
         {
             criarPastaTemp();
             limparTemp();
+
+
             //string caminho = Environment.CurrentDirectory;
             //caminho = caminho.Replace("bin\\Debug", "");
 

@@ -42,7 +42,7 @@ namespace situacaoChavesGolden
 
             DataTable tabela = new DataTable();
 
-             tabela = database.select(string.Format("SELECT c.cod_chave::text, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, c.situacao_imovel" +
+             tabela = database.select(string.Format("SELECT c.cod_chave, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, c.situacao_imovel" +
                                                   " FROM chave c" +
                                                   "  WHERE cod_chave = '{0}'" +
                                                   " ORDER BY c.situacao_imovel, c.cod_chave " +
@@ -87,7 +87,7 @@ namespace situacaoChavesGolden
         {
             tabelaChave.Rows.Clear();
 
-            tabelaChave = database.select("SELECT c.cod_chave::text, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, c.situacao_imovel" +
+            tabelaChave = database.select("SELECT c.cod_chave, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, c.situacao_imovel" +
                                                   " FROM chave c" +
                                                   " ORDER BY c.situacao_imovel, c.cod_chave");
 
@@ -186,16 +186,24 @@ namespace situacaoChavesGolden
         {
             atualizarGridFrom();
 
+            DataGridViewColumn clmn = new DataGridViewColumn();
+
+            clmn.HeaderText = "Cód.";
+            clmn.ValueType = typeof(int);
+
             gridTo.Columns.Add("codigo", "Cód.");
             gridTo.Columns.Add("endereco", "Endereço");
             gridTo.Columns.Add("indice", "indice");
             gridTo.Columns.Add("situacao", "situacao");
+
+            
 
             gridTo.Columns[0].Width = 30;
             gridTo.Columns[1].Width = 228;
             gridTo.Columns[2].Visible = false;
             gridTo.Columns[3].Visible = false;
 
+            
             //descImovel.Size = new Size(cmToPixel(3.3), cmToPixel(1.9));
 
         }
@@ -528,7 +536,7 @@ namespace situacaoChavesGolden
 
         private void btnPassSelec_Click(object sender, EventArgs e)
         {
-            if(gridTo.Rows.Count + gridFrom.SelectedRows.Count >= 120)
+            if(gridTo.Rows.Count + gridFrom.SelectedRows.Count > 120)
             {
                 Message popup = new Message("O limite de plaquinhas foi atingido (Máx: 120)", "Erro", "erro", "confirma");
                 popup.ShowDialog();
@@ -566,13 +574,13 @@ namespace situacaoChavesGolden
 
                         }
 
-                    }
-                    catch (Exception erro)
-                    {
-                        MessageBox.Show(erro.Message);
-                    }
-
                 }
+                    catch (Exception erro)
+                {
+                    MessageBox.Show(erro.Message);
+                }
+
+            }
             }
 
 

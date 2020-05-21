@@ -188,8 +188,8 @@ namespace situacaoChavesGolden
 
             atualizarGridChavesEmprestimo();
 
-            //try
-            //{
+            try
+            {
                 if (gridEmprestimo.CurrentRow.Cells[3].Value.ToString() == "FINALIZADO")
                 {
                     btnBaixa.Enabled = false;
@@ -206,8 +206,8 @@ namespace situacaoChavesGolden
                     btnBaixa.Image = Properties.Resources.BaixaEmprestimo;
                     btnProrrogar.Image = Properties.Resources.ProrrogarEmprestimo;
                 }
-            //}
-            //catch { }
+            }
+            catch { }
 
 
             try
