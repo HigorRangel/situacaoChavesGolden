@@ -268,64 +268,73 @@ namespace situacaoChavesGolden
 
         private void BtnConfirmarProp_Click_1(object sender, EventArgs e)
         {
-            if (gridPessoas.CurrentRow.Index != -1)
+            try
             {
-                codPessoaBox.Text = gridPessoas.CurrentRow.Cells[0].Value.ToString();
-                nomePessoaBox.Text = gridPessoas.CurrentRow.Cells[1].Value.ToString(); ;
+                if (gridPessoas.CurrentRow.Index != -1)
+                {
+                    codPessoaBox.Text = gridPessoas.CurrentRow.Cells[0].Value.ToString();
+                    nomePessoaBox.Text = gridPessoas.CurrentRow.Cells[1].Value.ToString(); ;
 
-                painelProp.Visible = false;
-                groupQuemEmpresta.Enabled = true;
-                groupDadosEmp.Enabled = true;
-                groupDadosCliente.Enabled = true;
-                btnConfirmar.Enabled = true;
-                btnAdicionarPessoa.Visible = false;
-                labelProp.Visible = true;
-                labelCod.Visible = true;
-                codPessoaBox.Visible = true;
-                nomePessoaBox.Visible = true;
-                excluiProp.Enabled = true;
-                excluiProp.Visible = true;
+                    painelProp.Visible = false;
+                    groupQuemEmpresta.Enabled = true;
+                    groupDadosEmp.Enabled = true;
+                    groupDadosCliente.Enabled = true;
+                    btnConfirmar.Enabled = true;
+                    btnAdicionarPessoa.Visible = false;
+                    labelProp.Visible = true;
+                    labelCod.Visible = true;
+                    codPessoaBox.Visible = true;
+                    nomePessoaBox.Visible = true;
+                    excluiProp.Enabled = true;
+                    excluiProp.Visible = true;
 
-                string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+                    string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
 
-                //DataTable dados = new DataTable();
+                    //DataTable dados = new DataTable();
 
-                //if (tipo == "PROPRIETARIO")
-                //{
-                //    dados = database.select(string.Format("SELECT contato, email, nome" +
-                //                                          " FROM proprietario" +
-                //                                          " WHERE cod_proprietario = '{0}'", codPessoaBox.Text));
+                    //if (tipo == "PROPRIETARIO")
+                    //{
+                    //    dados = database.select(string.Format("SELECT contato, email, nome" +
+                    //                                          " FROM proprietario" +
+                    //                                          " WHERE cod_proprietario = '{0}'", codPessoaBox.Text));
 
-                //    foreach (DataRow row in dados.Rows)
-                //    {
-                //        labelTel1.Text = row[0].ToString(); ;
-                //        email.Text = row[1].ToString();
-                //        nome.Text = row[2].ToString();
-                //    }
-                //}
-                //else if (tipo == "CLIENTE")
-                //{
-                //    dados = database.select(string.Format("SELECT cpf, contato_principal, contato_secundario, email, nome_cliente" +
-                //                            " FROM cliente" +
-                //                            " WHERE cod_cliente = '{0}'", codPessoaBox.Text));
+                    //    foreach (DataRow row in dados.Rows)
+                    //    {
+                    //        labelTel1.Text = row[0].ToString(); ;
+                    //        email.Text = row[1].ToString();
+                    //        nome.Text = row[2].ToString();
+                    //    }
+                    //}
+                    //else if (tipo == "CLIENTE")
+                    //{
+                    //    dados = database.select(string.Format("SELECT cpf, contato_principal, contato_secundario, email, nome_cliente" +
+                    //                            " FROM cliente" +
+                    //                            " WHERE cod_cliente = '{0}'", codPessoaBox.Text));
 
-                //    foreach (DataRow row in dados.Rows)
-                //    {
-                //        labelCpf.Text = row[0].ToString();
-                //        labelTel1.Text = row[1].ToString();
-                //        labelTel2.Text = row[2].ToString();
-                //        email.Text = row[3].ToString();
-                //        nome.Text = row[4].ToString();
-                //    }
-                //}
-                //else
-                //{
-                //    nome.Text = database.selectScalar(string.Format("SELECT nome_usuario" +
-                //                                        " FROM usuario" +
-                //                                        " WHERE cod_usuario = '{0}'", codPessoaBox.Text));
-                //}
+                    //    foreach (DataRow row in dados.Rows)
+                    //    {
+                    //        labelCpf.Text = row[0].ToString();
+                    //        labelTel1.Text = row[1].ToString();
+                    //        labelTel2.Text = row[2].ToString();
+                    //        email.Text = row[3].ToString();
+                    //        nome.Text = row[4].ToString();
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    nome.Text = database.selectScalar(string.Format("SELECT nome_usuario" +
+                    //                                        " FROM usuario" +
+                    //                                        " WHERE cod_usuario = '{0}'", codPessoaBox.Text));
+                    //}
 
+                }
             }
+            catch (NullReferenceException)
+            {
+                Message msg = new Message("Você não selecionou nenhum cliente/proprietário!", "", "erro", "confirma");
+                msg.ShowDialog();
+            }
+            
 
         }
 
@@ -786,28 +795,32 @@ namespace situacaoChavesGolden
 
         private void GridChaves_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            try
+            if (radioProprietario.Checked)
             {
-                DataTable dadosProp = new DataTable();
-
-                dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
-                                                           " FROM proprietario p " +
-                                                           " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
-                                                           " WHERE c.indice_chave = '{0}'", gridChaves.Rows[0].Cells[3].Value.ToString()));
-
-
-
-                foreach (DataRow row in dadosProp.Rows)
+                try
                 {
-                    codPessoaBox.Text = row[0].ToString();
-                    nomePessoaBox.Text = row[1].ToString();
+                    DataTable dadosProp = new DataTable();
+
+                    dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
+                                                               " FROM proprietario p " +
+                                                               " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
+                                                               " WHERE c.indice_chave = '{0}'", gridChaves.Rows[0].Cells[3].Value.ToString()));
+
+
+
+                    foreach (DataRow row in dadosProp.Rows)
+                    {
+                        codPessoaBox.Text = row[0].ToString();
+                        nomePessoaBox.Text = row[1].ToString();
+                    }
+                }
+                catch
+                {
+                    codPessoaBox.Text = "";
+                    nomePessoaBox.Text = "";
                 }
             }
-            catch
-            {
-                codPessoaBox.Text = "";
-                nomePessoaBox.Text = "";
-            }
+           
            
 
 
@@ -838,28 +851,32 @@ namespace situacaoChavesGolden
 
         private void GridChaves_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
-            try
+            if (radioProprietario.Checked)
             {
-                DataTable dadosProp = new DataTable();
-
-                dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
-                                                           " FROM proprietario p " +
-                                                           " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
-                                                           " WHERE c.indice_chave = '{0}'", gridChaves.Rows[0].Cells[3].Value.ToString()));
-
-
-
-                foreach (DataRow row in dadosProp.Rows)
+                try
                 {
-                    codPessoaBox.Text = row[0].ToString();
-                    nomePessoaBox.Text = row[1].ToString();
+                    DataTable dadosProp = new DataTable();
+
+                    dadosProp = database.select(string.Format("SELECT p.cod_proprietario, p.nome " +
+                                                               " FROM proprietario p " +
+                                                               " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
+                                                               " WHERE c.indice_chave = '{0}'", gridChaves.Rows[0].Cells[3].Value.ToString()));
+
+
+
+                    foreach (DataRow row in dadosProp.Rows)
+                    {
+                        codPessoaBox.Text = row[0].ToString();
+                        nomePessoaBox.Text = row[1].ToString();
+                    }
+                }
+                catch
+                {
+                    codPessoaBox.Text = "";
+                    nomePessoaBox.Text = "";
                 }
             }
-            catch
-            {
-                codPessoaBox.Text = "";
-                nomePessoaBox.Text = "";
-            }
+            
 
             if (gridChaves.Rows.Count == 0)
             {
@@ -913,6 +930,11 @@ namespace situacaoChavesGolden
             {
                 gridChaves.Cursor = Cursors.Arrow;
             }
+        }
+
+        private void BoxProcurarProp_TextChanged_1(object sender, EventArgs e)
+        {
+            atualizarGrid(groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper());
         }
     }
 

@@ -162,6 +162,7 @@
             this.boxProcurarProp.Name = "boxProcurarProp";
             this.boxProcurarProp.Size = new System.Drawing.Size(317, 20);
             this.boxProcurarProp.TabIndex = 0;
+            this.boxProcurarProp.TextChanged += new System.EventHandler(this.BoxProcurarProp_TextChanged_1);
             // 
             // labelCod
             // 
@@ -486,7 +487,7 @@
             this.panelChaves.Controls.Add(this.btnConfirmChave);
             this.panelChaves.Controls.Add(this.gridChavesTotal);
             this.panelChaves.Controls.Add(this.boxBusca);
-            this.panelChaves.Location = new System.Drawing.Point(10, 159);
+            this.panelChaves.Location = new System.Drawing.Point(19, 247);
             this.panelChaves.Name = "panelChaves";
             this.panelChaves.Size = new System.Drawing.Size(435, 225);
             this.panelChaves.TabIndex = 44;

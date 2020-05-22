@@ -171,11 +171,16 @@ namespace situacaoChavesGolden
             {
                 dadosChaveEscolhida = database.select(string.Format("SELECT c.cod_chave, c.cod_imob,  c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave " +
                                                                    " FROM CHAVE c " +
-                                                                   " WHERE indice_chave = '{0}'", codigo));
+                                                                   " WHERE indice_chave = '{0}' AND cod_chave is not null", codigo));
 
                 foreach (DataRow linha in dadosChaveEscolhida.Rows)
                 {
-                    gridChaves.Rows.Add(linha[0].ToString(), linha[1].ToString(), linha[2].ToString(), linha[3].ToString(),0 ,0 );
+                    try
+                    {
+                        gridChaves.Rows.Add(linha[0].ToString(), linha[1].ToString(), linha[2].ToString(), linha[3].ToString(), 0, 0);
+
+                    }
+                    catch { }
                 }
 
 
@@ -676,67 +681,75 @@ namespace situacaoChavesGolden
 
         private void btnConfirmarProp_Click(object sender, EventArgs e)
         {
-
-
-            if(gridPessoas.CurrentRow.Index != -1)
+            try
             {
-                codPessoaBox.Text = gridPessoas.CurrentRow.Cells[0].Value.ToString();
-               nomePessoaBox.Text = gridPessoas.CurrentRow.Cells[1].Value.ToString(); ;
-
-                painelProp.Visible = false;
-                groupQuemEmpresta.Enabled = true;
-                groupDadosEmp.Enabled = true;
-                groupDadosCliente.Enabled = true;
-                //groupBox4.Enabled = true;
-                btnConfirmar.Enabled = true;
-                btnAdicionarPessoa.Visible = false;
-                labelProp.Visible = true;
-                labelCod.Visible = true;
-                codPessoaBox.Visible = true;
-                nomePessoaBox.Visible = true;
-                excluiProp.Enabled = true;
-                excluiProp.Visible = true;
-
-                string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
-
-                DataTable dados = new DataTable();
-
-                if(tipo == "PROPRIETARIO")
+                if (gridPessoas.CurrentRow.Index != -1)
                 {
-                    dados = database.select(string.Format("SELECT contato, email, nome" +
-                                                          " FROM proprietario" +
-                                                          " WHERE cod_proprietario = '{0}'", codPessoaBox.Text));
+                    codPessoaBox.Text = gridPessoas.CurrentRow.Cells[0].Value.ToString();
+                    nomePessoaBox.Text = gridPessoas.CurrentRow.Cells[1].Value.ToString(); ;
 
-                    foreach (DataRow row in dados.Rows)
+                    painelProp.Visible = false;
+                    groupQuemEmpresta.Enabled = true;
+                    groupDadosEmp.Enabled = true;
+                    groupDadosCliente.Enabled = true;
+                    //groupBox4.Enabled = true;
+                    btnConfirmar.Enabled = true;
+                    btnAdicionarPessoa.Visible = false;
+                    labelProp.Visible = true;
+                    labelCod.Visible = true;
+                    codPessoaBox.Visible = true;
+                    nomePessoaBox.Visible = true;
+                    excluiProp.Enabled = true;
+                    excluiProp.Visible = true;
+
+                    string tipo = groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+
+                    DataTable dados = new DataTable();
+
+                    if (tipo == "PROPRIETARIO")
                     {
-                        //labelTel1.Text = row[0].ToString();;
-                        //email.Text = row[1].ToString();
-                        //nome.Text = row[2].ToString();
-                    }
-                }
-                else if(tipo == "CLIENTE")
-                {
-                    dados = database.select(string.Format("SELECT cpf, contato_principal, contato_secundario, email, nome_cliente" +
-                                            " FROM cliente" +
-                                            " WHERE cod_cliente = '{0}'", codPessoaBox.Text));
+                        dados = database.select(string.Format("SELECT contato, email, nome" +
+                                                              " FROM proprietario" +
+                                                              " WHERE cod_proprietario = '{0}'", codPessoaBox.Text));
 
-                    foreach (DataRow row in dados.Rows)
-                    {
-                        //labelCpf.Text = row[0].ToString();
-                        //labelTel1.Text = row[1].ToString();
-                        //labelTel2.Text = row[2].ToString();
-                        //email.Text = row[3].ToString();
-                        //nome.Text = row[4].ToString();
+                        foreach (DataRow row in dados.Rows)
+                        {
+                            //labelTel1.Text = row[0].ToString();;
+                            //email.Text = row[1].ToString();
+                            //nome.Text = row[2].ToString();
+                        }
                     }
+                    else if (tipo == "CLIENTE")
+                    {
+                        dados = database.select(string.Format("SELECT cpf, contato_principal, contato_secundario, email, nome_cliente" +
+                                                " FROM cliente" +
+                                                " WHERE cod_cliente = '{0}'", codPessoaBox.Text));
+
+                        foreach (DataRow row in dados.Rows)
+                        {
+                            //labelCpf.Text = row[0].ToString();
+                            //labelTel1.Text = row[1].ToString();
+                            //labelTel2.Text = row[2].ToString();
+                            //email.Text = row[3].ToString();
+                            //nome.Text = row[4].ToString();
+                        }
+                    }
+                    else
+                    {
+                        //nome.Text = database.selectScalar(string.Format("SELECT nome_usuario" +
+                        //                                    " FROM usuario" +
+                        //                                    " WHERE cod_usuario = '{0}'", codPessoaBox.Text));
+                    }
+
                 }
-                else
-                {
-                    //nome.Text = database.selectScalar(string.Format("SELECT nome_usuario" +
-                    //                                    " FROM usuario" +
-                    //                                    " WHERE cod_usuario = '{0}'", codPessoaBox.Text));
-                }
-                
             }
+            catch (NullReferenceException)
+            {
+                Message msg = new Message("Você não selecionou nenhum cliente/proprietário!", "", "erro", "confirma");
+                msg.ShowDialog();
+            }
+
+            
         
         }
 

@@ -41,7 +41,7 @@ namespace situacaoChavesGolden
             DataTable tabela = new DataTable();
 
             tabela = database.select(string.Format("SELECT r.cod_retirado, c.cod_imob, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco,  " +
-                                                    " data_retirada " +
+                                                    " data_retirada" +
                                                     " FROM retirado r " +
                                                     " INNER JOIN chave c ON c.indice_chave = r.cod_chave " +
                                                     " WHERE ({0} c.finalidade ILIKE '%{1}%' AND r.tipo_retirada ILIKE '%{2}%') " +
@@ -116,7 +116,7 @@ namespace situacaoChavesGolden
             DataTable tabela = new DataTable();
 
             tabela = database.select(string.Format("SELECT c.cod_imob, c.cod_chave, r.tipo_retirada, r.quem_retirou, r.descricao, " +
-                                                    " r.data_retirada, (u.cod_usuario || ' - ' || u.nome_usuario) " +
+                                                    " r.data_retirada, (u.cod_usuario || ' - ' || u.nome_usuario) , codigo_desativado " +
                                                     " FROM retirado r " +
                                                     " INNER JOIN usuario u ON u.cod_usuario = r.cod_usuario " +
                                                     " LEFT JOIN chave c ON c.indice_chave = r.cod_chave " +
@@ -142,6 +142,7 @@ namespace situacaoChavesGolden
                 descricao.Text = row[4].ToString();
                 dataRetirada.Text = row[5].ToString();
                 funcionario.Text = row[6].ToString();
+                codChave.Text = row[7].ToString();
             }
 
         }

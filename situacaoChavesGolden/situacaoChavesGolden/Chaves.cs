@@ -69,7 +69,7 @@ namespace situacaoChavesGolden
                 gridChaves.Columns[1].HeaderText = "Cód Imob";
                 gridChaves.Columns[2].HeaderText = "Endereço";
                 gridChaves.Columns[3].HeaderText = "Bairro";
-                gridChaves.Columns[4].HeaderText = "Situação";
+                gridChaves.Columns[4].HeaderText = "Imóvel";
                 gridChaves.Columns[5].Visible = false;
                 gridChaves.Columns[6].Visible = false;
 
@@ -101,7 +101,7 @@ namespace situacaoChavesGolden
                     gridChaves.Columns[1].HeaderText = "Cód Imob";
                     gridChaves.Columns[2].HeaderText = "Endereço";
                     gridChaves.Columns[3].HeaderText = "Bairro";
-                    gridChaves.Columns[4].HeaderText = "Situação";
+                    gridChaves.Columns[4].HeaderText = "Imóvel";
                     gridChaves.Columns[5].Visible = false;
 
                     gridChaves.Columns[0].Width = 60;

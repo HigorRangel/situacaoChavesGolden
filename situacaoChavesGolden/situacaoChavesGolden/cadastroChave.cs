@@ -83,7 +83,7 @@ namespace situacaoChavesGolden
         }
         private void CadastroChave_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(proximoCodigo());
+
 
             //proximoCodigo();
 

@@ -358,7 +358,7 @@ namespace situacaoChavesGolden
                                                             "      FROM emprestimo e" +
                                                             "      INNER JOIN chaves_emprestimo ce ON e.cod_emprestimo = ce.cod_emprestimo" +
                                                             "      WHERE ce.cod_chave = c.indice_chave AND data_entrega is null) != 0 THEN 'EMPRESTADA' " +
-                                                                       " ELSE 'LIVRE' END)" +
+                                                                       " ELSE 'LIVRE' END), c.situacao" +
                                                                " FROM chave c" +
                                                                " INNER JOIN chaves_reserva cr ON cr.cod_chave = c.indice_chave" +
                                                                " INNER JOIN reserva r ON r.cod_reserva = cr.cod_reserva" +
@@ -380,6 +380,8 @@ namespace situacaoChavesGolden
                     gridChavesReserva.Columns[1].Width = 225;
                     gridChavesReserva.Columns[2].Visible = false;
                     gridChavesReserva.Columns[3].Visible = false;
+                    gridChavesReserva.Columns[4].Visible = false;
+
 
 
                     gridChavesReserva.Columns[0].HeaderText = "Chave";
@@ -478,8 +480,9 @@ namespace situacaoChavesGolden
             {
                 DataGridViewRow row = gridChavesReserva.Rows[e.RowIndex];
                 string situacao = gridChavesReserva.Rows[e.RowIndex].Cells[3].Value.ToString();
+                string sitChave = gridChavesReserva.Rows[e.RowIndex].Cells[4].Value.ToString();
 
-                if (situacao == "LIVRE")
+                if (situacao == "LIVRE" && sitChave == "DISPONIVEL")
                 {
                     row.DefaultCellStyle.BackColor = Color.FromArgb(182, 255, 145);
                     row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(105, 184, 66);
@@ -488,7 +491,7 @@ namespace situacaoChavesGolden
 
                     foreach (DataGridViewRow linha in gridChavesReserva.Rows)
                     {
-                        if (linha.Cells[3].Value.ToString() == "LIVRE")
+                        if (linha.Cells[3].Value.ToString() == "LIVRE" && linha.Cells[4].Value.ToString() == "DISPONIVEL")
                         {
                             contLivres++;
                         }

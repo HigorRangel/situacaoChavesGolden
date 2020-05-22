@@ -14,6 +14,7 @@ namespace situacaoChavesGolden
     public partial class Proprietarios : MetroFramework.Forms.MetroForm
     {
         PostgreSQL database = new PostgreSQL();
+        DataTable proprietariosTable = new DataTable();
 
         public Proprietarios()
         {
@@ -27,8 +28,9 @@ namespace situacaoChavesGolden
                 DataTable proprietarios = new DataTable();
 
                 proprietarios = database.select(string.Format("SELECT * FROM proprietario ORDER BY nome"));
-
-                gridProprietarios.DataSource = proprietarios;
+                proprietariosTable = proprietarios;
+                
+                gridProprietarios.DataSource = proprietarios.DefaultView;
 
 
                 gridProprietarios.Columns[0].HeaderText = "Código";
@@ -36,10 +38,23 @@ namespace situacaoChavesGolden
                 gridProprietarios.Columns[2].HeaderText = "Contato";
                 gridProprietarios.Columns[3].HeaderText = "Email do Proprietário";
 
+                DataGridViewImageColumn cellImageEdit = new DataGridViewImageColumn();
+                cellImageEdit.Image = new Bitmap(Properties.Resources.Delete);
+
+                gridProprietarios.Columns.Insert(4, cellImageEdit);
+
+                DataGridViewImageColumn cellImageDelete = new DataGridViewImageColumn();
+                cellImageDelete.Image = new Bitmap(Properties.Resources.Edit);
+
+                gridProprietarios.Columns.Insert(4, cellImageDelete);
+
                 gridProprietarios.Columns[0].Width = 50;
-                gridProprietarios.Columns[1].Width = 258;
+                gridProprietarios.Columns[1].Width = 208;
                 gridProprietarios.Columns[2].Width = 100;
-                gridProprietarios.Columns[3].Width = 200;
+                gridProprietarios.Columns[3].Width = 170;
+                gridProprietarios.Columns[4].Width = 30;
+                gridProprietarios.Columns[5].Width = 30;
+
             }
             catch { }
 
@@ -52,36 +67,68 @@ namespace situacaoChavesGolden
 
         private void atualizarGridChave()
         {
-            if (gridProprietarios.SelectedRows != null)
-            {
-                DataTable chaves = new DataTable();
+            //string cod = gridProprietarios.Rows[gridProprietarios.CurrentRow.Index].Cells[2].Value.ToString();
+            //if (gridProprietarios.SelectedRows != null)
+            //{
+            //    DataTable chaves = new DataTable();
 
-                chaves = database.select(string.Format("" +
-                    "SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel  " +
-                    " FROM chave " +
-                    " WHERE proprietario = '{0}'" +
-                    " ORDER BY situacao_imovel, rua, cod_imob", gridProprietarios.CurrentRow.Cells[0].Value));
+            //    chaves = database.select(string.Format("" +
+            //        "SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel  " +
+            //        " FROM chave " +
+            //        " WHERE proprietario = '{0}'" +
+            //        " ORDER BY situacao_imovel, rua, cod_imob", cod));
 
-                gridChaves.DataSource = chaves;
+            //    gridChaves.DataSource = chaves.DefaultView;
 
 
 
-                gridChaves.Columns[0].HeaderText = "Código";
-                gridChaves.Columns[1].HeaderText = "Cód Imob";
-                gridChaves.Columns[2].HeaderText = "Endereço";
-                gridChaves.Columns[3].HeaderText = "Bairro";
-                gridChaves.Columns[4].HeaderText = "Situação";
+            //    gridChaves.Columns[0].HeaderText = "Código";
+            //    gridChaves.Columns[1].HeaderText = "Cód Imob";
+            //    gridChaves.Columns[2].HeaderText = "Endereço";
+            //    gridChaves.Columns[3].HeaderText = "Bairro";
+            //    gridChaves.Columns[4].HeaderText = "Situação";
 
-                gridChaves.Columns[0].Width = 60;
-                gridChaves.Columns[1].Width = 60;
-                gridChaves.Columns[2].Width = 275;
-                gridChaves.Columns[3].Width = 112;
-                gridChaves.Columns[4].Width = 100;
-            }
+            //    gridChaves.Columns[0].Width = 60;
+            //    gridChaves.Columns[1].Width = 60;
+            //    gridChaves.Columns[2].Width = 275;
+            //    gridChaves.Columns[3].Width = 112;
+            //    gridChaves.Columns[4].Width = 100;
+            //}
         }
         private void gridProprietarios_SelectionChanged(object sender, EventArgs e)
         {
-            atualizarGridChave();
+            //atualizarGridChave();
+            try
+            {
+                if (gridProprietarios.SelectedRows != null)
+                {
+                    DataTable chaves = new DataTable();
+
+                    chaves = database.select(string.Format("" +
+                        "SELECT cod_chave, cod_imob, rua || ', ' || numero as endereco, bairro, situacao_imovel  " +
+                        " FROM chave " +
+                        " WHERE proprietario = '{0}'" +
+                        " ORDER BY situacao_imovel, rua, cod_imob", proprietariosTable.Rows[gridProprietarios.CurrentRow.Index][0]));
+
+                    gridChaves.DataSource = chaves;
+
+
+
+                    gridChaves.Columns[0].HeaderText = "Código";
+                    gridChaves.Columns[1].HeaderText = "Cód Imob";
+                    gridChaves.Columns[2].HeaderText = "Endereço";
+                    gridChaves.Columns[3].HeaderText = "Bairro";
+                    gridChaves.Columns[4].HeaderText = "Situação";
+
+                    gridChaves.Columns[0].Width = 60;
+                    gridChaves.Columns[1].Width = 60;
+                    gridChaves.Columns[2].Width = 275;
+                    gridChaves.Columns[3].Width = 112;
+                    gridChaves.Columns[4].Width = 100;
+                }
+            }
+            catch { }
+           
         }
 
         private void btnCadastrarProprietario_Click(object sender, EventArgs e)
@@ -95,7 +142,13 @@ namespace situacaoChavesGolden
 
         private void gridProprietarios_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
+            if(e.ColumnIndex == 0)
+            {
+                //cadastroProprietario cp = new cadastroProprietario()
+            }
+            if(e.ColumnIndex == 1)
+            {
+            }
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -184,6 +237,20 @@ namespace situacaoChavesGolden
         private void RetirarToolStripMenuItem_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void GridProprietarios_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+           
+
+            if (e.ColumnIndex == 0 || e.ColumnIndex == 1)
+            {
+                gridProprietarios.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                gridProprietarios.Cursor = Cursors.Arrow;
+            }
         }
     }
 }

@@ -171,9 +171,18 @@ namespace situacaoChavesGolden
 
                         foreach (DataGridViewRow row in gridChaves.Rows)
                         {
-                            database.update(string.Format("UPDATE chave" +
+                            //    string sitChave = database.selectScalar(string.Format("SELECT situacao FROM chave" +
+                            //                                                            " WHERE indice_chave = '{0}'",
+                            //                                                            row.Cells[5].Value.ToString()));
+
+                            if (row.Cells[1].Value.ToString() != "" && row.Cells[1].Value.ToString() != null)
+                            {
+                                database.update(string.Format("UPDATE chave" +
                                        " SET situacao = 'DISPONIVEL'" +
                                        " WHERE indice_chave = '{0}'", row.Cells[5].Value.ToString()));
+                            }
+
+                            
 
 
                             if (!(row.Cells[8].Value.ToString() == "" && row.Cells[9].Value.ToString() == "" && row.Cells[10].Value.ToString() == "" && row.Cells[11].Value.ToString() == ""))
