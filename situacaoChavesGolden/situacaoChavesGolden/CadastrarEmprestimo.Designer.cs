@@ -74,6 +74,7 @@
             this.btnConfirmChave = new System.Windows.Forms.Button();
             this.gridChavesTotal = new System.Windows.Forms.DataGridView();
             this.boxBusca = new System.Windows.Forms.TextBox();
+            this.imagem = new System.Windows.Forms.PictureBox();
             this.groupQuemEmpresta.SuspendLayout();
             this.groupDadosEmp.SuspendLayout();
             this.groupDadosCliente.SuspendLayout();
@@ -85,6 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.panelChaves.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridChavesTotal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagem)).BeginInit();
             this.SuspendLayout();
             // 
             // groupQuemEmpresta
@@ -655,12 +657,22 @@
             this.boxBusca.TabIndex = 0;
             this.boxBusca.TextChanged += new System.EventHandler(this.BoxBusca_TextChanged);
             // 
+            // imagem
+            // 
+            this.imagem.Location = new System.Drawing.Point(-776, 524);
+            this.imagem.Name = "imagem";
+            this.imagem.Size = new System.Drawing.Size(797, 1122);
+            this.imagem.TabIndex = 49;
+            this.imagem.TabStop = false;
+            this.imagem.Visible = false;
+            // 
             // CadastrarEmprestimo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(455, 555);
+            this.Controls.Add(this.imagem);
             this.Controls.Add(this.panelChaves);
             this.Controls.Add(this.painelProp);
             this.Controls.Add(this.groupBox1);
@@ -697,6 +709,7 @@
             this.panelChaves.ResumeLayout(false);
             this.panelChaves.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridChavesTotal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -748,5 +761,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel11;
         private System.Windows.Forms.NumericUpDown qtdChaves;
         private MetroFramework.Controls.MetroLabel metroLabel4;
+        private System.Windows.Forms.PictureBox imagem;
     }
 }

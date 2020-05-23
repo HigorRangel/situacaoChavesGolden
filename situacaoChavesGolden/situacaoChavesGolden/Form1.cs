@@ -168,9 +168,9 @@ namespace situacaoChavesGolden
 
         private void Button1_Click_1(object sender, EventArgs e)
         {
-            GerarRecibos recibo = new GerarRecibos();
+            Form2 f2 = new Form2();
 
-            recibo.reciboEmprestimo();
+            f2.ShowDialog();
         }
     }
 }
