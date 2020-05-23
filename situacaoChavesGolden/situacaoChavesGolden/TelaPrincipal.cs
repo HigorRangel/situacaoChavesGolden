@@ -42,7 +42,7 @@ namespace situacaoChavesGolden
 
         string usuario = "";
 
-
+        PostgreSQL database = new PostgreSQL();
         
         public TelaPrincipal(string codigoUsuario)
         {
@@ -58,6 +58,8 @@ namespace situacaoChavesGolden
         {
             Dashboard dashboard = new Dashboard(usuario);
             atualizarForm(dashboard);
+
+            database.backup(usuario);
         }
 
        
@@ -120,6 +122,11 @@ namespace situacaoChavesGolden
             Retirados ret = new Retirados();
 
             atualizarForm(ret);
+        }
+
+        private void TelaPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            database.backup(usuario);
         }
     }
 }

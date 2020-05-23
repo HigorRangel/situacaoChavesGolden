@@ -53,7 +53,7 @@ namespace situacaoChavesGolden
                                              " WHERE cod_chave = c.indice_chave AND situacao = 'EM ANDAMENTO') as emprestimo" +
                                              " FROM chave C" +
                                              " LEFT JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
-                                             " WHERE ((unaccent(lower(c.rua))) ILIKE '%{0}%' OR (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR (unaccent(lower(c.cidade))) ILIKE '%{0}%' OR (unaccent(lower(c.estado))) ILIKE '%{0}%' OR" +
+                                             " WHERE cod_chave::text ILIKE '{0}' OR ((unaccent(lower(c.rua))) ILIKE '%{0}%' OR (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR (unaccent(lower(c.cidade))) ILIKE '%{0}%' OR (unaccent(lower(c.estado))) ILIKE '%{0}%' OR" +
                                              " (unaccent(lower(c.numero)))  ILIKE '%{0}%' OR (unaccent(lower(c.complemento))) ILIKE '%{0}%' OR (unaccent(lower(c.cod_imob))) ILIKE '%{0}%' OR (unaccent(lower(p.nome))) ILIKE '%{0}%'" +
                                              " OR c.rua  ILIKE '%{0}%' OR c.bairro ILIKE '%{0}%' OR c.cidade ILIKE '%{0}%' OR c.estado ILIKE '%{0}%' OR c.numero ILIKE '%{0}%' OR " +
                                              " c.complemento  ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%') AND " +

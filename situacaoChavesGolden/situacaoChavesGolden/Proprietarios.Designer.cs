@@ -168,6 +168,7 @@
             this.gridProprietarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridProprietarios_CellContentClick);
             this.gridProprietarios.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridProprietarios_CellMouseClick);
             this.gridProprietarios.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridProprietarios_CellMouseEnter);
+            this.gridProprietarios.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridProprietarios_ColumnHeaderMouseClick);
             this.gridProprietarios.SelectionChanged += new System.EventHandler(this.gridProprietarios_SelectionChanged);
             this.gridProprietarios.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridProprietarios_MouseClick);
             // 

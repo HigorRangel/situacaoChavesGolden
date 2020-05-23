@@ -51,11 +51,8 @@ namespace situacaoChavesGolden
                 contatoBox.Text = row[2].ToString();
                 emailBox.Text = row[3].ToString();
 
-                nomeBox.Enabled = false;        
-                contatoBox.Enabled = false;
-                emailBox.Enabled = false;
-                btnCadastrar.Enabled = false;
-                metroLabel4.Text = "Visualizar Proprietário";
+               
+                metroLabel4.Text = "Editar Proprietário";
             }
         }
 

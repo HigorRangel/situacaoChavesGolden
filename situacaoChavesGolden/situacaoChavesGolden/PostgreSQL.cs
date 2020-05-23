@@ -12,6 +12,7 @@ namespace situacaoChavesGolden
 {
     class PostgreSQL
     {
+        
         public string nomeDB = "chaves_golden";
         public string serverBD = Properties.Settings.Default.serverBD;
 
@@ -113,7 +114,6 @@ namespace situacaoChavesGolden
 
         public bool update(string comando)
         {
-
             excluirConn();
             var conn = conectar(); //Chama método de conexão ao Banco de dados
             NpgsqlCommand cmd = new NpgsqlCommand(); //Cria objeto para utilizar os comandos no PostgreSQL
@@ -160,10 +160,16 @@ namespace situacaoChavesGolden
             }
         }
 
-        public void backup(string caminho, string nome)
+        public void backup(string nome)
         {
             excluirConn();
-            MessageBox.Show("-h localhost -p 5432 -U postgres -F c -b -v -f \"" + caminho + nome + "\" postgres");
+
+
+            string nomeArquivo = Environment.CurrentDirectory + @"\BACKUPS\" +
+                DateTime.Now.ToString("yyyy-MM-dd hh.mm.ss") + " - " + nome + ".sql";
+
+            //MessageBox.Show("-h localhost -p 5432 -U postgres -F c -b -v -f \"" + nomeArquivo + "\" postgres");
+
             string varAmbiente = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
             string[] colunas = varAmbiente.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -176,7 +182,7 @@ namespace situacaoChavesGolden
                     process.FileName = variavel + @"pg_dump.exe";
                 
                     process.WindowStyle = ProcessWindowStyle.Minimized;
-                    process.Arguments = "-h localhost -p 5432 -U postgres -F c -b -v -f \"" + caminho + nome + "\" chaves_golden";
+                    process.Arguments = "-h localhost -p 5432 -U postgres -F c -b -v -f \"" + nomeArquivo + "\" chaves_golden";
                     Process processStart = new Process();
                     processStart.StartInfo = process;
                     processStart.Start();

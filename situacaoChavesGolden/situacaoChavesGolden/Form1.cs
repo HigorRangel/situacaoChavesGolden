@@ -47,7 +47,7 @@ namespace situacaoChavesGolden
             catch { }
         }
 
-        private void criarPastaTemp()
+        private void criarPastas()
         {
             string folder = Environment.CurrentDirectory + @"\temp";
             if (!Directory.Exists(folder))
@@ -57,11 +57,18 @@ namespace situacaoChavesGolden
                 Directory.CreateDirectory(folder);
 
             }
+
+            folder = Environment.CurrentDirectory + @"\BACKUPS";
+
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            criarPastaTemp();
+            criarPastas();
             limparTemp();
 
 
@@ -157,6 +164,13 @@ namespace situacaoChavesGolden
         private void ComboUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Button1_Click_1(object sender, EventArgs e)
+        {
+            GerarRecibos recibo = new GerarRecibos();
+
+            recibo.reciboEmprestimo();
         }
     }
 }

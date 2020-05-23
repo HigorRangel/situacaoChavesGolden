@@ -232,6 +232,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="FormatarStrings.cs" />
+    <Compile Include="GerarRecibos.cs" />
     <Compile Include="GerarRelatorio.cs" />
     <Compile Include="HeaderChaves.cs" />
     <Compile Include="ImprimirEtiquetas.cs">

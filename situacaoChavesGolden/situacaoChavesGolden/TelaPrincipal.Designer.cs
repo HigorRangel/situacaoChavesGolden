@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.btnRetirados = new System.Windows.Forms.Button();
             this.btnPropostas = new System.Windows.Forms.Button();
             this.logoImob = new System.Windows.Forms.PictureBox();
             this.btnClientes = new System.Windows.Forms.Button();
@@ -39,7 +40,6 @@
             this.btnChaves = new System.Windows.Forms.Button();
             this.btnInicio = new System.Windows.Forms.Button();
             this.painelPrincipal = new System.Windows.Forms.Panel();
-            this.btnRetirados = new System.Windows.Forms.Button();
             this.metroPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoImob)).BeginInit();
             this.SuspendLayout();
@@ -68,6 +68,22 @@
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
+            // 
+            // btnRetirados
+            // 
+            this.btnRetirados.FlatAppearance.BorderSize = 0;
+            this.btnRetirados.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(16)))), ((int)(((byte)(20)))));
+            this.btnRetirados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(67)))), ((int)(((byte)(87)))));
+            this.btnRetirados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRetirados.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRetirados.ForeColor = System.Drawing.Color.White;
+            this.btnRetirados.Location = new System.Drawing.Point(0, 347);
+            this.btnRetirados.Name = "btnRetirados";
+            this.btnRetirados.Size = new System.Drawing.Size(146, 35);
+            this.btnRetirados.TabIndex = 10;
+            this.btnRetirados.Text = "Retirados";
+            this.btnRetirados.UseVisualStyleBackColor = true;
+            this.btnRetirados.Click += new System.EventHandler(this.BtnRetirados_Click);
             // 
             // btnPropostas
             // 
@@ -216,22 +232,6 @@
             this.painelPrincipal.TabIndex = 1;
             this.painelPrincipal.Paint += new System.Windows.Forms.PaintEventHandler(this.PainelPrincipal_Paint);
             // 
-            // btnRetirados
-            // 
-            this.btnRetirados.FlatAppearance.BorderSize = 0;
-            this.btnRetirados.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(16)))), ((int)(((byte)(20)))));
-            this.btnRetirados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(67)))), ((int)(((byte)(87)))));
-            this.btnRetirados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRetirados.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRetirados.ForeColor = System.Drawing.Color.White;
-            this.btnRetirados.Location = new System.Drawing.Point(0, 347);
-            this.btnRetirados.Name = "btnRetirados";
-            this.btnRetirados.Size = new System.Drawing.Size(146, 35);
-            this.btnRetirados.TabIndex = 10;
-            this.btnRetirados.Text = "Retirados";
-            this.btnRetirados.UseVisualStyleBackColor = true;
-            this.btnRetirados.Click += new System.EventHandler(this.BtnRetirados_Click);
-            // 
             // TelaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,6 +249,7 @@
             this.Style = MetroFramework.MetroColorStyle.Silver;
             this.Text = "TelaPrincipal";
             this.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.TelaPrincipal_Load);
             this.metroPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logoImob)).EndInit();

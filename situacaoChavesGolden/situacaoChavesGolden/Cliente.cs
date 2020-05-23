@@ -44,19 +44,14 @@ namespace situacaoChavesGolden
 
             gridCliente.Columns.Insert(6, cellImageEdit);
 
-            DataGridViewImageColumn cellImageDelete = new DataGridViewImageColumn();
-            cellImageDelete.Image = new Bitmap(Properties.Resources.Delete);
-
-            gridCliente.Columns.Insert(7, cellImageDelete);
 
             gridCliente.Columns[0].Width = 30;
-            gridCliente.Columns[1].Width = 180;
+            gridCliente.Columns[1].Width = 210;
             gridCliente.Columns[2].Width = 150;
             gridCliente.Columns[3].Width = 80;
             gridCliente.Columns[4].Width = 80;
             gridCliente.Columns[5].Width = 50;
             gridCliente.Columns[6].Width = 30;
-            gridCliente.Columns[7].Width = 30;
 
             gridCliente.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -73,7 +68,7 @@ namespace situacaoChavesGolden
         private void GridCliente_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
 
-            if(e.ColumnIndex == 0 || e.ColumnIndex == 1)
+            if(e.ColumnIndex == 0)
             {
                 gridCliente.Cursor = Cursors.Hand;
             }
@@ -94,14 +89,7 @@ namespace situacaoChavesGolden
             }
 
 
-            if (e.ColumnIndex == 1)
-            {
-                gridCliente.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                gridCliente.Cursor = Cursors.Arrow;
-            }
+        
         }
 
         private void GridCliente_SelectionChanged(object sender, EventArgs e)

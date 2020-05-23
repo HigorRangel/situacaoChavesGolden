@@ -39,21 +39,17 @@ namespace situacaoChavesGolden
                 gridProprietarios.Columns[3].HeaderText = "Email do Proprietário";
 
                 DataGridViewImageColumn cellImageEdit = new DataGridViewImageColumn();
-                cellImageEdit.Image = new Bitmap(Properties.Resources.Delete);
+                cellImageEdit.Image = new Bitmap(Properties.Resources.Edit);
 
                 gridProprietarios.Columns.Insert(4, cellImageEdit);
 
-                DataGridViewImageColumn cellImageDelete = new DataGridViewImageColumn();
-                cellImageDelete.Image = new Bitmap(Properties.Resources.Edit);
-
-                gridProprietarios.Columns.Insert(4, cellImageDelete);
+                
 
                 gridProprietarios.Columns[0].Width = 50;
-                gridProprietarios.Columns[1].Width = 208;
+                gridProprietarios.Columns[1].Width = 238;
                 gridProprietarios.Columns[2].Width = 100;
                 gridProprietarios.Columns[3].Width = 170;
                 gridProprietarios.Columns[4].Width = 30;
-                gridProprietarios.Columns[5].Width = 30;
 
             }
             catch { }
@@ -63,6 +59,12 @@ namespace situacaoChavesGolden
         private void Proprietarios_Load(object sender, EventArgs e)
         {
             atualizarGridProprietarios();
+
+            gridProprietarios.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
+            gridProprietarios.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
+            gridProprietarios.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
+            gridProprietarios.Columns[3].SortMode = DataGridViewColumnSortMode.NotSortable;
+
         }
 
         private void atualizarGridChave()
@@ -163,28 +165,11 @@ namespace situacaoChavesGolden
 
         private void gridProprietarios_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+
+            DataGridView.HitTestInfo hit = gridProprietarios.HitTest(e.X, e.Y);
+            if (hit.Type == DataGridViewHitTestType.ColumnHeader)
             {
-
-                if (gridProprietarios.CurrentCell != null)
-                {
-                    DataGridView.HitTestInfo info;
-                    info = gridProprietarios.HitTest(e.X, e.Y);
-                    if (info.Type == DataGridViewHitTestType.Cell)
-                    {
-                        if (info.Type == DataGridViewHitTestType.Cell && info.ColumnIndex == 1)
-                            gridProprietarios.CurrentCell.Selected = false;
-                        gridProprietarios[info.ColumnIndex, info.RowIndex].Selected = true;
-                        gridProprietarios.Refresh();
-                        contextMenuStrip1.Show(gridProprietarios, new Point(e.X, e.Y));
-                    }
-                }
-
-
-
-                DataRowView rowView = gridProprietarios.SelectedRows[0].DataBoundItem as DataRowView;
-
-                DataRow dtRow = rowView.Row;
+                return;
             }
 
         }
@@ -199,7 +184,14 @@ namespace situacaoChavesGolden
 
         private void GridProprietarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if(e.ColumnIndex == 0)
+            {
+                cadastroProprietario cadProp = new cadastroProprietario(proprietariosTable.Rows[e.RowIndex][e.ColumnIndex].ToString());
+                cadProp.ShowDialog();
+                atualizarGridChave();
+                
+            }
+           
         }
 
         private void ExcluirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -243,7 +235,7 @@ namespace situacaoChavesGolden
         {
            
 
-            if (e.ColumnIndex == 0 || e.ColumnIndex == 1)
+            if (e.ColumnIndex == 0)
             {
                 gridProprietarios.Cursor = Cursors.Hand;
             }
@@ -251,6 +243,11 @@ namespace situacaoChavesGolden
             {
                 gridProprietarios.Cursor = Cursors.Arrow;
             }
+        }
+
+        private void GridProprietarios_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+           
         }
     }
 }
