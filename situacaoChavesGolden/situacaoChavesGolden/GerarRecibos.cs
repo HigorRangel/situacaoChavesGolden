@@ -56,7 +56,23 @@ namespace situacaoChavesGolden
 
             return tabelaDados;
         }
-      
+
+        private DataTable buscarDadosChaves(string codigo)
+        {
+            DataTable tabelaDados = new DataTable();
+
+            tabelaDados = database.select(string.Format("SELECT c.cod_chave," +
+                                                        " c.rua || ', ' || c.numero ||" +
+                                                        " CASE WHEN c.complemento IS NULL OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END, " +
+                                                        " ce.quant_chaves, ce.quant_controles " +
+                                                        " FROM chaves_emprestimo ce " +
+                                                        " INNER JOIN emprestimo e ON e.cod_emprestimo = ce.cod_emprestimo " +
+                                                        " INNER JOIN chave c ON c.indice_chave = ce.cod_chave" +
+                                                        " WHERE ce.cod_emprestimo = '{0}'", codigo));
+
+            return tabelaDados;
+        }
+
         public void reciboEmprestimo(PictureBox picBox, string codigo)
         {
             //string caminho = Environment.CurrentDirectory + @"\temp\recibo-" +
@@ -95,8 +111,8 @@ namespace situacaoChavesGolden
 
             //showDocument(caminho);
 
-            DataTable tabela = new DataTable();
-            tabela = buscarDadosEmprestimo(codigo);
+            DataTable tabelaEmprestimo = new DataTable();
+            tabelaEmprestimo = buscarDadosEmprestimo(codigo);
 
             DateTime dateRet = new DateTime();
             string dataRetirada = "";
@@ -106,7 +122,7 @@ namespace situacaoChavesGolden
             string docCliente = "";
             string enderecoCliente = "";
 
-            foreach(DataRow row in tabela.Rows)
+            foreach(DataRow row in tabelaEmprestimo.Rows)
             {
                 dateRet = (DateTime)row[0];
                 dataRetirada = dateRet.ToString("dd/MM/yyyy hh:mm:ss");
@@ -115,6 +131,22 @@ namespace situacaoChavesGolden
                 cpfCliente = row[3].ToString();
                 docCliente = row[4].ToString();
                 enderecoCliente = row[5].ToString();
+            }
+
+            DataTable tabelaChaves = new DataTable();
+            tabelaChaves = buscarDadosChaves(codigo);
+
+            string codigos = "\n";
+            string enderecos = "\n";
+            string qtdChaves = "\n";
+            string qtdControles = "\n";
+
+            foreach(DataRow row in tabelaChaves.Rows)
+            {
+                codigos += row[0].ToString() + "\n\n";
+                enderecos += row[1].ToString() + "\n\n";
+                qtdChaves += row[2].ToString() + "\n\n";
+                qtdControles += row[3].ToString() + "\n\n";
             }
             
             ImprimirEtiquetas usarMetodo = new ImprimirEtiquetas();
@@ -139,14 +171,14 @@ namespace situacaoChavesGolden
 
             //>>>>>>>>>>>>>> RETANGULO HEADER <<<<<<<<<<<<<<<<<<<<<<
             Point pHeader = new Point(pBase.X, pBase.Y);
-            Size sHeader = new Size(sBase.Width, usarMetodo.cmToPixel(2));
+            Size sHeader = new Size(sBase.Width, usarMetodo.cmToPixel(1.5));
             Rectangle rectHeader = new Rectangle(pHeader, sHeader);
 
             drawer.DrawRectangle(pen, rectHeader);
 
-            //>>>>>>>>>>>> RETANGULO LOGO <<<<<<<<<<<<<<<<<<<<<<<<
+            //>>>>>>>>>>>>>>>>>>>> RETANGULO LOGO <<<<<<<<<<<<<<<<<<<<<<<<
             Point pLogo = new Point(pHeader.X + 6, pHeader.Y + 5);
-            Size sLogo = new Size(usarMetodo.cmToPixel(4), sHeader.Height - 11);
+            Size sLogo = new Size(usarMetodo.cmToPixel(3), sHeader.Height - 20);
             Rectangle rectLogo = new Rectangle(pLogo, sLogo);
 
             //drawer.DrawRectangle(pen, rectLogo);
@@ -154,13 +186,15 @@ namespace situacaoChavesGolden
 
             //>>>>>>>>>>>>>>> RETANGULO TEXTO HEADER  1 <<<<<<<<<<<<<<<<
             Point pTextHeader1 = new Point(pLogo.X + sLogo.Width + 9, pLogo.Y);
-            Size sTextHeader1 = new Size(sHeader.Width - sLogo.Width - 250, sLogo.Height);
+            Size sTextHeader1 = new Size(sHeader.Width - sLogo.Width - 250, sLogo.Height + 10);
             Rectangle rectTextHeader1 = new Rectangle(pTextHeader1, sTextHeader1);
 
+            // drawer.DrawRectangle(pen, rectTextHeader1);
+
             //>>>>>>>>>>>>>> Texto Header <<<<<<<<<<<<<<
-            Font fonteHeader1 = new Font("Consolas", 8.5f, FontStyle.Bold);
-            string textoHeader1 = "IMOBILIÁRIA SÃO BERNARDO LTDA\n\n" +
-                                  "Rua Fernando Camargo, 587 - Centro - Americana/SP\n\n" +
+            Font fonteHeader1 = new Font("Consolas", 9, FontStyle.Bold);
+            string textoHeader1 = "IMOBILIÁRIA SÃO BERNARDO LTDA\n" +
+                                  "Rua Fernando Camargo, 587 - Centro - Americana/SP\n" +
                                   "(19) 3406-2423 / (19) 9 9110-8041";
             StringFormat formatTxtHeader = new StringFormat();
             formatTxtHeader.LineAlignment = StringAlignment.Center;
@@ -174,6 +208,8 @@ namespace situacaoChavesGolden
             Size sTextHeader2 = new Size(sHeader.Width - (sLogo.Width + sTextHeader1.Width) - 25, sTextHeader1.Height);
             Rectangle rectTextHeader2 = new Rectangle(pTextHeader2, sTextHeader2);
 
+            //drawer.DrawRectangle(pen, rectTextHeader2);
+
             //>>>>>>>>>>>>>>>>> Divisória <<<<<<<<<<<<<<<<<<<<
 
 
@@ -182,7 +218,7 @@ namespace situacaoChavesGolden
 
             //>>>>>>>>>>>>>> Texto Header 2<<<<<<<<<<<<<<
             Font fonteHeader2 = new Font("Consolas", 8, FontStyle.Bold);
-            string textoHeader2 = string.Format("Funcionário(a): {0}\n\n\n" +
+            string textoHeader2 = string.Format("Funcionário(a): {0}\n\n" +
                                   "Gerado em: {1}", funcionario, dataRetirada);
             StringFormat formatTxtHeader2 = new StringFormat();
             formatTxtHeader2.LineAlignment = StringAlignment.Center;
@@ -193,8 +229,8 @@ namespace situacaoChavesGolden
             //drawer.DrawRectangle(pen, rectTextHeader2);
 
             //>>>>>>>>>>>>>>>>>>> Título <<<<<<<<<<<<<<<<<<
-            Point pTitulo = new Point(pHeader.X, pHeader.Y + sHeader.Height);
-            Size sTitulo = new Size(sHeader.Width, usarMetodo.cmToPixel(0.8));
+            Point pTitulo = new Point(pHeader.X, pHeader.Y + sHeader.Height + 5);
+            Size sTitulo = new Size(sHeader.Width, usarMetodo.cmToPixel(0.6));
             Rectangle rectTitulo = new Rectangle(pTitulo, sTitulo);
 
             //drawer.DrawRectangle(pen, rectTitulo);
@@ -209,36 +245,112 @@ namespace situacaoChavesGolden
 
 
 
-            //>>>>>>>>>>>>>>>>>>>>> Header Coluna Nome <<<<<<<<<<<<<<<<<<<<<<<<<<
-            Point pColHeaderCodigos = new Point(pHeader.X + 13, pTitulo.Y + sTitulo.Height + 10);
+            //>>>>>>>>>>>>>>>>>>>>> Header Coluna códigos <<<<<<<<<<<<<<<<<<<<<<<<<<
+            Point pColHeaderCodigos = new Point(pHeader.X + 13, pTitulo.Y + sTitulo.Height + 5);
             Size sColHeaderCodigos = new Size(48, usarMetodo.cmToPixel(0.5));
             Rectangle rectColHeaderCodigos = new Rectangle(pColHeaderCodigos, sColHeaderCodigos);
 
-            drawer.DrawRectangle(pen, rectColHeaderCodigos);
+            //drawer.DrawRectangle(pen, rectColHeaderCodigos);
 
             //>>>>>>>>>>>>>>>>>>>>> Coluna códigos <<<<<<<<<<<<<<<<<<<<<<<<<<
             Point pColCodigos = new Point(pColHeaderCodigos.X, pColHeaderCodigos.Y + sColHeaderCodigos.Height + 10);
-            Size sColCodigos = new Size(42, 315);
+            Size sColCodigos = new Size(sColHeaderCodigos.Width, 340) ;
             Rectangle rectColCodigos = new Rectangle(pColCodigos, sColCodigos);
 
-            drawer.DrawRectangle(pen, rectColCodigos);
+            //drawer.DrawRectangle(pen, rectColCodigos);
 
-            Font fontColChaves = new Font("Consolas", 11, FontStyle.Regular);
+            Font fontColChaves = new Font("Consolas", 10, FontStyle.Regular);
             Font fontColHeaderChaves = new Font("Consolas", 11, FontStyle.Bold);
             StringFormat formatColChaves = new StringFormat();
-            formatColChaves.LineAlignment = StringAlignment.Center;
+            //formatColChaves.LineAlignment = StringAlignment.Center;
             formatColChaves.Alignment = StringAlignment.Center;
 
             drawer.DrawString("Chave", fontColHeaderChaves, new SolidBrush(Color.Gray), rectColHeaderCodigos, formatColChaves);
-            drawer.DrawString("\n10\n\n5\n\n6\n\n8\n\n26\n\n78\n\n" +
-                                    "123\n\n21\n\n123\n\n1", fontColChaves, new SolidBrush(Color.Gray), rectColCodigos, formatColChaves);
+            drawer.DrawString(codigos + "1\n\n1\n\n2\n\n3\n\n4", fontColChaves, new SolidBrush(Color.Gray), rectColCodigos, formatColChaves);
 
 
             //>>>>>>>>>>>>>>>>>>>> Header Coluna Endereço <<<<<<<<<<<<<<<<
+            Point pColHeaderEndereco = new Point(pColHeaderCodigos.X + sColHeaderCodigos.Width + 15, pColHeaderCodigos.Y);
+            Size sColHeaderEndereco = new Size(535, sColHeaderCodigos.Height);
+            Rectangle rectColHeaderEndereco = new Rectangle(pColHeaderEndereco, sColHeaderEndereco);
+
+            Font fontColHeaderEndereco = new Font("Consolas", 11, FontStyle.Bold);
+            StringFormat formatColHeaderEndereco = new StringFormat();
+            //formatColHeaderEndereco.LineAlignment = StringAlignment.Center;
+            formatColHeaderEndereco.Alignment = StringAlignment.Center;
+
+            drawer.DrawString("Endereço", fontColHeaderChaves, new SolidBrush(Color.Gray), rectColHeaderEndereco, formatColHeaderEndereco);
+            //drawer.DrawRectangle(pen, rectColHeaderEndereco);
+
             //>>>>>>>>>>>>>>>>>>>> Coluna endereço <<<<<<<<<<<<<<<<<<
-            Point pColEndereco = new Point(pColCodigos)
+            Point pColEndereco = new Point(pColCodigos.X + sColCodigos.Width + 15, pColCodigos.Y);
+            Size sColEndereco = new Size(535, sColCodigos.Height);
+            Rectangle rectColEndereco = new Rectangle(pColEndereco, sColEndereco);
+
+            StringFormat formatColEndereco = new StringFormat();
+            //formatColEndereco.LineAlignment = StringAlignment.Center;
+            formatColEndereco.Alignment = StringAlignment.Near;
+
+            drawer.DrawString(enderecos, fontColChaves, new SolidBrush(Color.Gray), rectColEndereco, formatColEndereco);
+
+            //drawer.DrawRectangle(pen, rectColEndereco);
+
+            //>>>>>>>>>>>>>> Header Coluna Quant Chaves <<<<<<<<<<<<<<<<<
+            Point pColHeaderQtdChaves = new Point(pColHeaderEndereco.X + sColHeaderEndereco.Width + 15, pColHeaderEndereco.Y - 15);
+            Size sColHeaderQtdChaves = new Size(50, sColHeaderEndereco.Height * 2);
+            Rectangle rectHeaderQtdChaves = new Rectangle(pColHeaderQtdChaves, sColHeaderQtdChaves);
+            Font fontColHeaderQtdChaves = new Font("Consolas", 9, FontStyle.Bold);
+            StringFormat formatHeaderQtds = new StringFormat();
+            formatHeaderQtds.LineAlignment = StringAlignment.Far;
+            formatHeaderQtds.Alignment = StringAlignment.Center;
+            
+            drawer.DrawString("Qtd Chaves", fontColHeaderQtdChaves, new SolidBrush(Color.Gray), rectHeaderQtdChaves, formatHeaderQtds);
+            //drawer.DrawRectangle(pen, rectHeaderQtdChaves);
+
+            //>>>>>>>>>>>>>>> Coluna Quant Chaves <<<<<<<<<<<<<<<<
+            Point pColQtdChaves = new Point(pColHeaderQtdChaves.X, pColEndereco.Y);
+            Size sColQtdChaves = new Size(sColHeaderQtdChaves.Width, sColEndereco.Height);
+            Rectangle rectQtdChaves = new Rectangle(pColQtdChaves, sColQtdChaves);
+
+            drawer.DrawString(qtdChaves, fontColChaves, new SolidBrush(Color.Gray), rectQtdChaves, formatColChaves);
+
+            //drawer.DrawRectangle(pen, rectQtdChaves);
+
+            //>>>>>>>>>>>> Header Coluna Quant Controles <<<<<<<<<<<<<
+            Point pColHeaderQtdCtrl = new Point(pColHeaderQtdChaves.X + sColHeaderQtdChaves.Width + 15, pColHeaderQtdChaves.Y);
+            Size sColHeaderQtdCtrl = new Size(50, sColHeaderQtdChaves.Height);
+            Rectangle rectQtdHeaderCtrl = new Rectangle(pColHeaderQtdCtrl, sColHeaderQtdCtrl);
+
+            drawer.DrawString("Qtd Ctrls", fontColHeaderQtdChaves, new SolidBrush(Color.Gray), rectQtdHeaderCtrl, formatHeaderQtds);
+
+            //drawer.DrawRectangle(pen, rectQtdHeaderCtrl);
+
+
+            //>>>>>>>>>>>>>>> Coluna Quant Controles <<<<<<<<<<<<<<<<
+            Point pColQtdCtrl = new Point(pColHeaderQtdCtrl.X, pColQtdChaves.Y);
+            Size sColQtdCtrl = new Size(sColHeaderQtdCtrl.Width, sColQtdChaves.Height);
+            Rectangle rectQtdCtrl = new Rectangle(pColQtdCtrl, sColQtdCtrl);
+
+            drawer.DrawString(qtdControles, fontColChaves, new SolidBrush(Color.Gray), rectQtdCtrl, formatColChaves);
+
+            //drawer.DrawRectangle(pen, rectQtdCtrl);
+
+            //>>>>>>>>>>>>>>>>>>>> FOOTER <<<<<<<<<<<<<<<<<<<
+            Point pFooter = new Point(pBase.X, pBase.Y + sBase.Height - 120);
+            Size sFooter = new Size(sBase.Width, 120);
+            Rectangle rectFooter = new Rectangle(pFooter, sFooter);
+
+            drawer.DrawRectangle(pen, rectFooter);
+
+            //>>>>>>>>>>>>>>>>>>> DIV 1 <<<<<<<<<<<<<<<<<<
+            Point pDiv1 = new Point(pFooter.X, pFooter.Y);
+            Size sDiv1 = new Size(sFooter.Width / 2, sFooter.Height);
+            Rectangle rectDiv1 = new Rectangle(pDiv1, sDiv1);
+
+            drawer.DrawRectangle(pen, rectDiv1);
 
             picBox.BackgroundImage = img;
+
 
 
 

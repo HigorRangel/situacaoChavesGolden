@@ -28,7 +28,7 @@ namespace situacaoChavesGolden
         private void button1_Click(object sender, EventArgs e)
         {
             GerarRecibos gr = new GerarRecibos();
-            gr.reciboEmprestimo(imagem, "17");
+            gr.reciboEmprestimo(imagem, "11");
 
             //ImprimirEtiquetas usarMetodo = new ImprimirEtiquetas();
 
