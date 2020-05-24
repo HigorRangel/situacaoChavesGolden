@@ -349,6 +349,44 @@ namespace situacaoChavesGolden
 
             drawer.DrawRectangle(pen, rectDiv1);
 
+            string dadosCliente = string.Format("  Nome: {0}\n\n" +
+                                                "  Documento: {1}\n\n" +
+                                                "  CPF: {2}\n\n" +
+                                                "  Endereço: {3}", cliente.ToUpper(), docCliente, cpfCliente, enderecoCliente.ToUpper());
+            Font fontDiv1 = new Font("Consolas", 10, FontStyle.Bold);
+            StringFormat formatDiv1 = new StringFormat();
+            formatDiv1.Alignment = StringAlignment.Near;
+            formatDiv1.LineAlignment = StringAlignment.Near;
+
+            drawer.DrawString(dadosCliente, fontDiv1, new SolidBrush(Color.Black), rectDiv1);
+
+
+            //>>>>>>>>>>>>>>>>>>>>>> DIV 2 <<<<<<<<<<<<<<<<<<<<
+            Point pDiv2 = new Point(pDiv1.X + sDiv1.Width, pDiv1.Y);
+            Size sDiv2 = new Size(sDiv1.Width / 2, sDiv1.Height);
+            Rectangle rectDiv2 = new Rectangle(pDiv2, sDiv2);
+
+            drawer.DrawRectangle(pen, rectDiv2);
+
+            Pen penAssinatura = new Pen(new SolidBrush(Color.Black), 2);
+
+            Point pLineAss1 = new Point(pDiv2.X + 15, pDiv2.Y + sDiv2.Height - 35);
+            Point pLineAss2 = new Point(pDiv2.X + sDiv2.Width - 15, pDiv2.Y + sDiv2.Height - 35);
+
+            drawer.DrawLine(penAssinatura, pLineAss1, pLineAss2);
+            Font fontTxtAss = new Font("Consolas", 8);
+
+            drawer.DrawString("ASSINATURA DO CLIENTE", fontTxtAss, new SolidBrush(Color.Black), pLineAss1.X + 15, pLineAss1.Y + 2);
+
+
+            //>>>>>>>>>>>>>>>>>>>> DIV 3 <<<<<<<<<<<<<<<<<<<
+            Point pDiv3 = new Point(pDiv2.X + sDiv2.Width, pDiv2.Y);
+            Size sDiv3 = new Size(sDiv2.Width + 2, sDiv2.Height);
+            Rectangle rectDiv3 = new Rectangle(pDiv3, sDiv3);
+
+            drawer.DrawRectangle(pen, rectDiv3);
+
+
             picBox.BackgroundImage = img;
 
 
