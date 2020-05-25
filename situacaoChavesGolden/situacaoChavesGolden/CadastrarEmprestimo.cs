@@ -117,7 +117,7 @@ namespace situacaoChavesGolden
                 }
                 else
                 {
-                    codigo += string.Format(" AND cr.cod_chave = '{0}'", row.Cells[3].Value.ToString());
+                    codigo += string.Format(" OR cr.cod_chave = '{0}'", row.Cells[3].Value.ToString());
 
                 }
                 cont++;
@@ -148,31 +148,16 @@ namespace situacaoChavesGolden
             DataTable tableReservas = new DataTable();
 
             tableReservas = database.select(string.Format("SELECT r.cod_reserva," +
-                  " (CASE  " +
-
-                                                                " WHEN " +
                                                                     " (CASE " +
 
                                                                         " WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
                                                                        "  WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
                                                                         " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
-                                                                          " = 'CLIENTE' THEN r.cod_cliente " +
-                                                                 "  WHEN " +
-                                                                      " (CASE " +
-                                                                          " WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
-                                                                        " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
-                                                                        " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
-                                                                          " = 'PROPRIETARIO' THEN r.cod_proprietario " +
-                                                                 " WHEN " +
-                                                                      " (CASE " +
-                                                                          " WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
-                                                                        " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
-                                                                        " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) " +
-                                                                          " = 'FUNCIONARIO' THEN r.cod_usuario END " +
-                                                                               " ) " +
-                " FROM reserva r" +
-                " INNER JOIN chaves_reserva cr ON cr.cod_reserva = r.cod_reserva" +
-                " WHERE {0} = '{1}'  '{2}'", tipo, codPessoaBox.Text.Trim(), codigo));
+                                                                      
+                                                        " FROM reserva r" +
+                                                        " INNER JOIN chaves_reserva cr ON cr.cod_reserva = r.cod_reserva" +
+                                                        " WHERE {0} = '{1}'  {2}" +
+                                                        " GROUP BY r.cod_reserva", tipo, codPessoaBox.Text.Trim(), codigo));
 
 
             foreach(DataRow row in tableReservas.Rows)
@@ -608,8 +593,8 @@ namespace situacaoChavesGolden
                 string proxCod = "";
                 if (contErros == 0)
                 {
-                    try
-                    {
+                    //try
+                    //{
                         if (tipo == "proprietario")
                         {
                             //database.insertInto(string.Format("" +
@@ -694,12 +679,12 @@ namespace situacaoChavesGolden
 
                         this.Close();
                         this.DialogResult = DialogResult.OK;
-                    }
-                    catch (Exception erro)
-                    {
-                        Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
-                        caixaMensagem.ShowDialog();
-                    }
+                    //}
+                    //catch (Exception erro)
+                    //{
+                    //    Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
+                    //    caixaMensagem.ShowDialog();
+                    //}
 
             }
 
@@ -959,7 +944,7 @@ namespace situacaoChavesGolden
                 " FROM CHAVE c " +
                 " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario" +
                 " WHERE c.situacao = 'DISPONIVEL' AND (c.rua ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%' OR (unaccent(lower(c.rua))) ILIKE '%{0}%' OR" +
-                " (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR c.cod_chave::text ILIKE '%{0}%') {1} {2}", boxBusca.Text, codigos, proprietario));
+                " (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR c.cod_chave::text ILIKE '%{0}%') AND (c.cod_chave is not null AND c.cod_chave != '') {1} {2}", boxBusca.Text, codigos, proprietario));
 
             gridChavesTotal.DataSource = tabelaChaves;
 

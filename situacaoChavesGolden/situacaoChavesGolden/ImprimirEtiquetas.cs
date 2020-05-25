@@ -590,12 +590,51 @@ namespace situacaoChavesGolden
            
             try
             {
+
                 DataGridViewRow row = gridTo.Rows[e.RowIndex];
 
-                if (row.Cells[1].Value.ToString().Length > 50)
+
+
+                //DataTable tabelaPlaca = new DataTable();
+
+                //tabelaPlaca = database.select(string.Format("SELECT categoria_imovel, (CASE WHEN cond is null OR cond = '' THEN '' ELSE cond || ' - '  END) || rua || ', ' || ' Nº ' || numero || " +
+                //                                          " (CASE WHEN complemento = '' THEN '' ELSE '[' || complemento || ']' END) || ' - ' || bairro || " +
+                //                                          " ' (' || cod_imob || ')' as endereco, cod_chave, quant_chaves" +
+                //                                          " FROM chave" +
+                //                                          " WHERE cod_chave = '{0}'", row.Cells[0].Value.ToString()));
+
+                //string texto = "";
+                //foreach (DataRow linha in tabelaPlaca.Rows)
+                //{
+                //    tipo.Add(linha[0].ToString());
+                //    endereco.Add(linha[1].ToString());
+                //    codQuantChave.Add(string.Format("Cód: {0}||Qtd: {1}", linha[2].ToString(), linha[3].ToString()));
+                //    tamanhoFonte.Add(12);
+
+                //    descImovel.Text = linha[1].ToString();
+                //    descTipo.Text = linha[0].ToString().ToUpper();
+                //    descCod.Text = string.Format("Cód: {0}||Qtd: {1}", linha[2].ToString(), linha[3].ToString());
+                //    tamFonte.Value = 12;
+                //}
+
+                string texto = endereco[e.RowIndex];
+
+                Font fonteTexto = new Font("Consolas", 12, FontStyle.Regular, GraphicsUnit.Pixel);
+                Image fakeImage = new Bitmap(1, 1);
+                Graphics graphics = Graphics.FromImage(fakeImage);
+                SizeF size = graphics.MeasureString(texto, fonteTexto);
+
+
+                if (size.Height > imgTexto.Height)
                 {
                     row.DefaultCellStyle.BackColor = Color.FromArgb(255, 176, 176);
-                    row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(199, 76, 76);                }
+                    row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(199, 76, 76);
+                }
+
+                //if (row.Cells[1].Value.ToString().Length > 50)
+                //{
+                //    row.DefaultCellStyle.BackColor = Color.FromArgb(255, 176, 176);
+                //    row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(199, 76, 76);                }
             }
             catch { }
             
@@ -633,7 +672,11 @@ namespace situacaoChavesGolden
 
         private void GridTo_SelectionChanged(object sender, EventArgs e)
         {
-            if(gridTo.CurrentRow.Selected)
+           
+         
+
+
+            if (gridTo.CurrentRow.Selected)
             {
                 descImovel.Text = "";
                 descTipo.Text = "";
@@ -652,6 +695,18 @@ namespace situacaoChavesGolden
                 descImovel.Text = endereco[gridTo.CurrentRow.Index];
                 tamFonte.Value = (int)tamanhoFonte[gridTo.CurrentRow.Index];
                
+            }
+            catch { }
+
+
+            try
+            {
+                Font fonteTexto = new Font("Consolas", 12, FontStyle.Regular, GraphicsUnit.Pixel);
+                Image fakeImage = new Bitmap(1, 1);
+                Graphics graphics = Graphics.FromImage(fakeImage);
+                SizeF size = graphics.MeasureString(descImovel.Text, fonteTexto, imgTexto.Width-5);
+
+                //MessageBox.Show(string.Format("{0} - {1} (MAX: {2})", descImovel.Text, size.Height, imgTexto.Height));
             }
             catch { }
         }

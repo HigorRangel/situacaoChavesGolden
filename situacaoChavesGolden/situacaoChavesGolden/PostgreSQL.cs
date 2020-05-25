@@ -181,8 +181,9 @@ namespace situacaoChavesGolden
                     ProcessStartInfo process = new ProcessStartInfo();
                     process.FileName = variavel + @"pg_dump.exe";
                 
-                    process.WindowStyle = ProcessWindowStyle.Minimized;
+                    process.WindowStyle = ProcessWindowStyle.Hidden;
                     process.Arguments = "-h localhost -p 5432 -U postgres -F c -b -v -f \"" + nomeArquivo + "\" chaves_golden";
+                    process.Arguments = "PGPASSWORD=123456";
                     Process processStart = new Process();
                     processStart.StartInfo = process;
                     processStart.Start();

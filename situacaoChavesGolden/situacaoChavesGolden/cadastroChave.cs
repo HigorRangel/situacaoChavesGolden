@@ -177,6 +177,19 @@ namespace situacaoChavesGolden
         }
 
 
+        bool verificarExistencia(string codImob)
+        {
+            string contRegistros = database.selectScalar(string.Format("SELECT COUNT(*) FROM chave WHERE cod_imob ILIKE '%{0}%'", codImob));
+            bool verif = false;
+
+            if(int.Parse(contRegistros) > 0)
+            {
+                verif = true;
+            }
+
+            return verif;
+        }
+
         private void BtnCadastrar_Click(object sender, EventArgs e)
         {
             int contErro = 0;
@@ -302,32 +315,45 @@ namespace situacaoChavesGolden
                     string proxCod = proximoCodigo();
                     if (seletorTela == false)
                     {
-                        database.insertInto(string.Format("" +
-                        "INSERT INTO chave (rua, numero, complemento, bairro, cidade, estado, situacao," +
-                        " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel, cod_chave, quant_chaves, cond, categoria_imovel)" +
-                        " VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}'," +
-                        " '{11}','{12}', '{13}', '{14}', '{15}', '{16}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
-                         localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, proxCod, boxQtdChaves.Value, boxCond.Text, boxCategImov.Text));
-
-                        Message popup = new Message("A chave foi cadastrada com o código " + proxCod + "!" +
-                           "\n Deseja imprimir a etiqueta da chave?", "", "sucesso", "escolha");
-                        popup.ShowDialog();
-
-                        if (popup.DialogResult == DialogResult.Yes)
+                        if(verificarExistencia(codImovel.Text) == true)
                         {
-                            try
-                            {
-                                ImprimirEtiquetas imprimir = new ImprimirEtiquetas(proxCod);
-                                imprimir.ShowDialog();
-                            }
-                            catch (Exception error)
-                            {
-                                Message erroMsg = new Message("Não foi possível imprimir a etiqueta. \n\nERRO: " + error.Message
-                                    , "", "erro", "confirma");
-                                erroMsg.ShowDialog();
-                            }
-                            
+                            Message msg = new Message(string.Format("Já existe um cadastro de chave do imóvel {0}", codImovel.Text), "", "erro", "confirma");
+                            msg.ShowDialog();
+
                         }
+                        else
+                        {
+                            database.insertInto(string.Format("" +
+                             "INSERT INTO chave (rua, numero, complemento, bairro, cidade, estado, situacao," +
+                             " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel, cod_chave, quant_chaves, cond, categoria_imovel)" +
+                             " VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}'," +
+                             " '{11}','{12}', '{13}', '{14}', '{15}', '{16}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
+                              localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, proxCod, boxQtdChaves.Value, boxCond.Text, boxCategImov.Text));
+
+                            Message popup = new Message("A chave foi cadastrada com o código " + proxCod + "!" +
+                               "\n Deseja imprimir a etiqueta da chave?", "", "sucesso", "escolha");
+                            popup.ShowDialog();
+
+                            if (popup.DialogResult == DialogResult.Yes)
+                            {
+                                try
+                                {
+                                    ImprimirEtiquetas imprimir = new ImprimirEtiquetas(proxCod);
+                                    imprimir.ShowDialog();
+                                }
+                                catch (Exception error)
+                                {
+                                    Message erroMsg = new Message("Não foi possível imprimir a etiqueta. \n\nERRO: " + error.Message
+                                        , "", "erro", "confirma");
+                                    erroMsg.ShowDialog();
+                                }
+
+                            }
+                        }
+
+                      
+
+                      
 
                         this.Close();
 

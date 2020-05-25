@@ -419,16 +419,30 @@ namespace situacaoChavesGolden
 
                 }
 
-                Point pBaseDraw = new Point(pBase.X, pBase.Y);
-                //Size sBaseDraw = new Size(sBase.Width, sBase.Height - (pFooter.Y + sFooter.Height));
-                Size sBaseDraw = new Size(sBase.Width, sHeader.Height + sTitulo.Height + sColHeaderCodigos.Height +
-                                           sColCodigos.Height + sFooter.Height + 20);
+                Point pBaseDraw = new Point();
+                Size sBaseDraw = new Size();
+
+                if (i == 0)
+                {
+                     pBaseDraw = new Point(pBase.X, pBase.Y);
+                    //Size sBaseDraw = new Size(sBase.Width, sBase.Height - (pFooter.Y + sFooter.Height));
+                    sBaseDraw = new Size(sBase.Width, sHeader.Height + sTitulo.Height + sColHeaderCodigos.Height +
+                                               sColCodigos.Height + sFooter.Height + 20);
+                }
+                else
+                {
+                    pBaseDraw = new Point(pBase.X, pBase.Y);
+                    //Size sBaseDraw = new Size(sBase.Width, sBase.Height - (pFooter.Y + sFooter.Height));
+                    sBaseDraw = new Size(sBase.Width, sHeader.Height + sTitulo.Height + sColHeaderCodigos.Height +
+                                               sColCodigos.Height + 20);
+                }
+                
                 Rectangle rectBaseDraw = new Rectangle(pBaseDraw, sBaseDraw);
 
                 drawer.DrawRectangle(pen, rectBaseDraw);
 
                 pBase = new Point(pBaseDraw.X, pBaseDraw.Y + sBaseDraw.Height + 50);
-                sBase = new Size(sBaseDraw.Width, sBaseDraw.Height - 120);
+                sBase = new Size(sBaseDraw.Width, sBaseDraw.Height - sFooter.Height);
 
                 ////>>>>>>>>>>>>>>> Coluna Quant Chaves <<<<<<<<<<<<<<<<
                 //Point pTeste = new Point(pBase.X, pBase.Y + sBase.Height + 50);
