@@ -195,6 +195,12 @@
     <Compile Include="Cliente.Designer.cs">
       <DependentUpon>Cliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfigurarReciboEmprestimo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigurarReciboEmprestimo.Designer.cs">
+      <DependentUpon>ConfigurarReciboEmprestimo.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfigurarRelatorioChaves.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -323,6 +329,9 @@
     <EmbeddedResource Include="Cliente.resx">
       <DependentUpon>Cliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurarReciboEmprestimo.resx">
+      <DependentUpon>ConfigurarReciboEmprestimo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfigurarRelatorioChaves.resx">
       <DependentUpon>ConfigurarRelatorioChaves.cs</DependentUpon>
     </EmbeddedResource>
@@ -400,6 +409,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\Recibo1.png" />
+    <None Include="Resources\Recibo.png" />
     <None Include="Resources\icon.ico" />
     <None Include="Resources\TelaManutenção1.png" />
     <None Include="Resources\TelaManutenção.png" />

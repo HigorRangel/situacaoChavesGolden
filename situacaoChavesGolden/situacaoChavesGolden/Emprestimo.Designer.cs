@@ -45,7 +45,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.dpMaxDataEntrega = new System.Windows.Forms.DateTimePicker();
             this.dpMinDataEntrega = new System.Windows.Forms.DateTimePicker();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnRecibo = new System.Windows.Forms.GroupBox();
             this.checkPrevisEntrega = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dpMaxPrevisEntrega = new System.Windows.Forms.DateTimePicker();
@@ -93,6 +93,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnProrrogar = new System.Windows.Forms.Button();
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.btnBaixa = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -103,7 +104,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             this.filtrosPanel.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.btnRecibo.SuspendLayout();
             this.groupBoxSituacaoCh.SuspendLayout();
             this.groupTipoEmprestimo.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -133,7 +134,6 @@
             // 
             this.btnFiltro.BackColor = System.Drawing.Color.White;
             this.btnFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFiltro.Image = global::situacaoChavesGolden.Properties.Resources.Filter1;
             this.btnFiltro.Location = new System.Drawing.Point(470, 9);
             this.btnFiltro.Name = "btnFiltro";
             this.btnFiltro.Size = new System.Drawing.Size(29, 27);
@@ -198,7 +198,7 @@
             // 
             this.filtrosPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.filtrosPanel.Controls.Add(this.groupBox3);
-            this.filtrosPanel.Controls.Add(this.groupBox1);
+            this.filtrosPanel.Controls.Add(this.btnRecibo);
             this.filtrosPanel.Controls.Add(this.btnRestaurar);
             this.filtrosPanel.Controls.Add(this.btnFiltrar);
             this.filtrosPanel.Controls.Add(this.groupBoxSituacaoCh);
@@ -266,19 +266,19 @@
             this.dpMinDataEntrega.Size = new System.Drawing.Size(95, 20);
             this.dpMinDataEntrega.TabIndex = 0;
             // 
-            // groupBox1
+            // btnRecibo
             // 
-            this.groupBox1.Controls.Add(this.checkPrevisEntrega);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.dpMaxPrevisEntrega);
-            this.groupBox1.Controls.Add(this.dpMinPrevisEntrega);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(15, 128);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(259, 43);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Previsão de entrega";
+            this.btnRecibo.Controls.Add(this.checkPrevisEntrega);
+            this.btnRecibo.Controls.Add(this.label4);
+            this.btnRecibo.Controls.Add(this.dpMaxPrevisEntrega);
+            this.btnRecibo.Controls.Add(this.dpMinPrevisEntrega);
+            this.btnRecibo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecibo.Location = new System.Drawing.Point(15, 128);
+            this.btnRecibo.Name = "btnRecibo";
+            this.btnRecibo.Size = new System.Drawing.Size(259, 43);
+            this.btnRecibo.TabIndex = 4;
+            this.btnRecibo.TabStop = false;
+            this.btnRecibo.Text = "Previsão de entrega";
             // 
             // checkPrevisEntrega
             // 
@@ -826,7 +826,6 @@
             this.btnProrrogar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnProrrogar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnProrrogar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProrrogar.Image = global::situacaoChavesGolden.Properties.Resources.ProrrogarEmprestimo;
             this.btnProrrogar.Location = new System.Drawing.Point(21, 238);
             this.btnProrrogar.Name = "btnProrrogar";
             this.btnProrrogar.Size = new System.Drawing.Size(24, 22);
@@ -834,6 +833,24 @@
             this.toolTip1.SetToolTip(this.btnProrrogar, "Prorrogar Empréstimo");
             this.btnProrrogar.UseVisualStyleBackColor = true;
             this.btnProrrogar.Click += new System.EventHandler(this.btnProrrogar_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::situacaoChavesGolden.Properties.Resources.Recibo2;
+            this.button1.Location = new System.Drawing.Point(80, 238);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(34, 22);
+            this.button1.TabIndex = 46;
+            this.toolTip2.SetToolTip(this.button1, "Dar Baixa");
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // btnBaixa
             // 
@@ -844,7 +861,6 @@
             this.btnBaixa.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnBaixa.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnBaixa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBaixa.Image = global::situacaoChavesGolden.Properties.Resources.BaixaEmprestimo;
             this.btnBaixa.Location = new System.Drawing.Point(47, 238);
             this.btnBaixa.Name = "btnBaixa";
             this.btnBaixa.Size = new System.Drawing.Size(34, 22);
@@ -937,6 +953,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 430);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.filtrosPanel);
             this.Controls.Add(this.gridChavesEmprestimo);
             this.Controls.Add(this.groupBox4);
@@ -969,8 +986,8 @@
             this.filtrosPanel.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.btnRecibo.ResumeLayout(false);
+            this.btnRecibo.PerformLayout();
             this.groupBoxSituacaoCh.ResumeLayout(false);
             this.groupBoxSituacaoCh.PerformLayout();
             this.groupTipoEmprestimo.ResumeLayout(false);
@@ -1040,7 +1057,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dpMaxDataEntrega;
         private System.Windows.Forms.DateTimePicker dpMinDataEntrega;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox btnRecibo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dpMaxPrevisEntrega;
         private System.Windows.Forms.DateTimePicker dpMinPrevisEntrega;
@@ -1057,5 +1074,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridView gridChavesEmprestimo;
+        private System.Windows.Forms.Button button1;
     }
 }

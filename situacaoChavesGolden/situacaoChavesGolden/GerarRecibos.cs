@@ -73,7 +73,7 @@ namespace situacaoChavesGolden
             return tabelaDados;
         }
 
-        public void reciboEmprestimo(PictureBox picBox, string codigo)
+        public void reciboEmprestimo(PictureBox picBox, string codigo, int vias)
         {
             //string caminho = Environment.CurrentDirectory + @"\temp\recibo-" +
             //    DateTime.Now.ToString("yyyy-MM-dd hh.mm.ss") + ".pdf";
@@ -149,10 +149,15 @@ namespace situacaoChavesGolden
                 qtdControles += row[3].ToString() + "\n\n";
             }
             
+            if(tabelaChaves.Rows.Count < 5)
+            {
+                codigos += "\n\n\n\n\n";
+            }
+
             ImprimirEtiquetas usarMetodo = new ImprimirEtiquetas();
             
 
-
+            
             Bitmap img = new Bitmap(usarMetodo.cmToPixel(21), usarMetodo.cmToPixel(29.7));
             Graphics drawer = Graphics.FromImage(img);
 
@@ -162,229 +167,290 @@ namespace situacaoChavesGolden
 
             Pen pen = new Pen(Color.Black, 1);
 
+
             //>>>>>>>>>>>>>>> RETANGULO BASE <<<<<<<<<<<<<<<<<<<<<<<<
-            Point pBase = new Point(15, 15);
+            Point pBase = new Point(5, 5);
             Size sBase = new Size(usarMetodo.cmToPixel(20), usarMetodo.cmToPixel(15));
-            Rectangle rectBase = new Rectangle(pBase, sBase);
 
-            drawer.DrawRectangle(pen, rectBase);
+            for (int i = 0; i < vias; i++)
+            {
+                //if (i == 1)
+                //{
+                //    pBase = new Point(pBase.X, pBase.Y + sBase.Height + 50);
+                //    sBase = new Size(sBase.Width, sBase.Height - 120);
+                //}
 
-            //>>>>>>>>>>>>>> RETANGULO HEADER <<<<<<<<<<<<<<<<<<<<<<
-            Point pHeader = new Point(pBase.X, pBase.Y);
-            Size sHeader = new Size(sBase.Width, usarMetodo.cmToPixel(1.5));
-            Rectangle rectHeader = new Rectangle(pHeader, sHeader);
+                Rectangle rectBase = new Rectangle(pBase, sBase);
 
-            drawer.DrawRectangle(pen, rectHeader);
 
-            //>>>>>>>>>>>>>>>>>>>> RETANGULO LOGO <<<<<<<<<<<<<<<<<<<<<<<<
-            Point pLogo = new Point(pHeader.X + 6, pHeader.Y + 5);
-            Size sLogo = new Size(usarMetodo.cmToPixel(3), sHeader.Height - 20);
-            Rectangle rectLogo = new Rectangle(pLogo, sLogo);
 
-            //drawer.DrawRectangle(pen, rectLogo);
-            drawer.DrawImage(Properties.Resources.logoSbernardo, rectLogo);
+                drawer.DrawRectangle(new Pen(Color.White, 1), rectBase);
 
-            //>>>>>>>>>>>>>>> RETANGULO TEXTO HEADER  1 <<<<<<<<<<<<<<<<
-            Point pTextHeader1 = new Point(pLogo.X + sLogo.Width + 9, pLogo.Y);
-            Size sTextHeader1 = new Size(sHeader.Width - sLogo.Width - 250, sLogo.Height + 10);
-            Rectangle rectTextHeader1 = new Rectangle(pTextHeader1, sTextHeader1);
+                //>>>>>>>>>>>>>> RETANGULO HEADER <<<<<<<<<<<<<<<<<<<<<<
+                Point pHeader = new Point(pBase.X, pBase.Y);
+                Size sHeader = new Size(sBase.Width, usarMetodo.cmToPixel(1.5));
+                Rectangle rectHeader = new Rectangle(pHeader, sHeader);
 
-            // drawer.DrawRectangle(pen, rectTextHeader1);
+                drawer.DrawRectangle(pen, rectHeader);
 
-            //>>>>>>>>>>>>>> Texto Header <<<<<<<<<<<<<<
-            Font fonteHeader1 = new Font("Consolas", 9, FontStyle.Bold);
-            string textoHeader1 = "IMOBILIÁRIA SÃO BERNARDO LTDA\n" +
-                                  "Rua Fernando Camargo, 587 - Centro - Americana/SP\n" +
-                                  "(19) 3406-2423 / (19) 9 9110-8041";
-            StringFormat formatTxtHeader = new StringFormat();
-            formatTxtHeader.LineAlignment = StringAlignment.Center;
+                //>>>>>>>>>>>>>>>>>>>> RETANGULO LOGO <<<<<<<<<<<<<<<<<<<<<<<<
+                Point pLogo = new Point(pHeader.X + 6, pHeader.Y + 5);
+                Size sLogo = new Size(usarMetodo.cmToPixel(3), sHeader.Height - 20);
+                Rectangle rectLogo = new Rectangle(pLogo, sLogo);
 
-            drawer.DrawString(textoHeader1, fonteHeader1, new SolidBrush(Color.Black), rectTextHeader1, formatTxtHeader);
+                //drawer.DrawRectangle(pen, rectLogo);
+                drawer.DrawImage(Properties.Resources.logoSbernardo, rectLogo);
 
-            //drawer.DrawRectangle(pen, rectTextHeader1);
+                //>>>>>>>>>>>>>>> RETANGULO TEXTO HEADER  1 <<<<<<<<<<<<<<<<
+                Point pTextHeader1 = new Point(pLogo.X + sLogo.Width + 9, pLogo.Y);
+                Size sTextHeader1 = new Size(sHeader.Width - sLogo.Width - 250, sLogo.Height + 10);
+                Rectangle rectTextHeader1 = new Rectangle(pTextHeader1, sTextHeader1);
 
-            //>>>>>>>>>>>>>>> RETANGULO TEXTO HEADER 2 <<<<<<<<<<<<<<<<
-            Point pTextHeader2 = new Point(pTextHeader1.X + sTextHeader1.Width + 5, pTextHeader1.Y);
-            Size sTextHeader2 = new Size(sHeader.Width - (sLogo.Width + sTextHeader1.Width) - 25, sTextHeader1.Height);
-            Rectangle rectTextHeader2 = new Rectangle(pTextHeader2, sTextHeader2);
+                // drawer.DrawRectangle(pen, rectTextHeader1);
 
-            //drawer.DrawRectangle(pen, rectTextHeader2);
+                //>>>>>>>>>>>>>> Texto Header <<<<<<<<<<<<<<
+                Font fonteHeader1 = new Font("Consolas", 9, FontStyle.Bold);
+                string textoHeader1 = "IMOBILIÁRIA SÃO BERNARDO LTDA\n" +
+                                      "Rua Fernando Camargo, 587 - Centro - Americana/SP\n" +
+                                      "(19) 3406-2423 / (19) 9 9110-8041";
+                StringFormat formatTxtHeader = new StringFormat();
+                formatTxtHeader.LineAlignment = StringAlignment.Center;
 
-            //>>>>>>>>>>>>>>>>> Divisória <<<<<<<<<<<<<<<<<<<<
+                drawer.DrawString(textoHeader1, fonteHeader1, new SolidBrush(Color.Black), rectTextHeader1, formatTxtHeader);
 
+                //drawer.DrawRectangle(pen, rectTextHeader1);
 
-            drawer.DrawLine(pen, pTextHeader1.X + sTextHeader1.Width + 5, pTextHeader1.Y + 8, pTextHeader1.X + sTextHeader1.Width + 5,
-                                 pTextHeader1.Y + sTextHeader1.Height - 8);
+                //>>>>>>>>>>>>>>> RETANGULO TEXTO HEADER 2 <<<<<<<<<<<<<<<<
+                Point pTextHeader2 = new Point(pTextHeader1.X + sTextHeader1.Width + 5, pTextHeader1.Y);
+                Size sTextHeader2 = new Size(sHeader.Width - (sLogo.Width + sTextHeader1.Width) - 25, sTextHeader1.Height);
+                Rectangle rectTextHeader2 = new Rectangle(pTextHeader2, sTextHeader2);
 
-            //>>>>>>>>>>>>>> Texto Header 2<<<<<<<<<<<<<<
-            Font fonteHeader2 = new Font("Consolas", 8, FontStyle.Bold);
-            string textoHeader2 = string.Format("Funcionário(a): {0}\n\n" +
-                                  "Gerado em: {1}", funcionario, dataRetirada);
-            StringFormat formatTxtHeader2 = new StringFormat();
-            formatTxtHeader2.LineAlignment = StringAlignment.Center;
-            formatTxtHeader2.Alignment = StringAlignment.Far;
+                //drawer.DrawRectangle(pen, rectTextHeader2);
 
-            drawer.DrawString(textoHeader2, fonteHeader2, new SolidBrush(Color.Black), rectTextHeader2, formatTxtHeader2);
+                //>>>>>>>>>>>>>>>>> Divisória <<<<<<<<<<<<<<<<<<<<
 
-            //drawer.DrawRectangle(pen, rectTextHeader2);
 
-            //>>>>>>>>>>>>>>>>>>> Título <<<<<<<<<<<<<<<<<<
-            Point pTitulo = new Point(pHeader.X, pHeader.Y + sHeader.Height + 5);
-            Size sTitulo = new Size(sHeader.Width, usarMetodo.cmToPixel(0.6));
-            Rectangle rectTitulo = new Rectangle(pTitulo, sTitulo);
+                drawer.DrawLine(pen, pTextHeader1.X + sTextHeader1.Width + 5, pTextHeader1.Y + 8, pTextHeader1.X + sTextHeader1.Width + 5,
+                                     pTextHeader1.Y + sTextHeader1.Height - 8);
 
-            //drawer.DrawRectangle(pen, rectTitulo);
+                //>>>>>>>>>>>>>> Texto Header 2<<<<<<<<<<<<<<
+                Font fonteHeader2 = new Font("Consolas", 8, FontStyle.Bold);
+                string textoHeader2 = string.Format("Funcionário(a): {0}\n\n" +
+                                      "Gerado em: {1}", funcionario, dataRetirada);
+                StringFormat formatTxtHeader2 = new StringFormat();
+                formatTxtHeader2.LineAlignment = StringAlignment.Center;
+                formatTxtHeader2.Alignment = StringAlignment.Far;
 
-            Font fonteTitulo = new Font("Consolas", 11, FontStyle.Bold);
-            string titulo = string.Format("RECIBO DE EMPRÉSTIMO DE CHAVES ({0})", codigo);
-            StringFormat formatTitulo = new StringFormat();
-            formatTitulo.LineAlignment = StringAlignment.Center;
-            formatTitulo.Alignment = StringAlignment.Center;
+                drawer.DrawString(textoHeader2, fonteHeader2, new SolidBrush(Color.Black), rectTextHeader2, formatTxtHeader2);
 
-            drawer.DrawString(titulo, fonteTitulo, new SolidBrush(Color.Black), rectTitulo, formatTitulo);
+                //drawer.DrawRectangle(pen, rectTextHeader2);
 
+                //>>>>>>>>>>>>>>>>>>> Título <<<<<<<<<<<<<<<<<<
+                Point pTitulo = new Point(pHeader.X, pHeader.Y + sHeader.Height + 5);
+                Size sTitulo = new Size(sHeader.Width, usarMetodo.cmToPixel(0.6));
+                Rectangle rectTitulo = new Rectangle(pTitulo, sTitulo);
 
+                //drawer.DrawRectangle(pen, rectTitulo);
 
-            //>>>>>>>>>>>>>>>>>>>>> Header Coluna códigos <<<<<<<<<<<<<<<<<<<<<<<<<<
-            Point pColHeaderCodigos = new Point(pHeader.X + 13, pTitulo.Y + sTitulo.Height + 5);
-            Size sColHeaderCodigos = new Size(48, usarMetodo.cmToPixel(0.5));
-            Rectangle rectColHeaderCodigos = new Rectangle(pColHeaderCodigos, sColHeaderCodigos);
+                Font fonteTitulo = new Font("Consolas", 11, FontStyle.Bold);
+                string titulo = string.Format("RECIBO DE EMPRÉSTIMO DE CHAVES ({0})", codigo);
+                StringFormat formatTitulo = new StringFormat();
+                formatTitulo.LineAlignment = StringAlignment.Center;
+                formatTitulo.Alignment = StringAlignment.Center;
+                
+                drawer.DrawString(titulo, fonteTitulo, new SolidBrush(Color.Black), rectTitulo, formatTitulo);
 
-            //drawer.DrawRectangle(pen, rectColHeaderCodigos);
 
-            //>>>>>>>>>>>>>>>>>>>>> Coluna códigos <<<<<<<<<<<<<<<<<<<<<<<<<<
-            Point pColCodigos = new Point(pColHeaderCodigos.X, pColHeaderCodigos.Y + sColHeaderCodigos.Height + 10);
-            Size sColCodigos = new Size(sColHeaderCodigos.Width, 340) ;
-            Rectangle rectColCodigos = new Rectangle(pColCodigos, sColCodigos);
 
-            //drawer.DrawRectangle(pen, rectColCodigos);
+                //>>>>>>>>>>>>>>>>>>>>> Header Coluna códigos <<<<<<<<<<<<<<<<<<<<<<<<<<
+                Point pColHeaderCodigos = new Point(pHeader.X + 13, pTitulo.Y + sTitulo.Height + 5);
+                Size sColHeaderCodigos = new Size(48, usarMetodo.cmToPixel(0.5));
+                Rectangle rectColHeaderCodigos = new Rectangle(pColHeaderCodigos, sColHeaderCodigos);
 
-            Font fontColChaves = new Font("Consolas", 10, FontStyle.Regular);
-            Font fontColHeaderChaves = new Font("Consolas", 11, FontStyle.Bold);
-            StringFormat formatColChaves = new StringFormat();
-            //formatColChaves.LineAlignment = StringAlignment.Center;
-            formatColChaves.Alignment = StringAlignment.Center;
+                //drawer.DrawRectangle(pen, rectColHeaderCodigos);
 
-            drawer.DrawString("Chave", fontColHeaderChaves, new SolidBrush(Color.Gray), rectColHeaderCodigos, formatColChaves);
-            drawer.DrawString(codigos + "1\n\n1\n\n2\n\n3\n\n4", fontColChaves, new SolidBrush(Color.Gray), rectColCodigos, formatColChaves);
+                //>>>>>>>>>>>>>>>>>>>>> Coluna códigos <<<<<<<<<<<<<<<<<<<<<<<<<<
 
+                Font fontColChaves = new Font("Consolas", 10, FontStyle.Regular);
+                Point pColCodigos = new Point(pColHeaderCodigos.X, pColHeaderCodigos.Y + sColHeaderCodigos.Height + 10);
+                Image fakeImage = new Bitmap(1, 1);
+                Graphics graphics = Graphics.FromImage(fakeImage);
+                SizeF size = graphics.MeasureString(codigos, fontColChaves);
 
-            //>>>>>>>>>>>>>>>>>>>> Header Coluna Endereço <<<<<<<<<<<<<<<<
-            Point pColHeaderEndereco = new Point(pColHeaderCodigos.X + sColHeaderCodigos.Width + 15, pColHeaderCodigos.Y);
-            Size sColHeaderEndereco = new Size(535, sColHeaderCodigos.Height);
-            Rectangle rectColHeaderEndereco = new Rectangle(pColHeaderEndereco, sColHeaderEndereco);
+                //Size sTeste = new Size(sColHeaderQtdChaves.Width, sColEndereco.Height);
 
-            Font fontColHeaderEndereco = new Font("Consolas", 11, FontStyle.Bold);
-            StringFormat formatColHeaderEndereco = new StringFormat();
-            //formatColHeaderEndereco.LineAlignment = StringAlignment.Center;
-            formatColHeaderEndereco.Alignment = StringAlignment.Center;
+                Size sColCodigos = new Size(sColHeaderCodigos.Width, (int)size.Height);
+                Rectangle rectColCodigos = new Rectangle(pColCodigos, sColCodigos);
 
-            drawer.DrawString("Endereço", fontColHeaderChaves, new SolidBrush(Color.Gray), rectColHeaderEndereco, formatColHeaderEndereco);
-            //drawer.DrawRectangle(pen, rectColHeaderEndereco);
+                //drawer.DrawRectangle(pen, rectColCodigos);
 
-            //>>>>>>>>>>>>>>>>>>>> Coluna endereço <<<<<<<<<<<<<<<<<<
-            Point pColEndereco = new Point(pColCodigos.X + sColCodigos.Width + 15, pColCodigos.Y);
-            Size sColEndereco = new Size(535, sColCodigos.Height);
-            Rectangle rectColEndereco = new Rectangle(pColEndereco, sColEndereco);
+                Font fontColHeaderChaves = new Font("Consolas", 11, FontStyle.Bold);
+                StringFormat formatColChaves = new StringFormat();
+                //formatColChaves.LineAlignment = StringAlignment.Center;
+                formatColChaves.Alignment = StringAlignment.Center;
 
-            StringFormat formatColEndereco = new StringFormat();
-            //formatColEndereco.LineAlignment = StringAlignment.Center;
-            formatColEndereco.Alignment = StringAlignment.Near;
+                drawer.DrawString("Chave", fontColHeaderChaves, new SolidBrush(Color.DarkSlateGray), rectColHeaderCodigos, formatColChaves);
+                drawer.DrawString(codigos, fontColChaves, new SolidBrush(Color.DarkSlateGray), rectColCodigos, formatColChaves);
+                // + "1\n\n1\n\n2\n\n3\n\n4"
 
-            drawer.DrawString(enderecos, fontColChaves, new SolidBrush(Color.Gray), rectColEndereco, formatColEndereco);
+                //>>>>>>>>>>>>>>>>>>>> Header Coluna Endereço <<<<<<<<<<<<<<<<
+                Point pColHeaderEndereco = new Point(pColHeaderCodigos.X + sColHeaderCodigos.Width + 15, pColHeaderCodigos.Y);
+                Size sColHeaderEndereco = new Size(535, sColHeaderCodigos.Height);
+                Rectangle rectColHeaderEndereco = new Rectangle(pColHeaderEndereco, sColHeaderEndereco);
 
-            //drawer.DrawRectangle(pen, rectColEndereco);
+                Font fontColHeaderEndereco = new Font("Consolas", 11, FontStyle.Bold);
+                StringFormat formatColHeaderEndereco = new StringFormat();
+                //formatColHeaderEndereco.LineAlignment = StringAlignment.Center;
+                formatColHeaderEndereco.Alignment = StringAlignment.Center;
 
-            //>>>>>>>>>>>>>> Header Coluna Quant Chaves <<<<<<<<<<<<<<<<<
-            Point pColHeaderQtdChaves = new Point(pColHeaderEndereco.X + sColHeaderEndereco.Width + 15, pColHeaderEndereco.Y - 15);
-            Size sColHeaderQtdChaves = new Size(50, sColHeaderEndereco.Height * 2);
-            Rectangle rectHeaderQtdChaves = new Rectangle(pColHeaderQtdChaves, sColHeaderQtdChaves);
-            Font fontColHeaderQtdChaves = new Font("Consolas", 9, FontStyle.Bold);
-            StringFormat formatHeaderQtds = new StringFormat();
-            formatHeaderQtds.LineAlignment = StringAlignment.Far;
-            formatHeaderQtds.Alignment = StringAlignment.Center;
-            
-            drawer.DrawString("Qtd Chaves", fontColHeaderQtdChaves, new SolidBrush(Color.Gray), rectHeaderQtdChaves, formatHeaderQtds);
-            //drawer.DrawRectangle(pen, rectHeaderQtdChaves);
+                drawer.DrawString("Endereço", fontColHeaderChaves, new SolidBrush(Color.DarkSlateGray), rectColHeaderEndereco, formatColHeaderEndereco);
+                //drawer.DrawRectangle(pen, rectColHeaderEndereco);
 
-            //>>>>>>>>>>>>>>> Coluna Quant Chaves <<<<<<<<<<<<<<<<
-            Point pColQtdChaves = new Point(pColHeaderQtdChaves.X, pColEndereco.Y);
-            Size sColQtdChaves = new Size(sColHeaderQtdChaves.Width, sColEndereco.Height);
-            Rectangle rectQtdChaves = new Rectangle(pColQtdChaves, sColQtdChaves);
+                //>>>>>>>>>>>>>>>>>>>> Coluna endereço <<<<<<<<<<<<<<<<<<
+                Point pColEndereco = new Point(pColCodigos.X + sColCodigos.Width + 15, pColCodigos.Y);
+                Size sColEndereco = new Size(535, sColCodigos.Height);
+                Rectangle rectColEndereco = new Rectangle(pColEndereco, sColEndereco);
 
-            drawer.DrawString(qtdChaves, fontColChaves, new SolidBrush(Color.Gray), rectQtdChaves, formatColChaves);
+                StringFormat formatColEndereco = new StringFormat();
+                //formatColEndereco.LineAlignment = StringAlignment.Center;
+                formatColEndereco.Alignment = StringAlignment.Near;
 
-            //drawer.DrawRectangle(pen, rectQtdChaves);
+                drawer.DrawString(enderecos, fontColChaves, new SolidBrush(Color.DarkSlateGray), rectColEndereco, formatColEndereco);
 
-            //>>>>>>>>>>>> Header Coluna Quant Controles <<<<<<<<<<<<<
-            Point pColHeaderQtdCtrl = new Point(pColHeaderQtdChaves.X + sColHeaderQtdChaves.Width + 15, pColHeaderQtdChaves.Y);
-            Size sColHeaderQtdCtrl = new Size(50, sColHeaderQtdChaves.Height);
-            Rectangle rectQtdHeaderCtrl = new Rectangle(pColHeaderQtdCtrl, sColHeaderQtdCtrl);
+                //drawer.DrawRectangle(pen, rectColEndereco);
 
-            drawer.DrawString("Qtd Ctrls", fontColHeaderQtdChaves, new SolidBrush(Color.Gray), rectQtdHeaderCtrl, formatHeaderQtds);
+                //>>>>>>>>>>>>>> Header Coluna Quant Chaves <<<<<<<<<<<<<<<<<
+                Point pColHeaderQtdChaves = new Point(pColHeaderEndereco.X + sColHeaderEndereco.Width + 15, pColHeaderEndereco.Y - 15);
+                Size sColHeaderQtdChaves = new Size(50, sColHeaderEndereco.Height * 2);
+                Rectangle rectHeaderQtdChaves = new Rectangle(pColHeaderQtdChaves, sColHeaderQtdChaves);
+                Font fontColHeaderQtdChaves = new Font("Consolas", 9, FontStyle.Bold);
+                StringFormat formatHeaderQtds = new StringFormat();
+                formatHeaderQtds.LineAlignment = StringAlignment.Far;
+                formatHeaderQtds.Alignment = StringAlignment.Center;
 
-            //drawer.DrawRectangle(pen, rectQtdHeaderCtrl);
+                drawer.DrawString("Qtd Chaves", fontColHeaderQtdChaves, new SolidBrush(Color.DarkSlateGray), rectHeaderQtdChaves, formatHeaderQtds);
+                //drawer.DrawRectangle(pen, rectHeaderQtdChaves);
 
+                //>>>>>>>>>>>>>>> Coluna Quant Chaves <<<<<<<<<<<<<<<<
+                Point pColQtdChaves = new Point(pColHeaderQtdChaves.X, pColEndereco.Y);
+                Size sColQtdChaves = new Size(sColHeaderQtdChaves.Width, sColEndereco.Height);
+                Rectangle rectQtdChaves = new Rectangle(pColQtdChaves, sColQtdChaves);
 
-            //>>>>>>>>>>>>>>> Coluna Quant Controles <<<<<<<<<<<<<<<<
-            Point pColQtdCtrl = new Point(pColHeaderQtdCtrl.X, pColQtdChaves.Y);
-            Size sColQtdCtrl = new Size(sColHeaderQtdCtrl.Width, sColQtdChaves.Height);
-            Rectangle rectQtdCtrl = new Rectangle(pColQtdCtrl, sColQtdCtrl);
+                drawer.DrawString(qtdChaves, fontColChaves, new SolidBrush(Color.DarkSlateGray), rectQtdChaves, formatColChaves);
 
-            drawer.DrawString(qtdControles, fontColChaves, new SolidBrush(Color.Gray), rectQtdCtrl, formatColChaves);
+                //drawer.DrawRectangle(pen, rectQtdChaves);
 
-            //drawer.DrawRectangle(pen, rectQtdCtrl);
+                //>>>>>>>>>>>> Header Coluna Quant Controles <<<<<<<<<<<<<
+                Point pColHeaderQtdCtrl = new Point(pColHeaderQtdChaves.X + sColHeaderQtdChaves.Width + 15, pColHeaderQtdChaves.Y);
+                Size sColHeaderQtdCtrl = new Size(50, sColHeaderQtdChaves.Height);
+                Rectangle rectQtdHeaderCtrl = new Rectangle(pColHeaderQtdCtrl, sColHeaderQtdCtrl);
 
-            //>>>>>>>>>>>>>>>>>>>> FOOTER <<<<<<<<<<<<<<<<<<<
-            Point pFooter = new Point(pBase.X, pBase.Y + sBase.Height - 120);
-            Size sFooter = new Size(sBase.Width, 120);
-            Rectangle rectFooter = new Rectangle(pFooter, sFooter);
+                drawer.DrawString("Qtd Ctrls", fontColHeaderQtdChaves, new SolidBrush(Color.DarkSlateGray), rectQtdHeaderCtrl, formatHeaderQtds);
 
-            drawer.DrawRectangle(pen, rectFooter);
+                //drawer.DrawRectangle(pen, rectQtdHeaderCtrl);
 
-            //>>>>>>>>>>>>>>>>>>> DIV 1 <<<<<<<<<<<<<<<<<<
-            Point pDiv1 = new Point(pFooter.X, pFooter.Y);
-            Size sDiv1 = new Size(sFooter.Width / 2, sFooter.Height);
-            Rectangle rectDiv1 = new Rectangle(pDiv1, sDiv1);
 
-            drawer.DrawRectangle(pen, rectDiv1);
+                //>>>>>>>>>>>>>>> Coluna Quant Controles <<<<<<<<<<<<<<<<
+                Point pColQtdCtrl = new Point(pColHeaderQtdCtrl.X, pColQtdChaves.Y);
+                Size sColQtdCtrl = new Size(sColHeaderQtdCtrl.Width, sColQtdChaves.Height);
+                Rectangle rectQtdCtrl = new Rectangle(pColQtdCtrl, sColQtdCtrl);
 
-            string dadosCliente = string.Format("  Nome: {0}\n\n" +
-                                                "  Documento: {1}\n\n" +
-                                                "  CPF: {2}\n\n" +
-                                                "  Endereço: {3}", cliente.ToUpper(), docCliente, cpfCliente, enderecoCliente.ToUpper());
-            Font fontDiv1 = new Font("Consolas", 10, FontStyle.Bold);
-            StringFormat formatDiv1 = new StringFormat();
-            formatDiv1.Alignment = StringAlignment.Near;
-            formatDiv1.LineAlignment = StringAlignment.Near;
+                drawer.DrawString(qtdControles, fontColChaves, new SolidBrush(Color.DarkSlateGray), rectQtdCtrl, formatColChaves);
 
-            drawer.DrawString(dadosCliente, fontDiv1, new SolidBrush(Color.Black), rectDiv1);
+                //drawer.DrawRectangle(pen, rectQtdCtrl);
+                //>>>>>>>>>>>>>>>>>>>>. Base desenhada <<<<<<<<<<<<<<<<<<
 
+                Point pFooter = new Point(pBase.X, pColCodigos.Y + sColCodigos.Height);
+                Size sFooter = new Size(sBase.Width, 120);
 
-            //>>>>>>>>>>>>>>>>>>>>>> DIV 2 <<<<<<<<<<<<<<<<<<<<
-            Point pDiv2 = new Point(pDiv1.X + sDiv1.Width, pDiv1.Y);
-            Size sDiv2 = new Size(sDiv1.Width / 2, sDiv1.Height);
-            Rectangle rectDiv2 = new Rectangle(pDiv2, sDiv2);
+                if (i == 0)
+                {
+                    
+                  
+                    Rectangle rectFooter = new Rectangle(pFooter, sFooter);
 
-            drawer.DrawRectangle(pen, rectDiv2);
+                    drawer.DrawRectangle(pen, rectFooter);
 
-            Pen penAssinatura = new Pen(new SolidBrush(Color.Black), 2);
+                    //>>>>>>>>>>>>>>>>>>> DIV 1 <<<<<<<<<<<<<<<<<<
+                    Point pDiv1 = new Point(pFooter.X, pFooter.Y);
+                    Size sDiv1 = new Size(sFooter.Width / 2, sFooter.Height);
+                    Rectangle rectDiv1 = new Rectangle(pDiv1, sDiv1);
 
-            Point pLineAss1 = new Point(pDiv2.X + 15, pDiv2.Y + sDiv2.Height - 35);
-            Point pLineAss2 = new Point(pDiv2.X + sDiv2.Width - 15, pDiv2.Y + sDiv2.Height - 35);
+                    drawer.DrawRectangle(pen, rectDiv1);
 
-            drawer.DrawLine(penAssinatura, pLineAss1, pLineAss2);
-            Font fontTxtAss = new Font("Consolas", 8);
+                    string dadosCliente = string.Format("  Nome: {0}\n\n" +
+                                                        "  Documento: {1}\n\n" +
+                                                        "  CPF: {2}\n\n" +
+                                                        "  Endereço: {3}", cliente.ToUpper(), docCliente, cpfCliente, enderecoCliente.ToUpper());
+                    Font fontDiv1 = new Font("Consolas", 10, FontStyle.Bold);
+                    StringFormat formatDiv1 = new StringFormat();
+                    formatDiv1.Alignment = StringAlignment.Near;
+                    formatDiv1.LineAlignment = StringAlignment.Near;
 
-            drawer.DrawString("ASSINATURA DO CLIENTE", fontTxtAss, new SolidBrush(Color.Black), pLineAss1.X + 15, pLineAss1.Y + 2);
+                    drawer.DrawString(dadosCliente, fontDiv1, new SolidBrush(Color.Black), rectDiv1);
 
 
-            //>>>>>>>>>>>>>>>>>>>> DIV 3 <<<<<<<<<<<<<<<<<<<
-            Point pDiv3 = new Point(pDiv2.X + sDiv2.Width, pDiv2.Y);
-            Size sDiv3 = new Size(sDiv2.Width + 2, sDiv2.Height);
-            Rectangle rectDiv3 = new Rectangle(pDiv3, sDiv3);
+                    //>>>>>>>>>>>>>>>>>>>>>> DIV 2 <<<<<<<<<<<<<<<<<<<<
+                    Point pDiv2 = new Point(pDiv1.X + sDiv1.Width, pDiv1.Y);
+                    Size sDiv2 = new Size(sDiv1.Width / 2, sDiv1.Height);
+                    Rectangle rectDiv2 = new Rectangle(pDiv2, sDiv2);
 
-            drawer.DrawRectangle(pen, rectDiv3);
+                    drawer.DrawRectangle(pen, rectDiv2);
+
+                    Pen penAssinatura = new Pen(new SolidBrush(Color.Black), 2);
+
+                    Point pLineAss1 = new Point(pDiv2.X + 15, pDiv2.Y + sDiv2.Height - 35);
+                    Point pLineAss2 = new Point(pDiv2.X + sDiv2.Width - 15, pDiv2.Y + sDiv2.Height - 35);
+
+                    drawer.DrawLine(penAssinatura, pLineAss1, pLineAss2);
+                    Font fontTxtAss = new Font("Consolas", 8);
+
+                    drawer.DrawString("ASSINATURA DO CLIENTE", fontTxtAss, new SolidBrush(Color.Black), pLineAss1.X + 15, pLineAss1.Y + 2);
+
+
+                    //>>>>>>>>>>>>>>>>>>>> DIV 3 <<<<<<<<<<<<<<<<<<<
+                    Point pDiv3 = new Point(pDiv2.X + sDiv2.Width, pDiv2.Y);
+                    Size sDiv3 = new Size(sDiv2.Width + 2, sDiv2.Height);
+                    Rectangle rectDiv3 = new Rectangle(pDiv3, sDiv3);
+
+                    drawer.DrawRectangle(pen, rectDiv3);
+                    drawer.DrawString("\n Entrega: ___/___/_____\n\n\n\n" +
+                                      " Funcionário: _________", fontDiv1, new SolidBrush(Color.Black), rectDiv3);
+
+                }
+
+                Point pBaseDraw = new Point(pBase.X, pBase.Y);
+                //Size sBaseDraw = new Size(sBase.Width, sBase.Height - (pFooter.Y + sFooter.Height));
+                Size sBaseDraw = new Size(sBase.Width, sHeader.Height + sTitulo.Height + sColHeaderCodigos.Height +
+                                           sColCodigos.Height + sFooter.Height + 20);
+                Rectangle rectBaseDraw = new Rectangle(pBaseDraw, sBaseDraw);
+
+                drawer.DrawRectangle(pen, rectBaseDraw);
+
+                pBase = new Point(pBaseDraw.X, pBaseDraw.Y + sBaseDraw.Height + 50);
+                sBase = new Size(sBaseDraw.Width, sBaseDraw.Height - 120);
+
+                ////>>>>>>>>>>>>>>> Coluna Quant Chaves <<<<<<<<<<<<<<<<
+                //Point pTeste = new Point(pBase.X, pBase.Y + sBase.Height + 50);
+
+                //Image fakeImage = new Bitmap(1, 1);
+                //Graphics graphics = Graphics.FromImage(fakeImage);
+                //SizeF size = graphics.MeasureString(qtdChaves + "1\n\n3\n\n4\n\n5\n\n5\n\n1\n\n", fontColChaves);
+
+                ////Size sTeste = new Size(sColHeaderQtdChaves.Width, sColEndereco.Height);
+                //Size sTeste = new Size(sColHeaderQtdChaves.Width, (int)size.Height);
+
+
+                //Rectangle rectTest = new Rectangle(pTeste, sTeste);
+
+                //drawer.DrawString(qtdChaves + "1\n\n3\n\n4\n\n5\n\n5\n\n1\n\n", fontColChaves, new SolidBrush(Color.DarkSlateGray), rectTest, formatColChaves);
+
+                //drawer.DrawRectangle(pen, rectTest);
+
+            }
+
+
+
 
 
             picBox.BackgroundImage = img;

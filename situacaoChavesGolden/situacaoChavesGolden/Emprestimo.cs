@@ -514,5 +514,11 @@ namespace situacaoChavesGolden
                 gridChavesEmprestimo.Rows.Clear();
             }
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            ConfigurarReciboEmprestimo config = new ConfigurarReciboEmprestimo(gridEmprestimo.Rows[gridEmprestimo.CurrentRow.Index].Cells[0].Value.ToString());
+            config.ShowDialog();
+        }
     }
 }

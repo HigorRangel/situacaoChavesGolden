@@ -513,8 +513,7 @@ namespace situacaoChavesGolden
 
             pageIndex++;
 
-
-
+            
             e.HasMorePages = (pageIndex < _pages.Count);
 
             if (pageIndex > _pages.Count)

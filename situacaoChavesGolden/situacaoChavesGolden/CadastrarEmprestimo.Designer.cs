@@ -280,7 +280,7 @@
             this.boxDescDoc.CustomForeColor = true;
             this.boxDescDoc.ForeColor = System.Drawing.Color.Gray;
             this.boxDescDoc.Location = new System.Drawing.Point(158, 75);
-            this.boxDescDoc.MaxLength = 14;
+            this.boxDescDoc.MaxLength = 20;
             this.boxDescDoc.Name = "boxDescDoc";
             this.boxDescDoc.Size = new System.Drawing.Size(246, 26);
             this.boxDescDoc.TabIndex = 15;
