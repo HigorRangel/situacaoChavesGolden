@@ -175,7 +175,7 @@
             this.descImovel.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.descImovel.Location = new System.Drawing.Point(625, 295);
             this.descImovel.Margin = new System.Windows.Forms.Padding(0);
-            this.descImovel.MaxLength = 100;
+            this.descImovel.MaxLength = 1000;
             this.descImovel.Multiline = true;
             this.descImovel.Name = "descImovel";
             this.descImovel.Size = new System.Drawing.Size(129, 71);

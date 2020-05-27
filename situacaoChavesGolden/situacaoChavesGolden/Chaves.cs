@@ -225,9 +225,9 @@ namespace situacaoChavesGolden
                         codigoImob.Text = row[10].ToString();
                         finalidade.Text = row[12].ToString();
                         sitImovel.Text = row[13].ToString().Replace("/", " E ");
-                        endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} [{5}]", row[1].ToString(),
+                        endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} [{6} {5}]", row[1].ToString(),
                             row[5].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(),
-                            row[6].ToString());
+                            row[6].ToString(), row[16].ToString());
                         proprietario.Text = row[18].ToString();
                         tipoImovel.Text = row[11].ToString();
                         sitChave.Text = row[7].ToString();

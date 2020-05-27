@@ -554,7 +554,7 @@ namespace situacaoChavesGolden
 
                         DataTable tabelaChaves = new DataTable();
                         tabelaChaves = database.select(string.Format("SELECT categoria_imovel, (CASE WHEN cond is null OR cond = '' THEN '' ELSE cond || ' - '  END) || rua || ', ' || ' Nº ' || numero || " +
-                                                      " (CASE WHEN complemento = '' THEN '' ELSE '[' || complemento || ']' END) || ' - ' || bairro || " +
+                                                      " (CASE WHEN complemento = '' THEN '' ELSE ' [' || complemento || ']' END) || ' - ' || bairro || " +
                                                       " ' (' || cod_imob || ')' as endereco, cod_chave, quant_chaves" +
                                                       " FROM chave" +
                                                       " WHERE indice_chave = '{0}'", codigo));

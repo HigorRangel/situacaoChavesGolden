@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigurarRelatorioChaves));
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.groupBoxTipoImovel = new System.Windows.Forms.GroupBox();
@@ -52,18 +53,31 @@
             this.metroRadioButton15 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton13 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton14 = new MetroFramework.Controls.MetroRadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkProp = new MetroFramework.Controls.MetroCheckBox();
+            this.panelChaves = new System.Windows.Forms.Panel();
+            this.btnCancelarChave = new System.Windows.Forms.Button();
+            this.btnConfirmChave = new System.Windows.Forms.Button();
+            this.gridPropTotal = new System.Windows.Forms.DataGridView();
+            this.boxBusca = new System.Windows.Forms.TextBox();
+            this.gridProp = new System.Windows.Forms.DataGridView();
+            this.btnAddProp = new System.Windows.Forms.Button();
             this.groupBoxTipoImovel.SuspendLayout();
             this.groupBoxSituacaoCh.SuspendLayout();
             this.groupBoxSituacaoIm.SuspendLayout();
             this.groupBoxFinalidade.SuspendLayout();
             this.groupBoxOrdenar.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.panelChaves.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridPropTotal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProp)).BeginInit();
             this.SuspendLayout();
             // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel1.Location = new System.Drawing.Point(69, 11);
+            this.metroLabel1.Location = new System.Drawing.Point(195, 11);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(165, 25);
             this.metroLabel1.TabIndex = 0;
@@ -75,9 +89,9 @@
             this.groupBoxTipoImovel.Controls.Add(this.metroRadioButton8);
             this.groupBoxTipoImovel.Controls.Add(this.metroRadioButton9);
             this.groupBoxTipoImovel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxTipoImovel.Location = new System.Drawing.Point(23, 137);
+            this.groupBoxTipoImovel.Location = new System.Drawing.Point(23, 91);
             this.groupBoxTipoImovel.Name = "groupBoxTipoImovel";
-            this.groupBoxTipoImovel.Size = new System.Drawing.Size(256, 43);
+            this.groupBoxTipoImovel.Size = new System.Drawing.Size(240, 43);
             this.groupBoxTipoImovel.TabIndex = 7;
             this.groupBoxTipoImovel.TabStop = false;
             this.groupBoxTipoImovel.Text = "Tipo do Imóvel";
@@ -85,7 +99,7 @@
             // metroRadioButton7
             // 
             this.metroRadioButton7.AutoSize = true;
-            this.metroRadioButton7.Location = new System.Drawing.Point(173, 19);
+            this.metroRadioButton7.Location = new System.Drawing.Point(154, 19);
             this.metroRadioButton7.Name = "metroRadioButton7";
             this.metroRadioButton7.Size = new System.Drawing.Size(77, 15);
             this.metroRadioButton7.TabIndex = 2;
@@ -95,7 +109,7 @@
             // metroRadioButton8
             // 
             this.metroRadioButton8.AutoSize = true;
-            this.metroRadioButton8.Location = new System.Drawing.Point(75, 19);
+            this.metroRadioButton8.Location = new System.Drawing.Point(66, 19);
             this.metroRadioButton8.Name = "metroRadioButton8";
             this.metroRadioButton8.Size = new System.Drawing.Size(82, 15);
             this.metroRadioButton8.TabIndex = 1;
@@ -120,9 +134,9 @@
             this.groupBoxSituacaoCh.Controls.Add(this.metroRadioButton5);
             this.groupBoxSituacaoCh.Controls.Add(this.metroRadioButton6);
             this.groupBoxSituacaoCh.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxSituacaoCh.Location = new System.Drawing.Point(23, 88);
+            this.groupBoxSituacaoCh.Location = new System.Drawing.Point(280, 39);
             this.groupBoxSituacaoCh.Name = "groupBoxSituacaoCh";
-            this.groupBoxSituacaoCh.Size = new System.Drawing.Size(256, 43);
+            this.groupBoxSituacaoCh.Size = new System.Drawing.Size(238, 43);
             this.groupBoxSituacaoCh.TabIndex = 6;
             this.groupBoxSituacaoCh.TabStop = false;
             this.groupBoxSituacaoCh.Text = "Situação da Chave";
@@ -130,7 +144,7 @@
             // metroRadioButton4
             // 
             this.metroRadioButton4.AutoSize = true;
-            this.metroRadioButton4.Location = new System.Drawing.Point(163, 19);
+            this.metroRadioButton4.Location = new System.Drawing.Point(150, 19);
             this.metroRadioButton4.Name = "metroRadioButton4";
             this.metroRadioButton4.Size = new System.Drawing.Size(87, 15);
             this.metroRadioButton4.TabIndex = 2;
@@ -140,7 +154,7 @@
             // metroRadioButton5
             // 
             this.metroRadioButton5.AutoSize = true;
-            this.metroRadioButton5.Location = new System.Drawing.Point(75, 19);
+            this.metroRadioButton5.Location = new System.Drawing.Point(66, 19);
             this.metroRadioButton5.Name = "metroRadioButton5";
             this.metroRadioButton5.Size = new System.Drawing.Size(78, 15);
             this.metroRadioButton5.TabIndex = 1;
@@ -167,7 +181,7 @@
             this.groupBoxSituacaoIm.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxSituacaoIm.Location = new System.Drawing.Point(23, 39);
             this.groupBoxSituacaoIm.Name = "groupBoxSituacaoIm";
-            this.groupBoxSituacaoIm.Size = new System.Drawing.Size(256, 43);
+            this.groupBoxSituacaoIm.Size = new System.Drawing.Size(240, 43);
             this.groupBoxSituacaoIm.TabIndex = 5;
             this.groupBoxSituacaoIm.TabStop = false;
             this.groupBoxSituacaoIm.Text = "Situação do Imóvel";
@@ -187,7 +201,7 @@
             // metroRadioButton2
             // 
             this.metroRadioButton2.AutoSize = true;
-            this.metroRadioButton2.Location = new System.Drawing.Point(191, 18);
+            this.metroRadioButton2.Location = new System.Drawing.Point(172, 17);
             this.metroRadioButton2.Name = "metroRadioButton2";
             this.metroRadioButton2.Size = new System.Drawing.Size(59, 15);
             this.metroRadioButton2.TabIndex = 1;
@@ -197,7 +211,7 @@
             // metroRadioButton1
             // 
             this.metroRadioButton1.AutoSize = true;
-            this.metroRadioButton1.Location = new System.Drawing.Point(102, 18);
+            this.metroRadioButton1.Location = new System.Drawing.Point(93, 18);
             this.metroRadioButton1.Name = "metroRadioButton1";
             this.metroRadioButton1.Size = new System.Drawing.Size(51, 15);
             this.metroRadioButton1.TabIndex = 0;
@@ -210,9 +224,9 @@
             this.groupBoxFinalidade.Controls.Add(this.metroRadioButton11);
             this.groupBoxFinalidade.Controls.Add(this.metroRadioButton12);
             this.groupBoxFinalidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxFinalidade.Location = new System.Drawing.Point(23, 186);
+            this.groupBoxFinalidade.Location = new System.Drawing.Point(280, 91);
             this.groupBoxFinalidade.Name = "groupBoxFinalidade";
-            this.groupBoxFinalidade.Size = new System.Drawing.Size(256, 43);
+            this.groupBoxFinalidade.Size = new System.Drawing.Size(237, 43);
             this.groupBoxFinalidade.TabIndex = 8;
             this.groupBoxFinalidade.TabStop = false;
             this.groupBoxFinalidade.Text = "Finalidade";
@@ -220,7 +234,7 @@
             // metroRadioButton10
             // 
             this.metroRadioButton10.AutoSize = true;
-            this.metroRadioButton10.Location = new System.Drawing.Point(195, 19);
+            this.metroRadioButton10.Location = new System.Drawing.Point(176, 17);
             this.metroRadioButton10.Name = "metroRadioButton10";
             this.metroRadioButton10.Size = new System.Drawing.Size(55, 15);
             this.metroRadioButton10.TabIndex = 2;
@@ -230,7 +244,7 @@
             // metroRadioButton11
             // 
             this.metroRadioButton11.AutoSize = true;
-            this.metroRadioButton11.Location = new System.Drawing.Point(90, 19);
+            this.metroRadioButton11.Location = new System.Drawing.Point(81, 17);
             this.metroRadioButton11.Name = "metroRadioButton11";
             this.metroRadioButton11.Size = new System.Drawing.Size(67, 15);
             this.metroRadioButton11.TabIndex = 1;
@@ -257,7 +271,7 @@
             this.btnCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
-            this.btnCancelar.Location = new System.Drawing.Point(105, 284);
+            this.btnCancelar.Location = new System.Drawing.Point(346, 359);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 60;
@@ -273,7 +287,7 @@
             this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
             this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImprimir.ForeColor = System.Drawing.Color.White;
-            this.btnImprimir.Location = new System.Drawing.Point(205, 285);
+            this.btnImprimir.Location = new System.Drawing.Point(446, 360);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(75, 23);
             this.btnImprimir.TabIndex = 59;
@@ -287,9 +301,9 @@
             this.groupBoxOrdenar.Controls.Add(this.metroRadioButton13);
             this.groupBoxOrdenar.Controls.Add(this.metroRadioButton14);
             this.groupBoxOrdenar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxOrdenar.Location = new System.Drawing.Point(24, 235);
+            this.groupBoxOrdenar.Location = new System.Drawing.Point(23, 143);
             this.groupBoxOrdenar.Name = "groupBoxOrdenar";
-            this.groupBoxOrdenar.Size = new System.Drawing.Size(256, 43);
+            this.groupBoxOrdenar.Size = new System.Drawing.Size(240, 43);
             this.groupBoxOrdenar.TabIndex = 9;
             this.groupBoxOrdenar.TabStop = false;
             this.groupBoxOrdenar.Text = "Ordenar por";
@@ -298,7 +312,7 @@
             // metroRadioButton15
             // 
             this.metroRadioButton15.AutoSize = true;
-            this.metroRadioButton15.Location = new System.Drawing.Point(173, 18);
+            this.metroRadioButton15.Location = new System.Drawing.Point(154, 18);
             this.metroRadioButton15.Name = "metroRadioButton15";
             this.metroRadioButton15.Size = new System.Drawing.Size(76, 15);
             this.metroRadioButton15.TabIndex = 3;
@@ -320,19 +334,162 @@
             // metroRadioButton14
             // 
             this.metroRadioButton14.AutoSize = true;
-            this.metroRadioButton14.Location = new System.Drawing.Point(93, 18);
+            this.metroRadioButton14.Location = new System.Drawing.Point(100, 18);
             this.metroRadioButton14.Name = "metroRadioButton14";
-            this.metroRadioButton14.Size = new System.Drawing.Size(72, 15);
+            this.metroRadioButton14.Size = new System.Drawing.Size(43, 15);
             this.metroRadioButton14.TabIndex = 1;
-            this.metroRadioButton14.Text = "Endereço";
+            this.metroRadioButton14.Text = "Rua";
             this.metroRadioButton14.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.gridProp);
+            this.groupBox1.Controls.Add(this.btnAddProp);
+            this.groupBox1.Controls.Add(this.checkProp);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(23, 199);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(495, 154);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Proprietário";
+            // 
+            // checkProp
+            // 
+            this.checkProp.AutoSize = true;
+            this.checkProp.Checked = true;
+            this.checkProp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkProp.Location = new System.Drawing.Point(15, 73);
+            this.checkProp.Name = "checkProp";
+            this.checkProp.Size = new System.Drawing.Size(60, 15);
+            this.checkProp.TabIndex = 0;
+            this.checkProp.Text = "TODOS";
+            this.checkProp.UseVisualStyleBackColor = true;
+            this.checkProp.CheckedChanged += new System.EventHandler(this.CheckProp_CheckedChanged);
+            // 
+            // panelChaves
+            // 
+            this.panelChaves.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelChaves.Controls.Add(this.btnCancelarChave);
+            this.panelChaves.Controls.Add(this.btnConfirmChave);
+            this.panelChaves.Controls.Add(this.gridPropTotal);
+            this.panelChaves.Controls.Add(this.boxBusca);
+            this.panelChaves.Location = new System.Drawing.Point(76, 11);
+            this.panelChaves.Name = "panelChaves";
+            this.panelChaves.Size = new System.Drawing.Size(391, 225);
+            this.panelChaves.TabIndex = 61;
+            this.panelChaves.Visible = false;
+            // 
+            // btnCancelarChave
+            // 
+            this.btnCancelarChave.BackColor = System.Drawing.Color.White;
+            this.btnCancelarChave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnCancelarChave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(107)))));
+            this.btnCancelarChave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
+            this.btnCancelarChave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelarChave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnCancelarChave.Location = new System.Drawing.Point(208, 193);
+            this.btnCancelarChave.Name = "btnCancelarChave";
+            this.btnCancelarChave.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelarChave.TabIndex = 26;
+            this.btnCancelarChave.Text = "Cancelar";
+            this.btnCancelarChave.UseVisualStyleBackColor = false;
+            this.btnCancelarChave.Click += new System.EventHandler(this.BtnCancelarChave_Click);
+            // 
+            // btnConfirmChave
+            // 
+            this.btnConfirmChave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.btnConfirmChave.FlatAppearance.BorderSize = 0;
+            this.btnConfirmChave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(107)))));
+            this.btnConfirmChave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
+            this.btnConfirmChave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmChave.ForeColor = System.Drawing.Color.White;
+            this.btnConfirmChave.Location = new System.Drawing.Point(300, 194);
+            this.btnConfirmChave.Name = "btnConfirmChave";
+            this.btnConfirmChave.Size = new System.Drawing.Size(75, 23);
+            this.btnConfirmChave.TabIndex = 25;
+            this.btnConfirmChave.Text = "Confirmar";
+            this.btnConfirmChave.UseVisualStyleBackColor = false;
+            this.btnConfirmChave.Click += new System.EventHandler(this.BtnConfirmChave_Click);
+            // 
+            // gridPropTotal
+            // 
+            this.gridPropTotal.AllowUserToAddRows = false;
+            this.gridPropTotal.AllowUserToDeleteRows = false;
+            this.gridPropTotal.AllowUserToResizeRows = false;
+            this.gridPropTotal.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.gridPropTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridPropTotal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridPropTotal.Location = new System.Drawing.Point(12, 57);
+            this.gridPropTotal.Name = "gridPropTotal";
+            this.gridPropTotal.ReadOnly = true;
+            this.gridPropTotal.RowHeadersVisible = false;
+            this.gridPropTotal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridPropTotal.Size = new System.Drawing.Size(363, 125);
+            this.gridPropTotal.TabIndex = 1;
+            // 
+            // boxBusca
+            // 
+            this.boxBusca.Location = new System.Drawing.Point(12, 25);
+            this.boxBusca.Name = "boxBusca";
+            this.boxBusca.Size = new System.Drawing.Size(363, 20);
+            this.boxBusca.TabIndex = 0;
+            this.boxBusca.TextChanged += new System.EventHandler(this.BoxBusca_TextChanged);
+            // 
+            // gridProp
+            // 
+            this.gridProp.AllowUserToAddRows = false;
+            this.gridProp.AllowUserToDeleteRows = false;
+            this.gridProp.AllowUserToResizeRows = false;
+            this.gridProp.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.gridProp.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridProp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridProp.DefaultCellStyle = dataGridViewCellStyle1;
+            this.gridProp.Location = new System.Drawing.Point(81, 26);
+            this.gridProp.MultiSelect = false;
+            this.gridProp.Name = "gridProp";
+            this.gridProp.ReadOnly = true;
+            this.gridProp.RowHeadersVisible = false;
+            this.gridProp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridProp.Size = new System.Drawing.Size(363, 110);
+            this.gridProp.TabIndex = 29;
+            this.gridProp.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridProp_CellContentClick);
+            this.gridProp.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridProp_CellMouseEnter);
+            // 
+            // btnAddProp
+            // 
+            this.btnAddProp.BackColor = System.Drawing.Color.White;
+            this.btnAddProp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddProp.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnAddProp.Enabled = false;
+            this.btnAddProp.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnAddProp.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnAddProp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnAddProp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnAddProp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddProp.Image = global::situacaoChavesGolden.Properties.Resources.AdicionarGray;
+            this.btnAddProp.Location = new System.Drawing.Point(455, 68);
+            this.btnAddProp.Name = "btnAddProp";
+            this.btnAddProp.Size = new System.Drawing.Size(28, 28);
+            this.btnAddProp.TabIndex = 28;
+            this.btnAddProp.UseVisualStyleBackColor = false;
+            this.btnAddProp.Click += new System.EventHandler(this.BtnBaixa_Click);
             // 
             // ConfigurarRelatorioChaves
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(300, 318);
+            this.ClientSize = new System.Drawing.Size(547, 393);
+            this.Controls.Add(this.panelChaves);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxOrdenar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnImprimir);
@@ -360,6 +517,12 @@
             this.groupBoxFinalidade.PerformLayout();
             this.groupBoxOrdenar.ResumeLayout(false);
             this.groupBoxOrdenar.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.panelChaves.ResumeLayout(false);
+            this.panelChaves.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridPropTotal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -390,5 +553,14 @@
         private MetroFramework.Controls.MetroRadioButton metroRadioButton13;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton14;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton15;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private MetroFramework.Controls.MetroCheckBox checkProp;
+        private System.Windows.Forms.Panel panelChaves;
+        private System.Windows.Forms.Button btnCancelarChave;
+        private System.Windows.Forms.Button btnConfirmChave;
+        private System.Windows.Forms.DataGridView gridPropTotal;
+        private System.Windows.Forms.TextBox boxBusca;
+        private System.Windows.Forms.Button btnAddProp;
+        private System.Windows.Forms.DataGridView gridProp;
     }
 }

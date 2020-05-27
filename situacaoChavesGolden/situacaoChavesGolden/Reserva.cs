@@ -504,6 +504,7 @@ namespace situacaoChavesGolden
                         gridReserva.CurrentRow.DefaultCellStyle.SelectionBackColor = Color.FromArgb(105, 184, 66);
                     }
                 }
+                
             }
             catch
             {

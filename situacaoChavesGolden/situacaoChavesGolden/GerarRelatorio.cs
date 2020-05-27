@@ -25,6 +25,7 @@ namespace situacaoChavesGolden
         public string tipo { get; set; }
         public string sitChave { get; set; }
         public string ordenar { get; set; }
+        public List<string> listProp  { get; set; }
 
         
         private void showDocument(string caminho)
@@ -56,6 +57,33 @@ namespace situacaoChavesGolden
 
             tabelaDados.Clear();
 
+
+            string proprietarios = "";
+
+            int cont = 0;
+            foreach(string str in listProp)
+            {
+                if(cont == 0)
+                {
+                    proprietarios += " AND (";
+                }
+
+                proprietarios += string.Format("p.cod_proprietario = '{0}'", str);
+
+                if(cont != str.Length + 1)
+                {
+                    proprietarios += " OR ";
+                }
+                if(cont == str.Length + 1)
+                {
+                    proprietarios += ")";
+
+                }
+
+                cont++;
+            }
+
+
             //string ordenacao = "";
             //if(ordenar == "Endereço") { ordenacao = "c.rua"; }
             //else if(ordenar == "Cod Chave") { ordenacao = "c.cod_chave"; }
@@ -74,11 +102,12 @@ namespace situacaoChavesGolden
                                                 " FROM chave c " +
                                                 " LEFT JOIN chaves_emprestimo ce ON c.indice_chave = ce.cod_chave" +
                                                 " LEFT JOIN emprestimo e ON e.cod_emprestimo = ce.cod_emprestimo " +
+                                                " INNER JOIN proprietario p ON c.proprietario = p.cod_proprietario" +
                                                 " WHERE c.situacao ILIKE '{0}%' AND c.tipo_imovel ILIKE '%{1}%' " +
-                                                " AND c.finalidade ILIKE '%{2}%' AND c.situacao_imovel ILIKE '{3}%' " +
+                                                " AND c.finalidade ILIKE '%{2}%' AND c.situacao_imovel ILIKE '{3}%' {4}" +
                                                 " GROUP BY c.indice_chave " +
-                                                " ORDER BY {4} " +
-                                                " ", sitChave, tipo, finalidade, sitImovel, ordenar));
+                                                " ORDER BY {5} " +
+                                                " ", sitChave, tipo, finalidade, sitImovel, proprietarios, ordenar));
 
             return tabelaDados;
         }

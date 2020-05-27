@@ -101,7 +101,7 @@ namespace situacaoChavesGolden
                 tabelaDados = database.select(string.Format("SELECT e.cod_emprestimo, e.data_retirada, e.data_entrega, u.nome_usuario" +
                     " FROM emprestimo e" +
                     " INNER JOIN usuario u ON u.cod_usuario = e.cod_usuario" +
-                    " WHERE cod_cliente = '{0}'", gridCliente.Rows[gridCliente.CurrentRow.Index].Cells[2].Value.ToString()));
+                    " WHERE cod_cliente = '{0}'", gridCliente.Rows[gridCliente.CurrentRow.Index].Cells[1].Value.ToString()));
 
                 gridEmprestimos.DataSource = tabelaDados;
 
@@ -116,7 +116,9 @@ namespace situacaoChavesGolden
                 gridEmprestimos.Columns[2].HeaderText = "Data de Entrega";
                 gridEmprestimos.Columns[3].HeaderText = "Funcionário";
             }
-            catch { }
+            catch (Exception erro)
+            {
+            }
             
                                                   
         }

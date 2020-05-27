@@ -593,8 +593,8 @@ namespace situacaoChavesGolden
                 string proxCod = "";
                 if (contErros == 0)
                 {
-                    //try
-                    //{
+                    try
+                    {
                         if (tipo == "proprietario")
                         {
                             //database.insertInto(string.Format("" +
@@ -653,7 +653,7 @@ namespace situacaoChavesGolden
                             }
                         }
 
-                       
+
 
                         //string codReserva = verificarReservaPessoa();
 
@@ -664,8 +664,16 @@ namespace situacaoChavesGolden
                         //                    " WHERE cod_reserva = '{0}'", codReserva));
                         //}
 
-                        Message caixaMensagem = new Message("Empréstimo cadastrado com sucesso!\n" +
-                                                            "Você deseja imprimir o recibo?", "", "sucesso", "escolha");
+                        string texto = "Empréstimo cadastrado com sucesso!";
+
+                        string tipoMsg = "confirma";
+                        if(tipo == "cliente")
+                        {
+                            texto += "\nVocê deseja imprimir o recibo?";
+                            tipoMsg = "escolha";
+                        }
+
+                        Message caixaMensagem = new Message(texto, "", "sucesso", tipoMsg);
                         caixaMensagem.ShowDialog();
 
                         darBaixaReservas();
@@ -679,14 +687,14 @@ namespace situacaoChavesGolden
 
                         this.Close();
                         this.DialogResult = DialogResult.OK;
-                    //}
-                    //catch (Exception erro)
-                    //{
-                    //    Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
-                    //    caixaMensagem.ShowDialog();
-                    //}
+                    }
+                    catch (Exception erro)
+                    {
+                        Message caixaMensagem = new Message("Erro ao cadastrar! \n\nDescrição: " + erro.Message, "Erro no banco de dados", "erro", "confirma");
+                        caixaMensagem.ShowDialog();
+                    }
 
-            }
+                }
 
                 //}
                 else

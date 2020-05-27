@@ -409,6 +409,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\Adicionar1.png" />
+    <None Include="Resources\AdicionarGray.png" />
+    <None Include="Resources\Adicionar.png" />
     <None Include="Resources\Recibo1.png" />
     <None Include="Resources\Recibo.png" />
     <None Include="Resources\icon.ico" />

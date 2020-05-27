@@ -23,6 +23,25 @@ namespace situacaoChavesGolden
         private void ConfigurarRelatorioChaves_Load(object sender, EventArgs e)
         {
             funcionario = database.selectScalar(string.Format("SELECT nome_usuario FROM usuario WHERE cod_usuario = '{0}'", funcionario));
+
+            gridProp.Columns.Add("codigo", "Cód.");
+            gridProp.Columns.Add("nome", "Nome do Proprietário");
+
+
+
+            DataGridViewImageColumn cellImage = new DataGridViewImageColumn();
+            cellImage.Image = new Bitmap(Properties.Resources.Delete);
+
+            gridProp.Columns.Insert(2, cellImage);
+
+
+
+
+            gridProp.Columns[0].Width = 40;
+            gridProp.Columns[1].Width = 277;
+            gridProp.Columns[2].Width = 30;
+
+
         }
 
         private void GroupBox2_Enter(object sender, EventArgs e)
@@ -44,14 +63,14 @@ namespace situacaoChavesGolden
             if (tipoImovel == "TODOS") { tipoImovel = ""; }
             if (finalidade == "TODOS") { finalidade = ""; }
             if (ordenar == "COD CHAVE")
-            { 
-                ordenar = "c.cod_chave"; 
+            {
+                ordenar = "c.cod_chave";
             }
             else if (ordenar == "ENDEREÇO")
             {
                 ordenar = "c.rua";
             }
-            else if(ordenar == "COD IMOB")
+            else if (ordenar == "COD IMOB")
             {
                 ordenar = "c.cod_imob";
             }
@@ -65,6 +84,15 @@ namespace situacaoChavesGolden
             relatorio.finalidade = finalidade;
             relatorio.ordenar = ordenar;
             relatorio.funcionario = funcionario;
+            List<string> listaProp = new List<string>();
+            if (!checkProp.Checked)
+            {
+                foreach(DataGridViewRow row in gridProp.Rows)
+                {
+                    listaProp.Add(row.Cells[0].Value.ToString());
+                }
+            }
+            relatorio.listProp = listaProp;
 
             relatorio.chaves();
 
@@ -74,6 +102,110 @@ namespace situacaoChavesGolden
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        void atualizarGridProp()
+        {
+            string codigosEscolhidos = "";
+            int cont = 0;
+            foreach(DataGridViewRow row in gridProp.Rows)
+            {
+                if(cont == 0)
+                {
+                    codigosEscolhidos += "  AND  ";
+                }
+                codigosEscolhidos += string.Format(" cod_proprietario != {0}", row.Cells[0].Value.ToString());
+
+                if (cont != gridProp.Rows.Count - 1)
+                {
+                    codigosEscolhidos += " AND ";
+
+                }
+
+                cont++;
+            }
+            DataTable dadosProp = new DataTable();
+
+            dadosProp = database.select(string.Format("SELECT cod_proprietario, nome" +
+                                                        " FROM proprietario" +
+                                                        " WHERE (cod_proprietario::text ILIKE '%{0}%' OR " +
+                                                        " nome ILIKE '%{0}%' OR  (unaccent(lower(nome))) ILIKE '%{0}%') " +
+                                                        "  {1} ORDER BY nome", boxBusca.Text, codigosEscolhidos));
+
+            gridPropTotal.DataSource = dadosProp;
+
+            gridPropTotal.Columns[0].HeaderText = "Cód";
+            gridPropTotal.Columns[1].HeaderText = "Nome do proprietário";
+
+            gridPropTotal.Columns[0].Width = 40;
+            gridPropTotal.Columns[1].Width = 319;
+
+        }
+
+        private void BtnBaixa_Click(object sender, EventArgs e)
+        {
+            panelChaves.Visible = true;
+            atualizarGridProp();
+        }
+
+        private void CheckProp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkProp.Checked)
+            {
+                gridProp.Enabled = false;
+                btnAddProp.Enabled = false;
+                btnAddProp.Cursor = Cursors.Arrow;
+                btnAddProp.Image = Properties.Resources.AdicionarGray;
+            }
+            else
+            {
+                gridProp.Enabled = true;
+                btnAddProp.Enabled = true;
+                btnAddProp.Cursor = Cursors.Hand;
+                btnAddProp.Image = Properties.Resources.Adicionar1;
+            }
+        }
+
+        private void BtnCancelarChave_Click(object sender, EventArgs e)
+        {
+            panelChaves.Visible = false;
+
+        }
+
+        private void BtnConfirmChave_Click(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow row in gridPropTotal.SelectedRows)
+            {
+                gridProp.Rows.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+            }
+
+            panelChaves.Visible = false;
+
+        }
+
+        private void BoxBusca_TextChanged(object sender, EventArgs e)
+        {
+            atualizarGridProp();
+        }
+
+        private void GridProp_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == 2)
+            {
+                gridProp.Rows.RemoveAt(e.RowIndex);
+            }
+        }
+
+        private void GridProp_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                gridProp.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                gridProp.Cursor = Cursors.Arrow;
+            }
         }
     }
 }
