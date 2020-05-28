@@ -952,7 +952,7 @@ namespace situacaoChavesGolden
                 " FROM CHAVE c " +
                 " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario" +
                 " WHERE c.situacao = 'DISPONIVEL' AND (c.rua ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%' OR (unaccent(lower(c.rua))) ILIKE '%{0}%' OR" +
-                " (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR c.cod_chave::text ILIKE '%{0}%') AND (c.cod_chave is not null AND c.cod_chave != '') {1} {2}", boxBusca.Text, codigos, proprietario));
+                " (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR c.cod_chave::text ILIKE '%{0}%') AND (c.cod_chave is not null AND c.cod_chave::text != '') {1} {2}", boxBusca.Text, codigos, proprietario));
 
             gridChavesTotal.DataSource = tabelaChaves;
 

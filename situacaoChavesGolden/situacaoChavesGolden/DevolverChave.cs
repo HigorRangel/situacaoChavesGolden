@@ -21,13 +21,16 @@ namespace situacaoChavesGolden
         string codigoEmprestimo = "";
         int quantChaves = 0;
         int quantControles = 0;
+        string usuario = "";
 
         PostgreSQL database = new PostgreSQL();
 
-        public DevolverChave(string codEmprestimo)
+        public DevolverChave(string codEmprestimo, string user)
         {
             InitializeComponent();
             codigoEmprestimo = codEmprestimo;
+
+            usuario = user;
         }
 
         void atualizarGrid()
@@ -113,6 +116,38 @@ namespace situacaoChavesGolden
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+        
+        void verificarReserva()
+        {
+            try
+            {
+                DataTable tabelaReserva = new DataTable();
+
+                string textoMsg = "Há reserva(s) para a(s) seguinte(s) chaves:\n";
+
+                int cont = 0;
+                foreach (DataGridViewRow row in gridChaves.Rows)
+                {
+                    string reserva = database.selectScalar(string.Format("SELECT COUNT(cr.cod_chave) " +
+                                                        " FROM chaves_reserva cr" +
+                                                        " INNER JOIN reserva r ON r.cod_reserva = cr.cod_reserva" +
+                                                        " WHERE r.situacao != 'FINALIZADO' AND cr.cod_chave = '{0}'" +
+                                                        " GROUP BY cr.cod_chave", row.Cells[5].Value.ToString()));
+
+                    textoMsg += string.Format("\n- Chave cód {0}: há {1} reserva(s)", row.Cells[1].Value.ToString(), reserva);
+                    cont++;
+                }
+
+                if (cont != 0)
+                {
+                    Message msg = new Message(textoMsg, "Aviso", "aviso", "confirma");
+                    msg.ShowDialog();
+                }
+            }
+            catch { }
+            
+            
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -206,8 +241,8 @@ namespace situacaoChavesGolden
                         //}
 
                         database.update(string.Format("UPDATE emprestimo" +
-                                        " SET data_entrega = '{0}'" +
-                                        " WHERE cod_emprestimo = '{1}'", dataHoje, codigoEmprestimo));
+                                        " SET data_entrega = '{0}', usuario_devolucao = '{1}'" +
+                                        " WHERE cod_emprestimo = '{2}'", dataHoje, usuario, codigoEmprestimo));
 
 
 
@@ -220,6 +255,8 @@ namespace situacaoChavesGolden
                         Message popup = new Message("A chave foi devolvida com sucesso! Por favor, coloque-a no quadro.", "", "sucesso", "confirma");
                         popup.ShowDialog();
                         this.Close();
+
+                        verificarReserva();
                     }                 
 
                    

@@ -30,7 +30,7 @@ namespace situacaoChavesGolden
                  " GROUP BY c.cod_cliente " +
                  " ORDER BY c.cod_cliente"));
 
-            gridCliente.DataSource = clientes.DefaultView;
+            gridCliente.DataSource = clientes;
 
             gridCliente.Columns[0].HeaderText = "Cód";
             gridCliente.Columns[1].HeaderText = "Nome do Cliente";
@@ -82,7 +82,7 @@ namespace situacaoChavesGolden
         {
             if (e.ColumnIndex == 0)
             {
-                CadastroCliente cadastrar = new CadastroCliente(gridCliente.Rows[e.RowIndex].Cells[2].Value.ToString());
+                CadastroCliente cadastrar = new CadastroCliente(gridCliente.Rows[e.RowIndex].Cells[1].Value.ToString());
                 cadastrar.ShowDialog();
 
                 atualizarClientes();

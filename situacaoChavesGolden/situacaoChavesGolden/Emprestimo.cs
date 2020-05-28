@@ -15,16 +15,18 @@ namespace situacaoChavesGolden
 
         DateTime dataHoje = DateTime.Now;
         PostgreSQL database = new PostgreSQL();
-        public Emprestimo()
+        string usuario = "";
+        public Emprestimo(string user)
         {
             InitializeComponent();
+            usuario = user;
         }
 
         private void atualizarGridEmprestimo()
         {
-           
-            //try
-            //{
+
+            try
+            {
                 DataTable dadosEmprestimo = new DataTable();
 
                 string situacao = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
@@ -62,7 +64,8 @@ namespace situacaoChavesGolden
                                                          " AND (cl.nome_cliente ILIKE '%{5}%' OR e.descricao ILIKE '%{5}%' OR " +
                                                          " c.rua ILIKE '%{5}%' OR u.nome_usuario ILIKE '%{5}%' OR  p.nome  ILIKE '%{5}%'OR" +
                                                          " c.cod_chave::TEXT ILIKE '%{5}%' OR c.cod_imob::TEXT ILIKE '%{5}%')" +
-                                                         " GROUP BY e.cod_emprestimo", 
+                                                         " GROUP BY e.cod_emprestimo" +
+                                                         " ORDER BY e.data_retirada", 
                                                          situacao, tipo,  dataRetirada, entregaPrevista, dataRetirada, busca));
 
                 gridEmprestimo.DataSource = dadosEmprestimo;
@@ -81,11 +84,10 @@ namespace situacaoChavesGolden
                 gridEmprestimo.Columns[2].Width = 97;
                 gridEmprestimo.Columns[3].Width = 98;
 
-            //}
-            //catch (Exception erro)
-            //{
-            //    MessageBox.Show(erro.Message);
-            //}
+            }
+            catch (Exception erro)
+            {
+            }
 
             string sitEmprestimo = "";
             try
@@ -223,7 +225,7 @@ namespace situacaoChavesGolden
                            " WHEN e.cod_proprietario is not null AND e.cod_cliente is null THEN 'PROPRIETARIO' END) as tipo, " +
                            " '(' || cl.cod_cliente || ') - ' || cl.nome_cliente, cl.contato_principal || ' / ' || cl.contato_secundario, " +
                            " '(' || p.cod_proprietario || ') - ' || p.nome as proprietario, p.contato, u.nome_usuario, e.descricao, " +
-                           "  e.data_retirada, e.entrega_prevista, e.data_entrega " +
+                           "  e.data_retirada, e.entrega_prevista, e.data_entrega, (SELECT nome_usuario FROM usuario WHERE cod_usuario = e.usuario_devolucao) " +
                     " FROM emprestimo e " +
                     " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente " +
                     " LEFT JOIN usuario u ON u.cod_usuario = e.cod_usuario " +
@@ -231,7 +233,7 @@ namespace situacaoChavesGolden
                     " WHERE cod_emprestimo = '{0}'", gridEmprestimo.CurrentRow.Cells[0].Value.ToString()));
 
 
-                foreach (DataRow row in dadosEmprestimo.Rows)
+                    foreach (DataRow row in dadosEmprestimo.Rows)
                     {
                
 
@@ -258,6 +260,7 @@ namespace situacaoChavesGolden
                     dataRetirada.Text = row[8].ToString();
                     previsEntrega.Text = row[9].ToString();
                     dataEntrega.Text = row[10].ToString();
+                    funcionarioDevolucao.Text = row[11].ToString();
 
                 }
             }
@@ -453,7 +456,7 @@ namespace situacaoChavesGolden
 
         private void btnBaixa_Click(object sender, EventArgs e)
         {
-            DevolverChave telaDevolver = new DevolverChave(gridEmprestimo.CurrentRow.Cells[0].Value.ToString());
+            DevolverChave telaDevolver = new DevolverChave(gridEmprestimo.CurrentRow.Cells[0].Value.ToString(), usuario);
             telaDevolver.ShowDialog();
 
             atualizarGridEmprestimo();

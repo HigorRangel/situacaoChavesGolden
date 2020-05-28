@@ -126,9 +126,9 @@ namespace situacaoChavesGolden
             {
 
             }
-            //try
-            //{
-                
+            try
+            {
+
 
                 DataTable tabelaPropostas = new DataTable();
 
@@ -193,30 +193,30 @@ namespace situacaoChavesGolden
                     formaLoc.Text = row[14].ToString();
                 }
             }
-        //    catch (Exception erro)
-        //    {//{
-        //    //    codigoImob.Text = "";
-        //    //    codChave.Text = "";
-        //    //    sitProposta.Text = "";
-        //    //    dadosPropostante.Text = "";
-        //    //    descricao.Text = "";
-        //    //    codEmprestimo.Text = "";
-        //    //    dataProposta.Text = "";
-        //    //    funcionario.Text = "";
-        //    //    valorProposta.Text = "";
-        //    //    valorCond.Text = "";
-        //    //    formaLoc.Text = "";
+            catch (Exception erro)
+            {//{
+             //    codigoImob.Text = "";
+             //    codChave.Text = "";
+             //    sitProposta.Text = "";
+             //    dadosPropostante.Text = "";
+             //    descricao.Text = "";
+             //    codEmprestimo.Text = "";
+             //    dataProposta.Text = "";
+             //    funcionario.Text = "";
+             //    valorProposta.Text = "";
+             //    valorCond.Text = "";
+             //    formaLoc.Text = "";
 
 
-        //    //    btnAprovar.Enabled = false;
-        //    //    btnAprovar.Image = Properties.Resources.SucessGray;
-        //    //    btnContraProposta.Enabled = false;
-        //    //    btnContraProposta.Image = Properties.Resources.contraPropostagGray;
-        //    //    btnReprovar.Enabled = false;
-        //    //    btnReprovar.Image = Properties.Resources.DeleteGray;
-        //    }
-           
-        //}
+                //    btnAprovar.Enabled = false;
+                //    btnAprovar.Image = Properties.Resources.SucessGray;
+                //    btnContraProposta.Enabled = false;
+                //    btnContraProposta.Image = Properties.Resources.contraPropostagGray;
+                //    btnReprovar.Enabled = false;
+                //    btnReprovar.Image = Properties.Resources.DeleteGray;
+            }
+
+        }
 
         private void RadioVenda_CheckedChanged(object sender, EventArgs e)
         {

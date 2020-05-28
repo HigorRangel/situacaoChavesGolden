@@ -113,37 +113,41 @@ namespace situacaoChavesGolden
 
         private void GridRetirados_SelectionChanged(object sender, EventArgs e)
         {
-            DataTable tabela = new DataTable();
-
-            tabela = database.select(string.Format("SELECT c.cod_imob, c.cod_chave, r.tipo_retirada, r.quem_retirou, r.descricao, " +
-                                                    " r.data_retirada, (u.cod_usuario || ' - ' || u.nome_usuario) , codigo_desativado " +
-                                                    " FROM retirado r " +
-                                                    " INNER JOIN usuario u ON u.cod_usuario = r.cod_usuario " +
-                                                    " LEFT JOIN chave c ON c.indice_chave = r.cod_chave " +
-                                                    " WHERE r.cod_retirado = '{0}'", gridRetirados.CurrentRow.Cells[0].Value.ToString()));
-
-            if(tabela.Rows.Count == 0)
+            try
             {
-                codigoImob.Text = "";
-                codChave.Text = "";
-                tipoRetirante.Text = "";
-                nomeRetirante.Text = "";
-                descricao.Text = "";
-                dataRetirada.Text = "";
-                funcionario.Text = "";
-            }
+                DataTable tabela = new DataTable();
 
-            foreach(DataRow row in tabela.Rows)
-            {
-                codigoImob.Text = row[0].ToString();
-                codChave.Text = row[1].ToString();
-                tipoRetirante.Text = row[2].ToString();
-                nomeRetirante.Text = row[3].ToString();
-                descricao.Text = row[4].ToString();
-                dataRetirada.Text = row[5].ToString();
-                funcionario.Text = row[6].ToString();
-                codChave.Text = row[7].ToString();
+                tabela = database.select(string.Format("SELECT c.cod_imob, c.cod_chave, r.tipo_retirada, r.quem_retirou, r.descricao, " +
+                                                        " r.data_retirada, (u.cod_usuario || ' - ' || u.nome_usuario) , codigo_desativado " +
+                                                        " FROM retirado r " +
+                                                        " INNER JOIN usuario u ON u.cod_usuario = r.cod_usuario " +
+                                                        " LEFT JOIN chave c ON c.indice_chave = r.cod_chave " +
+                                                        " WHERE r.cod_retirado = '{0}'", gridRetirados.CurrentRow.Cells[0].Value.ToString()));
+
+                if (tabela.Rows.Count == 0)
+                {
+                    codigoImob.Text = "";
+                    codChave.Text = "";
+                    tipoRetirante.Text = "";
+                    nomeRetirante.Text = "";
+                    descricao.Text = "";
+                    dataRetirada.Text = "";
+                    funcionario.Text = "";
+                }
+
+                foreach (DataRow row in tabela.Rows)
+                {
+                    codigoImob.Text = row[0].ToString();
+                    codChave.Text = row[1].ToString();
+                    tipoRetirante.Text = row[2].ToString();
+                    nomeRetirante.Text = row[3].ToString();
+                    descricao.Text = row[4].ToString();
+                    dataRetirada.Text = row[5].ToString();
+                    funcionario.Text = row[6].ToString();
+                    codChave.Text = row[7].ToString();
+                }
             }
+            catch { }
 
         }
 

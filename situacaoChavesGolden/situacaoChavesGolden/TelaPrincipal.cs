@@ -93,7 +93,7 @@ namespace situacaoChavesGolden
 
         private void BtnEmprestimos_Click(object sender, EventArgs e)
         {
-            Emprestimo telaEmprestimo = new Emprestimo();
+            Emprestimo telaEmprestimo = new Emprestimo(usuario);
             atualizarForm(telaEmprestimo);
         }
 

@@ -100,6 +100,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gridChavesEmprestimo = new System.Windows.Forms.DataGridView();
+            this.funcionarioDevolucao = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupMenuSup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             this.filtrosPanel.SuspendLayout();
@@ -475,6 +477,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.funcionarioDevolucao);
+            this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.funcionario);
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.qtdControles);
@@ -482,15 +486,18 @@
             this.groupBox2.Controls.Add(this.contato);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.qtdChaves);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.codigoImob);
             this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.codChave);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.sitEmprestimo);
             this.groupBox2.Controls.Add(this.dadosRetirante);
-            this.groupBox2.Location = new System.Drawing.Point(21, 261);
+            this.groupBox2.Location = new System.Drawing.Point(21, 243);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(609, 133);
+            this.groupBox2.Size = new System.Drawing.Size(609, 151);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
@@ -500,7 +507,7 @@
             this.funcionario.AutoSize = true;
             this.funcionario.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.funcionario.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.funcionario.Location = new System.Drawing.Point(514, 116);
+            this.funcionario.Location = new System.Drawing.Point(485, 106);
             this.funcionario.Name = "funcionario";
             this.funcionario.Size = new System.Drawing.Size(10, 15);
             this.funcionario.TabIndex = 42;
@@ -511,18 +518,18 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label15.Location = new System.Drawing.Point(440, 115);
+            this.label15.Location = new System.Drawing.Point(352, 106);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(76, 15);
+            this.label15.Size = new System.Drawing.Size(131, 15);
             this.label15.TabIndex = 41;
-            this.label15.Text = "Funcionário:";
+            this.label15.Text = "Funcionário (entrega):";
             // 
             // qtdControles
             // 
             this.qtdControles.AutoSize = true;
             this.qtdControles.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.qtdControles.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.qtdControles.Location = new System.Drawing.Point(327, 116);
+            this.qtdControles.Location = new System.Drawing.Point(96, 133);
             this.qtdControles.Name = "qtdControles";
             this.qtdControles.Size = new System.Drawing.Size(10, 15);
             this.qtdControles.TabIndex = 40;
@@ -533,18 +540,18 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label12.Location = new System.Drawing.Point(224, 115);
+            this.label12.Location = new System.Drawing.Point(5, 132);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(105, 15);
+            this.label12.Size = new System.Drawing.Size(91, 15);
             this.label12.TabIndex = 39;
-            this.label12.Text = "Quant. Controles:";
+            this.label12.Text = "Qtd. Controles:";
             // 
             // contato
             // 
             this.contato.AutoSize = true;
             this.contato.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contato.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.contato.Location = new System.Drawing.Point(442, 45);
+            this.contato.Location = new System.Drawing.Point(442, 37);
             this.contato.MaximumSize = new System.Drawing.Size(200, 0);
             this.contato.Name = "contato";
             this.contato.Size = new System.Drawing.Size(10, 15);
@@ -567,7 +574,7 @@
             this.qtdChaves.AutoSize = true;
             this.qtdChaves.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.qtdChaves.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.qtdChaves.Location = new System.Drawing.Point(94, 116);
+            this.qtdChaves.Location = new System.Drawing.Point(83, 107);
             this.qtdChaves.Name = "qtdChaves";
             this.qtdChaves.Size = new System.Drawing.Size(10, 15);
             this.qtdChaves.TabIndex = 36;
@@ -578,18 +585,18 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label5.Location = new System.Drawing.Point(5, 115);
+            this.label5.Location = new System.Drawing.Point(5, 106);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 15);
+            this.label5.Size = new System.Drawing.Size(78, 15);
             this.label5.TabIndex = 35;
-            this.label5.Text = "Quant. Chaves:";
+            this.label5.Text = "Qtd. Chaves:";
             // 
             // codChave
             // 
             this.codChave.AutoSize = true;
             this.codChave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.codChave.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.codChave.Location = new System.Drawing.Point(271, 16);
+            this.codChave.Location = new System.Drawing.Point(271, 11);
             this.codChave.Name = "codChave";
             this.codChave.Size = new System.Drawing.Size(10, 15);
             this.codChave.TabIndex = 32;
@@ -600,7 +607,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label11.Location = new System.Drawing.Point(184, 14);
+            this.label11.Location = new System.Drawing.Point(184, 9);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(87, 15);
             this.label11.TabIndex = 31;
@@ -611,7 +618,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label13.Location = new System.Drawing.Point(357, 16);
+            this.label13.Location = new System.Drawing.Point(357, 11);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(149, 15);
             this.label13.TabIndex = 33;
@@ -622,7 +629,7 @@
             this.sitEmprestimo.AutoSize = true;
             this.sitEmprestimo.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sitEmprestimo.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.sitEmprestimo.Location = new System.Drawing.Point(503, 16);
+            this.sitEmprestimo.Location = new System.Drawing.Point(503, 11);
             this.sitEmprestimo.Name = "sitEmprestimo";
             this.sitEmprestimo.Size = new System.Drawing.Size(10, 15);
             this.sitEmprestimo.TabIndex = 34;
@@ -633,7 +640,7 @@
             this.dadosRetirante.AutoSize = true;
             this.dadosRetirante.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dadosRetirante.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.dadosRetirante.Location = new System.Drawing.Point(90, 43);
+            this.dadosRetirante.Location = new System.Drawing.Point(87, 43);
             this.dadosRetirante.Name = "dadosRetirante";
             this.dadosRetirante.Size = new System.Drawing.Size(10, 15);
             this.dadosRetirante.TabIndex = 28;
@@ -697,7 +704,7 @@
             this.gridEmprestimo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridEmprestimo.RowTemplate.ReadOnly = true;
             this.gridEmprestimo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridEmprestimo.Size = new System.Drawing.Size(334, 177);
+            this.gridEmprestimo.Size = new System.Drawing.Size(334, 162);
             this.gridEmprestimo.TabIndex = 24;
             this.gridEmprestimo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridEmprestimo_CellContentClick);
             this.gridEmprestimo.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridEmprestimo_CellFormatting);
@@ -710,7 +717,7 @@
             this.codigoImob.AutoSize = true;
             this.codigoImob.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.codigoImob.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.codigoImob.Location = new System.Drawing.Point(104, 276);
+            this.codigoImob.Location = new System.Drawing.Point(83, 11);
             this.codigoImob.Name = "codigoImob";
             this.codigoImob.Size = new System.Drawing.Size(10, 15);
             this.codigoImob.TabIndex = 26;
@@ -721,7 +728,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label2.Location = new System.Drawing.Point(26, 275);
+            this.label2.Location = new System.Drawing.Point(5, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 15);
             this.label2.TabIndex = 25;
@@ -754,7 +761,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label3.Location = new System.Drawing.Point(26, 304);
+            this.label3.Location = new System.Drawing.Point(6, 43);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 15);
             this.label3.TabIndex = 27;
@@ -787,7 +794,7 @@
             this.descricao.AutoSize = true;
             this.descricao.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descricao.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.descricao.Location = new System.Drawing.Point(94, 336);
+            this.descricao.Location = new System.Drawing.Point(94, 319);
             this.descricao.MaximumSize = new System.Drawing.Size(520, 0);
             this.descricao.Name = "descricao";
             this.descricao.Size = new System.Drawing.Size(10, 15);
@@ -799,7 +806,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label9.Location = new System.Drawing.Point(26, 336);
+            this.label9.Location = new System.Drawing.Point(26, 312);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 15);
             this.label9.TabIndex = 29;
@@ -828,7 +835,7 @@
             this.btnProrrogar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnProrrogar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProrrogar.Image = global::situacaoChavesGolden.Properties.Resources.ProrrogarEmprestimo;
-            this.btnProrrogar.Location = new System.Drawing.Point(21, 238);
+            this.btnProrrogar.Location = new System.Drawing.Point(21, 222);
             this.btnProrrogar.Name = "btnProrrogar";
             this.btnProrrogar.Size = new System.Drawing.Size(24, 22);
             this.btnProrrogar.TabIndex = 26;
@@ -846,7 +853,7 @@
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::situacaoChavesGolden.Properties.Resources.Recibo2;
-            this.button1.Location = new System.Drawing.Point(80, 234);
+            this.button1.Location = new System.Drawing.Point(80, 218);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(24, 28);
             this.button1.TabIndex = 46;
@@ -864,7 +871,7 @@
             this.btnBaixa.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnBaixa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBaixa.Image = global::situacaoChavesGolden.Properties.Resources.BaixaEmprestimo;
-            this.btnBaixa.Location = new System.Drawing.Point(47, 238);
+            this.btnBaixa.Location = new System.Drawing.Point(47, 222);
             this.btnBaixa.Name = "btnBaixa";
             this.btnBaixa.Size = new System.Drawing.Size(34, 22);
             this.btnBaixa.TabIndex = 27;
@@ -877,7 +884,7 @@
             this.groupBox4.Controls.Add(this.label14);
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.pictureBox1);
-            this.groupBox4.Location = new System.Drawing.Point(435, 234);
+            this.groupBox4.Location = new System.Drawing.Point(435, 218);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(195, 28);
             this.groupBox4.TabIndex = 44;
@@ -946,9 +953,31 @@
             this.gridChavesEmprestimo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridChavesEmprestimo.RowTemplate.ReadOnly = true;
             this.gridChavesEmprestimo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridChavesEmprestimo.Size = new System.Drawing.Size(266, 177);
+            this.gridChavesEmprestimo.Size = new System.Drawing.Size(266, 162);
             this.gridChavesEmprestimo.TabIndex = 45;
             this.gridChavesEmprestimo.SelectionChanged += new System.EventHandler(this.gridChavesEmprestimo_SelectionChanged);
+            // 
+            // funcionarioDevolucao
+            // 
+            this.funcionarioDevolucao.AutoSize = true;
+            this.funcionarioDevolucao.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.funcionarioDevolucao.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.funcionarioDevolucao.Location = new System.Drawing.Point(498, 132);
+            this.funcionarioDevolucao.Name = "funcionarioDevolucao";
+            this.funcionarioDevolucao.Size = new System.Drawing.Size(10, 15);
+            this.funcionarioDevolucao.TabIndex = 44;
+            this.funcionarioDevolucao.Text = " ";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label17.Location = new System.Drawing.Point(352, 133);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(146, 15);
+            this.label17.TabIndex = 43;
+            this.label17.Text = "Funcionário (Devolução):";
             // 
             // Emprestimo
             // 
@@ -965,9 +994,6 @@
             this.Controls.Add(this.btnProrrogar);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.gridEmprestimo);
-            this.Controls.Add(this.codigoImob);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.descricao);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panel1);
@@ -1078,5 +1104,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridView gridChavesEmprestimo;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label funcionarioDevolucao;
+        private System.Windows.Forms.Label label17;
     }
 }

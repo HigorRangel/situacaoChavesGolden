@@ -421,7 +421,7 @@ namespace situacaoChavesGolden
             }
             else
             {
-                DevolverChave devolucao = new DevolverChave(emprestimo.Text);
+                DevolverChave devolucao = new DevolverChave(emprestimo.Text, usuario);
                 devolucao.ShowDialog();
                 atualizarGridChaves();
             }

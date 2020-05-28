@@ -47,12 +47,16 @@ namespace situacaoChavesGolden
         {
             DataTable tabelaDados = new DataTable();
 
-            tabelaDados = database.select(string.Format("SELECT e.data_retirada, u.cod_usuario || ' - ' || u.nome_usuario, c.cod_cliente || ' - ' ||c.nome_cliente, c.cpf," +
-                                                        " c.documento, c.endereco  " +
-                                                        "FROM emprestimo e " +
-                                                        "INNER JOIN usuario u ON u.cod_usuario = e.cod_usuario " +
-                                                        "LEFT JOIN cliente c ON c.cod_cliente = e.cod_cliente " +
-                                                        "WHERE cod_emprestimo = '{0}'", codigo));
+            tabelaDados = database.select(string.Format("SELECT e.data_retirada, u.cod_usuario || ' - ' || u.nome_usuario," +
+                                                        "  c.cod_cliente || ' - ' || c.nome_cliente, " +
+                                                        " c.contato_principal || (CASE WHEN c.contato_secundario is null OR c.contato_secundario = '' THEN "+
+                                                        " '' ELSE ' / ' || c.contato_secundario END)," +
+                                                        " e.documento, c.endereco, (CASE WHEN e.tipo_doc = '' OR e.tipo_doc is null" +
+                                                        " THEN '' ELSE '(' || e.tipo_doc || ')' END)" +
+                                                        " FROM emprestimo e " +
+                                                        " INNER JOIN usuario u ON u.cod_usuario = e.cod_usuario " +
+                                                        " LEFT JOIN cliente c ON c.cod_cliente = e.cod_cliente " +
+                                                        " WHERE cod_emprestimo = '{0}'", codigo));
 
             return tabelaDados;
         }
@@ -118,18 +122,18 @@ namespace situacaoChavesGolden
             string dataRetirada = "";
             string funcionario = "";
             string cliente = "";
-            string cpfCliente = "";
+            string contatoCliente = "";
             string docCliente = "";
             string enderecoCliente = "";
 
             foreach(DataRow row in tabelaEmprestimo.Rows)
             {
                 dateRet = (DateTime)row[0];
-                dataRetirada = dateRet.ToString("dd/MM/yyyy hh:mm:ss");
+                dataRetirada = dateRet.ToString("dd/MM/yyyy HH:mm:ss");
                 funcionario = row[1].ToString();
                 cliente = row[2].ToString();
-                cpfCliente = row[3].ToString();
-                docCliente = row[4].ToString();
+                contatoCliente = row[3].ToString();
+                docCliente = row[4].ToString() + " " + row[6].ToString();
                 enderecoCliente = row[5].ToString();
             }
 
@@ -358,10 +362,12 @@ namespace situacaoChavesGolden
                 drawer.DrawString(qtdControles, fontColChaves, new SolidBrush(Color.DarkSlateGray), rectQtdCtrl, formatColChaves);
 
                 //drawer.DrawRectangle(pen, rectQtdCtrl);
+
+
                 //>>>>>>>>>>>>>>>>>>>>. Base desenhada <<<<<<<<<<<<<<<<<<
 
                 Point pFooter = new Point(pBase.X, pColCodigos.Y + sColCodigos.Height);
-                Size sFooter = new Size(sBase.Width, 120);
+                Size sFooter = new Size(sBase.Width, 135);
 
                 if (i == 0)
                 {
@@ -378,16 +384,26 @@ namespace situacaoChavesGolden
 
                     drawer.DrawRectangle(pen, rectDiv1);
 
-                    string dadosCliente = string.Format("  Nome: {0}\n\n" +
-                                                        "  Documento: {1}\n\n" +
-                                                        "  CPF: {2}\n\n" +
-                                                        "  Endereço: {3}", cliente.ToUpper(), docCliente, cpfCliente, enderecoCliente.ToUpper());
+
+                    //>>>>>>>>>>>>>> DIV 1 texto <<<<<<<<<<<<<<<<<<
+
+                    Point pDiv1Txt = new Point(pDiv1.X + 10, pDiv1.Y);
+                    Size sDiv1Txt = new Size(sDiv1.Width - 10, sDiv1.Height);
+                    Rectangle rectDiv1Txt = new Rectangle(pDiv1Txt, sDiv1Txt);
+
+
+
+                    string dadosCliente = string.Format("Nome: {0}\n\n" +
+                                                        "Documento: {1}\n\n" +
+                                                        "Contato: {2}\n\n" +
+                                                        "Endereço: {3}", cliente.ToUpper(), docCliente, contatoCliente, enderecoCliente.ToUpper());
                     Font fontDiv1 = new Font("Consolas", 10, FontStyle.Bold);
                     StringFormat formatDiv1 = new StringFormat();
                     formatDiv1.Alignment = StringAlignment.Near;
                     formatDiv1.LineAlignment = StringAlignment.Near;
 
-                    drawer.DrawString(dadosCliente, fontDiv1, new SolidBrush(Color.Black), rectDiv1);
+                    drawer.DrawRectangle(pen, rectDiv1);
+                    drawer.DrawString(dadosCliente, fontDiv1, new SolidBrush(Color.Black), rectDiv1Txt);
 
 
                     //>>>>>>>>>>>>>>>>>>>>>> DIV 2 <<<<<<<<<<<<<<<<<<<<
