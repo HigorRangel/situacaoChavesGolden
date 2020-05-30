@@ -91,7 +91,8 @@ namespace situacaoChavesGolden
 
             tabelaDados = database.select(string.Format("" +
                                             "SELECT c.cod_chave, c.cod_imob, c.rua || ', ' || c.numero || " +
-                                                " (CASE WHEN c.complemento is null OR  c.complemento = '' THEN '' ELSE ' - ' || c.complemento END) || ' - ' || c.bairro as endereco, " +
+                                                " (CASE WHEN c.complemento is null OR  c.complemento = '' THEN '' ELSE ' - ' || c.complemento END) ||" +
+                                                " (CASE WHEN c.cond is null OR c.cond = '' THEN '' ELSE ' - ' || c.cond END) || ' - ' || c.bairro as endereco, " +
                                                 " (CASE WHEN c.tipo_imovel = 'RESIDENCIAL' THEN 'RES' ELSE 'COM' END), " +
                                                 " (CASE WHEN c.finalidade = 'LOCAÇÃO' THEN 'LOC' ELSE 'VENDA' END), " +
                                                 " (CASE WHEN c.situacao = 'DISPONIVEL' THEN 'SIM' ELSE 'NÃO' END), " +
@@ -157,55 +158,95 @@ namespace situacaoChavesGolden
             header.Phrase = new Phrase("Emp", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 10, 0, BaseColor.WHITE));
             tabela.AddCell(header);
 
-
-
-            int contador = 1;
+           
+            bool colorir = false;
 
             for (int i = 0; i < tabelaDados.Rows.Count + 30; i++)
             {
-                
                 try
                 {
-                    bool colorir = false;
-
                     for (int j = 0; j < tabelaDados.Columns.Count; j++)
                     {
-                        if(i % 2  == 0)
-                        {
-                            colorir = true;
-                        }
+                        
 
-                        PdfPCell dado = new PdfPCell(new Phrase(tabelaDados.Rows[i][j].ToString() + "\n", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 10)));
-                        if(colorir == true) { dado.BackgroundColor = new BaseColor(Color.FromArgb(237, 237, 237)); }
-                        else { dado.BackgroundColor = new BaseColor(Color.White); }
+                        PdfPCell dado = new PdfPCell(new Phrase(tabelaDados.Rows[i][j].ToString(), new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 10)));
+                        //if (colorir == true) { dado.BackgroundColor = new BaseColor(Color.FromArgb(237, 237, 237)); }
+                        //else { dado.BackgroundColor = new BaseColor(Color.White); }
                         dado.BorderColor = BaseColor.GRAY;
                         dado.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+
+                        if (i % 2 == 0)
+                        {
+                            dado.BackgroundColor = new BaseColor(Color.FromArgb(237, 237, 237));
+                        }
+                        else
+                        {
+                            dado.BackgroundColor = new BaseColor(Color.White);
+                        }
 
 
                         tabela.AddCell(dado);
                     }
-                    //colorir = true;
-
-                    if (contador % 40 == 0 && contador != 0)
-                    {
-                        //MessageBox.Show(contador.ToString());
-                        doc.Add(tabela);
-                        doc.NewPage();
-                        tabela.DeleteBodyRows();
-                    }
-                    contador++;
+                
                 }
                 catch
                 {
                     doc.Add(tabela);
                     break;
-
                 }
-
-
-               
             }
             
+
+
+
+
+            //int contador = 1;
+
+            //for (int i = 0; i < tabelaDados.Rows.Count + 30; i++)
+            //{
+
+            //    try
+            //    {
+            //        bool colorir = false;
+
+            //        for (int j = 0; j < tabelaDados.Columns.Count; j++)
+            //        {
+            //            if(i % 2  == 0)
+            //            {
+            //                colorir = true;
+            //            }
+
+            //            PdfPCell dado = new PdfPCell(new Phrase(tabelaDados.Rows[i][j].ToString() + "\n", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 10)));
+            //            if(colorir == true) { dado.BackgroundColor = new BaseColor(Color.FromArgb(237, 237, 237)); }
+            //            else { dado.BackgroundColor = new BaseColor(Color.White); }
+            //            dado.BorderColor = BaseColor.GRAY;
+            //            dado.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+
+
+            //            tabela.AddCell(dado);
+            //        }
+            //        //colorir = true;
+
+            //        if (contador % 40 == 0 && contador != 0)
+            //        {
+            //            //MessageBox.Show(contador.ToString());
+            //            doc.Add(tabela);
+            //            doc.NewPage();
+            //            tabela.DeleteBodyRows();
+            //        }
+            //        contador++;
+            //    }
+            //    catch
+            //    {
+            //        doc.Add(tabela);
+            //        break;
+
+            //    }
+
+
+
+            //}
+
         }
 
         
@@ -214,7 +255,7 @@ namespace situacaoChavesGolden
             string caminho = Environment.CurrentDirectory + @"\temp\relatorio-" +
                 DateTime.Now.ToString("yyyy-MM-dd hh.mm.ss") + ".pdf";
 
-            Document doc = new Document(PageSize.A4, 5, 5, 5, 0);
+            Document doc = new Document(PageSize.A4, 5, 5, 5, 40);
             PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(caminho, FileMode.Create));
 
             

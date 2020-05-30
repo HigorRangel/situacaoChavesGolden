@@ -292,6 +292,8 @@
             this.Controls.Add(this.groupMenuSup);
             this.Controls.Add(this.gridProprietarios);
             this.DisplayHeader = false;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Proprietarios";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.None;

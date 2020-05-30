@@ -134,6 +134,7 @@
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.groupBox1);
             this.DisplayHeader = false;
+            this.MaximizeBox = false;
             this.Name = "ConfigurarReciboEmprestimo";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Style = MetroFramework.MetroColorStyle.Silver;

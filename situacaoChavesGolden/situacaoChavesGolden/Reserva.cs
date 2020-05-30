@@ -219,16 +219,25 @@ namespace situacaoChavesGolden
 
         private void BtnExcluir_Click(object sender, EventArgs e)
         {
-            Message telaMsg = new Message("Você tem certeza que quer excluir esta reserva?", "Confirmação", "aviso", "escolha");
-            telaMsg.ShowDialog();
-
-            if(telaMsg.DialogResult == DialogResult.Yes)
+            try
             {
-                database.update(string.Format("UPDATE reserva" +
-                                                  " SET situacao = 'FINALIZADO'" +
-                                                  " WHERE cod_reserva = '{0}'", gridReserva.CurrentRow.Cells[0].Value.ToString()));
-                atualizarGrid();
+                Message telaMsg = new Message("Você tem certeza que quer excluir esta reserva?", "Confirmação", "aviso", "escolha");
+                telaMsg.ShowDialog();
+
+                if (telaMsg.DialogResult == DialogResult.Yes)
+                {
+                    database.update(string.Format("UPDATE reserva" +
+                                                      " SET situacao = 'FINALIZADO'" +
+                                                      " WHERE cod_reserva = '{0}'", gridReserva.CurrentRow.Cells[0].Value.ToString()));
+                    atualizarGrid();
+                }
             }
+            catch (Exception erro)
+            {
+                Message telaMsg = new Message("Não foi possível excluir a reserva!\nErro: " + erro.Message, "Confirmação", "aviso", "escolha");
+                telaMsg.ShowDialog();
+            }
+           
 
            
         }

@@ -113,12 +113,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(250, 168);
+            this.ControlBox = false;
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.groupBox1);
             this.DisplayHeader = false;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ProrrogarEmpréstimo";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Text = "ProrrogarEmpréstimo";

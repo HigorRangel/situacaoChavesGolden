@@ -64,6 +64,8 @@
             this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.funcionarioDevolucao = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.funcionario = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.qtdControles = new System.Windows.Forms.Label();
@@ -71,7 +73,10 @@
             this.contato = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.qtdChaves = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.codigoImob = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.codChave = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -80,11 +85,8 @@
             this.previsEntrega = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
             this.gridEmprestimo = new System.Windows.Forms.DataGridView();
-            this.codigoImob = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dataEntrega = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.dataRetirada = new System.Windows.Forms.Label();
             this.labelChave = new System.Windows.Forms.Label();
             this.descricao = new System.Windows.Forms.Label();
@@ -100,8 +102,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gridChavesEmprestimo = new System.Windows.Forms.DataGridView();
-            this.funcionarioDevolucao = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.groupMenuSup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             this.filtrosPanel.SuspendLayout();
@@ -502,6 +502,28 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
+            // funcionarioDevolucao
+            // 
+            this.funcionarioDevolucao.AutoSize = true;
+            this.funcionarioDevolucao.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.funcionarioDevolucao.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.funcionarioDevolucao.Location = new System.Drawing.Point(498, 132);
+            this.funcionarioDevolucao.Name = "funcionarioDevolucao";
+            this.funcionarioDevolucao.Size = new System.Drawing.Size(10, 15);
+            this.funcionarioDevolucao.TabIndex = 44;
+            this.funcionarioDevolucao.Text = " ";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label17.Location = new System.Drawing.Point(352, 133);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(146, 15);
+            this.label17.TabIndex = 43;
+            this.label17.Text = "Funcionário (Devolução):";
+            // 
             // funcionario
             // 
             this.funcionario.AutoSize = true;
@@ -580,6 +602,28 @@
             this.qtdChaves.TabIndex = 36;
             this.qtdChaves.Text = " ";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label3.Location = new System.Drawing.Point(6, 43);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 15);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Quem retirou:";
+            // 
+            // codigoImob
+            // 
+            this.codigoImob.AutoSize = true;
+            this.codigoImob.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codigoImob.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.codigoImob.Location = new System.Drawing.Point(83, 11);
+            this.codigoImob.Name = "codigoImob";
+            this.codigoImob.Size = new System.Drawing.Size(10, 15);
+            this.codigoImob.TabIndex = 26;
+            this.codigoImob.Text = " ";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -590,6 +634,17 @@
             this.label5.Size = new System.Drawing.Size(78, 15);
             this.label5.TabIndex = 35;
             this.label5.Text = "Qtd. Chaves:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label2.Location = new System.Drawing.Point(5, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 15);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "Código Imob: ";
             // 
             // codChave
             // 
@@ -712,28 +767,6 @@
             this.gridEmprestimo.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gridEmprestimo_RowsRemoved);
             this.gridEmprestimo.SelectionChanged += new System.EventHandler(this.GridEmprestimo_SelectionChanged);
             // 
-            // codigoImob
-            // 
-            this.codigoImob.AutoSize = true;
-            this.codigoImob.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.codigoImob.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.codigoImob.Location = new System.Drawing.Point(83, 11);
-            this.codigoImob.Name = "codigoImob";
-            this.codigoImob.Size = new System.Drawing.Size(10, 15);
-            this.codigoImob.TabIndex = 26;
-            this.codigoImob.Text = " ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label2.Location = new System.Drawing.Point(5, 11);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 15);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Código Imob: ";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -755,17 +788,6 @@
             this.dataEntrega.Size = new System.Drawing.Size(10, 15);
             this.dataEntrega.TabIndex = 8;
             this.dataEntrega.Text = " ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label3.Location = new System.Drawing.Point(6, 43);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 15);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Quem retirou:";
             // 
             // dataRetirada
             // 
@@ -957,28 +979,6 @@
             this.gridChavesEmprestimo.TabIndex = 45;
             this.gridChavesEmprestimo.SelectionChanged += new System.EventHandler(this.gridChavesEmprestimo_SelectionChanged);
             // 
-            // funcionarioDevolucao
-            // 
-            this.funcionarioDevolucao.AutoSize = true;
-            this.funcionarioDevolucao.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.funcionarioDevolucao.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.funcionarioDevolucao.Location = new System.Drawing.Point(498, 132);
-            this.funcionarioDevolucao.Name = "funcionarioDevolucao";
-            this.funcionarioDevolucao.Size = new System.Drawing.Size(10, 15);
-            this.funcionarioDevolucao.TabIndex = 44;
-            this.funcionarioDevolucao.Text = " ";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label17.Location = new System.Drawing.Point(352, 133);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(146, 15);
-            this.label17.TabIndex = 43;
-            this.label17.Text = "Funcionário (Devolução):";
-            // 
             // Emprestimo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -999,6 +999,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.DisplayHeader = false;
+            this.MaximizeBox = false;
             this.Movable = false;
             this.Name = "Emprestimo";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);

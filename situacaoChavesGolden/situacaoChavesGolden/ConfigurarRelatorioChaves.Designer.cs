@@ -54,23 +54,23 @@
             this.metroRadioButton13 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton14 = new MetroFramework.Controls.MetroRadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gridProp = new System.Windows.Forms.DataGridView();
+            this.btnAddProp = new System.Windows.Forms.Button();
             this.checkProp = new MetroFramework.Controls.MetroCheckBox();
             this.panelChaves = new System.Windows.Forms.Panel();
             this.btnCancelarChave = new System.Windows.Forms.Button();
             this.btnConfirmChave = new System.Windows.Forms.Button();
             this.gridPropTotal = new System.Windows.Forms.DataGridView();
             this.boxBusca = new System.Windows.Forms.TextBox();
-            this.gridProp = new System.Windows.Forms.DataGridView();
-            this.btnAddProp = new System.Windows.Forms.Button();
             this.groupBoxTipoImovel.SuspendLayout();
             this.groupBoxSituacaoCh.SuspendLayout();
             this.groupBoxSituacaoIm.SuspendLayout();
             this.groupBoxFinalidade.SuspendLayout();
             this.groupBoxOrdenar.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProp)).BeginInit();
             this.panelChaves.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPropTotal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridProp)).BeginInit();
             this.SuspendLayout();
             // 
             // metroLabel1
@@ -354,6 +354,52 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Proprietário";
             // 
+            // gridProp
+            // 
+            this.gridProp.AllowUserToAddRows = false;
+            this.gridProp.AllowUserToDeleteRows = false;
+            this.gridProp.AllowUserToResizeRows = false;
+            this.gridProp.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.gridProp.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridProp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridProp.DefaultCellStyle = dataGridViewCellStyle1;
+            this.gridProp.Location = new System.Drawing.Point(81, 26);
+            this.gridProp.MultiSelect = false;
+            this.gridProp.Name = "gridProp";
+            this.gridProp.ReadOnly = true;
+            this.gridProp.RowHeadersVisible = false;
+            this.gridProp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridProp.Size = new System.Drawing.Size(363, 110);
+            this.gridProp.TabIndex = 29;
+            this.gridProp.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridProp_CellContentClick);
+            this.gridProp.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridProp_CellMouseEnter);
+            // 
+            // btnAddProp
+            // 
+            this.btnAddProp.BackColor = System.Drawing.Color.White;
+            this.btnAddProp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddProp.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnAddProp.Enabled = false;
+            this.btnAddProp.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnAddProp.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnAddProp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnAddProp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnAddProp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddProp.Image = global::situacaoChavesGolden.Properties.Resources.AdicionarGray;
+            this.btnAddProp.Location = new System.Drawing.Point(455, 68);
+            this.btnAddProp.Name = "btnAddProp";
+            this.btnAddProp.Size = new System.Drawing.Size(28, 28);
+            this.btnAddProp.TabIndex = 28;
+            this.btnAddProp.UseVisualStyleBackColor = false;
+            this.btnAddProp.Click += new System.EventHandler(this.BtnBaixa_Click);
+            // 
             // checkProp
             // 
             this.checkProp.AutoSize = true;
@@ -436,52 +482,6 @@
             this.boxBusca.TabIndex = 0;
             this.boxBusca.TextChanged += new System.EventHandler(this.BoxBusca_TextChanged);
             // 
-            // gridProp
-            // 
-            this.gridProp.AllowUserToAddRows = false;
-            this.gridProp.AllowUserToDeleteRows = false;
-            this.gridProp.AllowUserToResizeRows = false;
-            this.gridProp.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.gridProp.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridProp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridProp.DefaultCellStyle = dataGridViewCellStyle1;
-            this.gridProp.Location = new System.Drawing.Point(81, 26);
-            this.gridProp.MultiSelect = false;
-            this.gridProp.Name = "gridProp";
-            this.gridProp.ReadOnly = true;
-            this.gridProp.RowHeadersVisible = false;
-            this.gridProp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridProp.Size = new System.Drawing.Size(363, 110);
-            this.gridProp.TabIndex = 29;
-            this.gridProp.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridProp_CellContentClick);
-            this.gridProp.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridProp_CellMouseEnter);
-            // 
-            // btnAddProp
-            // 
-            this.btnAddProp.BackColor = System.Drawing.Color.White;
-            this.btnAddProp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAddProp.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.btnAddProp.Enabled = false;
-            this.btnAddProp.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
-            this.btnAddProp.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnAddProp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnAddProp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnAddProp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddProp.Image = global::situacaoChavesGolden.Properties.Resources.AdicionarGray;
-            this.btnAddProp.Location = new System.Drawing.Point(455, 68);
-            this.btnAddProp.Name = "btnAddProp";
-            this.btnAddProp.Size = new System.Drawing.Size(28, 28);
-            this.btnAddProp.TabIndex = 28;
-            this.btnAddProp.UseVisualStyleBackColor = false;
-            this.btnAddProp.Click += new System.EventHandler(this.BtnBaixa_Click);
-            // 
             // ConfigurarRelatorioChaves
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -500,6 +500,7 @@
             this.Controls.Add(this.metroLabel1);
             this.DisplayHeader = false;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "ConfigurarRelatorioChaves";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Resizable = false;
@@ -519,10 +520,10 @@
             this.groupBoxOrdenar.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProp)).EndInit();
             this.panelChaves.ResumeLayout(false);
             this.panelChaves.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPropTotal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridProp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

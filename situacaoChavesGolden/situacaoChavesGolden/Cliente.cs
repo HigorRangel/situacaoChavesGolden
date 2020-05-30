@@ -21,7 +21,12 @@ namespace situacaoChavesGolden
 
         private void atualizarClientes()
         {
+            gridCliente.DataSource = null;
+            gridCliente.Rows.Clear();
+            gridCliente.Columns.Clear();
+
             DataTable clientes = new DataTable();
+            clientes.Rows.Clear();
 
             clientes = database.select(string.Format("" +
                 "SELECT c.cod_cliente, c.nome_cliente, c.email, c.contato_principal, c.contato_secundario, COUNT(e.cod_emprestimo) " +
@@ -30,7 +35,7 @@ namespace situacaoChavesGolden
                  " GROUP BY c.cod_cliente " +
                  " ORDER BY c.cod_cliente"));
 
-            gridCliente.DataSource = clientes;
+            gridCliente.DataSource = clientes.DefaultView;
 
             gridCliente.Columns[0].HeaderText = "Cód";
             gridCliente.Columns[1].HeaderText = "Nome do Cliente";
@@ -42,18 +47,18 @@ namespace situacaoChavesGolden
             DataGridViewImageColumn cellImageEdit = new DataGridViewImageColumn();
             cellImageEdit.Image = new Bitmap(Properties.Resources.Edit);
 
-            gridCliente.Columns.Insert(6, cellImageEdit);
+            gridCliente.Columns.Insert(0, cellImageEdit);
 
 
             gridCliente.Columns[0].Width = 30;
-            gridCliente.Columns[1].Width = 210;
-            gridCliente.Columns[2].Width = 150;
-            gridCliente.Columns[3].Width = 80;
+            gridCliente.Columns[1].Width = 30;
+            gridCliente.Columns[2].Width = 210;
+            gridCliente.Columns[3].Width = 150;
             gridCliente.Columns[4].Width = 80;
-            gridCliente.Columns[5].Width = 50;
-            gridCliente.Columns[6].Width = 30;
+            gridCliente.Columns[5].Width = 80;
+            gridCliente.Columns[6].Width = 50;
 
-            gridCliente.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            // gridCliente.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             
 

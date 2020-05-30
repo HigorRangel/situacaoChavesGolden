@@ -52,6 +52,7 @@
             this.emprestimo = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
             this.groupMenuSup = new System.Windows.Forms.GroupBox();
+            this.btnFiltro = new System.Windows.Forms.PictureBox();
             this.radioVenda = new MetroFramework.Controls.MetroRadioButton();
             this.radioLocacao = new MetroFramework.Controls.MetroRadioButton();
             this.radioTodos = new MetroFramework.Controls.MetroRadioButton();
@@ -75,23 +76,23 @@
             this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
             this.toolTipRetirar = new System.Windows.Forms.ToolTip(this.components);
+            this.btnExcluir = new System.Windows.Forms.Button();
             this.toolTipEditar = new System.Windows.Forms.ToolTip(this.components);
+            this.btnEditar = new System.Windows.Forms.Button();
             this.ToolTipEmprestar = new System.Windows.Forms.ToolTip(this.components);
+            this.btnEmprestar = new System.Windows.Forms.Button();
             this.toolTipReservar = new System.Windows.Forms.ToolTip(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnPrintTags = new System.Windows.Forms.Button();
+            this.btnReservar = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnPrintTags = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnReservar = new System.Windows.Forms.Button();
-            this.btnEmprestar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnExcluir = new System.Windows.Forms.Button();
-            this.btnFiltro = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupMenuSup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.filtrosPanel.SuspendLayout();
             this.groupBoxTipoImovel.SuspendLayout();
@@ -99,7 +100,6 @@
             this.groupBoxSituacaoIm.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             this.SuspendLayout();
             // 
             // gridChaves
@@ -376,6 +376,19 @@
             this.groupMenuSup.TabIndex = 18;
             this.groupMenuSup.TabStop = false;
             // 
+            // btnFiltro
+            // 
+            this.btnFiltro.BackColor = System.Drawing.Color.Transparent;
+            this.btnFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiltro.Image = global::situacaoChavesGolden.Properties.Resources.Filter1;
+            this.btnFiltro.Location = new System.Drawing.Point(454, 9);
+            this.btnFiltro.Name = "btnFiltro";
+            this.btnFiltro.Size = new System.Drawing.Size(29, 27);
+            this.btnFiltro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnFiltro.TabIndex = 4;
+            this.btnFiltro.TabStop = false;
+            this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
+            // 
             // radioVenda
             // 
             this.radioVenda.AutoSize = true;
@@ -645,34 +658,56 @@
             this.toolTipRetirar.AutomaticDelay = 300;
             this.toolTipRetirar.Tag = "Retirar";
             // 
-            // groupBox4
+            // btnExcluir
             // 
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.pictureBox1);
-            this.groupBox4.Location = new System.Drawing.Point(437, 247);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(195, 28);
-            this.groupBox4.TabIndex = 45;
-            this.groupBox4.TabStop = false;
+            this.btnExcluir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluir.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnExcluir.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnExcluir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnExcluir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcluir.Image = global::situacaoChavesGolden.Properties.Resources.Delete1;
+            this.btnExcluir.Location = new System.Drawing.Point(31, 247);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(24, 22);
+            this.btnExcluir.TabIndex = 24;
+            this.toolTipRetirar.SetToolTip(this.btnExcluir, "Retirar Chave");
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
             // 
-            // label14
+            // btnEditar
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 10);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(52, 13);
-            this.label14.TabIndex = 2;
-            this.label14.Text = "Legenda:";
+            this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnEditar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnEditar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnEditar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar.Image = global::situacaoChavesGolden.Properties.Resources.Edit;
+            this.btnEditar.Location = new System.Drawing.Point(57, 247);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(24, 22);
+            this.btnEditar.TabIndex = 25;
+            this.toolTipEditar.SetToolTip(this.btnEditar, "Editar Chave");
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
-            // label10
+            // btnEmprestar
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(85, 10);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(88, 13);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Chave reservada";
+            this.btnEmprestar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEmprestar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
+            this.btnEmprestar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnEmprestar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnEmprestar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnEmprestar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmprestar.Image = global::situacaoChavesGolden.Properties.Resources.ChaveEmprestar;
+            this.btnEmprestar.Location = new System.Drawing.Point(83, 247);
+            this.btnEmprestar.Name = "btnEmprestar";
+            this.btnEmprestar.Size = new System.Drawing.Size(24, 22);
+            this.btnEmprestar.TabIndex = 26;
+            this.ToolTipEmprestar.SetToolTip(this.btnEmprestar, "Registrar Empréstimo");
+            this.btnEmprestar.UseVisualStyleBackColor = true;
+            this.btnEmprestar.Click += new System.EventHandler(this.BtnEmprestar_Click);
             // 
             // button1
             // 
@@ -708,16 +743,6 @@
             this.btnPrintTags.UseVisualStyleBackColor = true;
             this.btnPrintTags.Click += new System.EventHandler(this.btnPrintTags_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(243)))), ((int)(((byte)(135)))));
-            this.pictureBox1.Location = new System.Drawing.Point(68, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(15, 15);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
-            // 
             // btnReservar
             // 
             this.btnReservar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -735,69 +760,44 @@
             this.btnReservar.UseVisualStyleBackColor = true;
             this.btnReservar.Click += new System.EventHandler(this.BtnReservar_Click);
             // 
-            // btnEmprestar
+            // groupBox4
             // 
-            this.btnEmprestar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEmprestar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
-            this.btnEmprestar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnEmprestar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnEmprestar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnEmprestar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEmprestar.Image = global::situacaoChavesGolden.Properties.Resources.ChaveEmprestar;
-            this.btnEmprestar.Location = new System.Drawing.Point(83, 247);
-            this.btnEmprestar.Name = "btnEmprestar";
-            this.btnEmprestar.Size = new System.Drawing.Size(24, 22);
-            this.btnEmprestar.TabIndex = 26;
-            this.ToolTipEmprestar.SetToolTip(this.btnEmprestar, "Registrar Empréstimo");
-            this.btnEmprestar.UseVisualStyleBackColor = true;
-            this.btnEmprestar.Click += new System.EventHandler(this.BtnEmprestar_Click);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.pictureBox1);
+            this.groupBox4.Location = new System.Drawing.Point(437, 247);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(195, 28);
+            this.groupBox4.TabIndex = 45;
+            this.groupBox4.TabStop = false;
             // 
-            // btnEditar
+            // label14
             // 
-            this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEditar.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
-            this.btnEditar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnEditar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnEditar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.Image = global::situacaoChavesGolden.Properties.Resources.Edit;
-            this.btnEditar.Location = new System.Drawing.Point(57, 247);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(24, 22);
-            this.btnEditar.TabIndex = 25;
-            this.toolTipEditar.SetToolTip(this.btnEditar, "Editar Chave");
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(10, 10);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(52, 13);
+            this.label14.TabIndex = 2;
+            this.label14.Text = "Legenda:";
             // 
-            // btnExcluir
+            // label10
             // 
-            this.btnExcluir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExcluir.FlatAppearance.BorderColor = System.Drawing.Color.Ivory;
-            this.btnExcluir.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnExcluir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnExcluir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcluir.Image = global::situacaoChavesGolden.Properties.Resources.Delete1;
-            this.btnExcluir.Location = new System.Drawing.Point(31, 247);
-            this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(24, 22);
-            this.btnExcluir.TabIndex = 24;
-            this.toolTipRetirar.SetToolTip(this.btnExcluir, "Retirar Chave");
-            this.btnExcluir.UseVisualStyleBackColor = true;
-            this.btnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(85, 10);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(88, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Chave reservada";
             // 
-            // btnFiltro
+            // pictureBox1
             // 
-            this.btnFiltro.BackColor = System.Drawing.Color.Transparent;
-            this.btnFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFiltro.Image = global::situacaoChavesGolden.Properties.Resources.Filter1;
-            this.btnFiltro.Location = new System.Drawing.Point(454, 9);
-            this.btnFiltro.Name = "btnFiltro";
-            this.btnFiltro.Size = new System.Drawing.Size(29, 27);
-            this.btnFiltro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnFiltro.TabIndex = 4;
-            this.btnFiltro.TabStop = false;
-            this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(243)))), ((int)(((byte)(135)))));
+            this.pictureBox1.Location = new System.Drawing.Point(68, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(15, 15);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // Chaves
             // 
@@ -827,6 +827,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.DisplayHeader = false;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Movable = false;
             this.Name = "Chaves";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
@@ -840,6 +842,7 @@
             this.panel1.PerformLayout();
             this.groupMenuSup.ResumeLayout(false);
             this.groupMenuSup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.filtrosPanel.ResumeLayout(false);
@@ -853,7 +856,6 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

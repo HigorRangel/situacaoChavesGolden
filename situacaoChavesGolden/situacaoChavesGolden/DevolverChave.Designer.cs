@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DevolverChave));
             this.labelDoc = new System.Windows.Forms.Label();
             this.qtdControles = new System.Windows.Forms.NumericUpDown();
@@ -44,6 +44,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.labelNome = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.boxOutros = new System.Windows.Forms.TextBox();
@@ -57,14 +59,12 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.gridChaves = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.qtdControles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qtdChaves)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.SuspendLayout();
             // 
             // labelDoc
@@ -227,6 +227,27 @@
             this.groupBox3.TabIndex = 22;
             this.groupBox3.TabStop = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Location = new System.Drawing.Point(21, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(172, 51);
+            this.groupBox1.TabIndex = 33;
+            this.groupBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Gray;
+            this.label3.Location = new System.Drawing.Point(9, 15);
+            this.label3.MaximumSize = new System.Drawing.Size(160, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(150, 26);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Caso não haja proposta, deixe os campos abaixo vazios.";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // metroLabel8
             // 
             this.metroLabel8.AutoSize = true;
@@ -364,14 +385,14 @@
             this.gridChaves.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gridChaves.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridChaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridChaves.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridChaves.DefaultCellStyle = dataGridViewCellStyle1;
             this.gridChaves.Location = new System.Drawing.Point(16, 144);
             this.gridChaves.MultiSelect = false;
             this.gridChaves.Name = "gridChaves";
@@ -382,27 +403,6 @@
             this.gridChaves.Size = new System.Drawing.Size(385, 157);
             this.gridChaves.TabIndex = 31;
             this.gridChaves.SelectionChanged += new System.EventHandler(this.GridChaves_SelectionChanged);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(21, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(172, 51);
-            this.groupBox1.TabIndex = 33;
-            this.groupBox1.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.Gray;
-            this.label3.Location = new System.Drawing.Point(9, 15);
-            this.label3.MaximumSize = new System.Drawing.Size(160, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(153, 26);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Caso não haja proposta, deixe os campos abaixo vazios.";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DevolverChave
             // 
@@ -422,6 +422,7 @@
             this.Controls.Add(this.groupBox2);
             this.DisplayHeader = false;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "DevolverChave";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Text = "DevolverChave";
@@ -432,9 +433,9 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -600,6 +600,7 @@
             this.Controls.Add(this.finalidade);
             this.Controls.Add(this.gridRetirados);
             this.DisplayHeader = false;
+            this.MaximizeBox = false;
             this.Movable = false;
             this.Name = "Retirados";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);

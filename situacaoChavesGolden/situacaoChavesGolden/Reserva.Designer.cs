@@ -747,6 +747,7 @@
             this.Controls.Add(this.gridChavesReserva);
             this.Controls.Add(this.gridReserva);
             this.DisplayHeader = false;
+            this.MaximizeBox = false;
             this.Movable = false;
             this.Name = "Reserva";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);

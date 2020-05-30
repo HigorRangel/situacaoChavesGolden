@@ -152,6 +152,7 @@
             this.Controls.Add(this.btnOk);
             this.DisplayHeader = false;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(560, 900);
             this.Name = "Message";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);

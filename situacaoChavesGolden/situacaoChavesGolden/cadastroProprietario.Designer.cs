@@ -191,6 +191,7 @@
             this.Controls.Add(this.nomeBox);
             this.Controls.Add(this.groupBox1);
             this.DisplayHeader = false;
+            this.MaximizeBox = false;
             this.Name = "cadastroProprietario";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.None;

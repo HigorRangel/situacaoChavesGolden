@@ -783,6 +783,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 430);
+            this.ControlBox = false;
             this.Controls.Add(this.btnReprovar);
             this.Controls.Add(this.btnContraProposta);
             this.Controls.Add(this.groupMenuSup);
@@ -800,6 +801,8 @@
             this.Controls.Add(this.finalidade);
             this.Controls.Add(this.gridPropostas);
             this.DisplayHeader = false;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Movable = false;
             this.Name = "Propostas";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);

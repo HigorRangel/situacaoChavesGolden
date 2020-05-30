@@ -213,7 +213,7 @@ namespace situacaoChavesGolden
                             if (row.Cells[1].Value.ToString() != "" && row.Cells[1].Value.ToString() != null)
                             {
                                 database.update(string.Format("UPDATE chave" +
-                                       " SET situacao = 'DISPONIVEL'" +
+                                       " SET situacao = 'DISPONIVEL', localizacao = 'IMOBILIARIA'" +
                                        " WHERE indice_chave = '{0}'", row.Cells[5].Value.ToString()));
                             }
 
