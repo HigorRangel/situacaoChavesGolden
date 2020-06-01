@@ -123,6 +123,7 @@ namespace situacaoChavesGolden
         {
             atualizarGridEmprestimo();
 
+            
 
             dpMinDataRetirada.Value = dataHoje.AddMonths(-3);
             dpMinPrevisEntrega.Value = dataHoje.AddMonths(-3);
@@ -212,8 +213,8 @@ namespace situacaoChavesGolden
             catch { }
 
 
-            try
-            {
+            //try
+            //{
                 DataTable dadosEmprestimo = new DataTable();
                
 
@@ -224,8 +225,10 @@ namespace situacaoChavesGolden
                           "  WHEN e.cod_proprietario is null AND e.cod_cliente is not null THEN 'CLIENTE' " +
                            " WHEN e.cod_proprietario is not null AND e.cod_cliente is null THEN 'PROPRIETARIO' END) as tipo, " +
                            " '(' || cl.cod_cliente || ') - ' || cl.nome_cliente, cl.contato_principal || ' / ' || cl.contato_secundario, " +
-                           " '(' || p.cod_proprietario || ') - ' || p.nome as proprietario, p.contato, u.nome_usuario, e.descricao, " +
-                           "  e.data_retirada, e.entrega_prevista, e.data_entrega, (SELECT nome_usuario FROM usuario WHERE cod_usuario = e.usuario_devolucao) " +
+                           " '(' || p.cod_proprietario || ') - ' || p.nome as proprietario, p.contato, u.nome_usuario, " +
+                           " (CASE WHEN e.desc_devolucao = '' OR e.desc_devolucao is null THEN e.descricao ELSE 'ENTREGA: ' || e.descricao END), " +
+                           "  e.data_retirada, e.entrega_prevista, e.data_entrega, (SELECT nome_usuario FROM usuario WHERE cod_usuario = e.usuario_devolucao)," +
+                           " (CASE WHEN e.desc_devolucao = '' OR e.desc_devolucao is null THEN '' ELSE 'DEVOLUÇÃO: ' || e.desc_devolucao END) " +
                     " FROM emprestimo e " +
                     " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente " +
                     " LEFT JOIN usuario u ON u.cod_usuario = e.cod_usuario " +
@@ -255,7 +258,7 @@ namespace situacaoChavesGolden
                         contato.Text = row[5].ToString();
                     }
 
-                    descricao.Text = row[7].ToString();
+                    descricao.Text = row[7].ToString() + "\n" + row[12].ToString();
                     funcionario.Text = row[6].ToString();
                     dataRetirada.Text = row[8].ToString();
                     previsEntrega.Text = row[9].ToString();
@@ -263,8 +266,8 @@ namespace situacaoChavesGolden
                     funcionarioDevolucao.Text = row[11].ToString();
 
                 }
-            }
-            catch { }
+            //}
+            //catch { }
 
         }
 

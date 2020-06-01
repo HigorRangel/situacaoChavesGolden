@@ -141,7 +141,7 @@ namespace situacaoChavesGolden
 
                 if (cont != 0)
                 {
-                    Message msg = new Message(textoMsg, "Aviso", "aviso", "confirma");
+                    Message msg = new Message(textoMsg, "Aviso", "info", "confirma");
                     msg.ShowDialog();
                 }
             }
@@ -200,6 +200,7 @@ namespace situacaoChavesGolden
                         verificar = caixMensagem.DialogResult;
                     }
 
+                    
                     if(verificar == DialogResult.Yes)
                     {
                         FormatarStrings format = new FormatarStrings();
@@ -241,8 +242,8 @@ namespace situacaoChavesGolden
                         //}
 
                         database.update(string.Format("UPDATE emprestimo" +
-                                        " SET data_entrega = '{0}', usuario_devolucao = '{1}'" +
-                                        " WHERE cod_emprestimo = '{2}'", dataHoje, usuario, codigoEmprestimo));
+                                        " SET data_entrega = '{0}', usuario_devolucao = '{1}', desc_devolucao = '{2}'" +
+                                        " WHERE cod_emprestimo = '{3}'", dataHoje, usuario, boxDescDevolucao.Text, codigoEmprestimo));
 
 
 
