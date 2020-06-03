@@ -479,6 +479,24 @@ namespace situacaoChavesGolden
             //editar.ShowDialog();
         }
 
+        void mostrarAviso(string codigo)
+        {
+            try
+            {
+                string codChave = database.selectScalar(string.Format("SELECT cod_chave FROM chave WHERE indice_chave = {0}", codigo));
+                string aviso = database.selectScalar(string.Format("SELECT aviso FROM chave WHERE indice_chave = {0}", codigo));
+                aviso = aviso.Trim();
+
+                if (aviso != "" && aviso != null && aviso != " ")
+                {
+                    Message msg = new Message(string.Format("Aviso da chave {0}:\n{1}", codChave, aviso), "", "aviso", "confirma");
+                    msg.ShowDialog();
+                }
+            }
+            catch { }
+            
+        }
+
         private void BtnConfirmar_Click(object sender, EventArgs e)
         {
             //if(verificarReserva() == DialogResult.Yes)
@@ -636,6 +654,7 @@ namespace situacaoChavesGolden
 
                         foreach (DataGridViewRow row in gridChaves.Rows)
                         {
+                            mostrarAviso(row.Cells[3].Value.ToString());
                             database.update(string.Format("UPDATE chave" +
                                                      " SET situacao = 'INDISPONIVEL', localizacao = '{0}'" +
                                                      " WHERE indice_chave = '{1}'", tipo.ToUpper(), row.Cells[3].Value.ToString()));

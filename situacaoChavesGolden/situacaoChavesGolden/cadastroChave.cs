@@ -85,7 +85,7 @@ namespace situacaoChavesGolden
         {
 
 
-            MessageBox.Show(proximoCodigo());
+            //MessageBox.Show(proximoCodigo());
 
             codImovel.Focus();
 
@@ -284,6 +284,7 @@ namespace situacaoChavesGolden
                 string situacaoImovel = groupSitImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
                 string tipoImovel = groupTipoImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text; ;
                 string finalidadeImovel = "";
+                string aviso = boxAviso.Text;
 
                 if(checkLocacao.Checked && checkVenda.Checked)
                 {
@@ -325,10 +326,11 @@ namespace situacaoChavesGolden
                         {
                             database.insertInto(string.Format("" +
                              "INSERT INTO chave (rua, numero, complemento, bairro, cidade, estado, situacao," +
-                             " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel, cod_chave, quant_chaves, cond, categoria_imovel)" +
+                             " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel, cod_chave, quant_chaves, cond, categoria_imovel, aviso)" +
                              " VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}'," +
-                             " '{11}','{12}', '{13}', '{14}', '{15}', '{16}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
-                              localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, proxCod, boxQtdChaves.Value, boxCond.Text, boxCategImov.Text));
+                             " '{11}','{12}', '{13}', '{14}', '{15}', '{16}', '{17}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
+                              localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, proxCod, boxQtdChaves.Value,
+                              boxCond.Text, boxCategImov.Text, aviso));
 
                             Message popup = new Message("A chave foi cadastrada com o código " + proxCod + "!" +
                                "\n Deseja imprimir a etiqueta da chave?", "", "sucesso", "escolha");
@@ -586,5 +588,27 @@ namespace situacaoChavesGolden
             btnCancelar.ForeColor = Color.FromArgb(0, 109, 156);
             btnCancelar.BackColor = Color.White;
         }
+
+        private void BtnCadastrarAviso_Click(object sender, EventArgs e)
+        {
+            panelAviso.Visible = true;
+
+            groupBox2.Enabled = false;
+            groupBox5.Enabled = false;
+            btnCadastrar.Enabled = false;
+            btnCancelar.Enabled = false;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            panelAviso.Visible = false;
+
+            groupBox2.Enabled = true;
+            groupBox5.Enabled = true;
+            btnCadastrar.Enabled = true;
+            btnCancelar.Enabled = true;
+        }
+
+      
     }
 }

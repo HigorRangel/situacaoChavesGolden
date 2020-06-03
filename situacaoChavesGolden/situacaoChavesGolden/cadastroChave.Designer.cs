@@ -87,6 +87,13 @@
             this.boxCategImov = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
             this.boxCond = new MetroFramework.Controls.MetroTextBox();
+            this.btnCadastrarAviso = new System.Windows.Forms.Label();
+            this.panelAviso = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.metroLabel18 = new MetroFramework.Controls.MetroLabel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.boxAviso = new System.Windows.Forms.TextBox();
             this.groupSitImovel.SuspendLayout();
             this.groupFinalImovel.SuspendLayout();
             this.groupTipoImovel.SuspendLayout();
@@ -97,6 +104,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridProprietarios)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boxQtdChaves)).BeginInit();
+            this.panelAviso.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // boxLogradouro
@@ -637,7 +646,7 @@
             this.painelProp.Controls.Add(this.btnConfirmarProp);
             this.painelProp.Controls.Add(this.gridProprietarios);
             this.painelProp.Controls.Add(this.boxProcurarProp);
-            this.painelProp.Location = new System.Drawing.Point(32, 146);
+            this.painelProp.Location = new System.Drawing.Point(23, 24);
             this.painelProp.Name = "painelProp";
             this.painelProp.Size = new System.Drawing.Size(374, 225);
             this.painelProp.TabIndex = 25;
@@ -811,12 +820,96 @@
             this.boxCond.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.boxCond.UseStyleColors = true;
             // 
+            // btnCadastrarAviso
+            // 
+            this.btnCadastrarAviso.AutoSize = true;
+            this.btnCadastrarAviso.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCadastrarAviso.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastrarAviso.Location = new System.Drawing.Point(131, 489);
+            this.btnCadastrarAviso.Name = "btnCadastrarAviso";
+            this.btnCadastrarAviso.Size = new System.Drawing.Size(91, 15);
+            this.btnCadastrarAviso.TabIndex = 4001;
+            this.btnCadastrarAviso.Text = "Cadastrar aviso";
+            this.btnCadastrarAviso.Click += new System.EventHandler(this.BtnCadastrarAviso_Click);
+            // 
+            // panelAviso
+            // 
+            this.panelAviso.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelAviso.Controls.Add(this.groupBox3);
+            this.panelAviso.Controls.Add(this.metroLabel18);
+            this.panelAviso.Controls.Add(this.button3);
+            this.panelAviso.Controls.Add(this.boxAviso);
+            this.panelAviso.Location = new System.Drawing.Point(24, 253);
+            this.panelAviso.Name = "panelAviso";
+            this.panelAviso.Size = new System.Drawing.Size(374, 233);
+            this.panelAviso.TabIndex = 28;
+            this.panelAviso.Visible = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Location = new System.Drawing.Point(15, 151);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(346, 45);
+            this.groupBox3.TabIndex = 4003;
+            this.groupBox3.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Gray;
+            this.label3.Location = new System.Drawing.Point(14, 14);
+            this.label3.MaximumSize = new System.Drawing.Size(330, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(317, 26);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Este aviso será exibido toda vez que for registrado um empréstimo desta chave.";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // metroLabel18
+            // 
+            this.metroLabel18.AutoSize = true;
+            this.metroLabel18.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel18.Location = new System.Drawing.Point(162, 3);
+            this.metroLabel18.Name = "metroLabel18";
+            this.metroLabel18.Size = new System.Drawing.Size(51, 25);
+            this.metroLabel18.TabIndex = 4002;
+            this.metroLabel18.Text = "Aviso";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(107)))));
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(285, 203);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 25;
+            this.button3.Text = "Salvar";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // boxAviso
+            // 
+            this.boxAviso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.boxAviso.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.boxAviso.Location = new System.Drawing.Point(14, 30);
+            this.boxAviso.Multiline = true;
+            this.boxAviso.Name = "boxAviso";
+            this.boxAviso.Size = new System.Drawing.Size(346, 121);
+            this.boxAviso.TabIndex = 0;
+            // 
             // cadastroChave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(429, 516);
+            this.Controls.Add(this.panelAviso);
+            this.Controls.Add(this.btnCadastrarAviso);
             this.Controls.Add(this.painelProp);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAdicionarProp);
@@ -861,6 +954,10 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boxQtdChaves)).EndInit();
+            this.panelAviso.ResumeLayout(false);
+            this.panelAviso.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -926,5 +1023,12 @@
         private System.Windows.Forms.NumericUpDown boxQtdChaves;
         private MetroFramework.Controls.MetroCheckBox checkVenda;
         private MetroFramework.Controls.MetroCheckBox checkLocacao;
+        private System.Windows.Forms.Label btnCadastrarAviso;
+        private System.Windows.Forms.Panel panelAviso;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox boxAviso;
+        private MetroFramework.Controls.MetroLabel metroLabel18;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label3;
     }
 }
