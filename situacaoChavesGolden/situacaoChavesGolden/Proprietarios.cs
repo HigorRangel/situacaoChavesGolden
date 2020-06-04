@@ -23,33 +23,43 @@ namespace situacaoChavesGolden
 
         private void atualizarGridProprietarios()
         {
+            gridProprietarios.Columns.Clear();
             try
             {
+                DataGridViewImageColumn cellImageEdit = new DataGridViewImageColumn();
+                cellImageEdit.Image = new Bitmap(Properties.Resources.Edit);
+
+                gridProprietarios.Columns.Insert(0, cellImageEdit);
+
                 DataTable proprietarios = new DataTable();
 
-                proprietarios = database.select(string.Format("SELECT * FROM proprietario ORDER BY nome"));
+                proprietarios = database.select(string.Format("SELECT DISTINCT p.* " +
+                                                                " FROM proprietario p" +
+                                                                " INNER JOIN chave c ON c.proprietario = p.cod_proprietario" +
+                                                                " WHERE cod_proprietario::TEXT || 'p' ILIKE '{0}' OR nome ILIKE '%{0}%' OR contato::TEXT ILIKE '%{0}%' OR" +
+                                                                " email ILIKE '%{0}%' OR c.cod_chave::text || 'c' = '{0}' OR c.rua ILIKE '{0}' OR c.cond ILIKE '{0}' OR" +
+                                                                " unaccent(nome) ILIKE '%{0}%' OR unaccent(contato::text) ILIKE '%{0}%'OR unaccent(nome) ILIKE '%{0}%' OR " +
+                                                                " unaccent(email) ILIKE '%{0}%' OR unaccent(c.cond) ILIKE '%{0}%'" +
+                                                                " ORDER BY nome", boxBuscar.Text));
                 proprietariosTable = proprietarios;
                 
                 gridProprietarios.DataSource = proprietarios.DefaultView;
 
 
-                gridProprietarios.Columns[0].HeaderText = "Código";
-                gridProprietarios.Columns[1].HeaderText = "Nome do Proprietário";
-                gridProprietarios.Columns[2].HeaderText = "Contato";
-                gridProprietarios.Columns[3].HeaderText = "Email do Proprietário";
+                gridProprietarios.Columns[1].HeaderText = "Código";
+                gridProprietarios.Columns[2].HeaderText = "Nome do Proprietário";
+                gridProprietarios.Columns[3].HeaderText = "Contato";
+                gridProprietarios.Columns[4].HeaderText = "Email do Proprietário";
 
-                DataGridViewImageColumn cellImageEdit = new DataGridViewImageColumn();
-                cellImageEdit.Image = new Bitmap(Properties.Resources.Edit);
-
-                gridProprietarios.Columns.Insert(4, cellImageEdit);
+               
 
                 
 
-                gridProprietarios.Columns[0].Width = 50;
-                gridProprietarios.Columns[1].Width = 238;
-                gridProprietarios.Columns[2].Width = 100;
-                gridProprietarios.Columns[3].Width = 170;
-                gridProprietarios.Columns[4].Width = 30;
+                gridProprietarios.Columns[0].Width = 30;
+                gridProprietarios.Columns[1].Width = 50;
+                gridProprietarios.Columns[2].Width = 228;
+                gridProprietarios.Columns[3].Width = 100;
+                gridProprietarios.Columns[4].Width = 170;
 
             }
             catch { }
@@ -248,6 +258,16 @@ namespace situacaoChavesGolden
         private void GridProprietarios_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
            
+        }
+
+        private void MetroTextBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BoxBuscar_TextChanged(object sender, EventArgs e)
+        {
+            atualizarGridProprietarios();
         }
     }
 }

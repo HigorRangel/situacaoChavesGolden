@@ -213,8 +213,8 @@ namespace situacaoChavesGolden
             catch { }
 
 
-            //try
-            //{
+            try
+            {
                 DataTable dadosEmprestimo = new DataTable();
                
 
@@ -266,8 +266,8 @@ namespace situacaoChavesGolden
                     funcionarioDevolucao.Text = row[11].ToString();
 
                 }
-            //}
-            //catch { }
+            }
+            catch { }
 
         }
 

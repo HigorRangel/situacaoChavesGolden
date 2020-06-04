@@ -73,9 +73,9 @@
             this.label1.Location = new System.Drawing.Point(6, 16);
             this.label1.MaximumSize = new System.Drawing.Size(380, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(340, 30);
+            this.label1.Size = new System.Drawing.Size(344, 30);
             this.label1.TabIndex = 0;
-            this.label1.Text = "- Apenas retirar a chave em caso de retirada do imóvel.  Caso contrário, utilize " +
+            this.label1.Text = "- Apenas excluir a chave em caso de retirada do imóvel.  Caso contrário, utilize " +
     "a opção Empréstimo.";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -206,7 +206,7 @@
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(113, 25);
             this.metroLabel1.TabIndex = 27;
-            this.metroLabel1.Text = "Retirar Chave";
+            this.metroLabel1.Text = "Excluir Chave";
             // 
             // RetirarChave
             // 

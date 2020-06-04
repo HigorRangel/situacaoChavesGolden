@@ -104,11 +104,24 @@ namespace situacaoChavesGolden
                     boxBairro.Text = row[2].ToString();
                     boxCidade.Text = row[3].ToString();
                     boxEstado.Text = row[4].ToString();
-                    comboLocalizacao.SelectedItem = row[8].ToString();
+
+                    //MessageBox.Show(row[8].ToString());
+
+                    if(row[8].ToString() != "IMOBILIARIA" && row[8].ToString() != "PORTARIA")
+                    {
+                        comboLocalizacao.SelectedItem = "Outro";
+                        boxOutraLocalizacao.Text = row[8].ToString();
+                    }
+                    else
+                    {
+                        comboLocalizacao.SelectedItem = row[8].ToString();
+
+                    }
                     codImovel.Text = row[10].ToString();
                     boxQtdChaves.Value = int.Parse(row[15].ToString());
                     boxCond.Text = row[16].ToString();
                     boxCategImov.Text = row[17].ToString();
+                    boxAviso.Text = row[18].ToString();
                     
                     if(row[7].ToString() == "DISPONIVEL")
                     {
@@ -368,9 +381,10 @@ namespace situacaoChavesGolden
                             "UPDATE chave " +
                             " SET rua = '{0}', numero = '{1}', complemento = '{2}', bairro = '{3}', " +
                             " cidade = '{4}', estado = '{5}', situacao = '{6}', localizacao = '{7}', proprietario = '{8}', " +
-                            " cod_imob = '{9}', tipo_imovel = '{10}', finalidade = '{11}', situacao_imovel = '{12}', quant_chaves = '{13}', cond = '{14}', categoria_imovel = '{15}' " +
-                            " WHERE indice_chave = '{16}'", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
-                            localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, boxQtdChaves.Value, boxCond.Text, boxCategImov.Text, codChave));
+                            " cod_imob = '{9}', tipo_imovel = '{10}', finalidade = '{11}', situacao_imovel = '{12}', quant_chaves = '{13}', cond = '{14}', categoria_imovel = '{15}', , aviso = '{16}' " +
+                            " WHERE indice_chave = '{17}'", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
+                            localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, boxQtdChaves.Value,
+                            boxCond.Text, boxCategImov.Text, aviso,  codChave));
 
                        
 

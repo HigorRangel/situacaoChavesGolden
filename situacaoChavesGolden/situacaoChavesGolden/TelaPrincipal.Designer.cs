@@ -81,7 +81,7 @@
             this.btnRetirados.Name = "btnRetirados";
             this.btnRetirados.Size = new System.Drawing.Size(146, 35);
             this.btnRetirados.TabIndex = 10;
-            this.btnRetirados.Text = "Retirados";
+            this.btnRetirados.Text = "Excluídos";
             this.btnRetirados.UseVisualStyleBackColor = true;
             this.btnRetirados.Click += new System.EventHandler(this.BtnRetirados_Click);
             // 

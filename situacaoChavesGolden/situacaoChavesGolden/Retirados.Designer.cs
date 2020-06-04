@@ -578,9 +578,9 @@
             this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.metroLabel1.Location = new System.Drawing.Point(20, 22);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(86, 25);
+            this.metroLabel1.Size = new System.Drawing.Size(85, 25);
             this.metroLabel1.TabIndex = 99;
-            this.metroLabel1.Text = "Retirados";
+            this.metroLabel1.Text = "Excluidos";
             this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // Retirados

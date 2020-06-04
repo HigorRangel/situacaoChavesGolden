@@ -671,7 +671,7 @@
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(24, 22);
             this.btnExcluir.TabIndex = 24;
-            this.toolTipRetirar.SetToolTip(this.btnExcluir, "Retirar Chave");
+            this.toolTipRetirar.SetToolTip(this.btnExcluir, "Excluir Chave");
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
             // 

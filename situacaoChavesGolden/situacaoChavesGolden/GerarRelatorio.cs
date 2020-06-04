@@ -177,12 +177,21 @@ namespace situacaoChavesGolden
 
                         if (i % 2 == 0)
                         {
-                            dado.BackgroundColor = new BaseColor(Color.FromArgb(237, 237, 237));
+                            dado.BackgroundColor = new BaseColor(Color.FromArgb(196, 196, 196));
                         }
                         else
                         {
                             dado.BackgroundColor = new BaseColor(Color.White);
                         }
+
+                        //if (tabelaDados.Rows[i][tabelaDados.Rows.Count].ToString() == null ||
+                        //    tabelaDados.Rows[i][tabelaDados.Rows.Count].ToString() == "")
+                        //{
+                        //    dado.BackgroundColor = new BaseColor(Color.FromArgb(87, 87, 87));
+                        //    dado.font
+                        //}
+
+                       
 
 
                         tabela.AddCell(dado);

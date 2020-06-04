@@ -548,7 +548,7 @@
             this.comboLocalizacao.FormattingEnabled = true;
             this.comboLocalizacao.ItemHeight = 23;
             this.comboLocalizacao.Items.AddRange(new object[] {
-            "IMOBILIÁRIA",
+            "IMOBILIARIA",
             "PORTARIA",
             "Outro"});
             this.comboLocalizacao.Location = new System.Drawing.Point(13, 76);
