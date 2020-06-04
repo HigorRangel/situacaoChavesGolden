@@ -381,7 +381,7 @@ namespace situacaoChavesGolden
                             "UPDATE chave " +
                             " SET rua = '{0}', numero = '{1}', complemento = '{2}', bairro = '{3}', " +
                             " cidade = '{4}', estado = '{5}', situacao = '{6}', localizacao = '{7}', proprietario = '{8}', " +
-                            " cod_imob = '{9}', tipo_imovel = '{10}', finalidade = '{11}', situacao_imovel = '{12}', quant_chaves = '{13}', cond = '{14}', categoria_imovel = '{15}', , aviso = '{16}' " +
+                            " cod_imob = '{9}', tipo_imovel = '{10}', finalidade = '{11}', situacao_imovel = '{12}', quant_chaves = '{13}', cond = '{14}', categoria_imovel = '{15}', aviso = '{16}' " +
                             " WHERE indice_chave = '{17}'", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
                             localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, boxQtdChaves.Value,
                             boxCond.Text, boxCategImov.Text, aviso,  codChave));

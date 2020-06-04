@@ -28,12 +28,20 @@ namespace situacaoChavesGolden
             DataTable clientes = new DataTable();
             clientes.Rows.Clear();
 
-            clientes = database.select(string.Format("" +
-                "SELECT c.cod_cliente, c.nome_cliente, c.email, c.contato_principal, c.contato_secundario, COUNT(e.cod_emprestimo) " +
-                 " FROM cliente c " +
-                 " LEFT JOIN emprestimo e ON e.cod_cliente = c.cod_cliente " +
-                 " GROUP BY c.cod_cliente " +
-                 " ORDER BY c.cod_cliente"));
+            clientes = database.select(string.Format("SELECT c.cod_cliente, c.nome_cliente, c.email, c.contato_principal, c.contato_secundario," +
+                                                        " (SELECT COUNT(cod_emprestimo)" +
+                                                                " FROM emprestimo" +
+                                                                " WHERE cod_cliente = c.cod_cliente)  " +
+                                                        " FROM cliente c  " +
+                                                        " LEFT JOIN emprestimo e ON e.cod_cliente = c.cod_cliente" +
+                                                        " LEFT JOIN chaves_emprestimo ce ON ce.cod_emprestimo = e.cod_emprestimo" +
+                                                        " LEFT JOIN chave ch ON ch.indice_chave = ce.cod_chave" +
+                                                        " WHERE c.cod_cliente::text || 'c' ILIKE '%{0}%' OR c.nome_cliente ILIKE '%{0}%' OR unaccent(c.nome_cliente) ILIKE '%{0}%' OR" +
+                                                        " email ILIKE '%{0}%' OR unaccent(email) ILIKE '%{0}%' OR contato_principal ILIKE '%{0}%' OR unaccent(contato_principal) ILIKE '%{0}%'" +
+                                                        " OR  contato_secundario ILIKE '%{0}%' OR unaccent(contato_secundario) ILIKE '%{0}%' OR ch.rua ILIKE '%{0}%' OR unaccent(ch.rua) ILIKE" +
+                                                        " '%{0}%' OR ch.cond ILIKE '%{0}%' OR ch.cond ILIKE '%{0}%'" +
+                                                        " GROUP BY c.cod_cliente" +
+                                                        " ORDER BY c.nome_cliente", boxBusca.Text));
 
             gridCliente.DataSource = clientes.DefaultView;
 
@@ -126,6 +134,11 @@ namespace situacaoChavesGolden
             }
             
                                                   
+        }
+
+        private void boxBusca_TextChanged(object sender, EventArgs e)
+        {
+            atualizarClientes();
         }
     }
 }
