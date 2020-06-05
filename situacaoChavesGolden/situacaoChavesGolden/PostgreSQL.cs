@@ -21,7 +21,7 @@ namespace situacaoChavesGolden
 
             string connectionString = "";
             //connectionString = "Server=localhost;Port=5432;UserID=postgres;Password=123456;Database=" + nomeDB; //String para conexão no PostgreSQL
-            connectionString = string.Format("Server={0};Port=5432;UserID=postgres;Password=123456;Database={1}", serverBD, nomeDB); //String para conexão no PostgreSQL
+            connectionString = string.Format("Server={0};Port=5432;UserID=postgres;Password=123456;Database={1};Maximum Pool Size=1000", serverBD, nomeDB); //String para conexão no PostgreSQL
 
             NpgsqlConnection conn = new NpgsqlConnection(connectionString); //Cria objeto para conexão
 

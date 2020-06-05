@@ -264,7 +264,7 @@
             this.nomeRetirante.AutoSize = true;
             this.nomeRetirante.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nomeRetirante.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.nomeRetirante.Location = new System.Drawing.Point(45, 43);
+            this.nomeRetirante.Location = new System.Drawing.Point(45, 39);
             this.nomeRetirante.Name = "nomeRetirante";
             this.nomeRetirante.Size = new System.Drawing.Size(10, 15);
             this.nomeRetirante.TabIndex = 28;

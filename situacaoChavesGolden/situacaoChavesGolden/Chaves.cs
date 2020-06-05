@@ -170,8 +170,27 @@ namespace situacaoChavesGolden
 
         }
 
+        void mostrarAviso(string codigo)
+        {
+            try
+            {
+                string codChave = database.selectScalar(string.Format("SELECT cod_chave FROM chave WHERE indice_chave = {0}", codigo));
+                string aviso = database.selectScalar(string.Format("SELECT aviso FROM chave WHERE indice_chave = {0}", codigo));
+                aviso = aviso.Trim();
+
+                if (aviso != "" && aviso != null && aviso != " ")
+                {
+                    Message msg = new Message(string.Format("Aviso da chave {0}:\n{1}", codChave, aviso), "", "aviso", "confirma");
+                    msg.ShowDialog();
+                }
+            }
+            catch { }
+
+        }
+
         private void GridChaves_SelectionChanged(object sender, EventArgs e)
         {
+
             try
             {
                 if (gridChaves.CurrentRow.Cells[0].Value.ToString() == "")
@@ -275,6 +294,8 @@ namespace situacaoChavesGolden
                     }
 
                 }
+
+                mostrarAviso(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[5].Value.ToString());
             }
             catch 
             {

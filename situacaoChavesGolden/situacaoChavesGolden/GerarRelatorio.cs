@@ -167,9 +167,22 @@ namespace situacaoChavesGolden
                 {
                     for (int j = 0; j < tabelaDados.Columns.Count; j++)
                     {
-                        
+                        iTextSharp.text.Font fonte = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 10, 0, new BaseColor(Color.White));
 
-                        PdfPCell dado = new PdfPCell(new Phrase(tabelaDados.Rows[i][j].ToString(), new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 10)));
+                        if (tabelaDados.Rows[i][tabelaDados.Columns.Count - 1].ToString() != null &&
+                            tabelaDados.Rows[i][tabelaDados.Columns.Count - 1].ToString() != "")
+                        {
+                            fonte.Color = new BaseColor(Color.White);
+                        }
+                        else
+                        {
+                            fonte.Color = new BaseColor(Color.Black);
+
+                        }
+
+                        Phrase frase = new Phrase(tabelaDados.Rows[i][j].ToString(), fonte);
+
+                        PdfPCell dado = new PdfPCell(frase);
                         //if (colorir == true) { dado.BackgroundColor = new BaseColor(Color.FromArgb(237, 237, 237)); }
                         //else { dado.BackgroundColor = new BaseColor(Color.White); }
                         dado.BorderColor = BaseColor.GRAY;
@@ -184,19 +197,19 @@ namespace situacaoChavesGolden
                             dado.BackgroundColor = new BaseColor(Color.White);
                         }
 
-                        //if (tabelaDados.Rows[i][tabelaDados.Rows.Count].ToString() == null ||
-                        //    tabelaDados.Rows[i][tabelaDados.Rows.Count].ToString() == "")
-                        //{
-                        //    dado.BackgroundColor = new BaseColor(Color.FromArgb(87, 87, 87));
-                        //    dado.font
-                        //}
+                        if (tabelaDados.Rows[i][tabelaDados.Columns.Count-1].ToString() != null &&
+                            tabelaDados.Rows[i][tabelaDados.Columns.Count-1].ToString() != "")
+                        {
+                            dado.BackgroundColor = new BaseColor(Color.FromArgb(87, 87, 87));
+                            //dado.font
+                        }
 
-                       
+
 
 
                         tabela.AddCell(dado);
                     }
-                
+
                 }
                 catch
                 {
