@@ -58,6 +58,7 @@
             this.contPlacas = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.boxBusca = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgTexto)).BeginInit();
@@ -295,6 +296,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.boxBusca);
             this.groupBox1.Controls.Add(this.tamFonte);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.descCod);
@@ -413,6 +415,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Chaves à serem selecionadas";
             // 
+            // boxBusca
+            // 
+            this.boxBusca.Location = new System.Drawing.Point(9, 28);
+            this.boxBusca.Name = "boxBusca";
+            this.boxBusca.Size = new System.Drawing.Size(262, 20);
+            this.boxBusca.TabIndex = 66;
+            this.boxBusca.TextChanged += new System.EventHandler(this.BoxBusca_TextChanged);
+            // 
             // ImprimirEtiquetas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,5 +488,6 @@
         private System.Windows.Forms.TextBox descCod;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown tamFonte;
+        private System.Windows.Forms.TextBox boxBusca;
     }
 }

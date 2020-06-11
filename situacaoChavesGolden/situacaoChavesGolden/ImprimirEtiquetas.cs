@@ -23,6 +23,7 @@ namespace situacaoChavesGolden
         DataTable tabelaChave = new DataTable();
         int qtdChaves = 0;
         bool seletorTela = false;
+        string codigoChave = "";
 
         PostgreSQL database = new PostgreSQL();
         public ImprimirEtiquetas()
@@ -30,25 +31,55 @@ namespace situacaoChavesGolden
             InitializeComponent();
         }
 
+       
+
         public ImprimirEtiquetas(string codChave)
         {
             InitializeComponent();
-            seletorTela = true;
-            gridFrom.Enabled = false;
-            btnSelecTudo.Enabled = false;
-            btnSelecTudoTo.Enabled = false;
-            btnPassSelec.Enabled = false;
-            btnPassSelec.Cursor = Cursors.Arrow;
+
+            codigoChave = codChave;
+            //seletorTela = true;
+            //gridFrom.Enabled = false;
+            //btnSelecTudo.Enabled = false;
+            //btnSelecTudoTo.Enabled = false;
+            //btnPassSelec.Enabled = false;
+            //btnPassSelec.Cursor = Cursors.Arrow;
+
+            DataGridViewColumn clmn = new DataGridViewColumn();
+
+            clmn.HeaderText = "Cód.";
+            clmn.ValueType = typeof(int);
+
+            gridTo.Columns.Add("codigo", "Cód.");
+            gridTo.Columns.Add("endereco", "Endereço");
+            gridTo.Columns.Add("indice", "indice");
+            gridTo.Columns.Add("situacao", "situacao");
+
+
+
+            gridTo.Columns[0].Width = 30;
+            gridTo.Columns[1].Width = 228;
+            gridTo.Columns[2].Visible = false;
+            gridTo.Columns[3].Visible = false;
+
+
 
             DataTable tabela = new DataTable();
 
              tabela = database.select(string.Format("SELECT c.cod_chave, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, c.situacao_imovel" +
                                                   " FROM chave c" +
-                                                  "  WHERE cod_chave = '{0}'" +
+                                                  "  WHERE indice_chave = '{0}'" +
                                                   " ORDER BY c.situacao_imovel, c.cod_chave " +
                                                   "", codChave));
 
-            gridTo.DataSource = tabela.DefaultView;
+            //gridTo.DataSource = tabela.DefaultView;
+
+            foreach(DataRow row in tabela.Rows)
+            {
+                gridTo.Rows.Add(row[0].ToString(), row[1].ToString(), row[2].ToString(), row[3].ToString());
+            }
+
+
 
             gridTo.Columns[0].HeaderText = "Cód";
             gridTo.Columns[1].HeaderText = "Endereço";
@@ -66,7 +97,7 @@ namespace situacaoChavesGolden
                                                       " (CASE WHEN complemento = '' THEN '' ELSE '[' || complemento || ']' END) || ' - ' || bairro || " +
                                                       " ' (' || cod_imob || ')' as endereco, cod_chave, quant_chaves" +
                                                       " FROM chave" +
-                                                      " WHERE cod_chave = '{0}'", codChave));
+                                                      " WHERE indice_chave = '{0}'", codChave));
 
             foreach (DataRow linha in tabelaPlaca.Rows)
             {
@@ -85,11 +116,35 @@ namespace situacaoChavesGolden
 
         void atualizarGridFrom()
         {
+            string codigosEscolhidos = "";
+
+            int cont = 0;
+            foreach(DataGridViewRow row in gridTo.Rows)
+            {
+                if (cont != gridTo.Rows.Count)
+                {
+                    //MessageBox.Show(row.Cells[0].Value.ToString());
+                    codigosEscolhidos += " AND c.indice_chave != " + row.Cells[2].Value.ToString();
+                }
+
+                //codigosEscolhidos += row.Cells[2].Value.ToString() ;
+
+                
+            }
+
+            //MessageBox.Show(codigosEscolhidos);
+
             tabelaChave.Rows.Clear();
 
-            tabelaChave = database.select("SELECT c.cod_chave, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, c.situacao_imovel" +
+            tabelaChave = database.select(string.Format("SELECT c.cod_chave, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, c.situacao_imovel" +
                                                   " FROM chave c" +
-                                                  " ORDER BY c.situacao_imovel, c.cod_chave");
+                                                  "  WHERE (c.indice_chave != '{0}' {1}) AND " +
+                                                  "  (cod_chave::text || 'c' ILIKE '{2}' OR ((unaccent(lower(c.rua))) ILIKE '%{2}%' OR (unaccent(lower(c.bairro))) ILIKE '%{2}%' OR (unaccent(lower(c.cidade))) ILIKE '%{2}%' OR (unaccent(lower(c.estado))) ILIKE '%{2}%' OR" +
+                                                     " (unaccent(lower(c.numero)))  ILIKE '%{2}%' OR (unaccent(lower(c.complemento))) ILIKE '%{2}%' OR (unaccent(lower(c.cod_imob))) ILIKE '%{2}%' " +
+                                                     " OR c.rua  ILIKE '%{2}%' OR c.bairro ILIKE '%{2}%' OR c.cidade ILIKE '%{2}%' OR c.estado ILIKE '%{2}%' OR c.numero ILIKE '%{2}%' OR " +
+                                                     " c.complemento  ILIKE '%{2}%' OR c.cod_imob ILIKE '%{2}%'))" +
+                                                  " ORDER BY c.situacao_imovel, c.cod_chave" +
+                                                  "", codigoChave, codigosEscolhidos, boxBusca.Text));
 
             gridFrom.DataSource = tabelaChave.DefaultView;
 
@@ -186,22 +241,25 @@ namespace situacaoChavesGolden
         {
             atualizarGridFrom();
 
-            DataGridViewColumn clmn = new DataGridViewColumn();
+            //gridTo.Rows.Clear();
 
-            clmn.HeaderText = "Cód.";
-            clmn.ValueType = typeof(int);
+            //DataGridViewColumn clmn = new DataGridViewColumn();
 
-            gridTo.Columns.Add("codigo", "Cód.");
-            gridTo.Columns.Add("endereco", "Endereço");
-            gridTo.Columns.Add("indice", "indice");
-            gridTo.Columns.Add("situacao", "situacao");
+            //clmn.HeaderText = "Cód.";
+            //clmn.ValueType = typeof(int);
+
+            //gridTo.Columns.Add("codigo", "Cód.");
+            //gridTo.Columns.Add("endereco", "Endereço");
+            //gridTo.Columns.Add("indice", "indice");
+            //gridTo.Columns.Add("situacao", "situacao");
 
             
 
-            gridTo.Columns[0].Width = 30;
-            gridTo.Columns[1].Width = 228;
-            gridTo.Columns[2].Visible = false;
-            gridTo.Columns[3].Visible = false;
+            //gridTo.Columns[0].Width = 30;
+            //gridTo.Columns[1].Width = 228;
+            //gridTo.Columns[2].Visible = false;
+            //gridTo.Columns[3].Visible = false;
+
 
             
             //descImovel.Size = new Size(cmToPixel(3.3), cmToPixel(1.9));
@@ -550,7 +608,8 @@ namespace situacaoChavesGolden
 
                         //MessageBox.Show(row.Cells[0].Value.ToString());
                         gridTo.Rows.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString());
-                        gridFrom.Rows.RemoveAt(row.Index);
+                        //gridFrom.Rows.RemoveAt(row.Index);
+                        
 
                         DataTable tabelaChaves = new DataTable();
                         tabelaChaves = database.select(string.Format("SELECT categoria_imovel, (CASE WHEN cond is null OR cond = '' THEN '' ELSE cond || ' - '  END) || rua || ', ' || ' Nº ' || numero || " +
@@ -580,6 +639,7 @@ namespace situacaoChavesGolden
                 }
 
             }
+                atualizarGridFrom();
             }
 
 
@@ -840,6 +900,11 @@ namespace situacaoChavesGolden
         private void DescTipo_Leave(object sender, EventArgs e)
         {
             descTipo.Text = descTipo.Text.ToUpper();
+        }
+
+        private void BoxBusca_TextChanged(object sender, EventArgs e)
+        {
+            atualizarGridFrom();
         }
     }
 }

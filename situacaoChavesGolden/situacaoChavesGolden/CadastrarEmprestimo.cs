@@ -875,29 +875,35 @@ namespace situacaoChavesGolden
 
                 try
                 {
-                    DataTable tabelaDados = new DataTable();
+                    if(cadastrarProp.DialogResult == DialogResult.Yes)
+                    {
+                        DataTable tabelaDados = new DataTable();
 
-                    tabelaDados = database.select("SELECT cod_cliente, nome_cliente" +
-                                                    " FROM cliente" +
-                                                    " ORDER BY cod_cliente DESC" +
-                                                    " LIMIT 1");
+                        tabelaDados = database.select("SELECT cod_cliente, nome_cliente" +
+                                                        " FROM cliente" +
+                                                        " ORDER BY cod_cliente DESC" +
+                                                        " LIMIT 1");
 
-                    codPessoaBox.Text = tabelaDados.Rows[0][0].ToString();
-                    nomePessoaBox.Text = tabelaDados.Rows[0][1].ToString();
+                        codPessoaBox.Text = tabelaDados.Rows[0][0].ToString();
+                        nomePessoaBox.Text = tabelaDados.Rows[0][1].ToString();
 
-                    painelProp.Visible = false;
-                    groupQuemEmpresta.Enabled = true;
-                    groupDadosEmp.Enabled = true;
-                    groupDadosCliente.Enabled = true;
-                    //groupBox4.Enabled = true;
-                    btnConfirmar.Enabled = true;
-                    btnAdicionarPessoa.Visible = false;
-                    labelProp.Visible = true;
-                    labelCod.Visible = true;
-                    codPessoaBox.Visible = true;
-                    nomePessoaBox.Visible = true;
-                    excluiProp.Enabled = true;
-                    excluiProp.Visible = true;
+                        painelProp.Visible = false;
+                        groupQuemEmpresta.Enabled = true;
+                        groupDadosEmp.Enabled = true;
+                        groupDadosCliente.Enabled = true;
+                        //groupBox4.Enabled = true;
+                        btnConfirmar.Enabled = true;
+                        btnAdicionarPessoa.Visible = false;
+                        labelProp.Visible = true;
+                        labelCod.Visible = true;
+                        codPessoaBox.Visible = true;
+                        nomePessoaBox.Visible = true;
+                        excluiProp.Enabled = true;
+                        excluiProp.Visible = true;
+                    }
+                   
+
+                    
                 }
                 catch { }
 

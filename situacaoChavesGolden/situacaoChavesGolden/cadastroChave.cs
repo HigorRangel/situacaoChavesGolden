@@ -353,7 +353,10 @@ namespace situacaoChavesGolden
                             {
                                 try
                                 {
-                                    ImprimirEtiquetas imprimir = new ImprimirEtiquetas(proxCod);
+                                    ImprimirEtiquetas imprimir = new ImprimirEtiquetas(
+                                        database.selectScalar(string.Format("SELECT indice_chave" +
+                                                                " FROM chave" +
+                                                                " WHERE cod_chave = '{0}'", proxCod)));
                                     imprimir.ShowDialog();
                                 }
                                 catch (Exception error)

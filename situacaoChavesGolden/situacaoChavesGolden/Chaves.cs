@@ -53,7 +53,7 @@ namespace situacaoChavesGolden
                                              " WHERE cod_chave = c.indice_chave AND situacao = 'EM ANDAMENTO') as emprestimo" +
                                              " FROM chave C" +
                                              " LEFT JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
-                                             " WHERE cod_chave::text ILIKE '{0}' OR ((unaccent(lower(c.rua))) ILIKE '%{0}%' OR (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR (unaccent(lower(c.cidade))) ILIKE '%{0}%' OR (unaccent(lower(c.estado))) ILIKE '%{0}%' OR" +
+                                             " WHERE cod_chave::text || 'c' ILIKE '{0}' OR ((unaccent(lower(c.rua))) ILIKE '%{0}%' OR (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR (unaccent(lower(c.cidade))) ILIKE '%{0}%' OR (unaccent(lower(c.estado))) ILIKE '%{0}%' OR" +
                                              " (unaccent(lower(c.numero)))  ILIKE '%{0}%' OR (unaccent(lower(c.complemento))) ILIKE '%{0}%' OR (unaccent(lower(c.cod_imob))) ILIKE '%{0}%' OR (unaccent(lower(p.nome))) ILIKE '%{0}%'" +
                                              " OR c.rua  ILIKE '%{0}%' OR c.bairro ILIKE '%{0}%' OR c.cidade ILIKE '%{0}%' OR c.estado ILIKE '%{0}%' OR c.numero ILIKE '%{0}%' OR " +
                                              " c.complemento  ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%') AND " +
@@ -247,7 +247,7 @@ namespace situacaoChavesGolden
                         endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} [{6} {5}]", row[1].ToString(),
                             row[5].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(),
                             row[6].ToString(), row[16].ToString());
-                        proprietario.Text = row[18].ToString();
+                        proprietario.Text = row[19].ToString();
                         tipoImovel.Text = row[11].ToString();
                         sitChave.Text = row[7].ToString();
                         localizacao.Text = row[8].ToString();
@@ -475,7 +475,7 @@ namespace situacaoChavesGolden
 
         private void btnPrintTags_Click(object sender, EventArgs e)
         {
-            ImprimirEtiquetas imprimirTags = new ImprimirEtiquetas();
+            ImprimirEtiquetas imprimirTags = new ImprimirEtiquetas(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[5].Value.ToString());
             imprimirTags.ShowDialog();
         }
 
