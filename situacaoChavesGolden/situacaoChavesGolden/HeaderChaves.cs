@@ -24,9 +24,20 @@ namespace situacaoChavesGolden
         public override void OnStartPage(PdfWriter writer, Document document)
         {
             //base.OnStartPage(writer, document);
+            iTextSharp.text.Image img;
 
+            try
+            {
+                img = iTextSharp.text.Image.GetInstance(Environment.CurrentDirectory + @"\Images\LogoRelatorio.png");
+                //img = iTextSharp.text.Image.GetInstance((System.Drawing.Image)Properties.Resources.LogoRelatorio, new BaseColor(System.Drawing.Color.White));
 
-            iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.LogoRelatorio, BaseColor.WHITE, false);
+            }
+            catch
+            {
+                 img = iTextSharp.text.Image.GetInstance((System.Drawing.Image)Properties.Resources.LogoRelatorio, new BaseColor(System.Drawing.Color.White));
+            }
+
+            //iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.LogoRelatorio, BaseColor.BLACK, false);
 
 
 

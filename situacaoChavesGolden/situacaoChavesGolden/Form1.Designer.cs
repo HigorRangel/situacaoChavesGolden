@@ -102,6 +102,7 @@
             this.Name = "Login";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.Login_GiveFeedback);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

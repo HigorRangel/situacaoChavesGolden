@@ -139,6 +139,9 @@ namespace situacaoChavesGolden
 
             //database.backup(caminho, "\\backupDados.dump");
 
+            database.excluirConn();
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -171,6 +174,11 @@ namespace situacaoChavesGolden
             Form2 f2 = new Form2();
 
             f2.ShowDialog();
+        }
+
+        private void Login_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+        {
+
         }
     }
 }

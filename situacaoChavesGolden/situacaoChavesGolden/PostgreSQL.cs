@@ -15,27 +15,34 @@ namespace situacaoChavesGolden
         
         public string nomeDB = "chaves_golden";
         public string serverBD = Properties.Settings.Default.serverBD;
+        NpgsqlConnection conn = new NpgsqlConnection();
 
-        private NpgsqlConnection conectar()
+        public PostgreSQL()
         {
-
-            string connectionString = "";
-            //connectionString = "Server=localhost;Port=5432;UserID=postgres;Password=123456;Database=" + nomeDB; //String para conexão no PostgreSQL
-            connectionString = string.Format("Server={0};Port=5432;UserID=postgres;Password=123456;Database={1};Maximum Pool Size=1000", serverBD, nomeDB); //String para conexão no PostgreSQL
-
-            NpgsqlConnection conn = new NpgsqlConnection(connectionString); //Cria objeto para conexão
-
-
-            conn.Open(); // Inicia conexão
-
-            return conn;
-
+            conn.ConnectionString = string.Format("Server={0};Port=5432;UserID=postgres;Password=123456;Database={1};Maximum Pool Size=1000", serverBD, nomeDB);
+            conn.Open();
         }
+        //private NpgsqlConnection conectar()
+        //{
+
+        //    string connectionString = "";
+        //    //connectionString = "Server=localhost;Port=5432;UserID=postgres;Password=123456;Database=" + nomeDB; //String para conexão no PostgreSQL
+        //    connectionString = string.Format("Server={0};Port=5432;UserID=postgres;Password=123456;Database={1};Maximum Pool Size=1000", serverBD, nomeDB); //String para conexão no PostgreSQL
+
+        //    NpgsqlConnection conn = new NpgsqlConnection(connectionString); //Cria objeto para conexão
 
 
-        private void excluirConn()
+        //    conn.Open(); // Inicia conexão
+
+        //    return conn;
+
+        //}
+
+
+        public void excluirConn()
         {
-            var conn = conectar();
+
+
             NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT " +
                                                     " pg_terminate_backend(pg_stat_activity.pid) " +
                                                     " FROM pg_stat_activity " +
@@ -45,12 +52,14 @@ namespace situacaoChavesGolden
 
             cmd.Connection = conn;
             cmd.ExecuteNonQuery();
-            conn.Close();
+
+
+
         }
         public void insertInto(string comando)
         {
-            excluirConn();
-            var conn = conectar();
+            //excluirConn();
+           // var conn = conectar();
             NpgsqlCommand cmd = new NpgsqlCommand(); //Cria objeto para utilizar os comandos no PostgreSQL
             cmd.Connection = conn;
 
@@ -59,15 +68,15 @@ namespace situacaoChavesGolden
             cmd.CommandText = comando;
 
             cmd.ExecuteNonQuery();
-            conn.Close();
+            //conn.Close();
         }
 
 
         public DataTable select(string comando)
         {
-            excluirConn();
+            //excluirConn();
 
-            var conn = conectar();
+           // var conn = conectar();
 
 
 
@@ -81,7 +90,7 @@ namespace situacaoChavesGolden
             dados.Fill(dtTabela); //Completa a tabelas com os dados
 
 
-            conn.Close();
+            //conn.Close();
 
             return dtTabela;
 
@@ -92,11 +101,11 @@ namespace situacaoChavesGolden
 
         public string selectScalar(string comando)
         {
-            excluirConn();
+            //excluirConn();
             string resultado = "";
 
 
-            var conn = conectar();
+            //var conn = conectar();
 
 
             NpgsqlCommand dados = new NpgsqlCommand(comando, conn); //Objeto de dados
@@ -105,7 +114,7 @@ namespace situacaoChavesGolden
             resultado = dados.ExecuteScalar().ToString();
 
 
-            conn.Close();
+            //conn.Close();
 
 
 
@@ -114,8 +123,8 @@ namespace situacaoChavesGolden
 
         public bool update(string comando)
         {
-            excluirConn();
-            var conn = conectar(); //Chama método de conexão ao Banco de dados
+            //excluirConn();
+            //var conn = conectar(); //Chama método de conexão ao Banco de dados
             NpgsqlCommand cmd = new NpgsqlCommand(); //Cria objeto para utilizar os comandos no PostgreSQL
             cmd.Connection = conn;
 
@@ -124,7 +133,7 @@ namespace situacaoChavesGolden
                 cmd.CommandText = comando;
 
                 cmd.ExecuteNonQuery();
-                conn.Close();
+                //conn.Close();
 
                 return true;
             //}
@@ -139,8 +148,8 @@ namespace situacaoChavesGolden
 
         public bool delete(string comando)
         {
-            excluirConn();
-            var conn = conectar(); //Chama método de conexão ao Banco de dados
+           //excluirConn();
+           // var conn = conectar(); //Chama método de conexão ao Banco de dados
             NpgsqlCommand cmd = new NpgsqlCommand(); //Cria objeto para utilizar os comandos no PostgreSQL
             cmd.Connection = conn;
 
@@ -149,7 +158,7 @@ namespace situacaoChavesGolden
                 cmd.CommandText = comando;
 
                 cmd.ExecuteNonQuery();
-                conn.Close();
+                //conn.Close();
 
                 return true;
             }
@@ -162,7 +171,7 @@ namespace situacaoChavesGolden
 
         public void backup(string nome)
         {
-            excluirConn();
+            //excluirConn();
 
 
             string nomeArquivo = Environment.CurrentDirectory + @"\BACKUPS\" +
@@ -207,7 +216,7 @@ namespace situacaoChavesGolden
 
         public void restore(string caminho, string nome)
         {
-            excluirConn();
+            //excluirConn();
             string varAmbiente = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
             string[] colunas = varAmbiente.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
 
