@@ -115,13 +115,14 @@
             this.boxContato2.CustomForeColor = true;
             this.boxContato2.ForeColor = System.Drawing.Color.Gray;
             this.boxContato2.Location = new System.Drawing.Point(186, 155);
-            this.boxContato2.MaxLength = 12;
+            this.boxContato2.MaxLength = 16;
             this.boxContato2.Name = "boxContato2";
             this.boxContato2.Size = new System.Drawing.Size(100, 23);
             this.boxContato2.TabIndex = 7;
             this.boxContato2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.boxContato2.UseStyleColors = true;
             this.boxContato2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BoxContato2_KeyPress);
+            this.boxContato2.Leave += new System.EventHandler(this.BoxContato2_Leave);
             // 
             // metroLabel6
             // 
@@ -139,13 +140,14 @@
             this.boxContato.CustomForeColor = true;
             this.boxContato.ForeColor = System.Drawing.Color.Gray;
             this.boxContato.Location = new System.Drawing.Point(31, 155);
-            this.boxContato.MaxLength = 12;
+            this.boxContato.MaxLength = 16;
             this.boxContato.Name = "boxContato";
             this.boxContato.Size = new System.Drawing.Size(100, 23);
             this.boxContato.TabIndex = 6;
             this.boxContato.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.boxContato.UseStyleColors = true;
             this.boxContato.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BoxContato_KeyPress);
+            this.boxContato.Leave += new System.EventHandler(this.BoxContato_Leave);
             // 
             // metroLabel5
             // 
