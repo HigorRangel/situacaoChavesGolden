@@ -38,19 +38,29 @@ namespace situacaoChavesGolden
             if (tipo == "TODOS") { tipo = ""; }
             if (busca == "Buscar") { busca = ""; }
 
-            tabelaReserva = database.select(string.Format("SELECT DISTINCT r.cod_reserva,  r.data_reserva, r.situacao" +
+            tabelaReserva = database.select(string.Format("SELECT DISTINCT r.cod_reserva,  r.data_reserva, r.situacao," +
+                                                            " COUNT((CASE WHEN(SELECT  COUNT(*) "+
+                                                            " FROM chaves_emprestimo ce"+
+                                                            " LEFT JOIN emprestimo e ON e.cod_emprestimo = ce.cod_emprestimo"+
+                                                            " WHERE ce.cod_chave = c.indice_chave AND data_entrega is null) != 0 THEN 'EMPRESTADA'"+
+                                                            " ELSE 'LIVRE' END))" +
                                                            " FROM reserva r" +
                                                            " INNER JOIN chaves_reserva cr ON cr.cod_reserva = r.cod_reserva" +
                                                            " LEFT JOIN chave c ON c.indice_chave = cr.cod_chave " +
                                                            " LEFT JOIN proprietario p ON p.cod_proprietario = r.cod_proprietario " +
                                                            " LEFT JOIN cliente cl ON cl.cod_cliente = r.cod_cliente " +
-                                                           " WHERE(r.cod_reserva::TEXT ILIKE '%{0}%' OR c.cod_chave::TEXT ILIKE '%{0}%' OR c.rua  ILIKE '%{0}%' OR c.bairro  ILIKE '%{0}%' OR " +
+                                                           " WHERE (CASE WHEN(SELECT  COUNT(*) " +  
+                                                            " FROM chaves_emprestimo ce " +
+                                                            " LEFT JOIN emprestimo e ON e.cod_emprestimo = ce.cod_emprestimo " +
+                                                            " WHERE ce.cod_chave = c.indice_chave AND data_entrega is null) != 0 THEN 'EMPRESTADA' " +
+                                                            " ELSE 'LIVRE' END) = 'LIVRE' AND (r.cod_reserva::TEXT ILIKE '%{0}%' OR c.cod_chave::TEXT ILIKE '%{0}%' OR c.rua  ILIKE '%{0}%' OR c.bairro  ILIKE '%{0}%' OR " +
                                                            " c.cidade  ILIKE '%{0}%' OR cl.cod_cliente::TEXT ILIKE " +
                                                            " '%{0}%' OR cl.nome_cliente ILIKE '%{0}%' OR p.nome ILIKE '%{0}%')" +
                                                            " AND (r.situacao ILIKE '%{1}%' {2}" +
                                                                 "  AND (CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
                                                                 " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
-                                                                " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) ILIKE '%{3}%')",
+                                                                " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) ILIKE '%{3}%')" +
+                                                                " GROUP BY r.cod_reserva",
                                                                 busca, situacao, dataReserva, tipo));
 
             gridReserva.DataSource = tabelaReserva.DefaultView;
@@ -58,6 +68,8 @@ namespace situacaoChavesGolden
             gridReserva.Columns[0].HeaderText = "Reserva";
             gridReserva.Columns[1].HeaderText = "Data Reserva";
             gridReserva.Columns[2].HeaderText = "Situação";
+            gridReserva.Columns[3].Visible =  false;
+
 
 
             gridReserva.Columns[0].Width = 60;
@@ -480,7 +492,43 @@ namespace situacaoChavesGolden
 
         private void GridReserva_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            
+            try
+            {
+
+                DataGridViewRow row = gridReserva.Rows[e.RowIndex];
+                int contTotal = int.Parse(database.selectScalar(string.Format("SELECT COUNT (*) FROM chaves_reserva cr WHERE cr.cod_reserva = '{0}'", row.Cells[0].Value.ToString())));
+
+                int contadorLivres = int.Parse(row.Cells[3].Value.ToString());
+                //string sitChave = gridChavesReserva.Rows[e.RowIndex].Cells[4].Value.ToString();
+
+                if (contadorLivres == contTotal)
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(182, 255, 145);
+                    row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(105, 184, 66);
+
+                    //int contLivres = 0;
+
+                    //foreach (DataGridViewRow linha in gridChavesReserva.Rows)
+                    //{
+                    //    if (linha.Cells[3].Value.ToString() == "LIVRE" && linha.Cells[4].Value.ToString() == "DISPONIVEL")
+                    //    {
+                    //        contLivres++;
+                    //    }
+                    //}
+
+
+                    //if (contLivres == gridChavesReserva.Rows.Count)
+                    //{
+                    //    gridReserva.CurrentRow.DefaultCellStyle.BackColor = Color.FromArgb(182, 255, 145);
+                    //    gridReserva.CurrentRow.DefaultCellStyle.SelectionBackColor = Color.FromArgb(105, 184, 66);
+                    //}
+                }
+
+            }
+            catch
+            {
+
+            }
         }
 
         private void GridChavesReserva_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -496,22 +544,22 @@ namespace situacaoChavesGolden
                     row.DefaultCellStyle.BackColor = Color.FromArgb(182, 255, 145);
                     row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(105, 184, 66);
 
-                    int contLivres = 0;
+                    //int contLivres = 0;
 
-                    foreach (DataGridViewRow linha in gridChavesReserva.Rows)
-                    {
-                        if (linha.Cells[3].Value.ToString() == "LIVRE" && linha.Cells[4].Value.ToString() == "DISPONIVEL")
-                        {
-                            contLivres++;
-                        }
-                    }
+                    //foreach (DataGridViewRow linha in gridChavesReserva.Rows)
+                    //{
+                    //    if (linha.Cells[3].Value.ToString() == "LIVRE" && linha.Cells[4].Value.ToString() == "DISPONIVEL")
+                    //    {
+                    //        contLivres++;
+                    //    }
+                    //}
 
 
-                    if (contLivres == gridChavesReserva.Rows.Count)
-                    {
-                        gridReserva.CurrentRow.DefaultCellStyle.BackColor = Color.FromArgb(182, 255, 145);
-                        gridReserva.CurrentRow.DefaultCellStyle.SelectionBackColor = Color.FromArgb(105, 184, 66);
-                    }
+                    //if (contLivres == gridChavesReserva.Rows.Count)
+                    //{
+                    //    gridReserva.CurrentRow.DefaultCellStyle.BackColor = Color.FromArgb(182, 255, 145);
+                    //    gridReserva.CurrentRow.DefaultCellStyle.SelectionBackColor = Color.FromArgb(105, 184, 66);
+                    //}
                 }
                 
             }

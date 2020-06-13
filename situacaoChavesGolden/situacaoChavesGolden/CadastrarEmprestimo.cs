@@ -257,10 +257,11 @@ namespace situacaoChavesGolden
                    
 
 
-                    btnAdicionarPessoa.Visible = false;
+                   btnAdicionarPessoa.Visible = false;
                     codPessoaBox.Visible = true;
                     nomePessoaBox.Visible = true;
-                    excluiProp.Enabled = false;
+                    excluiProp.Enabled = true;
+                    excluiProp.Visible = true;
                     groupQuemEmpresta.Enabled = false;
 
                     dadosChave = database.select(string.Format("" +
@@ -268,7 +269,7 @@ namespace situacaoChavesGolden
                    " (CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO' " +
                            " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE' " +
                            " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) as tipo, " +
-                            " cl.cod_cliente, cl.nome_cliente, p.cod_proprietario, p.nome, u.cod_usuario, u.nome_usuario " +
+                            " cl.cod_cliente, cl.nome_cliente, p.cod_proprietario, p.nome, u.cod_usuario, u.nome_usuario, r.descricao " +
                    " FROM reserva r " +
                    " LEFT JOIN cliente cl ON cl.cod_cliente = r.cod_cliente " +
                    " LEFT JOIN proprietario p ON p.cod_proprietario = r.cod_proprietario " +
@@ -300,6 +301,8 @@ namespace situacaoChavesGolden
                             nomePessoaBox.Text = row[13].ToString();
                             radioFuncionario.Checked = true;
                         }
+
+                        descBox.Text = row[14].ToString();
                     }
                 }
                 else

@@ -193,6 +193,9 @@ namespace situacaoChavesGolden
 
             try
             {
+                painelReservas.Visible = false;
+                gridReserva.DataSource = null;
+
                 if (gridChaves.CurrentRow.Cells[0].Value.ToString() == "")
                 {
                     btnExcluir.Enabled = false;
@@ -488,6 +491,78 @@ namespace situacaoChavesGolden
         private void gridChaves_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
            
+        }
+
+        private void gridChaves_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                DataGridViewRow row = gridChaves.Rows[e.RowIndex];
+                if ((int.Parse(row.Cells[6].Value.ToString()) > 0))
+                {
+                    codChaveReserva.Text = gridChaves.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    painelReservas.Visible = true;
+                    
+                    painelReservas.Location = new Point(gridReserva.Location.X + 10, Cursor.Position.Y - 305);
+
+                    DataTable tabelaReservas = database.select(string.Format("SELECT r.cod_reserva, (CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO'" +
+                            " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE'" +
+                            " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN 'PROPRIETARIO' END) as tipo, " +
+                            " (CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null" +
+                            " THEN '('|| u.cod_usuario || ') - ' || u.nome_usuario" +
+                            "  WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN '('|| cl.cod_cliente || ') - ' || cl.nome_cliente" +
+                            " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN '('|| p.cod_proprietario || ') - ' || p.nome  END) as tipo," +
+                    " r.data_reserva, u.nome_usuario" +
+                    " FROM reserva r" +
+                    " LEFT JOIN cliente cl ON cl.cod_cliente = r.cod_cliente" +
+                    "  LEFT JOIN usuario u ON u.cod_usuario = r.cod_usuario" +
+                    "  LEFT JOIN proprietario p ON p.cod_proprietario = r.cod_proprietario" +
+                    " LEFT JOIN chaves_reserva cr ON cr.cod_reserva = r.cod_reserva" +
+                    " INNER JOIN chave c ON c.indice_chave = cr.cod_chave" +
+                    "  WHERE c.indice_chave = '{0}' AND r.situacao = 'EM ANDAMENTO'", gridChaves.Rows[e.RowIndex].Cells[5].Value));
+
+
+                    gridReserva.DataSource = tabelaReservas;
+
+                    gridReserva.Columns[0].HeaderText = "Reserva";
+                    gridReserva.Columns[1].HeaderText = "Tipo";
+                    gridReserva.Columns[2].HeaderText = "Quem retirou";
+                    gridReserva.Columns[3].HeaderText = "Data da reserva";
+                    gridReserva.Columns[4].HeaderText = "Funcionário";
+
+
+                    gridReserva.Columns[0].Width = 60;
+                    gridReserva.Columns[1].Width = 80;
+                    gridReserva.Columns[2].Width = 284;
+                    gridReserva.Columns[3].Width = 100;
+                    gridReserva.Columns[4].Width = 80;
+                }
+            }
+            catch { }
+            
+
+            
+
+
+
+
+
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            painelReservas.Visible = false;
+            gridReserva.DataSource = null;
         }
     }
 }

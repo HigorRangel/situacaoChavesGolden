@@ -63,7 +63,7 @@ namespace situacaoChavesGolden
                                                             " {4} ) " +
                                                          " AND (cl.nome_cliente ILIKE '%{5}%' OR e.descricao ILIKE '%{5}%' OR " +
                                                          " c.rua ILIKE '%{5}%' OR u.nome_usuario ILIKE '%{5}%' OR  p.nome  ILIKE '%{5}%'OR" +
-                                                         " c.cod_chave::TEXT ILIKE '%{5}%' OR c.cod_imob::TEXT ILIKE '%{5}%')" +
+                                                         " c.cod_chave::TEXT || 'c' ILIKE '%{5}%' OR c.cod_imob::TEXT ILIKE '%{5}%')" +
                                                          " GROUP BY e.cod_emprestimo" +
                                                          " ORDER BY e.data_retirada", 
                                                          situacao, tipo,  dataRetirada, entregaPrevista, dataRetirada, busca));

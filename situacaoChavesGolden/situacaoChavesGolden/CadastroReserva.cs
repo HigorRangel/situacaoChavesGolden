@@ -760,7 +760,7 @@ namespace situacaoChavesGolden
                 " FROM CHAVE c " +
                 " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario" +
                 " WHERE c.situacao = 'DISPONIVEL' AND (c.rua ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%' OR (unaccent(lower(c.rua))) ILIKE '%{0}%' OR" +
-                " (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR c.cod_chave::text ILIKE '%{0}%') {1} {2}", boxBusca.Text, codigos, proprietario));
+                " (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR c.cod_chave::text || 'c' ILIKE '%{0}%') {1} {2}", boxBusca.Text, codigos, proprietario));
 
             gridChavesTotal.DataSource = tabelaChaves;
 
@@ -965,6 +965,11 @@ namespace situacaoChavesGolden
         private void BoxProcurarProp_TextChanged_1(object sender, EventArgs e)
         {
             atualizarGrid(groupQuemEmpresta.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper());
+        }
+
+        private void boxBusca_TextChanged(object sender, EventArgs e)
+        {
+            atualizarGridChaves(gridChaves);
         }
     }
 

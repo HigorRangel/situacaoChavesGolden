@@ -547,6 +547,7 @@
             this.boxBusca.Name = "boxBusca";
             this.boxBusca.Size = new System.Drawing.Size(420, 20);
             this.boxBusca.TabIndex = 0;
+            this.boxBusca.TextChanged += new System.EventHandler(this.boxBusca_TextChanged);
             // 
             // CadastroReserva
             // 
