@@ -42,15 +42,16 @@ namespace situacaoChavesGolden
             if (filtro == "TODOS") { filtro = ""; }
 
 
-            try
-            {
+            //try
+            //{
                 chaves = database.select(string.Format("SELECT c.cod_chave, c.cod_imob, c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END)" +
                                              " as endereco, c.bairro, c.situacao_imovel, c.indice_chave," +
                                              " (SELECT COUNT((CASE WHEN r.cod_reserva is not null AND " +
                                              " r.situacao != 'FINALIZADO' THEN 'RESERVADO' ELSE '' END)) " +
                                              " FROM reserva r " +
                                              " INNER JOIN chaves_reserva cr ON cr.cod_reserva = r.cod_reserva" +
-                                             " WHERE cod_chave = c.indice_chave AND situacao = 'EM ANDAMENTO') as emprestimo" +
+                                             " WHERE cod_chave = c.indice_chave AND situacao = 'EM ANDAMENTO') as emprestimo," +
+                                             " (SELECT COUNT(*) FROM emprestimo e LEFT JOIN chaves_emprestimo ce ON ce.cod_emprestimo = e.cod_emprestimo WHERE ce.cod_chave = c.indice_chave AND e.data_entrega IS NULL ) " +
                                              " FROM chave C" +
                                              " LEFT JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
                                              " WHERE cod_chave::text || 'c' ILIKE '{0}' OR ((unaccent(lower(c.rua))) ILIKE '%{0}%' OR (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR (unaccent(lower(c.cidade))) ILIKE '%{0}%' OR (unaccent(lower(c.estado))) ILIKE '%{0}%' OR" +
@@ -127,12 +128,12 @@ namespace situacaoChavesGolden
                 }
 
 
-        }
-            catch (Exception erro)
-            {
+        //}
+            //catch (Exception erro)
+            //{
 
-                MessageBox.Show(erro.Message);
-            }
+            //    MessageBox.Show(erro.Message);
+            //}
 
 
 }
@@ -324,14 +325,7 @@ namespace situacaoChavesGolden
 
         private void BtnCadastrarChave_Click(object sender, EventArgs e)
         {
-            cadastroChave cadastro = new cadastroChave();
-
-            cadastro.ShowDialog();
-
-            if(cadastro.DialogResult == DialogResult.Yes)
-            {
-                atualizarGridChaves();
-            }
+           
         }
 
         private void textBoxBusca_Click(object sender, EventArgs e)
@@ -469,6 +463,12 @@ namespace situacaoChavesGolden
                 row.DefaultCellStyle.BackColor = Color.FromArgb(255, 243, 135);
                 row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(201, 170, 83);
             }
+
+            if (int.Parse(row.Cells[7].Value.ToString()) > 0)
+            {
+                row.DefaultCellStyle.BackColor = Color.FromArgb(242, 174, 174);
+                row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(212, 55, 61);
+            }
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
@@ -563,6 +563,28 @@ namespace situacaoChavesGolden
         {
             painelReservas.Visible = false;
             gridReserva.DataSource = null;
+        }
+
+        private void Chaves_Leave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void painelReservas_Leave(object sender, EventArgs e)
+        {
+            painelReservas.Visible = false;
+        }
+
+        private void btnAddChave_Click(object sender, EventArgs e)
+        {
+            cadastroChave cadastro = new cadastroChave();
+
+            cadastro.ShowDialog();
+
+            if (cadastro.DialogResult == DialogResult.Yes)
+            {
+                atualizarGridChaves();
+            }
         }
     }
 }

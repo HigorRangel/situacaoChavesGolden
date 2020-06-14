@@ -16,28 +16,48 @@ namespace situacaoChavesGolden
         //Método para atualizar o form
         public void atualizarForm(MetroForm form)
         {
-            
-            //Desativa o TopLevel
-            form.TopLevel = false;
-
-            //Apaga atual form dentro do panel
-            if (painelPrincipal.Controls.Count != 0)
+            try
             {
-                painelPrincipal.Controls.RemoveAt(0);
+                //Desativa o TopLevel
+                form.TopLevel = false;
+
+                //foreach (Control ctrl in painelPrincipal.Controls)
+                //{
+                //    MessageBox.Show(ctrl.Name);
+                //}
+                //Apaga atual form dentro do panel
+    
+
+
+                //MessageBox.Show(this.Controls.Count.ToString());
+
+                if (painelPrincipal.Controls.Count != 0)
+                {
+                    painelPrincipal.Controls.Clear();
+                }
+
+                //Deixa maximizado para evitar erros
+                form.WindowState = FormWindowState.Maximized;
+                form.ShadowType = MetroFormShadowType.None;
+
+                //Adiciona o form nos controles do painel
+                painelPrincipal.Controls.Add(form);
+
+                //Mostra o form no painel
+                form.Show();
+            }
+            catch
+            {
+                //Deixa maximizado para evitar erros
+                form.WindowState = FormWindowState.Maximized;
+                form.ShadowType = MetroFormShadowType.None;
+                painelPrincipal.Controls.Add(form);
+                form.Show();
             }
 
-            //Deixa maximizado para evitar erros
-            form.WindowState = FormWindowState.Maximized;
-            form.ShadowType = MetroFormShadowType.None;
-
-            //Adiciona o form nos controles do painel
-            painelPrincipal.Controls.Add(form);
-
-            //Mostra o form no painel
-            form.Show();
 
 
-            
+
         }
 
         string usuario = "";

@@ -142,6 +142,9 @@
   <data name="propostaDash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\propostaDash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Adicionar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Adicionar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="LogoRelatorio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LogoRelatorio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -153,6 +156,9 @@
   </data>
   <data name="emprestimoDash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\emprestimoDash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ChaveReservarGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ChaveReservarGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,11 +178,11 @@
   <data name="logoSbernardo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logoSbernardo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="TelaManutenção1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TelaManutenção1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="EditGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EditGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Recibo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Recibo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Delete1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,9 +199,6 @@
   <data name="Relatorio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Relatorio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AdicionarGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AdicionarGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="PassBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PassBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -208,11 +211,11 @@
   <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ProrrogarEmprestimoGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ProrrogarEmprestimoGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Recibo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Recibo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TelaManutenção1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TelaManutenção1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Relatorio1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Relatorio1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="reservaDash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reservaDash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,8 +238,8 @@
   <data name="logoSaoBernardoWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logoSaoBernardoWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Relatorio1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Relatorio1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ProrrogarEmprestimoGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ProrrogarEmprestimoGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Relatorio2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Relatorio2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,16 +250,16 @@
   <data name="Delete2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AdicionarGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AdicionarGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Filter1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Filter1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ChaveDevolver" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ChaveDevolver.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ChaveReservarGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ChaveReservarGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Adicionar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Adicionar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
