@@ -34,6 +34,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridChaves = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.codigoImob = new System.Windows.Forms.Label();
@@ -89,18 +92,50 @@
             this.btnPrintTags = new System.Windows.Forms.Button();
             this.btnReservar = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.painelReservas = new System.Windows.Forms.Panel();
+            this.painelInfo = new System.Windows.Forms.Panel();
             this.gridReserva = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.codChaveReserva = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.painelEmprestimos = new System.Windows.Forms.Panel();
+            this.gridEmprestimos = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.codChavePainelEmprestimo = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.codImobEmprestimos = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.codChave = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.dadosRetirante = new System.Windows.Forms.Label();
+            this.descricao = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.qtdControles = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.qtdChaves = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.funcionarioDevolucao = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.funcionario = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.contato = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.sitEmprestimo = new System.Windows.Forms.Label();
+            this.previsEntrega = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.dataRetirada = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.dataEntrega = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupMenuSup.SuspendLayout();
@@ -111,11 +146,13 @@
             this.groupBoxSituacaoCh.SuspendLayout();
             this.groupBoxSituacaoIm.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.painelReservas.SuspendLayout();
+            this.painelInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridReserva)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.painelEmprestimos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridEmprestimos)).BeginInit();
             this.SuspendLayout();
             // 
             // gridChaves
@@ -163,6 +200,8 @@
             this.gridChaves.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridChaves_CellMouseClick);
             this.gridChaves.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridChaves_RowsAdded);
             this.gridChaves.SelectionChanged += new System.EventHandler(this.GridChaves_SelectionChanged);
+            this.gridChaves.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridChaves_KeyDown);
+            this.gridChaves.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridChaves_KeyPress);
             // 
             // label1
             // 
@@ -798,6 +837,24 @@
             this.groupBox4.TabIndex = 45;
             this.groupBox4.TabStop = false;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(311, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Ambos";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(169)))), ((int)(((byte)(122)))));
+            this.pictureBox3.Location = new System.Drawing.Point(294, 10);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(15, 15);
+            this.pictureBox3.TabIndex = 5;
+            this.pictureBox3.TabStop = false;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -844,21 +901,21 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
-            // painelReservas
+            // painelInfo
             // 
-            this.painelReservas.BackColor = System.Drawing.Color.NavajoWhite;
-            this.painelReservas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.painelReservas.Controls.Add(this.gridReserva);
-            this.painelReservas.Controls.Add(this.label2);
-            this.painelReservas.Controls.Add(this.codChaveReserva);
-            this.painelReservas.Controls.Add(this.label22);
-            this.painelReservas.Location = new System.Drawing.Point(22, 49);
-            this.painelReservas.Name = "painelReservas";
-            this.painelReservas.Size = new System.Drawing.Size(610, 190);
-            this.painelReservas.TabIndex = 49;
-            this.painelReservas.Visible = false;
-            this.painelReservas.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
-            this.painelReservas.Leave += new System.EventHandler(this.painelReservas_Leave);
+            this.painelInfo.BackColor = System.Drawing.Color.NavajoWhite;
+            this.painelInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.painelInfo.Controls.Add(this.gridReserva);
+            this.painelInfo.Controls.Add(this.label2);
+            this.painelInfo.Controls.Add(this.codChaveReserva);
+            this.painelInfo.Controls.Add(this.label22);
+            this.painelInfo.Location = new System.Drawing.Point(22, 49);
+            this.painelInfo.Name = "painelInfo";
+            this.painelInfo.Size = new System.Drawing.Size(610, 190);
+            this.painelInfo.TabIndex = 49;
+            this.painelInfo.Visible = false;
+            this.painelInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            this.painelInfo.Leave += new System.EventHandler(this.painelReservas_Leave);
             // 
             // gridReserva
             // 
@@ -939,23 +996,424 @@
             this.label22.Text = "RESERVAS EM ANDAMENTO PARA A CHAVE ";
             this.label22.Click += new System.EventHandler(this.label22_Click);
             // 
-            // label5
+            // painelEmprestimos
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(311, 11);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 13);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Ambos";
+            this.painelEmprestimos.BackColor = System.Drawing.Color.White;
+            this.painelEmprestimos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.painelEmprestimos.Controls.Add(this.panel3);
+            this.painelEmprestimos.Controls.Add(this.previsEntrega);
+            this.painelEmprestimos.Controls.Add(this.label28);
+            this.painelEmprestimos.Controls.Add(this.dataRetirada);
+            this.painelEmprestimos.Controls.Add(this.label29);
+            this.painelEmprestimos.Controls.Add(this.dataEntrega);
+            this.painelEmprestimos.Controls.Add(this.label30);
+            this.painelEmprestimos.Controls.Add(this.funcionarioDevolucao);
+            this.painelEmprestimos.Controls.Add(this.label24);
+            this.painelEmprestimos.Controls.Add(this.funcionario);
+            this.painelEmprestimos.Controls.Add(this.label25);
+            this.painelEmprestimos.Controls.Add(this.contato);
+            this.painelEmprestimos.Controls.Add(this.label26);
+            this.painelEmprestimos.Controls.Add(this.label27);
+            this.painelEmprestimos.Controls.Add(this.sitEmprestimo);
+            this.painelEmprestimos.Controls.Add(this.descricao);
+            this.painelEmprestimos.Controls.Add(this.label20);
+            this.painelEmprestimos.Controls.Add(this.qtdControles);
+            this.painelEmprestimos.Controls.Add(this.label21);
+            this.painelEmprestimos.Controls.Add(this.qtdChaves);
+            this.painelEmprestimos.Controls.Add(this.label23);
+            this.painelEmprestimos.Controls.Add(this.label16);
+            this.painelEmprestimos.Controls.Add(this.codImobEmprestimos);
+            this.painelEmprestimos.Controls.Add(this.label18);
+            this.painelEmprestimos.Controls.Add(this.codChave);
+            this.painelEmprestimos.Controls.Add(this.label19);
+            this.painelEmprestimos.Controls.Add(this.dadosRetirante);
+            this.painelEmprestimos.Controls.Add(this.gridEmprestimos);
+            this.painelEmprestimos.Controls.Add(this.label6);
+            this.painelEmprestimos.Controls.Add(this.codChavePainelEmprestimo);
+            this.painelEmprestimos.Controls.Add(this.label12);
+            this.painelEmprestimos.Location = new System.Drawing.Point(22, 9);
+            this.painelEmprestimos.Name = "painelEmprestimos";
+            this.painelEmprestimos.Size = new System.Drawing.Size(610, 388);
+            this.painelEmprestimos.TabIndex = 63;
+            this.painelEmprestimos.Visible = false;
+            this.painelEmprestimos.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // pictureBox3
+            // gridEmprestimos
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(169)))), ((int)(((byte)(122)))));
-            this.pictureBox3.Location = new System.Drawing.Point(294, 10);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(15, 15);
-            this.pictureBox3.TabIndex = 5;
-            this.pictureBox3.TabStop = false;
+            this.gridEmprestimos.AllowUserToAddRows = false;
+            this.gridEmprestimos.AllowUserToDeleteRows = false;
+            this.gridEmprestimos.AllowUserToResizeColumns = false;
+            this.gridEmprestimos.AllowUserToResizeRows = false;
+            this.gridEmprestimos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
+            this.gridEmprestimos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridEmprestimos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridEmprestimos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.gridEmprestimos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridEmprestimos.DefaultCellStyle = dataGridViewCellStyle7;
+            this.gridEmprestimos.GridColor = System.Drawing.Color.White;
+            this.gridEmprestimos.Location = new System.Drawing.Point(7, 25);
+            this.gridEmprestimos.MultiSelect = false;
+            this.gridEmprestimos.Name = "gridEmprestimos";
+            this.gridEmprestimos.ReadOnly = true;
+            this.gridEmprestimos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridEmprestimos.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.gridEmprestimos.RowHeadersVisible = false;
+            this.gridEmprestimos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.gridEmprestimos.RowTemplate.ReadOnly = true;
+            this.gridEmprestimos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridEmprestimos.Size = new System.Drawing.Size(595, 133);
+            this.gridEmprestimos.TabIndex = 60;
+            this.gridEmprestimos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridEmprestimos_CellFormatting);
+            this.gridEmprestimos.SelectionChanged += new System.EventHandler(this.gridEmprestimos_SelectionChanged);
+            this.gridEmprestimos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridEmprestimos_KeyDown);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(585, 5);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(15, 13);
+            this.label6.TabIndex = 62;
+            this.label6.Text = "X";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // codChavePainelEmprestimo
+            // 
+            this.codChavePainelEmprestimo.AutoSize = true;
+            this.codChavePainelEmprestimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codChavePainelEmprestimo.Location = new System.Drawing.Point(354, 5);
+            this.codChavePainelEmprestimo.Name = "codChavePainelEmprestimo";
+            this.codChavePainelEmprestimo.Size = new System.Drawing.Size(11, 13);
+            this.codChavePainelEmprestimo.TabIndex = 61;
+            this.codChavePainelEmprestimo.Text = " ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(208, 5);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(152, 13);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "EMPRÉSTIMOS DA  CHAVE: ";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label16.Location = new System.Drawing.Point(6, 194);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(85, 15);
+            this.label16.TabIndex = 65;
+            this.label16.Text = "Quem retirou:";
+            // 
+            // codImobEmprestimos
+            // 
+            this.codImobEmprestimos.AutoSize = true;
+            this.codImobEmprestimos.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codImobEmprestimos.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.codImobEmprestimos.Location = new System.Drawing.Point(83, 168);
+            this.codImobEmprestimos.Name = "codImobEmprestimos";
+            this.codImobEmprestimos.Size = new System.Drawing.Size(10, 15);
+            this.codImobEmprestimos.TabIndex = 64;
+            this.codImobEmprestimos.Text = " ";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label18.Location = new System.Drawing.Point(5, 168);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(83, 15);
+            this.label18.TabIndex = 63;
+            this.label18.Text = "Código Imob: ";
+            // 
+            // codChave
+            // 
+            this.codChave.AutoSize = true;
+            this.codChave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codChave.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.codChave.Location = new System.Drawing.Point(271, 168);
+            this.codChave.Name = "codChave";
+            this.codChave.Size = new System.Drawing.Size(10, 15);
+            this.codChave.TabIndex = 68;
+            this.codChave.Text = " ";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label19.Location = new System.Drawing.Point(184, 166);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(87, 15);
+            this.label19.TabIndex = 67;
+            this.label19.Text = "Código Chave:";
+            // 
+            // dadosRetirante
+            // 
+            this.dadosRetirante.AutoSize = true;
+            this.dadosRetirante.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dadosRetirante.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.dadosRetirante.Location = new System.Drawing.Point(87, 194);
+            this.dadosRetirante.Name = "dadosRetirante";
+            this.dadosRetirante.Size = new System.Drawing.Size(10, 15);
+            this.dadosRetirante.TabIndex = 66;
+            this.dadosRetirante.Text = " ";
+            // 
+            // descricao
+            // 
+            this.descricao.AutoSize = true;
+            this.descricao.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descricao.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.descricao.Location = new System.Drawing.Point(69, 222);
+            this.descricao.MaximumSize = new System.Drawing.Size(520, 42);
+            this.descricao.Name = "descricao";
+            this.descricao.Size = new System.Drawing.Size(10, 14);
+            this.descricao.TabIndex = 70;
+            this.descricao.Text = " ";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label20.Location = new System.Drawing.Point(6, 221);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(68, 15);
+            this.label20.TabIndex = 69;
+            this.label20.Text = "Descrição:";
+            // 
+            // qtdControles
+            // 
+            this.qtdControles.AutoSize = true;
+            this.qtdControles.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qtdControles.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.qtdControles.Location = new System.Drawing.Point(440, 269);
+            this.qtdControles.Name = "qtdControles";
+            this.qtdControles.Size = new System.Drawing.Size(10, 15);
+            this.qtdControles.TabIndex = 74;
+            this.qtdControles.Text = " ";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label21.Location = new System.Drawing.Point(352, 269);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(91, 15);
+            this.label21.TabIndex = 73;
+            this.label21.Text = "Qtd. Controles:";
+            // 
+            // qtdChaves
+            // 
+            this.qtdChaves.AutoSize = true;
+            this.qtdChaves.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qtdChaves.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.qtdChaves.Location = new System.Drawing.Point(80, 269);
+            this.qtdChaves.Name = "qtdChaves";
+            this.qtdChaves.Size = new System.Drawing.Size(10, 15);
+            this.qtdChaves.TabIndex = 72;
+            this.qtdChaves.Text = " ";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label23.Location = new System.Drawing.Point(4, 269);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(78, 15);
+            this.label23.TabIndex = 71;
+            this.label23.Text = "Qtd. Chaves:";
+            // 
+            // funcionarioDevolucao
+            // 
+            this.funcionarioDevolucao.AutoSize = true;
+            this.funcionarioDevolucao.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.funcionarioDevolucao.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.funcionarioDevolucao.Location = new System.Drawing.Point(480, 361);
+            this.funcionarioDevolucao.Name = "funcionarioDevolucao";
+            this.funcionarioDevolucao.Size = new System.Drawing.Size(10, 15);
+            this.funcionarioDevolucao.TabIndex = 82;
+            this.funcionarioDevolucao.Text = " ";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label24.Location = new System.Drawing.Point(334, 362);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(146, 15);
+            this.label24.TabIndex = 81;
+            this.label24.Text = "Funcionário (Devolução):";
+            // 
+            // funcionario
+            // 
+            this.funcionario.AutoSize = true;
+            this.funcionario.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.funcionario.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.funcionario.Location = new System.Drawing.Point(467, 303);
+            this.funcionario.Name = "funcionario";
+            this.funcionario.Size = new System.Drawing.Size(10, 15);
+            this.funcionario.TabIndex = 80;
+            this.funcionario.Text = " ";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label25.Location = new System.Drawing.Point(334, 303);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(131, 15);
+            this.label25.TabIndex = 79;
+            this.label25.Text = "Funcionário (entrega):";
+            // 
+            // contato
+            // 
+            this.contato.AutoSize = true;
+            this.contato.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contato.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.contato.Location = new System.Drawing.Point(433, 193);
+            this.contato.MaximumSize = new System.Drawing.Size(200, 0);
+            this.contato.Name = "contato";
+            this.contato.Size = new System.Drawing.Size(10, 15);
+            this.contato.TabIndex = 78;
+            this.contato.Text = " ";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label26.Location = new System.Drawing.Point(379, 194);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(54, 15);
+            this.label26.TabIndex = 77;
+            this.label26.Text = "Contato:";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label27.Location = new System.Drawing.Point(348, 168);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(149, 15);
+            this.label27.TabIndex = 75;
+            this.label27.Text = "Situação do Empréstimo:";
+            // 
+            // sitEmprestimo
+            // 
+            this.sitEmprestimo.AutoSize = true;
+            this.sitEmprestimo.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sitEmprestimo.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.sitEmprestimo.Location = new System.Drawing.Point(494, 168);
+            this.sitEmprestimo.Name = "sitEmprestimo";
+            this.sitEmprestimo.Size = new System.Drawing.Size(10, 15);
+            this.sitEmprestimo.TabIndex = 76;
+            this.sitEmprestimo.Text = " ";
+            // 
+            // previsEntrega
+            // 
+            this.previsEntrega.AutoSize = true;
+            this.previsEntrega.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.previsEntrega.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.previsEntrega.Location = new System.Drawing.Point(98, 303);
+            this.previsEntrega.Name = "previsEntrega";
+            this.previsEntrega.Size = new System.Drawing.Size(10, 15);
+            this.previsEntrega.TabIndex = 88;
+            this.previsEntrega.Text = " ";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label28.Location = new System.Drawing.Point(6, 303);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(96, 15);
+            this.label28.TabIndex = 87;
+            this.label28.Text = "Previs. Entrega:";
+            // 
+            // dataRetirada
+            // 
+            this.dataRetirada.AutoSize = true;
+            this.dataRetirada.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataRetirada.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.dataRetirada.Location = new System.Drawing.Point(105, 332);
+            this.dataRetirada.Name = "dataRetirada";
+            this.dataRetirada.Size = new System.Drawing.Size(10, 15);
+            this.dataRetirada.TabIndex = 84;
+            this.dataRetirada.Text = " ";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label29.Location = new System.Drawing.Point(6, 362);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(83, 15);
+            this.label29.TabIndex = 85;
+            this.label29.Text = "Data Entrega:";
+            // 
+            // dataEntrega
+            // 
+            this.dataEntrega.AutoSize = true;
+            this.dataEntrega.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataEntrega.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.dataEntrega.Location = new System.Drawing.Point(86, 362);
+            this.dataEntrega.Name = "dataEntrega";
+            this.dataEntrega.Size = new System.Drawing.Size(10, 15);
+            this.dataEntrega.TabIndex = 86;
+            this.dataEntrega.Text = " ";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label30.Location = new System.Drawing.Point(5, 332);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(104, 15);
+            this.label30.TabIndex = 83;
+            this.label30.Text = "Data de Retirada:";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.DimGray;
+            this.panel3.Location = new System.Drawing.Point(9, 294);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(587, 1);
+            this.panel3.TabIndex = 89;
             // 
             // Chaves
             // 
@@ -963,7 +1421,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 430);
             this.ControlBox = false;
-            this.Controls.Add(this.painelReservas);
+            this.Controls.Add(this.painelEmprestimos);
+            this.Controls.Add(this.painelInfo);
             this.Controls.Add(this.btnAddChave);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnPrintTags);
@@ -1015,12 +1474,15 @@
             this.groupBoxSituacaoIm.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.painelReservas.ResumeLayout(false);
-            this.painelReservas.PerformLayout();
+            this.painelInfo.ResumeLayout(false);
+            this.painelInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridReserva)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.painelEmprestimos.ResumeLayout(false);
+            this.painelEmprestimos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridEmprestimos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1085,7 +1547,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnPrintTags;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel painelReservas;
+        private System.Windows.Forms.Panel painelInfo;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label codChaveReserva;
         private System.Windows.Forms.DataGridView gridReserva;
@@ -1095,5 +1557,37 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Panel painelEmprestimos;
+        private System.Windows.Forms.DataGridView gridEmprestimos;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label codChavePainelEmprestimo;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label codImobEmprestimos;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label codChave;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label dadosRetirante;
+        private System.Windows.Forms.Label descricao;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label qtdControles;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label qtdChaves;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label funcionarioDevolucao;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label funcionario;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label contato;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label sitEmprestimo;
+        private System.Windows.Forms.Label previsEntrega;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label dataRetirada;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label dataEntrega;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Panel panel3;
     }
 }

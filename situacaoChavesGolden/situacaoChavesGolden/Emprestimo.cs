@@ -40,12 +40,17 @@ namespace situacaoChavesGolden
                 if(!checkPrevisEntrega.Checked) { entregaPrevista = ""; }
                 if(!checkDataEntrega.Checked) { dataEntrega = ""; }
 
+                string selecData = "";
+                string tituloColData = "";
+
                 if (situacao == "TODOS") { situacao = ""; }
+                else if (situacao == "FINALIZADO") { selecData = "e.data_entrega"; tituloColData = "Data retirada"; }
+                else { selecData = "e.data_retirada"; tituloColData = "Data Entrega"; }
                 if (tipo == "TODOS") { tipo = ""; }
 
                 if(busca == "Buscar") { busca = ""; }
 
-                dadosEmprestimo = database.select(string.Format("SELECT e.cod_emprestimo, e.data_retirada, e.entrega_prevista, " +
+                dadosEmprestimo = database.select(string.Format("SELECT e.cod_emprestimo, {6}, e.entrega_prevista, " +
                                                   " (CASE WHEN e.data_entrega is null THEN 'EM ANDAMENTO' ELSE 'FINALIZADO' END) as situacao" +
                                                   " FROM emprestimo e " +
                                                   " INNER JOIN chaves_emprestimo ce ON ce.cod_emprestimo = e.cod_emprestimo" +
@@ -65,8 +70,8 @@ namespace situacaoChavesGolden
                                                          " c.rua ILIKE '%{5}%' OR u.nome_usuario ILIKE '%{5}%' OR  p.nome  ILIKE '%{5}%'OR" +
                                                          " c.cod_chave::TEXT || 'c' ILIKE '%{5}%' OR c.cod_imob::TEXT ILIKE '%{5}%')" +
                                                          " GROUP BY e.cod_emprestimo" +
-                                                         " ORDER BY e.data_retirada", 
-                                                         situacao, tipo,  dataRetirada, entregaPrevista, dataRetirada, busca));
+                                                         " ORDER BY {6}", 
+                                                         situacao, tipo,  dataRetirada, entregaPrevista, dataRetirada, busca, selecData));
 
                 gridEmprestimo.DataSource = dadosEmprestimo;
 
@@ -75,8 +80,8 @@ namespace situacaoChavesGolden
                 
 
                 gridEmprestimo.Columns[0].HeaderText = "Código";        
-                gridEmprestimo.Columns[1].HeaderText = "Data retirada";
-                gridEmprestimo.Columns[2].HeaderText = "Previsão de entrega";
+                gridEmprestimo.Columns[1].HeaderText = tituloColData;
+                gridEmprestimo.Columns[2].HeaderText = "Prev entrega";
                 gridEmprestimo.Columns[3].HeaderText = "Situação";
 
                 gridEmprestimo.Columns[0].Width = 40;
@@ -525,6 +530,11 @@ namespace situacaoChavesGolden
         {
             ConfigurarReciboEmprestimo config = new ConfigurarReciboEmprestimo(gridEmprestimo.Rows[gridEmprestimo.CurrentRow.Index].Cells[0].Value.ToString());
             config.ShowDialog();
+        }
+
+        private void gridEmprestimo_SizeChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -34,6 +34,7 @@ namespace situacaoChavesGolden
 
             if (!checkDataReserva.Checked) { dataReserva = ""; }
 
+
             if (situacao == "TODOS") { situacao = ""; }
             if (tipo == "TODOS") { tipo = ""; }
             if (busca == "Buscar") { busca = ""; }
@@ -322,7 +323,7 @@ namespace situacaoChavesGolden
 
                         if (row[1].ToString() == "FUNCIONARIO")
                         {
-                            dadosReservante.Text = string.Format("{0} [{1}]", row[5].ToString(), row[1].ToString());
+                            dadosReservante.Text = string.Format("{0} [{1}]", row[6].ToString(), row[1].ToString());
 
                         }
                         else if (row[1].ToString() == "CLIENTE")

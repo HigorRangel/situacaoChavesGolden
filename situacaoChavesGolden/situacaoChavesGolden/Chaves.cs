@@ -17,7 +17,7 @@ namespace situacaoChavesGolden
 
         public void atualizarGridChaves()
         {
-            if(gridChaves.CurrentRow == null)
+            if (gridChaves.CurrentRow == null)
             {
                 btnExcluir.Enabled = false;
                 btnEmprestar.Enabled = false;
@@ -34,8 +34,8 @@ namespace situacaoChavesGolden
             string filtroSitChave = groupBoxSituacaoCh.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
             string typeImovel = groupBoxTipoImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
             string filtro = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
-            
-            if(textoBusca == "Buscar") { textoBusca = ""; }
+
+            if (textoBusca == "Buscar") { textoBusca = ""; }
             if (filtroSitImovel == "TODOS") { filtroSitImovel = ""; }
             if (filtroSitChave == "TODOS") { filtroSitChave = ""; }
             if (typeImovel == "TODOS") { typeImovel = ""; }
@@ -44,35 +44,66 @@ namespace situacaoChavesGolden
 
             //try
             //{
-                chaves = database.select(string.Format("SELECT c.cod_chave, c.cod_imob, c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END)" +
-                                             " as endereco, c.bairro, c.situacao_imovel, c.indice_chave," +
-                                             " (SELECT COUNT((CASE WHEN r.cod_reserva is not null AND " +
-                                             " r.situacao != 'FINALIZADO' THEN 'RESERVADO' ELSE '' END)) " +
-                                             " FROM reserva r " +
-                                             " INNER JOIN chaves_reserva cr ON cr.cod_reserva = r.cod_reserva" +
-                                             " WHERE cod_chave = c.indice_chave AND situacao = 'EM ANDAMENTO') as emprestimo," +
-                                             " (SELECT COUNT(*) FROM emprestimo e LEFT JOIN chaves_emprestimo ce ON ce.cod_emprestimo = e.cod_emprestimo WHERE ce.cod_chave = c.indice_chave AND e.data_entrega IS NULL ) " +
-                                             " FROM chave C" +
-                                             " LEFT JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
-                                             " WHERE (cod_chave::text || 'c' ILIKE '{0}%' OR (unaccent(lower(c.rua))) ILIKE '%{0}%' OR (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR (unaccent(lower(c.cidade))) ILIKE '%{0}%' OR (unaccent(lower(c.estado))) ILIKE '%{0}%' OR" +
-                                             " (unaccent(lower(c.numero)))  ILIKE '%{0}%' OR (unaccent(lower(c.complemento))) ILIKE '%{0}%' OR (unaccent(lower(c.cod_imob))) ILIKE '%{0}%' OR (unaccent(lower(p.nome))) ILIKE '%{0}%'" +
-                                             " OR c.rua  ILIKE '%{0}%' OR c.bairro ILIKE '%{0}%' OR c.cidade ILIKE '%{0}%' OR c.estado ILIKE '%{0}%' OR c.numero ILIKE '%{0}%' OR " +
-                                             " c.complemento  ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%') AND " +
-                                             " (c.finalidade ILIKE '%{1}%' AND c.situacao ILIKE '{2}%' AND c.situacao_imovel ILIKE '{3}%' AND " +
-                                             "  c.tipo_imovel ILIKE '%{4}%')" +
-                                             " ORDER BY c.situacao_imovel, c.rua, c.cod_imob", textoBusca, filtro, filtroSitChave,
-                                              filtroSitImovel, typeImovel));
-               
+            chaves = database.select(string.Format("SELECT c.cod_chave, c.cod_imob, c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END)" +
+                                         " as endereco, c.bairro, c.situacao_imovel, c.indice_chave," +
+                                         " (SELECT COUNT((CASE WHEN r.cod_reserva is not null AND " +
+                                         " r.situacao != 'FINALIZADO' THEN 'RESERVADO' ELSE '' END)) " +
+                                         " FROM reserva r " +
+                                         " INNER JOIN chaves_reserva cr ON cr.cod_reserva = r.cod_reserva" +
+                                         " WHERE cod_chave = c.indice_chave AND situacao = 'EM ANDAMENTO') as emprestimo," +
+                                         " (SELECT COUNT(*) FROM emprestimo e LEFT JOIN chaves_emprestimo ce ON ce.cod_emprestimo = e.cod_emprestimo WHERE ce.cod_chave = c.indice_chave AND e.data_entrega IS NULL ) " +
+                                         " FROM chave C" +
+                                         " LEFT JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
+                                         " WHERE (cod_chave::text || 'c' ILIKE '{0}%' OR (unaccent(lower(c.rua))) ILIKE '%{0}%' OR (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR (unaccent(lower(c.cidade))) ILIKE '%{0}%' OR (unaccent(lower(c.estado))) ILIKE '%{0}%' OR" +
+                                         " (unaccent(lower(c.numero)))  ILIKE '%{0}%' OR (unaccent(lower(c.complemento))) ILIKE '%{0}%' OR (unaccent(lower(c.cod_imob))) ILIKE '%{0}%' OR (unaccent(lower(p.nome))) ILIKE '%{0}%'" +
+                                         " OR c.rua  ILIKE '%{0}%' OR c.bairro ILIKE '%{0}%' OR c.cidade ILIKE '%{0}%' OR c.estado ILIKE '%{0}%' OR c.numero ILIKE '%{0}%' OR " +
+                                         " c.complemento  ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%') AND " +
+                                         " (c.finalidade ILIKE '%{1}%' AND c.situacao ILIKE '{2}%' AND c.situacao_imovel ILIKE '{3}%' AND " +
+                                         "  c.tipo_imovel ILIKE '%{4}%')" +
+                                         " ORDER BY c.situacao_imovel, c.rua, c.cod_imob", textoBusca, filtro, filtroSitChave,
+                                          filtroSitImovel, typeImovel));
 
-                gridChaves.DataSource = chaves;
 
+            gridChaves.DataSource = chaves;
+
+            gridChaves.Columns[0].HeaderText = "Código";
+            gridChaves.Columns[1].HeaderText = "Cód Imob";
+            gridChaves.Columns[2].HeaderText = "Endereço";
+            gridChaves.Columns[3].HeaderText = "Bairro";
+            gridChaves.Columns[4].HeaderText = "Imóvel";
+            gridChaves.Columns[5].Visible = false;
+            gridChaves.Columns[6].Visible = false;
+
+            gridChaves.Columns[0].Width = 60;
+            gridChaves.Columns[1].Width = 60;
+            gridChaves.Columns[2].Width = 275;
+            gridChaves.Columns[3].Width = 112;
+            gridChaves.Columns[4].Width = 100;
+
+
+
+
+            endereco.MaximumSize = new Size(520, 0);
+
+            if (chaves.Rows.Count == 0)
+            {
+                codigoImob.Text = "";
+                finalidade.Text = "";
+                sitImovel.Text = "";
+                endereco.Text = "";
+                proprietario.Text = "";
+                tipoImovel.Text = "";
+                sitChave.Text = "";
+                localizacao.Text = "";
+            }
+            else
+            {
                 gridChaves.Columns[0].HeaderText = "Código";
                 gridChaves.Columns[1].HeaderText = "Cód Imob";
                 gridChaves.Columns[2].HeaderText = "Endereço";
                 gridChaves.Columns[3].HeaderText = "Bairro";
                 gridChaves.Columns[4].HeaderText = "Imóvel";
                 gridChaves.Columns[5].Visible = false;
-                gridChaves.Columns[6].Visible = false;
 
                 gridChaves.Columns[0].Width = 60;
                 gridChaves.Columns[1].Width = 60;
@@ -84,51 +115,20 @@ namespace situacaoChavesGolden
 
 
                 endereco.MaximumSize = new Size(520, 0);
+                endereco.AutoSize = true;
+                gridChaves.ClearSelection();
+                gridChaves.Rows[0].Selected = false;
 
-                if (chaves.Rows.Count == 0)
+                if (proprietario.Text != " ")
                 {
-                    codigoImob.Text = "";
-                    finalidade.Text = "";
-                    sitImovel.Text = "";
-                    endereco.Text = "";
-                    proprietario.Text = "";
-                    tipoImovel.Text = "";
-                    sitChave.Text = "";
-                    localizacao.Text = "";
-                }
-                else
-                {
-                    gridChaves.Columns[0].HeaderText = "Código";
-                    gridChaves.Columns[1].HeaderText = "Cód Imob";
-                    gridChaves.Columns[2].HeaderText = "Endereço";
-                    gridChaves.Columns[3].HeaderText = "Bairro";
-                    gridChaves.Columns[4].HeaderText = "Imóvel";
-                    gridChaves.Columns[5].Visible = false;
-
-                    gridChaves.Columns[0].Width = 60;
-                    gridChaves.Columns[1].Width = 60;
-                    gridChaves.Columns[2].Width = 275;
-                    gridChaves.Columns[3].Width = 112;
-                    gridChaves.Columns[4].Width = 100;
-
-
-
-
-                    endereco.MaximumSize = new Size(520, 0);
-                    endereco.AutoSize = true;
-                    gridChaves.ClearSelection();
-                    gridChaves.Rows[0].Selected = false;
-
-                    if(proprietario.Text != " ")
-                    {
-                        proprietario.Cursor = Cursors.Hand;
-                    }
-                    
-
+                    proprietario.Cursor = Cursors.Hand;
                 }
 
 
-        //}
+            }
+
+
+            //}
             //catch (Exception erro)
             //{
 
@@ -136,7 +136,7 @@ namespace situacaoChavesGolden
             //}
 
 
-}
+        }
 
         string usuario = "";
         public Chaves(string codUser)
@@ -155,14 +155,14 @@ namespace situacaoChavesGolden
 
         private void gridChaves_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
+
         }
 
         private void ContextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
             try
             {
-               
+
                 gridChaves.AccessibilityObject.HitTest(MousePosition.X, MousePosition.Y).Select(AccessibleSelection.TakeSelection);
 
             }
@@ -194,7 +194,7 @@ namespace situacaoChavesGolden
 
             try
             {
-                painelReservas.Visible = false;
+                painelInfo.Visible = false;
                 gridReserva.DataSource = null;
 
                 if (gridChaves.CurrentRow.Cells[0].Value.ToString() == "")
@@ -285,13 +285,13 @@ namespace situacaoChavesGolden
                         emprestimo.Text = codEmprestimo;
                         emprestimo.Cursor = Cursors.Hand;
 
-                        if(codEmprestimo == "")
+                        if (codEmprestimo == "")
                         {
                             emprestimo.Text = "N/A";
                         }
 
                     }
-                    catch 
+                    catch
                     {
                         emprestimo.Text = "N/A";
                         emprestimo.Cursor = Cursors.Default;
@@ -301,16 +301,16 @@ namespace situacaoChavesGolden
 
                 mostrarAviso(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[5].Value.ToString());
             }
-            catch 
+            catch
             {
 
             }
-            
+
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void RadioTodos_CheckedChanged(object sender, EventArgs e)
@@ -320,21 +320,21 @@ namespace situacaoChavesGolden
 
         private void EditarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void BtnCadastrarChave_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void textBoxBusca_Click(object sender, EventArgs e)
         {
-            if(textBoxBusca.Text == "Buscar")
+            if (textBoxBusca.Text == "Buscar")
             {
                 textBoxBusca.Text = "";
             }
-            
+
         }
 
         private void X(object sender, EventArgs e)
@@ -356,7 +356,7 @@ namespace situacaoChavesGolden
 
         private void TextBoxBusca_Leave(object sender, EventArgs e)
         {
-            if(textBoxBusca.Text == "")
+            if (textBoxBusca.Text == "")
             {
                 textBoxBusca.Text = "Buscar";
             }
@@ -364,12 +364,12 @@ namespace situacaoChavesGolden
 
         private void TextBoxBusca_TextChanged(object sender, EventArgs e)
         {
-            atualizarGridChaves();          
+            atualizarGridChaves();
         }
 
         private void Proprietario_Click(object sender, EventArgs e)
         {
-            if(proprietario.Text != " ")
+            if (proprietario.Text != " ")
             {
                 string codigoProp = database.selectScalar(string.Format("SELECT cod_proprietario FROM proprietario" +
                                                                         " WHERE nome = '{0}'", proprietario.Text));
@@ -381,7 +381,7 @@ namespace situacaoChavesGolden
 
         private void ExcluirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void BtnRestaurar_Click(object sender, EventArgs e)
@@ -426,7 +426,7 @@ namespace situacaoChavesGolden
 
             if (emprestimo.Text == "N/A")
             {
-                
+
                 CadastrarEmprestimo cadastrarEmp = new CadastrarEmprestimo(usuario, new List<string> { gridChaves.CurrentRow.Cells[5].Value.ToString() });
                 cadastrarEmp.ShowDialog();
                 atualizarGridChaves();
@@ -437,7 +437,7 @@ namespace situacaoChavesGolden
                 devolucao.ShowDialog();
                 atualizarGridChaves();
             }
-           
+
         }
 
         private void BtnReservar_Click(object sender, EventArgs e)
@@ -452,7 +452,7 @@ namespace situacaoChavesGolden
         {
             DataGridViewRow row = gridChaves.Rows[e.RowIndex];
 
-            if(int.Parse(row.Cells[6].Value.ToString()) > 0 && int.Parse(row.Cells[7].Value.ToString()) > 0)
+            if (int.Parse(row.Cells[6].Value.ToString()) > 0 && int.Parse(row.Cells[7].Value.ToString()) > 0)
             {
                 row.DefaultCellStyle.BackColor = Color.FromArgb(255, 169, 122);
                 row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(209, 112, 59);
@@ -472,7 +472,7 @@ namespace situacaoChavesGolden
                 }
             }
 
-            
+
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
@@ -494,7 +494,7 @@ namespace situacaoChavesGolden
 
         private void gridChaves_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-           
+
         }
 
         private void gridChaves_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -505,9 +505,9 @@ namespace situacaoChavesGolden
                 if ((int.Parse(row.Cells[6].Value.ToString()) > 0))
                 {
                     codChaveReserva.Text = gridChaves.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    painelReservas.Visible = true;
-                    
-                    painelReservas.Location = new Point(gridReserva.Location.X + 10, Cursor.Position.Y - 305);
+                    painelInfo.Visible = true;
+
+                    painelInfo.Location = new Point(gridReserva.Location.X + 10, Cursor.Position.Y - 305);
 
                     DataTable tabelaReservas = database.select(string.Format("SELECT r.cod_reserva, (CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO'" +
                             " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE'" +
@@ -543,9 +543,9 @@ namespace situacaoChavesGolden
                 }
             }
             catch { }
-            
 
-            
+
+
 
 
 
@@ -565,18 +565,18 @@ namespace situacaoChavesGolden
 
         private void label2_Click(object sender, EventArgs e)
         {
-            painelReservas.Visible = false;
+            painelInfo.Visible = false;
             gridReserva.DataSource = null;
         }
 
         private void Chaves_Leave(object sender, EventArgs e)
         {
-            
+
         }
 
         private void painelReservas_Leave(object sender, EventArgs e)
         {
-            painelReservas.Visible = false;
+            painelInfo.Visible = false;
         }
 
         private void btnAddChave_Click(object sender, EventArgs e)
@@ -593,6 +593,231 @@ namespace situacaoChavesGolden
 
         private void GridChaves_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void gridChaves_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void gridChaves_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 69 && painelEmprestimos.Visible == false)
+            {
+                atualizarGridEmprestimos();
+            }
+            else if (e.KeyValue == 69 && painelEmprestimos.Visible == true)
+            {
+                painelEmprestimos.Visible = false;
+            }
+        }
+
+        void atualizarGridEmprestimos()
+        {
+            try
+            {
+                DataTable tabelaEmprestimos = new DataTable();
+
+                tabelaEmprestimos = database.select(string.Format("SELECT e.cod_emprestimo,  " +
+                                                                "(CASE WHEN e.cod_proprietario is null AND e.cod_cliente is null THEN '[' || u.cod_usuario || '] - ' || u.nome_usuario || ' (' ||'FUNCIONARIO' || ')'  " +
+                                                                    " WHEN e.cod_proprietario is null AND e.cod_cliente is not null THEN '[' || cl.cod_cliente || '] - ' || cl.nome_cliente || ' (' || 'CLIENTE' || ')' " +
+                                                                    " WHEN e.cod_proprietario is not null AND e.cod_cliente is null THEN '[' || p.cod_proprietario || '] - ' || p.nome || ' (' || 'PROPRIETÁRIO' || ')' END) as tipo," +
+                                                                    "  e.data_retirada, e.data_entrega, " +
+                                                                   " (CASE WHEN e.data_entrega is null THEN 'EM ANDAMENTO' ELSE 'FINALIZADO' END) as situacao " +
+                                                                   " FROM emprestimo e " +
+                                                                   " INNER JOIN chaves_emprestimo ce ON ce.cod_emprestimo = e.cod_emprestimo" +
+                                                                   " INNER JOIN chave c ON c.indice_chave = ce.cod_chave" +
+                                                                   " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente" +
+                                                                   " LEFT JOIN usuario u ON u.cod_usuario = e.cod_usuario" +
+                                                                   " LEFT JOIN proprietario p ON p.cod_proprietario = e.cod_proprietario" +
+                                                                   " WHERE ce.cod_chave = {0}" +
+                                                                   " ORDER BY situacao, e.data_retirada", gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[5].Value.ToString()));
+
+                gridEmprestimos.DataSource = tabelaEmprestimos;
+
+                gridEmprestimos.Columns[0].HeaderText = "Código";
+                gridEmprestimos.Columns[1].HeaderText = "Quem Retirou";
+                gridEmprestimos.Columns[2].HeaderText = "Data Retirada";
+                gridEmprestimos.Columns[3].HeaderText = "Data Entrega";
+                gridEmprestimos.Columns[4].HeaderText = "Situação";
+
+                gridEmprestimos.Columns[0].Width = 40;
+                gridEmprestimos.Columns[1].Width = 225;
+                gridEmprestimos.Columns[2].Width = 110;
+                gridEmprestimos.Columns[3].Width = 110;
+                gridEmprestimos.Columns[4].Width = 109;
+
+                painelEmprestimos.Visible = true;
+                painelInfo.Visible = false;
+            }
+            catch { }
+
+
+        }
+
+        private void gridEmprestimos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridViewRow row = gridEmprestimos.Rows[e.RowIndex];
+
+            //MessageBox.Show(row.Cells[4].Value.ToString());
+            if (row.Cells[4].Value.ToString() == "EM ANDAMENTO")
+            {
+                row.DefaultCellStyle.BackColor = Color.FromArgb(206, 242, 116);
+                row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(126, 161, 39);
+            }
+        }
+
+        private void gridEmprestimos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 69 && painelEmprestimos.Visible == true)
+            {
+                painelEmprestimos.Visible = false;
+            }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            painelEmprestimos.Visible = false;
+            gridEmprestimos.DataSource = null;
+        }
+
+        private void gridEmprestimos_SelectionChanged(object sender, EventArgs e)
+        {
+
+            
+            if(gridEmprestimos.SelectedRows.Count == 0)
+            {
+                descricao.Text = "";
+                funcionario.Text = "";
+                dataRetirada.Text = "";
+                previsEntrega.Text = "";
+                dataEntrega.Text = "";
+                funcionarioDevolucao.Text = "";
+                codImobEmprestimos.Text = "";
+                codChave.Text = "";
+                qtdChaves.Text = "";
+                qtdControles.Text = "";
+                dadosRetirante.Text = "";
+                contato.Text = "";
+
+            }
+            else
+            {
+                try
+                {
+                    codChavePainelEmprestimo.Text = gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[0].Value.ToString();
+                    DataTable dadosEmprestimo = new DataTable();
+
+
+                    dadosEmprestimo = database.select(string.Format("" +
+                        "SELECT  " +
+                        " (CASE WHEN e.data_entrega is null THEN 'EM ANDAMENTO' ELSE 'FINALIZADO' END) as situacao, " +
+                        " (CASE WHEN e.cod_proprietario is null AND e.cod_cliente is null THEN 'FUNCIONARIO' " +
+                              "  WHEN e.cod_proprietario is null AND e.cod_cliente is not null THEN 'CLIENTE' " +
+                               " WHEN e.cod_proprietario is not null AND e.cod_cliente is null THEN 'PROPRIETARIO' END) as tipo, " +
+                               " '(' || cl.cod_cliente || ') - ' || cl.nome_cliente, cl.contato_principal || ' / ' || cl.contato_secundario, " +
+                               " '(' || p.cod_proprietario || ') - ' || p.nome as proprietario, p.contato, u.nome_usuario, " +
+                               " (CASE WHEN e.desc_devolucao = '' OR e.desc_devolucao is null THEN e.descricao ELSE 'ENTREGA: ' || e.descricao END), " +
+                               "  e.data_retirada, e.entrega_prevista, e.data_entrega, (SELECT nome_usuario FROM usuario WHERE cod_usuario = e.usuario_devolucao)," +
+                               " (CASE WHEN e.desc_devolucao = '' OR e.desc_devolucao is null THEN '' ELSE 'DEVOLUÇÃO: ' || e.desc_devolucao END) " +
+                        " FROM emprestimo e " +
+                        " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente " +
+                        " LEFT JOIN usuario u ON u.cod_usuario = e.cod_usuario " +
+                        " LEFT JOIN proprietario p ON p.cod_proprietario = e.cod_proprietario" +
+                        " WHERE cod_emprestimo = '{0}'", gridEmprestimos.CurrentRow.Cells[0].Value.ToString()));
+
+
+                    foreach (DataRow row in dadosEmprestimo.Rows)
+                    {
+                        
+
+                        sitEmprestimo.Text = row[0].ToString();
+
+                        if (row[1].ToString() == "FUNCIONARIO")
+                        {
+                            dadosRetirante.Text = string.Format("{0} [{1}]", row[6].ToString(), row[1].ToString());
+
+                        }
+                        else if (row[1].ToString() == "CLIENTE")
+                        {
+                            dadosRetirante.Text = string.Format("{0} [{1}]", row[2].ToString(), row[1].ToString());
+                            contato.Text = row[3].ToString();
+                        }
+                        else
+                        {
+                            dadosRetirante.Text = string.Format("{0} [{1}]", row[4].ToString(), row[1].ToString());
+                            contato.Text = row[5].ToString();
+                        }
+
+                        descricao.Text = row[7].ToString() + "\n" + row[12].ToString();
+                        funcionario.Text = row[6].ToString();
+                        dataRetirada.Text = row[8].ToString();
+                        previsEntrega.Text = row[9].ToString();
+                        dataEntrega.Text = row[10].ToString();
+                        funcionarioDevolucao.Text = row[11].ToString();
+                    }
+                }
+                catch
+                {
+                    descricao.Text = "";
+                    funcionario.Text = "";
+                    dataRetirada.Text = "";
+                    previsEntrega.Text = "";
+                    dataEntrega.Text = "";
+                    funcionarioDevolucao.Text = "";
+                    codImobEmprestimos.Text = "";
+                    codChave.Text = "";
+                    qtdChaves.Text = "";
+                    qtdControles.Text = "";
+                    dadosRetirante.Text = "";
+                    contato.Text = "";
+                }
+
+                try
+                {
+                    DataTable dadosChaves = new DataTable();
+
+
+                    dadosChaves = database.select(string.Format("SELECT c.cod_imob, c.cod_chave, ce.quant_chaves, ce.quant_controles " +
+                                                                " FROM chave c " +
+                                                                " INNER JOIN chaves_emprestimo ce ON ce.cod_chave = c.indice_chave " +
+                                                                " WHERE c.indice_chave = '{0}' AND ce.cod_emprestimo = '{1}'",
+                                                                 gridChaves.CurrentRow.Cells[5].Value.ToString(), gridEmprestimos.CurrentRow.Cells[0].Value.ToString()));
+
+                    foreach (DataRow row in dadosChaves.Rows)
+                    {
+                        codImobEmprestimos.Text = row[0].ToString();
+                        codChave.Text = row[1].ToString();
+                        qtdChaves.Text = row[2].ToString();
+                        qtdControles.Text = row[3].ToString();
+                    }
+
+                }
+                catch
+                {
+                    codImobEmprestimos.Text = "";
+                    codChave.Text = "";
+                    qtdChaves.Text = "";
+                    qtdControles.Text = "";
+                    descricao.Text = "";
+                    funcionario.Text = "";
+                    dataRetirada.Text = "";
+                    previsEntrega.Text = "";
+                    dataEntrega.Text = "";
+                    funcionarioDevolucao.Text = "";
+                    dadosRetirante.Text = "";
+                    contato.Text = "";
+                }
+
+
+            }
+
 
         }
     }
