@@ -54,7 +54,7 @@ namespace situacaoChavesGolden
                                              " (SELECT COUNT(*) FROM emprestimo e LEFT JOIN chaves_emprestimo ce ON ce.cod_emprestimo = e.cod_emprestimo WHERE ce.cod_chave = c.indice_chave AND e.data_entrega IS NULL ) " +
                                              " FROM chave C" +
                                              " LEFT JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
-                                             " WHERE cod_chave::text || 'c' ILIKE '{0}' OR ((unaccent(lower(c.rua))) ILIKE '%{0}%' OR (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR (unaccent(lower(c.cidade))) ILIKE '%{0}%' OR (unaccent(lower(c.estado))) ILIKE '%{0}%' OR" +
+                                             " WHERE (cod_chave::text || 'c' ILIKE '{0}%' OR (unaccent(lower(c.rua))) ILIKE '%{0}%' OR (unaccent(lower(c.bairro))) ILIKE '%{0}%' OR (unaccent(lower(c.cidade))) ILIKE '%{0}%' OR (unaccent(lower(c.estado))) ILIKE '%{0}%' OR" +
                                              " (unaccent(lower(c.numero)))  ILIKE '%{0}%' OR (unaccent(lower(c.complemento))) ILIKE '%{0}%' OR (unaccent(lower(c.cod_imob))) ILIKE '%{0}%' OR (unaccent(lower(p.nome))) ILIKE '%{0}%'" +
                                              " OR c.rua  ILIKE '%{0}%' OR c.bairro ILIKE '%{0}%' OR c.cidade ILIKE '%{0}%' OR c.estado ILIKE '%{0}%' OR c.numero ILIKE '%{0}%' OR " +
                                              " c.complemento  ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%') AND " +
@@ -391,12 +391,6 @@ namespace situacaoChavesGolden
             metroRadioButton9.Checked = true;
         }
 
-        private void GridChaves_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            
-        }
-
         private void BtnExcluir_Click(object sender, EventArgs e)
         {
             string codigoChaveRetirar = gridChaves.CurrentRow.Cells[5].Value.ToString();
@@ -458,17 +452,27 @@ namespace situacaoChavesGolden
         {
             DataGridViewRow row = gridChaves.Rows[e.RowIndex];
 
-            if(int.Parse(row.Cells[6].Value.ToString()) > 0)
+            if(int.Parse(row.Cells[6].Value.ToString()) > 0 && int.Parse(row.Cells[7].Value.ToString()) > 0)
             {
-                row.DefaultCellStyle.BackColor = Color.FromArgb(255, 243, 135);
-                row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(201, 170, 83);
+                row.DefaultCellStyle.BackColor = Color.FromArgb(255, 169, 122);
+                row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(209, 112, 59);
+            }
+            else
+            {
+                if (int.Parse(row.Cells[6].Value.ToString()) > 0)
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(255, 243, 135);
+                    row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(201, 170, 83);
+                }
+
+                if (int.Parse(row.Cells[7].Value.ToString()) > 0)
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(242, 174, 174);
+                    row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(212, 55, 61);
+                }
             }
 
-            if (int.Parse(row.Cells[7].Value.ToString()) > 0)
-            {
-                row.DefaultCellStyle.BackColor = Color.FromArgb(242, 174, 174);
-                row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(212, 55, 61);
-            }
+            
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
@@ -585,6 +589,11 @@ namespace situacaoChavesGolden
             {
                 atualizarGridChaves();
             }
+        }
+
+        private void GridChaves_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
