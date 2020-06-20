@@ -499,15 +499,21 @@ namespace situacaoChavesGolden
 
         private void gridChaves_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            DataGridViewRow linha = gridChaves.CurrentRow;
+
+            painelInfo.Location = new Point(gridChaves.Location.X - 10, 22 * (linha.Index - gridChaves.FirstDisplayedScrollingRowIndex) + 112);
+
+
             try
             {
+                codChaveReserva.Text = gridChaves.Rows[e.RowIndex].Cells[0].Value.ToString();
+
                 DataGridViewRow row = gridChaves.Rows[e.RowIndex];
                 if ((int.Parse(row.Cells[6].Value.ToString()) > 0))
                 {
-                    codChaveReserva.Text = gridChaves.Rows[e.RowIndex].Cells[0].Value.ToString();
                     painelInfo.Visible = true;
 
-                    painelInfo.Location = new Point(gridReserva.Location.X + 10, Cursor.Position.Y - 145);
+                    //painelInfo.Location = new Point(gridChaves.Location.X + 10, Cursor.Position.Y - 145);
 
                     DataTable tabelaReservas = database.select(string.Format("SELECT r.cod_reserva, (CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO'" +
                             " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE'" +
@@ -620,6 +626,7 @@ namespace situacaoChavesGolden
 
         void atualizarGridEmprestimos()
         {
+            painelEmprestimos.Location = new Point(22, 9);
             try
             {
                 DataTable tabelaEmprestimos = new DataTable();

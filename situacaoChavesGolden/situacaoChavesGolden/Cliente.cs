@@ -140,5 +140,132 @@ namespace situacaoChavesGolden
         {
             atualizarClientes();
         }
+
+        private void gridEmprestimos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            painelEmprestimo.Visible = true;
+            //try
+            //{
+                DataTable dadosEmprestimo = new DataTable();
+                dadosEmprestimo = database.select(string.Format("SELECT c.cod_chave, c.cod_imob," +
+                                                               " c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END) || " +
+                                                               " (CASE WHEN c.cond IS NULL OR c.cond = '' THEN '' ELSE ' (' || c.cond || ')' END) as endereco, c.situacao, c.indice_chave" +
+                                                               " FROM chave c" +
+                                                               " INNER JOIN chaves_emprestimo ce ON ce.cod_chave = c.indice_chave" +
+                                                               " INNER JOIN emprestimo e ON e.cod_emprestimo = ce.cod_emprestimo" +
+                                                               " WHERE e.cod_emprestimo = '{0}'" +
+                                                               " ORDER BY c.cod_chave", gridEmprestimos.CurrentRow.Cells[0].Value.ToString()));
+
+                if (dadosEmprestimo.Rows.Count == 0)
+                {
+                    dadosEmprestimo.Clear();
+                    gridChavesEmp.DataSource = null;
+                    gridChavesEmp.Rows.Clear();
+
+                }
+                else
+                {
+                    gridChavesEmp.DataSource = dadosEmprestimo;
+
+                    gridChavesEmp.Columns[0].Width = 40;
+                    gridChavesEmp.Columns[1].Width = 100;
+                    gridChavesEmp.Columns[2].Width = 325;
+                    gridChavesEmp.Columns[3].Width = 129;
+                    gridChavesEmp.Columns[4].Visible = false;
+
+                    gridChavesEmp.Columns[0].HeaderText = "Chave";
+                    gridChavesEmp.Columns[1].HeaderText = "Cod Imob";
+                    gridChavesEmp.Columns[2].HeaderText = "Endereço";
+                    gridChavesEmp.Columns[3].HeaderText = "Sit Imóvel";
+
+
+                   
+                }
+
+
+
+            try
+            {
+                DataTable dadosEmp = new DataTable();
+
+
+                dadosEmp = database.select(string.Format("" +
+                    "SELECT  " +
+                    " (CASE WHEN e.data_entrega is null THEN 'EM ANDAMENTO' ELSE 'FINALIZADO' END) as situacao, " +
+                    " (CASE WHEN e.cod_proprietario is null AND e.cod_cliente is null THEN 'FUNCIONARIO' " +
+                          "  WHEN e.cod_proprietario is null AND e.cod_cliente is not null THEN 'CLIENTE' " +
+                           " WHEN e.cod_proprietario is not null AND e.cod_cliente is null THEN 'PROPRIETARIO' END) as tipo, " +
+                           " '(' || cl.cod_cliente || ') - ' || cl.nome_cliente, cl.contato_principal || ' / ' || cl.contato_secundario, " +
+                           " '(' || p.cod_proprietario || ') - ' || p.nome as proprietario, p.contato, u.nome_usuario, " +
+                           " (CASE WHEN e.desc_devolucao = '' OR e.desc_devolucao is null THEN e.descricao ELSE 'ENTREGA: ' || e.descricao END), " +
+                           "  e.data_retirada, e.entrega_prevista, e.data_entrega, (SELECT nome_usuario FROM usuario WHERE cod_usuario = e.usuario_devolucao)," +
+                           " (CASE WHEN e.desc_devolucao = '' OR e.desc_devolucao is null THEN '' ELSE 'DEVOLUÇÃO: ' || e.desc_devolucao END) " +
+                    " FROM emprestimo e " +
+                    " LEFT JOIN cliente cl ON cl.cod_cliente = e.cod_cliente " +
+                    " LEFT JOIN usuario u ON u.cod_usuario = e.cod_usuario " +
+                    " LEFT JOIN proprietario p ON p.cod_proprietario = e.cod_proprietario" +
+                    " WHERE cod_emprestimo = '{0}'", gridEmprestimos.CurrentRow.Cells[0].Value.ToString()));
+
+
+                foreach (DataRow row in dadosEmp.Rows)
+                {
+
+
+                    sitEmprestimo.Text = row[0].ToString();
+
+                    if (row[1].ToString() == "FUNCIONARIO")
+                    {
+                        dadosRetirante.Text = string.Format("{0} [{1}]", row[6].ToString(), row[1].ToString());
+
+                    }
+                    else if (row[1].ToString() == "CLIENTE")
+                    {
+                        dadosRetirante.Text = string.Format("{0} [{1}]", row[2].ToString(), row[1].ToString());
+                        contato.Text = row[3].ToString();
+                    }
+                    else
+                    {
+                        dadosRetirante.Text = string.Format("{0} [{1}]", row[4].ToString(), row[1].ToString());
+                        contato.Text = row[5].ToString();
+                    }
+
+                    descricao.Text = row[7].ToString() + "\n" + row[12].ToString();
+                    funcionario.Text = row[6].ToString();
+                    dataRetirada.Text = row[8].ToString();
+                    previsEntrega.Text = row[9].ToString();
+                    dataEntrega.Text = row[10].ToString();
+                    funcionarioDevolucao.Text = row[11].ToString();
+
+                }
+            }
+            catch { }
+
+            //}
+            //catch
+            //{
+            //    gridChavesEmp.DataSource = null;
+            //    gridChavesEmp.Rows.Clear();
+            //}
+        }
+
+        private void gridEmprestimo_SelectionChanged(object sender, EventArgs e)
+        {
+            DataTable dadosChaves = new DataTable();
+
+
+            dadosChaves = database.select(string.Format("SELECT c.cod_imob, c.cod_chave, ce.quant_chaves, ce.quant_controles " +
+                                                        " FROM chave c " +
+                                                        " INNER JOIN chaves_emprestimo ce ON ce.cod_chave = c.indice_chave " +
+                                                        " WHERE c.indice_chave = '{0}' AND ce.cod_emprestimo = '{1}'",
+                                                         gridChavesEmp.CurrentRow.Cells[4].Value.ToString(), gridEmprestimos.CurrentRow.Cells[0].Value.ToString()));
+
+            foreach (DataRow row in dadosChaves.Rows)
+            {
+                codImobEmprestimos.Text = row[0].ToString();
+                codChave.Text = row[1].ToString();
+                qtdChaves.Text = row[2].ToString();
+                qtdControles.Text = row[3].ToString();
+            }
+        }
     }
 }

@@ -151,11 +151,11 @@ namespace situacaoChavesGolden
 
         void atualizarGridChavesEmprestimo()
         {
-            DataTable dadosEmprestimo = new DataTable();
+                           DataTable dadosEmprestimo = new DataTable();
+
 
             try
             {
-
                 dadosEmprestimo = database.select(string.Format("SELECT c.cod_chave," +
                                                                " c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END)" +
                                                                " as endereco, c.indice_chave" +
@@ -200,6 +200,19 @@ namespace situacaoChavesGolden
             //{
             //    gridChavesEmprestimo.Rows.Clear();
             //}
+
+            painelDados.Visible = false;
+
+
+            codImobChave.Text = "";
+            finalidade.Text = "";
+            sitImovel.Text = "";
+            endereco.Text = "";
+            proprietario.Text = "";
+            tipoImovel.Text = "";
+            sitChave.Text = "";
+            localizacao.Text = "";
+            codEmprestimo.Text = "";
 
             atualizarGridChavesEmprestimo();
 
@@ -496,6 +509,19 @@ namespace situacaoChavesGolden
 
         private void gridChavesEmprestimo_SelectionChanged(object sender, EventArgs e)
         {
+            painelDados.Visible = false;
+
+
+            codImobChave.Text = "";
+            finalidade.Text = "";
+            sitImovel.Text = "";
+            endereco.Text = "";
+            proprietario.Text = "";
+            tipoImovel.Text = "";
+            sitChave.Text = "";
+            localizacao.Text = "";
+            codEmprestimo.Text = "";
+
             try
             {
                 DataTable dadosChaves = new DataTable();
@@ -547,6 +573,69 @@ namespace situacaoChavesGolden
 
         private void gridEmprestimo_SizeChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void gridChavesEmprestimo_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow linha = gridEmprestimo.CurrentRow;
+
+            codChavePainel.Text = gridChavesEmprestimo.CurrentRow.Cells[0].Value.ToString();
+
+            painelDados.Location = new Point(gridEmprestimo.Location.X - 10, 22 * (linha.Index - gridEmprestimo.FirstDisplayedScrollingRowIndex) + 100);
+
+            //MessageBox.Show();
+
+
+
+            try
+            {
+                string codigoChave = gridChavesEmprestimo.CurrentRow.Cells[2].Value.ToString();
+
+                DataTable dadosChave = new DataTable();
+
+                dadosChave = database.select(string.Format("SELECT c.*, p.nome, p.cod_proprietario " +
+                                                           " FROM chave c  " +
+                                                           " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
+                                                           " WHERE indice_chave = {0}", codigoChave));
+
+
+                foreach (DataRow row in dadosChave.Rows)
+                {
+                    codImobChave.Text = row[10].ToString();
+                    finalidade.Text = row[12].ToString();
+                    sitImovel.Text = row[13].ToString().Replace("/", " E ");
+                    endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} [{6} {5}]", row[1].ToString(),
+                        row[5].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(),
+                        row[6].ToString(), row[16].ToString());
+                    proprietario.Text = string.Format("{0} - {1}", row[20].ToString(), row[19].ToString());
+                    tipoImovel.Text = row[11].ToString();
+                    sitChave.Text = row[7].ToString();
+                    localizacao.Text = row[8].ToString();
+                    codEmprestimo.Text = gridEmprestimo.Rows[gridEmprestimo.CurrentRow.Index].Cells[0].Value.ToString();
+
+                }
+                painelDados.Visible = true;
+            }
+            catch { }
+
+            
+        }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
+            painelDados.Visible = false;
+
+
+            codImobChave.Text = "";
+            finalidade.Text = "";
+            sitImovel.Text = "";
+            endereco.Text =  "";
+            proprietario.Text = "";
+            tipoImovel.Text = "";
+            sitChave.Text = "";
+            localizacao.Text = "";
+            codEmprestimo.Text = "";
 
         }
     }
