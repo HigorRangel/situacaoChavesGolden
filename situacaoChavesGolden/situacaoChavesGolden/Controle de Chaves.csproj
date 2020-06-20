@@ -287,6 +287,12 @@
     <Compile Include="CadastroReserva.Designer.cs">
       <DependentUpon>CadastroReserva.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProrrogarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProrrogarReserva.Designer.cs">
+      <DependentUpon>ProrrogarReserva.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reserva.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -380,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CadastroReserva.resx">
       <DependentUpon>CadastroReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProrrogarReserva.resx">
+      <DependentUpon>ProrrogarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reserva.resx">
       <DependentUpon>Reserva.cs</DependentUpon>

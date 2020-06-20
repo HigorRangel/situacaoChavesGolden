@@ -43,14 +43,18 @@ namespace situacaoChavesGolden
                 string selecData = "";
                 string tituloColData = "";
 
-                if (situacao == "TODOS") { situacao = ""; }
-                else if (situacao == "FINALIZADO") { selecData = "e.data_entrega"; tituloColData = "Data retirada"; }
-                else { selecData = "e.data_retirada"; tituloColData = "Data Entrega"; }
+
+                if (situacao == "TODOS") { situacao = ""; selecData = "e.entrega_prevista"; tituloColData = "Prev Entrega"; }
+                else if (situacao == "FINALIZADO") { selecData = "e.data_entrega"; tituloColData = "Data entrega"; }
+                else { selecData = "e.entrega_prevista"; tituloColData = "Prev entrega"; }
                 if (tipo == "TODOS") { tipo = ""; }
 
                 if(busca == "Buscar") { busca = ""; }
 
-                dadosEmprestimo = database.select(string.Format("SELECT e.cod_emprestimo, {6}, e.entrega_prevista, " +
+                
+
+                //MessageBox.Show(situacao);
+                dadosEmprestimo = database.select(string.Format("SELECT e.cod_emprestimo, e.data_retirada, {6}, " +
                                                   " (CASE WHEN e.data_entrega is null THEN 'EM ANDAMENTO' ELSE 'FINALIZADO' END) as situacao" +
                                                   " FROM emprestimo e " +
                                                   " INNER JOIN chaves_emprestimo ce ON ce.cod_emprestimo = e.cod_emprestimo" +
@@ -73,6 +77,9 @@ namespace situacaoChavesGolden
                                                          " ORDER BY {6}", 
                                                          situacao, tipo,  dataRetirada, entregaPrevista, dataRetirada, busca, selecData));
 
+
+ 
+
                 gridEmprestimo.DataSource = dadosEmprestimo;
 
                 
@@ -80,8 +87,8 @@ namespace situacaoChavesGolden
                 
 
                 gridEmprestimo.Columns[0].HeaderText = "Código";        
-                gridEmprestimo.Columns[1].HeaderText = tituloColData;
-                gridEmprestimo.Columns[2].HeaderText = "Prev entrega";
+                gridEmprestimo.Columns[1].HeaderText = "Data Retirada";
+                gridEmprestimo.Columns[2].HeaderText = tituloColData;
                 gridEmprestimo.Columns[3].HeaderText = "Situação";
 
                 gridEmprestimo.Columns[0].Width = 40;
@@ -370,6 +377,7 @@ namespace situacaoChavesGolden
 
         private void RadioTodos_CheckedChanged(object sender, EventArgs e)
         {
+            //MessageBox.Show("oii");
             atualizarGridEmprestimo();
         }
 
@@ -435,29 +443,34 @@ namespace situacaoChavesGolden
 
         private void gridEmprestimo_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            string situacao = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
-            DataGridViewRow row = gridEmprestimo.Rows[e.RowIndex];
+            //try
+            //{
+                string situacao = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+                DataGridViewRow row = gridEmprestimo.Rows[e.RowIndex];
 
 
-            //MessageBox.Show(row.Cells[4].Value.ToString());
+                //MessageBox.Show(row.Cells[4].Value.ToString());
 
-            if (situacao == "EM ANDAMENTO" || situacao == "TODOS" && row.Cells[3].Value.ToString() != "FINALIZADO")
-            {
-                try
+                if (situacao == "EM ANDAMENTO" || situacao == "TODOS" && row.Cells[3].Value.ToString() != "FINALIZADO")
                 {
-                    
-                    DateTime data = DateTime.Parse(row.Cells[2].Value.ToString());
-
-                    if (data < dataHoje)
+                    try
                     {
-                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 176, 176);
-                        row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(212, 55, 61);
-                    }
 
+                        DateTime data = DateTime.Parse(row.Cells[2].Value.ToString());
+
+                        if (data < dataHoje)
+                        {
+                            row.DefaultCellStyle.BackColor = Color.FromArgb(255, 176, 176);
+                            row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(212, 55, 61);
+                        }
+
+                    }
+                    catch { }
                 }
-                catch { }
-            }
-           
+
+            //}
+            //catch { }
+            
 
 
         }

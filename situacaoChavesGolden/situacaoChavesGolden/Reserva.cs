@@ -291,6 +291,19 @@ namespace situacaoChavesGolden
                 btnExcluir.Image = Properties.Resources.Delete;
                 btnEmprestar.Enabled = true;
                 btnEmprestar.Image = Properties.Resources.ChaveEmprestar;
+
+                if(gridReserva.Rows[gridReserva.CurrentRow.Index].Cells[2].Value.ToString() == "FINALIZADO")
+                {
+                    btnProrrogar.Enabled = false;
+                    btnProrrogar.Image = Properties.Resources.ProrrogarEmprestimoGray;
+                }
+                else
+                {
+                    btnProrrogar.Enabled = true;
+                    btnProrrogar.Image = Properties.Resources.ProrrogarEmprestimo;
+                }
+               
+
                 atualizarGridChavesReserva();
 
 
@@ -361,6 +374,8 @@ namespace situacaoChavesGolden
                 btnExcluir.Image = Properties.Resources.DeleteGray;
                 btnEmprestar.Enabled = false;
                 btnEmprestar.Image = Properties.Resources.ChaveEmprestarGray;
+                btnProrrogar.Enabled = false;
+                btnProrrogar.Image = Properties.Resources.ProrrogarEmprestimoGray;
             }
 
 
@@ -575,6 +590,14 @@ namespace situacaoChavesGolden
         private void GridReserva_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void BtnProrrogar_Click(object sender, EventArgs e)
+        {
+            ProrrogarReserva prorrogar = new ProrrogarReserva(gridReserva.Rows[gridReserva.CurrentRow.Index].Cells[0].Value.ToString());
+
+            prorrogar.ShowDialog();
+            atualizarGrid();
         }
     }
 }

@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridChaves = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.codigoImob = new System.Windows.Forms.Label();
@@ -105,22 +105,13 @@
             this.codChaveReserva = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.painelEmprestimos = new System.Windows.Forms.Panel();
-            this.gridEmprestimos = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
-            this.codChavePainelEmprestimo = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.codImobEmprestimos = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.codChave = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.dadosRetirante = new System.Windows.Forms.Label();
-            this.descricao = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.qtdControles = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.qtdChaves = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.previsEntrega = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.dataRetirada = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.dataEntrega = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.funcionarioDevolucao = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.funcionario = new System.Windows.Forms.Label();
@@ -129,13 +120,22 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.sitEmprestimo = new System.Windows.Forms.Label();
-            this.previsEntrega = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.dataRetirada = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.dataEntrega = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.descricao = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.qtdControles = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.qtdChaves = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.codImobEmprestimos = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.codChave = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.dadosRetirante = new System.Windows.Forms.Label();
+            this.gridEmprestimos = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.codChavePainelEmprestimo = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupMenuSup.SuspendLayout();
@@ -164,14 +164,14 @@
             this.gridChaves.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
             this.gridChaves.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridChaves.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.gridChaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridChaves.GridColor = System.Drawing.Color.White;
             this.gridChaves.Location = new System.Drawing.Point(23, 68);
@@ -179,14 +179,14 @@
             this.gridChaves.Name = "gridChaves";
             this.gridChaves.ReadOnly = true;
             this.gridChaves.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.gridChaves.RowHeadersVisible = false;
             this.gridChaves.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridChaves.RowTemplate.ReadOnly = true;
@@ -909,7 +909,7 @@
             this.painelInfo.Controls.Add(this.label2);
             this.painelInfo.Controls.Add(this.codChaveReserva);
             this.painelInfo.Controls.Add(this.label22);
-            this.painelInfo.Location = new System.Drawing.Point(22, 49);
+            this.painelInfo.Location = new System.Drawing.Point(16, 180);
             this.painelInfo.Name = "painelInfo";
             this.painelInfo.Size = new System.Drawing.Size(610, 190);
             this.painelInfo.TabIndex = 49;
@@ -926,37 +926,37 @@
             this.gridReserva.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
             this.gridReserva.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridReserva.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridReserva.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridReserva.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.gridReserva.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridReserva.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridReserva.DefaultCellStyle = dataGridViewCellStyle12;
             this.gridReserva.GridColor = System.Drawing.Color.White;
             this.gridReserva.Location = new System.Drawing.Point(7, 25);
             this.gridReserva.MultiSelect = false;
             this.gridReserva.Name = "gridReserva";
             this.gridReserva.ReadOnly = true;
             this.gridReserva.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridReserva.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridReserva.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.gridReserva.RowHeadersVisible = false;
             this.gridReserva.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridReserva.RowTemplate.ReadOnly = true;
@@ -1031,226 +1031,86 @@
             this.painelEmprestimos.Controls.Add(this.label6);
             this.painelEmprestimos.Controls.Add(this.codChavePainelEmprestimo);
             this.painelEmprestimos.Controls.Add(this.label12);
-            this.painelEmprestimos.Location = new System.Drawing.Point(22, 9);
+            this.painelEmprestimos.Location = new System.Drawing.Point(16, 19);
             this.painelEmprestimos.Name = "painelEmprestimos";
             this.painelEmprestimos.Size = new System.Drawing.Size(610, 388);
             this.painelEmprestimos.TabIndex = 63;
             this.painelEmprestimos.Visible = false;
             this.painelEmprestimos.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // gridEmprestimos
+            // panel3
             // 
-            this.gridEmprestimos.AllowUserToAddRows = false;
-            this.gridEmprestimos.AllowUserToDeleteRows = false;
-            this.gridEmprestimos.AllowUserToResizeColumns = false;
-            this.gridEmprestimos.AllowUserToResizeRows = false;
-            this.gridEmprestimos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
-            this.gridEmprestimos.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridEmprestimos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridEmprestimos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.gridEmprestimos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridEmprestimos.DefaultCellStyle = dataGridViewCellStyle7;
-            this.gridEmprestimos.GridColor = System.Drawing.Color.White;
-            this.gridEmprestimos.Location = new System.Drawing.Point(7, 25);
-            this.gridEmprestimos.MultiSelect = false;
-            this.gridEmprestimos.Name = "gridEmprestimos";
-            this.gridEmprestimos.ReadOnly = true;
-            this.gridEmprestimos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridEmprestimos.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.gridEmprestimos.RowHeadersVisible = false;
-            this.gridEmprestimos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.gridEmprestimos.RowTemplate.ReadOnly = true;
-            this.gridEmprestimos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridEmprestimos.Size = new System.Drawing.Size(595, 133);
-            this.gridEmprestimos.TabIndex = 60;
-            this.gridEmprestimos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridEmprestimos_CellFormatting);
-            this.gridEmprestimos.SelectionChanged += new System.EventHandler(this.gridEmprestimos_SelectionChanged);
-            this.gridEmprestimos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridEmprestimos_KeyDown);
+            this.panel3.BackColor = System.Drawing.Color.DimGray;
+            this.panel3.Location = new System.Drawing.Point(9, 294);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(587, 1);
+            this.panel3.TabIndex = 89;
             // 
-            // label6
+            // previsEntrega
             // 
-            this.label6.AutoSize = true;
-            this.label6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(585, 5);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(15, 13);
-            this.label6.TabIndex = 62;
-            this.label6.Text = "X";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+            this.previsEntrega.AutoSize = true;
+            this.previsEntrega.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.previsEntrega.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.previsEntrega.Location = new System.Drawing.Point(98, 303);
+            this.previsEntrega.Name = "previsEntrega";
+            this.previsEntrega.Size = new System.Drawing.Size(10, 15);
+            this.previsEntrega.TabIndex = 88;
+            this.previsEntrega.Text = " ";
             // 
-            // codChavePainelEmprestimo
+            // label28
             // 
-            this.codChavePainelEmprestimo.AutoSize = true;
-            this.codChavePainelEmprestimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.codChavePainelEmprestimo.Location = new System.Drawing.Point(354, 5);
-            this.codChavePainelEmprestimo.Name = "codChavePainelEmprestimo";
-            this.codChavePainelEmprestimo.Size = new System.Drawing.Size(11, 13);
-            this.codChavePainelEmprestimo.TabIndex = 61;
-            this.codChavePainelEmprestimo.Text = " ";
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label28.Location = new System.Drawing.Point(6, 303);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(96, 15);
+            this.label28.TabIndex = 87;
+            this.label28.Text = "Previs. Entrega:";
             // 
-            // label12
+            // dataRetirada
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(208, 5);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(152, 13);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "EMPRÉSTIMOS DA  CHAVE: ";
+            this.dataRetirada.AutoSize = true;
+            this.dataRetirada.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataRetirada.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.dataRetirada.Location = new System.Drawing.Point(105, 332);
+            this.dataRetirada.Name = "dataRetirada";
+            this.dataRetirada.Size = new System.Drawing.Size(10, 15);
+            this.dataRetirada.TabIndex = 84;
+            this.dataRetirada.Text = " ";
             // 
-            // label16
+            // label29
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label16.Location = new System.Drawing.Point(6, 194);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(85, 15);
-            this.label16.TabIndex = 65;
-            this.label16.Text = "Quem retirou:";
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label29.Location = new System.Drawing.Point(6, 362);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(83, 15);
+            this.label29.TabIndex = 85;
+            this.label29.Text = "Data Entrega:";
             // 
-            // codImobEmprestimos
+            // dataEntrega
             // 
-            this.codImobEmprestimos.AutoSize = true;
-            this.codImobEmprestimos.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.codImobEmprestimos.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.codImobEmprestimos.Location = new System.Drawing.Point(83, 168);
-            this.codImobEmprestimos.Name = "codImobEmprestimos";
-            this.codImobEmprestimos.Size = new System.Drawing.Size(10, 15);
-            this.codImobEmprestimos.TabIndex = 64;
-            this.codImobEmprestimos.Text = " ";
+            this.dataEntrega.AutoSize = true;
+            this.dataEntrega.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataEntrega.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.dataEntrega.Location = new System.Drawing.Point(86, 362);
+            this.dataEntrega.Name = "dataEntrega";
+            this.dataEntrega.Size = new System.Drawing.Size(10, 15);
+            this.dataEntrega.TabIndex = 86;
+            this.dataEntrega.Text = " ";
             // 
-            // label18
+            // label30
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label18.Location = new System.Drawing.Point(5, 168);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(83, 15);
-            this.label18.TabIndex = 63;
-            this.label18.Text = "Código Imob: ";
-            // 
-            // codChave
-            // 
-            this.codChave.AutoSize = true;
-            this.codChave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.codChave.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.codChave.Location = new System.Drawing.Point(271, 168);
-            this.codChave.Name = "codChave";
-            this.codChave.Size = new System.Drawing.Size(10, 15);
-            this.codChave.TabIndex = 68;
-            this.codChave.Text = " ";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label19.Location = new System.Drawing.Point(184, 166);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(87, 15);
-            this.label19.TabIndex = 67;
-            this.label19.Text = "Código Chave:";
-            // 
-            // dadosRetirante
-            // 
-            this.dadosRetirante.AutoSize = true;
-            this.dadosRetirante.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dadosRetirante.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.dadosRetirante.Location = new System.Drawing.Point(87, 194);
-            this.dadosRetirante.Name = "dadosRetirante";
-            this.dadosRetirante.Size = new System.Drawing.Size(10, 15);
-            this.dadosRetirante.TabIndex = 66;
-            this.dadosRetirante.Text = " ";
-            // 
-            // descricao
-            // 
-            this.descricao.AutoSize = true;
-            this.descricao.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descricao.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.descricao.Location = new System.Drawing.Point(69, 222);
-            this.descricao.MaximumSize = new System.Drawing.Size(520, 42);
-            this.descricao.Name = "descricao";
-            this.descricao.Size = new System.Drawing.Size(10, 14);
-            this.descricao.TabIndex = 70;
-            this.descricao.Text = " ";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label20.Location = new System.Drawing.Point(6, 221);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(68, 15);
-            this.label20.TabIndex = 69;
-            this.label20.Text = "Descrição:";
-            // 
-            // qtdControles
-            // 
-            this.qtdControles.AutoSize = true;
-            this.qtdControles.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qtdControles.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.qtdControles.Location = new System.Drawing.Point(440, 269);
-            this.qtdControles.Name = "qtdControles";
-            this.qtdControles.Size = new System.Drawing.Size(10, 15);
-            this.qtdControles.TabIndex = 74;
-            this.qtdControles.Text = " ";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label21.Location = new System.Drawing.Point(352, 269);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(91, 15);
-            this.label21.TabIndex = 73;
-            this.label21.Text = "Qtd. Controles:";
-            // 
-            // qtdChaves
-            // 
-            this.qtdChaves.AutoSize = true;
-            this.qtdChaves.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qtdChaves.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.qtdChaves.Location = new System.Drawing.Point(80, 269);
-            this.qtdChaves.Name = "qtdChaves";
-            this.qtdChaves.Size = new System.Drawing.Size(10, 15);
-            this.qtdChaves.TabIndex = 72;
-            this.qtdChaves.Text = " ";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label23.Location = new System.Drawing.Point(4, 269);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(78, 15);
-            this.label23.TabIndex = 71;
-            this.label23.Text = "Qtd. Chaves:";
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label30.Location = new System.Drawing.Point(5, 332);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(104, 15);
+            this.label30.TabIndex = 83;
+            this.label30.Text = "Data de Retirada:";
             // 
             // funcionarioDevolucao
             // 
@@ -1341,79 +1201,219 @@
             this.sitEmprestimo.TabIndex = 76;
             this.sitEmprestimo.Text = " ";
             // 
-            // previsEntrega
+            // descricao
             // 
-            this.previsEntrega.AutoSize = true;
-            this.previsEntrega.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.previsEntrega.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.previsEntrega.Location = new System.Drawing.Point(98, 303);
-            this.previsEntrega.Name = "previsEntrega";
-            this.previsEntrega.Size = new System.Drawing.Size(10, 15);
-            this.previsEntrega.TabIndex = 88;
-            this.previsEntrega.Text = " ";
+            this.descricao.AutoSize = true;
+            this.descricao.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descricao.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.descricao.Location = new System.Drawing.Point(69, 222);
+            this.descricao.MaximumSize = new System.Drawing.Size(520, 42);
+            this.descricao.Name = "descricao";
+            this.descricao.Size = new System.Drawing.Size(10, 14);
+            this.descricao.TabIndex = 70;
+            this.descricao.Text = " ";
             // 
-            // label28
+            // label20
             // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label28.Location = new System.Drawing.Point(6, 303);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(96, 15);
-            this.label28.TabIndex = 87;
-            this.label28.Text = "Previs. Entrega:";
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label20.Location = new System.Drawing.Point(6, 221);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(68, 15);
+            this.label20.TabIndex = 69;
+            this.label20.Text = "Descrição:";
             // 
-            // dataRetirada
+            // qtdControles
             // 
-            this.dataRetirada.AutoSize = true;
-            this.dataRetirada.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataRetirada.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.dataRetirada.Location = new System.Drawing.Point(105, 332);
-            this.dataRetirada.Name = "dataRetirada";
-            this.dataRetirada.Size = new System.Drawing.Size(10, 15);
-            this.dataRetirada.TabIndex = 84;
-            this.dataRetirada.Text = " ";
+            this.qtdControles.AutoSize = true;
+            this.qtdControles.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qtdControles.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.qtdControles.Location = new System.Drawing.Point(440, 269);
+            this.qtdControles.Name = "qtdControles";
+            this.qtdControles.Size = new System.Drawing.Size(10, 15);
+            this.qtdControles.TabIndex = 74;
+            this.qtdControles.Text = " ";
             // 
-            // label29
+            // label21
             // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label29.Location = new System.Drawing.Point(6, 362);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(83, 15);
-            this.label29.TabIndex = 85;
-            this.label29.Text = "Data Entrega:";
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label21.Location = new System.Drawing.Point(352, 269);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(91, 15);
+            this.label21.TabIndex = 73;
+            this.label21.Text = "Qtd. Controles:";
             // 
-            // dataEntrega
+            // qtdChaves
             // 
-            this.dataEntrega.AutoSize = true;
-            this.dataEntrega.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataEntrega.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.dataEntrega.Location = new System.Drawing.Point(86, 362);
-            this.dataEntrega.Name = "dataEntrega";
-            this.dataEntrega.Size = new System.Drawing.Size(10, 15);
-            this.dataEntrega.TabIndex = 86;
-            this.dataEntrega.Text = " ";
+            this.qtdChaves.AutoSize = true;
+            this.qtdChaves.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qtdChaves.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.qtdChaves.Location = new System.Drawing.Point(80, 269);
+            this.qtdChaves.Name = "qtdChaves";
+            this.qtdChaves.Size = new System.Drawing.Size(10, 15);
+            this.qtdChaves.TabIndex = 72;
+            this.qtdChaves.Text = " ";
             // 
-            // label30
+            // label23
             // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label30.Location = new System.Drawing.Point(5, 332);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(104, 15);
-            this.label30.TabIndex = 83;
-            this.label30.Text = "Data de Retirada:";
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label23.Location = new System.Drawing.Point(4, 269);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(78, 15);
+            this.label23.TabIndex = 71;
+            this.label23.Text = "Qtd. Chaves:";
             // 
-            // panel3
+            // label16
             // 
-            this.panel3.BackColor = System.Drawing.Color.DimGray;
-            this.panel3.Location = new System.Drawing.Point(9, 294);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(587, 1);
-            this.panel3.TabIndex = 89;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label16.Location = new System.Drawing.Point(6, 194);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(85, 15);
+            this.label16.TabIndex = 65;
+            this.label16.Text = "Quem retirou:";
+            // 
+            // codImobEmprestimos
+            // 
+            this.codImobEmprestimos.AutoSize = true;
+            this.codImobEmprestimos.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codImobEmprestimos.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.codImobEmprestimos.Location = new System.Drawing.Point(83, 168);
+            this.codImobEmprestimos.Name = "codImobEmprestimos";
+            this.codImobEmprestimos.Size = new System.Drawing.Size(10, 15);
+            this.codImobEmprestimos.TabIndex = 64;
+            this.codImobEmprestimos.Text = " ";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label18.Location = new System.Drawing.Point(5, 168);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(83, 15);
+            this.label18.TabIndex = 63;
+            this.label18.Text = "Código Imob: ";
+            // 
+            // codChave
+            // 
+            this.codChave.AutoSize = true;
+            this.codChave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codChave.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.codChave.Location = new System.Drawing.Point(271, 168);
+            this.codChave.Name = "codChave";
+            this.codChave.Size = new System.Drawing.Size(10, 15);
+            this.codChave.TabIndex = 68;
+            this.codChave.Text = " ";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label19.Location = new System.Drawing.Point(184, 166);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(87, 15);
+            this.label19.TabIndex = 67;
+            this.label19.Text = "Código Chave:";
+            // 
+            // dadosRetirante
+            // 
+            this.dadosRetirante.AutoSize = true;
+            this.dadosRetirante.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dadosRetirante.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.dadosRetirante.Location = new System.Drawing.Point(87, 194);
+            this.dadosRetirante.Name = "dadosRetirante";
+            this.dadosRetirante.Size = new System.Drawing.Size(10, 15);
+            this.dadosRetirante.TabIndex = 66;
+            this.dadosRetirante.Text = " ";
+            // 
+            // gridEmprestimos
+            // 
+            this.gridEmprestimos.AllowUserToAddRows = false;
+            this.gridEmprestimos.AllowUserToDeleteRows = false;
+            this.gridEmprestimos.AllowUserToResizeColumns = false;
+            this.gridEmprestimos.AllowUserToResizeRows = false;
+            this.gridEmprestimos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
+            this.gridEmprestimos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridEmprestimos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridEmprestimos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.gridEmprestimos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridEmprestimos.DefaultCellStyle = dataGridViewCellStyle15;
+            this.gridEmprestimos.GridColor = System.Drawing.Color.White;
+            this.gridEmprestimos.Location = new System.Drawing.Point(7, 25);
+            this.gridEmprestimos.MultiSelect = false;
+            this.gridEmprestimos.Name = "gridEmprestimos";
+            this.gridEmprestimos.ReadOnly = true;
+            this.gridEmprestimos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridEmprestimos.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            this.gridEmprestimos.RowHeadersVisible = false;
+            this.gridEmprestimos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.gridEmprestimos.RowTemplate.ReadOnly = true;
+            this.gridEmprestimos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridEmprestimos.Size = new System.Drawing.Size(595, 133);
+            this.gridEmprestimos.TabIndex = 60;
+            this.gridEmprestimos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridEmprestimos_CellFormatting);
+            this.gridEmprestimos.SelectionChanged += new System.EventHandler(this.gridEmprestimos_SelectionChanged);
+            this.gridEmprestimos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridEmprestimos_KeyDown);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(585, 5);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(15, 13);
+            this.label6.TabIndex = 62;
+            this.label6.Text = "X";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // codChavePainelEmprestimo
+            // 
+            this.codChavePainelEmprestimo.AutoSize = true;
+            this.codChavePainelEmprestimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codChavePainelEmprestimo.Location = new System.Drawing.Point(354, 5);
+            this.codChavePainelEmprestimo.Name = "codChavePainelEmprestimo";
+            this.codChavePainelEmprestimo.Size = new System.Drawing.Size(11, 13);
+            this.codChavePainelEmprestimo.TabIndex = 61;
+            this.codChavePainelEmprestimo.Text = " ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(208, 5);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(152, 13);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "EMPRÉSTIMOS DA  CHAVE: ";
             // 
             // Chaves
             // 

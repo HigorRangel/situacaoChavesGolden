@@ -507,7 +507,7 @@ namespace situacaoChavesGolden
                     codChaveReserva.Text = gridChaves.Rows[e.RowIndex].Cells[0].Value.ToString();
                     painelInfo.Visible = true;
 
-                    painelInfo.Location = new Point(gridReserva.Location.X + 10, Cursor.Position.Y - 305);
+                    painelInfo.Location = new Point(gridReserva.Location.X + 10, Cursor.Position.Y - 145);
 
                     DataTable tabelaReservas = database.select(string.Format("SELECT r.cod_reserva, (CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN 'FUNCIONARIO'" +
                             " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN 'CLIENTE'" +
