@@ -504,7 +504,7 @@ namespace situacaoChavesGolden
 
         private void GroupBox2_Enter(object sender, EventArgs e)
         {
-
+            
         }
 
         private void gridChavesEmprestimo_SelectionChanged(object sender, EventArgs e)

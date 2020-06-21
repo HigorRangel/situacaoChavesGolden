@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupMenuSup = new System.Windows.Forms.GroupBox();
             this.btnFiltro = new System.Windows.Forms.PictureBox();
             this.radioVenda = new MetroFramework.Controls.MetroRadioButton();
@@ -103,6 +103,16 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gridChavesEmprestimo = new System.Windows.Forms.DataGridView();
             this.painelDados = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
+            this.codChavePainel = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.codEmprestimo = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.sitChave = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.localizacao = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.tipoImovel = new System.Windows.Forms.Label();
             this.proprietario = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -116,16 +126,6 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.finalidade = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.codEmprestimo = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.sitChave = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.localizacao = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.codChavePainel = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
             this.groupMenuSup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnFiltro)).BeginInit();
             this.filtrosPanel.SuspendLayout();
@@ -140,8 +140,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridChavesEmprestimo)).BeginInit();
             this.painelDados.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupMenuSup
@@ -759,14 +759,14 @@
             this.gridEmprestimo.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
             this.gridEmprestimo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridEmprestimo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridEmprestimo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridEmprestimo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridEmprestimo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridEmprestimo.GridColor = System.Drawing.Color.White;
             this.gridEmprestimo.Location = new System.Drawing.Point(21, 57);
@@ -774,14 +774,14 @@
             this.gridEmprestimo.Name = "gridEmprestimo";
             this.gridEmprestimo.ReadOnly = true;
             this.gridEmprestimo.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridEmprestimo.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridEmprestimo.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridEmprestimo.RowHeadersVisible = false;
             this.gridEmprestimo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridEmprestimo.RowTemplate.ReadOnly = true;
@@ -976,14 +976,14 @@
             this.gridChavesEmprestimo.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(234)))), ((int)(((byte)(242)))));
             this.gridChavesEmprestimo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridChavesEmprestimo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChavesEmprestimo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChavesEmprestimo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridChavesEmprestimo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridChavesEmprestimo.GridColor = System.Drawing.Color.White;
             this.gridChavesEmprestimo.Location = new System.Drawing.Point(364, 57);
@@ -991,14 +991,14 @@
             this.gridChavesEmprestimo.Name = "gridChavesEmprestimo";
             this.gridChavesEmprestimo.ReadOnly = true;
             this.gridChavesEmprestimo.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChavesEmprestimo.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChavesEmprestimo.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridChavesEmprestimo.RowHeadersVisible = false;
             this.gridChavesEmprestimo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridChavesEmprestimo.RowTemplate.ReadOnly = true;
@@ -1028,6 +1028,117 @@
             this.painelDados.Size = new System.Drawing.Size(625, 158);
             this.painelDados.TabIndex = 47;
             this.painelDados.Visible = false;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(606, 5);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(15, 13);
+            this.label27.TabIndex = 65;
+            this.label27.Text = "X";
+            this.label27.Click += new System.EventHandler(this.label27_Click);
+            // 
+            // codChavePainel
+            // 
+            this.codChavePainel.AutoSize = true;
+            this.codChavePainel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codChavePainel.Location = new System.Drawing.Point(355, 7);
+            this.codChavePainel.Name = "codChavePainel";
+            this.codChavePainel.Size = new System.Drawing.Size(11, 13);
+            this.codChavePainel.TabIndex = 64;
+            this.codChavePainel.Text = " ";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(252, 7);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(102, 13);
+            this.label28.TabIndex = 63;
+            this.label28.Text = "DADOS DA CHAVE";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.panel3.Controls.Add(this.codEmprestimo);
+            this.panel3.Controls.Add(this.label24);
+            this.panel3.Controls.Add(this.sitChave);
+            this.panel3.Controls.Add(this.label25);
+            this.panel3.Controls.Add(this.localizacao);
+            this.panel3.Controls.Add(this.label26);
+            this.panel3.Location = new System.Drawing.Point(0, 125);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(624, 33);
+            this.panel3.TabIndex = 28;
+            // 
+            // codEmprestimo
+            // 
+            this.codEmprestimo.AutoSize = true;
+            this.codEmprestimo.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codEmprestimo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
+            this.codEmprestimo.Location = new System.Drawing.Point(319, 9);
+            this.codEmprestimo.Name = "codEmprestimo";
+            this.codEmprestimo.Size = new System.Drawing.Size(10, 15);
+            this.codEmprestimo.TabIndex = 10;
+            this.codEmprestimo.Text = " ";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.Color.White;
+            this.label24.Location = new System.Drawing.Point(239, 9);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(79, 15);
+            this.label24.TabIndex = 9;
+            this.label24.Text = "Empréstimo:";
+            // 
+            // sitChave
+            // 
+            this.sitChave.AutoSize = true;
+            this.sitChave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sitChave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
+            this.sitChave.Location = new System.Drawing.Point(122, 9);
+            this.sitChave.Name = "sitChave";
+            this.sitChave.Size = new System.Drawing.Size(10, 15);
+            this.sitChave.TabIndex = 6;
+            this.sitChave.Text = " ";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.White;
+            this.label25.Location = new System.Drawing.Point(444, 9);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(78, 15);
+            this.label25.TabIndex = 7;
+            this.label25.Text = "Localização:";
+            // 
+            // localizacao
+            // 
+            this.localizacao.AutoSize = true;
+            this.localizacao.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.localizacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
+            this.localizacao.Location = new System.Drawing.Point(519, 9);
+            this.localizacao.Name = "localizacao";
+            this.localizacao.Size = new System.Drawing.Size(10, 15);
+            this.localizacao.TabIndex = 8;
+            this.localizacao.Text = " ";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.White;
+            this.label26.Location = new System.Drawing.Point(9, 9);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(114, 15);
+            this.label26.TabIndex = 5;
+            this.label26.Text = "Situação da chave:";
             // 
             // tipoImovel
             // 
@@ -1176,117 +1287,6 @@
             this.finalidade.TabIndex = 12;
             this.finalidade.Text = " ";
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.panel3.Controls.Add(this.codEmprestimo);
-            this.panel3.Controls.Add(this.label24);
-            this.panel3.Controls.Add(this.sitChave);
-            this.panel3.Controls.Add(this.label25);
-            this.panel3.Controls.Add(this.localizacao);
-            this.panel3.Controls.Add(this.label26);
-            this.panel3.Location = new System.Drawing.Point(0, 125);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(624, 33);
-            this.panel3.TabIndex = 28;
-            // 
-            // codEmprestimo
-            // 
-            this.codEmprestimo.AutoSize = true;
-            this.codEmprestimo.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.codEmprestimo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
-            this.codEmprestimo.Location = new System.Drawing.Point(319, 9);
-            this.codEmprestimo.Name = "codEmprestimo";
-            this.codEmprestimo.Size = new System.Drawing.Size(10, 15);
-            this.codEmprestimo.TabIndex = 10;
-            this.codEmprestimo.Text = " ";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.ForeColor = System.Drawing.Color.White;
-            this.label24.Location = new System.Drawing.Point(239, 9);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(79, 15);
-            this.label24.TabIndex = 9;
-            this.label24.Text = "Empréstimo:";
-            // 
-            // sitChave
-            // 
-            this.sitChave.AutoSize = true;
-            this.sitChave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sitChave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
-            this.sitChave.Location = new System.Drawing.Point(122, 9);
-            this.sitChave.Name = "sitChave";
-            this.sitChave.Size = new System.Drawing.Size(10, 15);
-            this.sitChave.TabIndex = 6;
-            this.sitChave.Text = " ";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(444, 9);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(78, 15);
-            this.label25.TabIndex = 7;
-            this.label25.Text = "Localização:";
-            // 
-            // localizacao
-            // 
-            this.localizacao.AutoSize = true;
-            this.localizacao.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.localizacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
-            this.localizacao.Location = new System.Drawing.Point(519, 9);
-            this.localizacao.Name = "localizacao";
-            this.localizacao.Size = new System.Drawing.Size(10, 15);
-            this.localizacao.TabIndex = 8;
-            this.localizacao.Text = " ";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(9, 9);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(114, 15);
-            this.label26.TabIndex = 5;
-            this.label26.Text = "Situação da chave:";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(606, 5);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(15, 13);
-            this.label27.TabIndex = 65;
-            this.label27.Text = "X";
-            this.label27.Click += new System.EventHandler(this.label27_Click);
-            // 
-            // codChavePainel
-            // 
-            this.codChavePainel.AutoSize = true;
-            this.codChavePainel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.codChavePainel.Location = new System.Drawing.Point(355, 7);
-            this.codChavePainel.Name = "codChavePainel";
-            this.codChavePainel.Size = new System.Drawing.Size(11, 13);
-            this.codChavePainel.TabIndex = 64;
-            this.codChavePainel.Text = " ";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(252, 7);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(102, 13);
-            this.label28.TabIndex = 63;
-            this.label28.Text = "DADOS DA CHAVE";
-            // 
             // Emprestimo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1342,10 +1342,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridChavesEmprestimo)).EndInit();
             this.painelDados.ResumeLayout(false);
             this.painelDados.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
