@@ -107,27 +107,35 @@ namespace situacaoChavesGolden
 
         private void GridCliente_SelectionChanged(object sender, EventArgs e)
         {
+            zerarPainelEmprestimos();
             try
             {
                 DataTable tabelaDados = new DataTable();
 
-                tabelaDados = database.select(string.Format("SELECT e.cod_emprestimo, e.data_retirada, e.data_entrega, u.nome_usuario" +
+                tabelaDados = database.select(string.Format("" +
+                    "SELECT e.cod_emprestimo, e.data_retirada, e.entrega_prevista," +
+                    " e.data_entrega, u.nome_usuario, u2.nome_usuario" +
                     " FROM emprestimo e" +
                     " INNER JOIN usuario u ON u.cod_usuario = e.cod_usuario" +
+                    " LEFT JOIN usuario u2 ON u2.cod_usuario = e.usuario_devolucao" +
                     " WHERE cod_cliente = '{0}'", gridCliente.Rows[gridCliente.CurrentRow.Index].Cells[1].Value.ToString()));
 
                 gridEmprestimos.DataSource = tabelaDados;
 
 
-                gridEmprestimos.Columns[0].Width = 158;
-                gridEmprestimos.Columns[1].Width = 158;
-                gridEmprestimos.Columns[2].Width = 158;
-                gridEmprestimos.Columns[3].Width = 158;
+                gridEmprestimos.Columns[0].Width = 40;
+                gridEmprestimos.Columns[1].Width = 100;
+                gridEmprestimos.Columns[2].Width = 100;
+                gridEmprestimos.Columns[3].Width = 100;
+                gridEmprestimos.Columns[4].Width = 147;
+                gridEmprestimos.Columns[5].Width = 147;
 
                 gridEmprestimos.Columns[0].HeaderText = "Código Empréstimo";
                 gridEmprestimos.Columns[1].HeaderText = "Data de Retirada";
-                gridEmprestimos.Columns[2].HeaderText = "Data de Entrega";
-                gridEmprestimos.Columns[3].HeaderText = "Funcionário";
+                gridEmprestimos.Columns[2].HeaderText = "Prev Entrega";
+                gridEmprestimos.Columns[3].HeaderText = "Data Entrega";
+                gridEmprestimos.Columns[4].HeaderText = "Func. Entrega";
+                gridEmprestimos.Columns[5].HeaderText = "Func. Devolução";
             }
             catch (Exception erro)
             {
@@ -143,9 +151,12 @@ namespace situacaoChavesGolden
 
         private void gridEmprestimos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            painelEmprestimo.Location = new Point(23, 16);
             painelEmprestimo.Visible = true;
-            //try
-            //{
+
+
+            try
+            {
                 DataTable dadosEmprestimo = new DataTable();
                 dadosEmprestimo = database.select(string.Format("SELECT c.cod_chave, c.cod_imob," +
                                                                " c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END) || " +
@@ -169,7 +180,7 @@ namespace situacaoChavesGolden
 
                     gridChavesEmp.Columns[0].Width = 40;
                     gridChavesEmp.Columns[1].Width = 100;
-                    gridChavesEmp.Columns[2].Width = 325;
+                    gridChavesEmp.Columns[2].Width = 320;
                     gridChavesEmp.Columns[3].Width = 129;
                     gridChavesEmp.Columns[4].Visible = false;
 
@@ -240,32 +251,70 @@ namespace situacaoChavesGolden
             }
             catch { }
 
-            //}
-            //catch
-            //{
-            //    gridChavesEmp.DataSource = null;
-            //    gridChavesEmp.Rows.Clear();
-            //}
+            }
+            catch
+            {
+                gridChavesEmp.DataSource = null;
+                gridChavesEmp.Rows.Clear();
+            }
         }
 
         private void gridEmprestimo_SelectionChanged(object sender, EventArgs e)
         {
-            DataTable dadosChaves = new DataTable();
-
-
-            dadosChaves = database.select(string.Format("SELECT c.cod_imob, c.cod_chave, ce.quant_chaves, ce.quant_controles " +
-                                                        " FROM chave c " +
-                                                        " INNER JOIN chaves_emprestimo ce ON ce.cod_chave = c.indice_chave " +
-                                                        " WHERE c.indice_chave = '{0}' AND ce.cod_emprestimo = '{1}'",
-                                                         gridChavesEmp.CurrentRow.Cells[4].Value.ToString(), gridEmprestimos.CurrentRow.Cells[0].Value.ToString()));
-
-            foreach (DataRow row in dadosChaves.Rows)
+            try
             {
-                codImobEmprestimos.Text = row[0].ToString();
-                codChave.Text = row[1].ToString();
-                qtdChaves.Text = row[2].ToString();
-                qtdControles.Text = row[3].ToString();
+                DataTable dadosChaves = new DataTable();
+
+
+                dadosChaves = database.select(string.Format("SELECT c.cod_imob, c.cod_chave, ce.quant_chaves, ce.quant_controles," +
+                                                            " c.rua || ', ' || c.numero || (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END) || " +
+                                                               " (CASE WHEN c.cond IS NULL OR c.cond = '' THEN '' ELSE ' (' || c.cond || ')' END) as endereco" +
+                                                            " FROM chave c " +
+                                                            " INNER JOIN chaves_emprestimo ce ON ce.cod_chave = c.indice_chave " +
+                                                            " WHERE c.indice_chave = '{0}' AND ce.cod_emprestimo = '{1}'",
+                                                             gridChavesEmp.CurrentRow.Cells[4].Value.ToString(), gridEmprestimos.CurrentRow.Cells[0].Value.ToString()));
+
+                foreach (DataRow row in dadosChaves.Rows)
+                {
+                    codImobEmprestimos.Text = row[0].ToString();
+                    codChave.Text = row[1].ToString();
+                    qtdChaves.Text = row[2].ToString();
+                    qtdControles.Text = row[3].ToString();
+                    endereco.Text = row[4].ToString();
+                }
             }
+            catch { }
+            
+        }
+
+        private void Label6_Click(object sender, EventArgs e)
+        {
+            zerarPainelEmprestimos();
+        }
+        void zerarPainelEmprestimos()
+        {
+            painelEmprestimo.Visible = false;
+
+            sitEmprestimo.Text = "";
+            dadosRetirante.Text = "";
+            contato.Text = "";
+            descricao.Text = "";
+            funcionario.Text = "";
+            dataRetirada.Text = "";
+            previsEntrega.Text = "";
+            dataEntrega.Text = "";
+            funcionarioDevolucao.Text = "";
+            codImobEmprestimos.Text = "";
+            codChave.Text = "";
+            qtdChaves.Text = "";
+            qtdControles.Text = "";
+
+            gridChavesEmp.DataSource = null;
+        }
+
+        private void GridEmprestimos_SelectionChanged(object sender, EventArgs e)
+        {
+            zerarPainelEmprestimos();
         }
     }
 }
