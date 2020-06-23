@@ -62,6 +62,15 @@
             this.btnConfirmChave = new System.Windows.Forms.Button();
             this.gridPropTotal = new System.Windows.Forms.DataGridView();
             this.boxBusca = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkDataCadastro = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dpMaxDataCadastro = new System.Windows.Forms.DateTimePicker();
+            this.dpMinDataCadastro = new System.Windows.Forms.DateTimePicker();
+            this.metroRadioButton16 = new MetroFramework.Controls.MetroRadioButton();
+            this.groupOrdem = new System.Windows.Forms.GroupBox();
+            this.radioCresc = new MetroFramework.Controls.MetroRadioButton();
+            this.radioDecresc = new MetroFramework.Controls.MetroRadioButton();
             this.groupBoxTipoImovel.SuspendLayout();
             this.groupBoxSituacaoCh.SuspendLayout();
             this.groupBoxSituacaoIm.SuspendLayout();
@@ -71,6 +80,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridProp)).BeginInit();
             this.panelChaves.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPropTotal)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupOrdem.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroLabel1
@@ -271,7 +282,7 @@
             this.btnCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(109)))), ((int)(((byte)(156)))));
-            this.btnCancelar.Location = new System.Drawing.Point(346, 359);
+            this.btnCancelar.Location = new System.Drawing.Point(346, 394);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 60;
@@ -287,7 +298,7 @@
             this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(86)))), ((int)(((byte)(122)))));
             this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImprimir.ForeColor = System.Drawing.Color.White;
-            this.btnImprimir.Location = new System.Drawing.Point(446, 360);
+            this.btnImprimir.Location = new System.Drawing.Point(446, 395);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(75, 23);
             this.btnImprimir.TabIndex = 59;
@@ -297,13 +308,14 @@
             // 
             // groupBoxOrdenar
             // 
+            this.groupBoxOrdenar.Controls.Add(this.metroRadioButton16);
             this.groupBoxOrdenar.Controls.Add(this.metroRadioButton15);
             this.groupBoxOrdenar.Controls.Add(this.metroRadioButton13);
             this.groupBoxOrdenar.Controls.Add(this.metroRadioButton14);
             this.groupBoxOrdenar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxOrdenar.Location = new System.Drawing.Point(23, 143);
             this.groupBoxOrdenar.Name = "groupBoxOrdenar";
-            this.groupBoxOrdenar.Size = new System.Drawing.Size(240, 43);
+            this.groupBoxOrdenar.Size = new System.Drawing.Size(240, 85);
             this.groupBoxOrdenar.TabIndex = 9;
             this.groupBoxOrdenar.TabStop = false;
             this.groupBoxOrdenar.Text = "Ordenar por";
@@ -347,7 +359,7 @@
             this.groupBox1.Controls.Add(this.btnAddProp);
             this.groupBox1.Controls.Add(this.checkProp);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(23, 199);
+            this.groupBox1.Location = new System.Drawing.Point(23, 234);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(495, 154);
             this.groupBox1.TabIndex = 10;
@@ -420,7 +432,7 @@
             this.panelChaves.Controls.Add(this.btnConfirmChave);
             this.panelChaves.Controls.Add(this.gridPropTotal);
             this.panelChaves.Controls.Add(this.boxBusca);
-            this.panelChaves.Location = new System.Drawing.Point(76, 11);
+            this.panelChaves.Location = new System.Drawing.Point(81, 88);
             this.panelChaves.Name = "panelChaves";
             this.panelChaves.Size = new System.Drawing.Size(391, 225);
             this.panelChaves.TabIndex = 61;
@@ -482,13 +494,115 @@
             this.boxBusca.TabIndex = 0;
             this.boxBusca.TextChanged += new System.EventHandler(this.BoxBusca_TextChanged);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.checkDataCadastro);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.dpMaxDataCadastro);
+            this.groupBox2.Controls.Add(this.dpMinDataCadastro);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(280, 143);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(238, 43);
+            this.groupBox2.TabIndex = 62;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Data de cadastro";
+            // 
+            // checkDataCadastro
+            // 
+            this.checkDataCadastro.AutoSize = true;
+            this.checkDataCadastro.Location = new System.Drawing.Point(216, 21);
+            this.checkDataCadastro.Name = "checkDataCadastro";
+            this.checkDataCadastro.Size = new System.Drawing.Size(15, 14);
+            this.checkDataCadastro.TabIndex = 3;
+            this.checkDataCadastro.UseVisualStyleBackColor = true;
+            this.checkDataCadastro.CheckedChanged += new System.EventHandler(this.CheckDataRetirada_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(103, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(13, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "à";
+            // 
+            // dpMaxDataCadastro
+            // 
+            this.dpMaxDataCadastro.Enabled = false;
+            this.dpMaxDataCadastro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dpMaxDataCadastro.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpMaxDataCadastro.Location = new System.Drawing.Point(116, 17);
+            this.dpMaxDataCadastro.Name = "dpMaxDataCadastro";
+            this.dpMaxDataCadastro.Size = new System.Drawing.Size(95, 20);
+            this.dpMaxDataCadastro.TabIndex = 1;
+            // 
+            // dpMinDataCadastro
+            // 
+            this.dpMinDataCadastro.Checked = false;
+            this.dpMinDataCadastro.Enabled = false;
+            this.dpMinDataCadastro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dpMinDataCadastro.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpMinDataCadastro.Location = new System.Drawing.Point(7, 17);
+            this.dpMinDataCadastro.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dpMinDataCadastro.Name = "dpMinDataCadastro";
+            this.dpMinDataCadastro.Size = new System.Drawing.Size(95, 20);
+            this.dpMinDataCadastro.TabIndex = 0;
+            // 
+            // metroRadioButton16
+            // 
+            this.metroRadioButton16.AutoSize = true;
+            this.metroRadioButton16.Location = new System.Drawing.Point(66, 54);
+            this.metroRadioButton16.Name = "metroRadioButton16";
+            this.metroRadioButton16.Size = new System.Drawing.Size(113, 15);
+            this.metroRadioButton16.TabIndex = 4;
+            this.metroRadioButton16.Text = "Data de Cadastro";
+            this.metroRadioButton16.UseVisualStyleBackColor = true;
+            // 
+            // groupOrdem
+            // 
+            this.groupOrdem.Controls.Add(this.radioCresc);
+            this.groupOrdem.Controls.Add(this.radioDecresc);
+            this.groupOrdem.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupOrdem.Location = new System.Drawing.Point(279, 185);
+            this.groupOrdem.Name = "groupOrdem";
+            this.groupOrdem.Size = new System.Drawing.Size(238, 43);
+            this.groupOrdem.TabIndex = 63;
+            this.groupOrdem.TabStop = false;
+            this.groupOrdem.Text = "Ordem";
+            // 
+            // radioCresc
+            // 
+            this.radioCresc.AutoSize = true;
+            this.radioCresc.Checked = true;
+            this.radioCresc.Location = new System.Drawing.Point(25, 19);
+            this.radioCresc.Name = "radioCresc";
+            this.radioCresc.Size = new System.Drawing.Size(75, 15);
+            this.radioCresc.TabIndex = 4;
+            this.radioCresc.TabStop = true;
+            this.radioCresc.Text = "Crescente";
+            this.radioCresc.UseVisualStyleBackColor = true;
+            // 
+            // radioDecresc
+            // 
+            this.radioDecresc.AutoSize = true;
+            this.radioDecresc.Location = new System.Drawing.Point(128, 19);
+            this.radioDecresc.Name = "radioDecresc";
+            this.radioDecresc.Size = new System.Drawing.Size(87, 15);
+            this.radioDecresc.TabIndex = 3;
+            this.radioDecresc.Text = "Decrescente";
+            this.radioDecresc.UseVisualStyleBackColor = true;
+            // 
             // ConfigurarRelatorioChaves
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(547, 393);
+            this.ClientSize = new System.Drawing.Size(547, 423);
             this.Controls.Add(this.panelChaves);
+            this.Controls.Add(this.groupOrdem);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxOrdenar);
             this.Controls.Add(this.btnCancelar);
@@ -524,6 +638,10 @@
             this.panelChaves.ResumeLayout(false);
             this.panelChaves.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPropTotal)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupOrdem.ResumeLayout(false);
+            this.groupOrdem.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -563,5 +681,14 @@
         private System.Windows.Forms.TextBox boxBusca;
         private System.Windows.Forms.Button btnAddProp;
         private System.Windows.Forms.DataGridView gridProp;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox checkDataCadastro;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dpMaxDataCadastro;
+        private System.Windows.Forms.DateTimePicker dpMinDataCadastro;
+        private MetroFramework.Controls.MetroRadioButton metroRadioButton16;
+        private System.Windows.Forms.GroupBox groupOrdem;
+        private MetroFramework.Controls.MetroRadioButton radioCresc;
+        private MetroFramework.Controls.MetroRadioButton radioDecresc;
     }
 }

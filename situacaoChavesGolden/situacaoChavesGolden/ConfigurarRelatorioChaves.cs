@@ -22,6 +22,19 @@ namespace situacaoChavesGolden
 
         private void ConfigurarRelatorioChaves_Load(object sender, EventArgs e)
         {
+
+            try
+            {
+                dpMinDataCadastro.Value = DateTime.Parse(database.selectScalar("SELECT MIN(data_cadastro) FROM chave"));
+
+            }
+            catch
+            {
+                dpMinDataCadastro.Value = DateTime.Now.AddDays(-32);
+            }
+            dpMaxDataCadastro.Value = DateTime.Now;
+            dpMaxDataCadastro.MaxDate = DateTime.Now;
+
             funcionario = database.selectScalar(string.Format("SELECT nome_usuario FROM usuario WHERE cod_usuario = '{0}'", funcionario));
 
             gridProp.Columns.Add("codigo", "Cód.");
@@ -56,6 +69,8 @@ namespace situacaoChavesGolden
             string tipoImovel = groupBoxTipoImovel.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
             string finalidade = groupBoxFinalidade.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
             string ordenar = groupBoxOrdenar.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+            string ordem = groupOrdem.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
+
             string funcionario = this.funcionario;
 
             if (sitImovel == "TODOS") { sitImovel = ""; }
@@ -75,6 +90,15 @@ namespace situacaoChavesGolden
                 ordenar = "c.cod_imob";
             }
 
+            if(ordem == "CRESCENTE")
+            {
+                ordem = "ASC";
+            }
+            else
+            {
+                ordem = "DESC";
+            }
+
             GerarRelatorio relatorio = new GerarRelatorio();
 
 
@@ -85,6 +109,11 @@ namespace situacaoChavesGolden
             relatorio.ordenar = ordenar;
             relatorio.funcionario = funcionario;
             List<string> listaProp = new List<string>();
+            relatorio.selecData = checkDataCadastro.Checked;
+            relatorio.dataFrom = dpMinDataCadastro.Value;
+            relatorio.dataTo = dpMaxDataCadastro.Value;
+            relatorio.ordem = ordem;
+
             if (!checkProp.Checked)
             {
                 foreach(DataGridViewRow row in gridProp.Rows)
@@ -206,6 +235,21 @@ namespace situacaoChavesGolden
             {
                 gridProp.Cursor = Cursors.Arrow;
             }
+        }
+
+        private void CheckDataRetirada_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkDataCadastro.Checked)
+            {
+                dpMinDataCadastro.Enabled = true;
+                dpMaxDataCadastro.Enabled = true;
+            }
+            else
+            {
+                dpMinDataCadastro.Enabled = false;
+                dpMaxDataCadastro.Enabled = false;
+            }
+
         }
     }
 }

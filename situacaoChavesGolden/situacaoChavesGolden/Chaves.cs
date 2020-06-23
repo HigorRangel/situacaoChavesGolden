@@ -237,9 +237,10 @@ namespace situacaoChavesGolden
 
                     DataTable dadosChave = new DataTable();
 
-                    dadosChave = database.select(string.Format("SELECT c.*, p.nome " +
+                    dadosChave = database.select(string.Format("SELECT c.*, p.nome, u.nome_usuario " +
                                                                " FROM chave c  " +
                                                                " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario " +
+                                                               " LEFT JOIN usuario u ON u.cod_usuario = c.funcionario" +
                                                                " WHERE indice_chave = {0}", codigoChave));
 
 
@@ -251,10 +252,12 @@ namespace situacaoChavesGolden
                         endereco.Text = string.Format("{0}, {1} - {2} - {3}/{4} [{6} {5}]", row[1].ToString(),
                             row[5].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(),
                             row[6].ToString(), row[16].ToString());
-                        proprietario.Text = row[19].ToString();
+                        proprietario.Text = row[21].ToString();
                         tipoImovel.Text = row[11].ToString();
                         sitChave.Text = row[7].ToString();
                         localizacao.Text = row[8].ToString();
+                        textFuncionario.Text = row[22].ToString();
+                        dataCadastro.Text = row[19].ToString();
 
                         if (row[7].ToString() == "INDISPONIVEL")
                         {
@@ -412,7 +415,7 @@ namespace situacaoChavesGolden
                 string codigoChave = gridChaves.CurrentRow.Cells[5].Value.ToString();
 
 
-                cadastroChave editarChave = new cadastroChave(codigoChave);
+                cadastroChave editarChave = new cadastroChave(codigoChave, usuario);
 
                 editarChave.ShowDialog();
 
@@ -587,7 +590,7 @@ namespace situacaoChavesGolden
 
         private void btnAddChave_Click(object sender, EventArgs e)
         {
-            cadastroChave cadastro = new cadastroChave();
+            cadastroChave cadastro = new cadastroChave( usuario);
 
             cadastro.ShowDialog();
 

@@ -19,6 +19,7 @@ namespace situacaoChavesGolden
         public string finalidade { get; set; }
         public string tipo { get; set; }
         public string sitChave { get; set; }
+        public string dataCadastro { get; set; }
 
 
         public override void OnStartPage(PdfWriter writer, Document document)
@@ -56,7 +57,7 @@ namespace situacaoChavesGolden
             //Dados da situação da chave
             Phrase phSitChave = new Phrase("Situação do Imóvel: ", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 9,
                iTextSharp.text.Font.BOLD, BaseColor.BLACK));
-            Phrase textSitChave = new Phrase(sitImovel + "\n\n\n", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 9,
+            Phrase textSitChave = new Phrase(sitImovel + "\n\n", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 9,
                iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
 
             //Dados da finalidade do imóvel
@@ -74,12 +75,17 @@ namespace situacaoChavesGolden
             //Dados da situação do imóvel
             Phrase phSitImovel = new Phrase("Situação da Chave: ", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 9,
                iTextSharp.text.Font.BOLD, BaseColor.BLACK));
-            Phrase textSitImovel = new Phrase(sitChave + "     ", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 9,
+            Phrase textSitImovel = new Phrase(sitChave + "     \n\n", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 9,
                iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
+
+            Phrase phDataCadastro = new Phrase("Período de Cadastro: ", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 9,
+                iTextSharp.text.Font.BOLD, BaseColor.BLACK));
+            Phrase textDataCadastro = new Phrase(dataCadastro + "     ", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 9,
+                iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
 
             //ADICIONA FRASES NO PARÁGRAFO
             iTextSharp.text.Paragraph pgFuncionarios = new iTextSharp.text.Paragraph() { phFuncionarios, textFuncionarios, phData, textData, phSitChave, textSitChave,
-            phFinalidade, textFinalidade, phTipoImovel, textTipoImovel, phSitImovel, textSitImovel};
+            phFinalidade, textFinalidade, phTipoImovel, textTipoImovel, phSitImovel, textSitImovel, phDataCadastro, textDataCadastro};
 
 
 
@@ -105,7 +111,7 @@ namespace situacaoChavesGolden
 
             document.Add(table);
 
-            iTextSharp.text.Rectangle rect = new iTextSharp.text.Rectangle(4, 785, 585, 786);
+            iTextSharp.text.Rectangle rect = new iTextSharp.text.Rectangle(4, 783, 585, 784);
 
             rect.BackgroundColor = BaseColor.DARK_GRAY;
 

@@ -17,17 +17,22 @@ namespace situacaoChavesGolden
         PostgreSQL database = new PostgreSQL();
         bool seletorTela = false;
         string codChave = "";
+        DateTime dataHoje = DateTime.Now;
+        string usuario = "";
 
-        public cadastroChave(string codigoChave)
+        public cadastroChave(string codigoChave, string user)
         {
             InitializeComponent();
             seletorTela = true;
             codChave = codigoChave;
+            usuario = user;
+
         }
 
-        public cadastroChave()
+        public cadastroChave(string user)
         {
             InitializeComponent();
+            usuario = user;
         }
 
         private string proximoCodigo()
@@ -337,13 +342,15 @@ namespace situacaoChavesGolden
                         }
                         else
                         {
+                            //MessageBox.Show(usuario);
                             database.insertInto(string.Format("" +
                              "INSERT INTO chave (rua, numero, complemento, bairro, cidade, estado, situacao," +
-                             " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel, cod_chave, quant_chaves, cond, categoria_imovel, aviso)" +
+                             " localizacao, proprietario, cod_imob, tipo_imovel, finalidade, situacao_imovel, cod_chave," +
+                             " quant_chaves, cond, categoria_imovel, aviso, data_cadastro, funcionario)" +
                              " VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}'," +
-                             " '{11}','{12}', '{13}', '{14}', '{15}', '{16}', '{17}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
+                             " '{11}','{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}')", logradouro, numero, complemento, bairro, cidade, estado, situacaoChave,
                               localizacao, codProprietario, codigoImovel, tipoImovel, finalidadeImovel, situacaoImovel, proxCod, boxQtdChaves.Value,
-                              boxCond.Text, boxCategImov.Text, aviso));
+                              boxCond.Text, boxCategImov.Text, aviso, dataHoje, usuario));
 
                             Message popup = new Message("A chave foi cadastrada com o código " + proxCod + "!" +
                                "\n Deseja imprimir a etiqueta da chave?", "", "sucesso", "escolha");

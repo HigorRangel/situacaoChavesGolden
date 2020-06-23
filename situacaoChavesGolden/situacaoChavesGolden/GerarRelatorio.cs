@@ -26,8 +26,12 @@ namespace situacaoChavesGolden
         public string sitChave { get; set; }
         public string ordenar { get; set; }
         public List<string> listProp  { get; set; }
+        public bool selecData { get; set; }
+        public DateTime dataFrom { get; set; }
+        public DateTime dataTo { get; set; }
+        public string ordem { get; set; }
 
-        
+
         private void showDocument(string caminho)
         {
             try
@@ -56,6 +60,12 @@ namespace situacaoChavesGolden
             DataTable tabelaDados = new DataTable();
 
             tabelaDados.Clear();
+
+            string dataCadastro = "";
+            if (selecData == true)
+            {
+                dataCadastro = string.Format("AND data_cadastro BETWEEN '{0:dd/MM/yyyy}' AND '{1}'", dataFrom, dataTo);
+            }
 
 
             string proprietarios = "";
@@ -105,10 +115,10 @@ namespace situacaoChavesGolden
                                                 " LEFT JOIN emprestimo e ON e.cod_emprestimo = ce.cod_emprestimo " +
                                                 " INNER JOIN proprietario p ON c.proprietario = p.cod_proprietario" +
                                                 " WHERE c.situacao ILIKE '{0}%' AND c.tipo_imovel ILIKE '%{1}%' " +
-                                                " AND c.finalidade ILIKE '%{2}%' AND c.situacao_imovel ILIKE '{3}%' {4}" +
+                                                " AND c.finalidade ILIKE '%{2}%' AND c.situacao_imovel ILIKE '{3}%' {4} {6}" +
                                                 " GROUP BY c.indice_chave " +
-                                                " ORDER BY {5} " +
-                                                " ", sitChave, tipo, finalidade, sitImovel, proprietarios, ordenar));
+                                                " ORDER BY {5} {7}" +
+                                                " ", sitChave, tipo, finalidade, sitImovel, proprietarios, ordenar, dataCadastro, ordem));
 
             return tabelaDados;
         }
@@ -288,6 +298,7 @@ namespace situacaoChavesGolden
             pdf.finalidade = (finalidade == "") ? "TODOS" : finalidade;
             pdf.tipo = (tipo == "") ? "TODOS" : tipo;
             pdf.sitChave = (sitChave == "") ? "TODOS" : sitChave;
+            pdf.dataCadastro = (selecData == false) ? "TODOS" : string.Format("{0:dd/MM/yyyy} à {1:dd/MM/yyyy}", dataFrom, dataTo);
 
             writer.PageEvent = pdf;
 
