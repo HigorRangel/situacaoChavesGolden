@@ -89,6 +89,10 @@ namespace situacaoChavesGolden
             {
                 ordenar = "c.cod_imob";
             }
+            else
+            {
+                ordenar = "c.data_cadastro";    
+            }
 
             if(ordem == "CRESCENTE")
             {

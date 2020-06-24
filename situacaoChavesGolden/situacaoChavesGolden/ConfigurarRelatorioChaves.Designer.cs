@@ -50,6 +50,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.groupBoxOrdenar = new System.Windows.Forms.GroupBox();
+            this.metroRadioButton16 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton15 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton13 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton14 = new MetroFramework.Controls.MetroRadioButton();
@@ -67,7 +68,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dpMaxDataCadastro = new System.Windows.Forms.DateTimePicker();
             this.dpMinDataCadastro = new System.Windows.Forms.DateTimePicker();
-            this.metroRadioButton16 = new MetroFramework.Controls.MetroRadioButton();
             this.groupOrdem = new System.Windows.Forms.GroupBox();
             this.radioCresc = new MetroFramework.Controls.MetroRadioButton();
             this.radioDecresc = new MetroFramework.Controls.MetroRadioButton();
@@ -321,6 +321,16 @@
             this.groupBoxOrdenar.Text = "Ordenar por";
             this.groupBoxOrdenar.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
+            // metroRadioButton16
+            // 
+            this.metroRadioButton16.AutoSize = true;
+            this.metroRadioButton16.Location = new System.Drawing.Point(66, 54);
+            this.metroRadioButton16.Name = "metroRadioButton16";
+            this.metroRadioButton16.Size = new System.Drawing.Size(113, 15);
+            this.metroRadioButton16.TabIndex = 4;
+            this.metroRadioButton16.Text = "Data de Cadastro";
+            this.metroRadioButton16.UseVisualStyleBackColor = true;
+            // 
             // metroRadioButton15
             // 
             this.metroRadioButton15.AutoSize = true;
@@ -432,7 +442,7 @@
             this.panelChaves.Controls.Add(this.btnConfirmChave);
             this.panelChaves.Controls.Add(this.gridPropTotal);
             this.panelChaves.Controls.Add(this.boxBusca);
-            this.panelChaves.Location = new System.Drawing.Point(81, 88);
+            this.panelChaves.Location = new System.Drawing.Point(59, 88);
             this.panelChaves.Name = "panelChaves";
             this.panelChaves.Size = new System.Drawing.Size(391, 225);
             this.panelChaves.TabIndex = 61;
@@ -549,16 +559,6 @@
             this.dpMinDataCadastro.Name = "dpMinDataCadastro";
             this.dpMinDataCadastro.Size = new System.Drawing.Size(95, 20);
             this.dpMinDataCadastro.TabIndex = 0;
-            // 
-            // metroRadioButton16
-            // 
-            this.metroRadioButton16.AutoSize = true;
-            this.metroRadioButton16.Location = new System.Drawing.Point(66, 54);
-            this.metroRadioButton16.Name = "metroRadioButton16";
-            this.metroRadioButton16.Size = new System.Drawing.Size(113, 15);
-            this.metroRadioButton16.TabIndex = 4;
-            this.metroRadioButton16.Text = "Data de Cadastro";
-            this.metroRadioButton16.UseVisualStyleBackColor = true;
             // 
             // groupOrdem
             // 

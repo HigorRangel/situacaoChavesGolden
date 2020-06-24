@@ -61,7 +61,7 @@ namespace situacaoChavesGolden
             DataTable tabelaProp = new DataTable();
 
             tabelaProp = database.select(string.Format("SELECT * FROM proprietario" +
-                                                        " WHERE nome ILIKE '%{0}%' OR email ILIKE '%{1}%' OR" +
+                                                        " WHERE nome ILIKE '{0}%' OR email ILIKE '%{1}%' OR" +
                                                         " contato::text ILIKE '%{2}%'", nomeBox.Text.Trim(), emailBox.Text.Trim(),
                                                         contatoBox.Text.Trim()));
 

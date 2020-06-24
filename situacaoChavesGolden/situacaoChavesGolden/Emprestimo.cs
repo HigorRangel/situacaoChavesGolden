@@ -42,11 +42,12 @@ namespace situacaoChavesGolden
 
                 string selecData = "";
                 string tituloColData = "";
+                string ordem = "";
 
 
-                if (situacao == "TODOS") { situacao = ""; selecData = "e.entrega_prevista"; tituloColData = "Prev Entrega"; }
-                else if (situacao == "FINALIZADO") { selecData = "e.data_entrega"; tituloColData = "Data entrega"; }
-                else { selecData = "e.entrega_prevista"; tituloColData = "Prev entrega"; }
+                if (situacao == "TODOS") { situacao = ""; selecData = "e.entrega_prevista"; tituloColData = "Prev Entrega"; ordem = "e.data_retirada"; }
+                else if (situacao == "FINALIZADO") { selecData = "e.data_entrega"; tituloColData = "Data entrega"; ordem = "e.data_entrega"; }
+                else { selecData = "e.entrega_prevista"; tituloColData = "Prev entrega"; ordem = "e.data_entrega"; }
                 if (tipo == "TODOS") { tipo = ""; }
 
                 if(busca == "Buscar") { busca = ""; }
@@ -74,8 +75,8 @@ namespace situacaoChavesGolden
                                                          " c.rua ILIKE '%{5}%' OR u.nome_usuario ILIKE '%{5}%' OR  p.nome  ILIKE '%{5}%'OR" +
                                                          " c.cod_chave::TEXT || 'c' ILIKE '%{5}%' OR c.cod_imob::TEXT ILIKE '%{5}%')" +
                                                          " GROUP BY e.cod_emprestimo" +
-                                                         " ORDER BY {6}", 
-                                                         situacao, tipo,  dataRetirada, entregaPrevista, dataRetirada, busca, selecData));
+                                                         " ORDER BY {7}", 
+                                                         situacao, tipo,  dataRetirada, entregaPrevista, dataRetirada, busca, selecData, ordem));
 
 
  

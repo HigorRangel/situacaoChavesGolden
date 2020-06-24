@@ -64,6 +64,10 @@
             this.radioTodos = new MetroFramework.Controls.MetroRadioButton();
             this.textBoxBusca = new MetroFramework.Controls.MetroTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dataCadastro = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.textFuncionario = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.filtrosPanel = new System.Windows.Forms.Panel();
             this.btnRestaurar = new System.Windows.Forms.Label();
@@ -136,10 +140,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.codChavePainelEmprestimo = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textFuncionario = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.dataCadastro = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupMenuSup.SuspendLayout();
@@ -256,7 +256,7 @@
             this.sitChave.AutoSize = true;
             this.sitChave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sitChave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
-            this.sitChave.Location = new System.Drawing.Point(116, 9);
+            this.sitChave.Location = new System.Drawing.Point(116, 3);
             this.sitChave.Name = "sitChave";
             this.sitChave.Size = new System.Drawing.Size(10, 15);
             this.sitChave.TabIndex = 6;
@@ -267,7 +267,7 @@
             this.labelChave.AutoSize = true;
             this.labelChave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelChave.ForeColor = System.Drawing.Color.White;
-            this.labelChave.Location = new System.Drawing.Point(3, 9);
+            this.labelChave.Location = new System.Drawing.Point(3, 3);
             this.labelChave.Name = "labelChave";
             this.labelChave.Size = new System.Drawing.Size(114, 15);
             this.labelChave.TabIndex = 5;
@@ -278,7 +278,7 @@
             this.localizacao.AutoSize = true;
             this.localizacao.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.localizacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
-            this.localizacao.Location = new System.Drawing.Point(564, 9);
+            this.localizacao.Location = new System.Drawing.Point(564, 3);
             this.localizacao.Name = "localizacao";
             this.localizacao.Size = new System.Drawing.Size(10, 15);
             this.localizacao.TabIndex = 8;
@@ -289,7 +289,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(489, 9);
+            this.label7.Location = new System.Drawing.Point(489, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(78, 15);
             this.label7.TabIndex = 7;
@@ -405,7 +405,7 @@
             this.emprestimo.AutoSize = true;
             this.emprestimo.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emprestimo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(201)))), ((int)(((byte)(209)))));
-            this.emprestimo.Location = new System.Drawing.Point(341, 9);
+            this.emprestimo.Location = new System.Drawing.Point(341, 3);
             this.emprestimo.Name = "emprestimo";
             this.emprestimo.Size = new System.Drawing.Size(10, 15);
             this.emprestimo.TabIndex = 10;
@@ -416,7 +416,7 @@
             this.label.AutoSize = true;
             this.label.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label.ForeColor = System.Drawing.Color.White;
-            this.label.Location = new System.Drawing.Point(261, 9);
+            this.label.Location = new System.Drawing.Point(261, 3);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(79, 15);
             this.label.TabIndex = 9;
@@ -518,6 +518,50 @@
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.X);
+            // 
+            // dataCadastro
+            // 
+            this.dataCadastro.AutoSize = true;
+            this.dataCadastro.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataCadastro.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.dataCadastro.Location = new System.Drawing.Point(472, 109);
+            this.dataCadastro.Name = "dataCadastro";
+            this.dataCadastro.Size = new System.Drawing.Size(10, 15);
+            this.dataCadastro.TabIndex = 67;
+            this.dataCadastro.Text = " ";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label32.Location = new System.Drawing.Point(365, 109);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(108, 15);
+            this.label32.TabIndex = 66;
+            this.label32.Text = "Data de Cadastro:";
+            // 
+            // textFuncionario
+            // 
+            this.textFuncionario.AutoSize = true;
+            this.textFuncionario.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textFuncionario.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.textFuncionario.Location = new System.Drawing.Point(79, 109);
+            this.textFuncionario.Name = "textFuncionario";
+            this.textFuncionario.Size = new System.Drawing.Size(10, 15);
+            this.textFuncionario.TabIndex = 65;
+            this.textFuncionario.Text = " ";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
+            this.label17.Location = new System.Drawing.Point(5, 109);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(76, 15);
+            this.label17.TabIndex = 64;
+            this.label17.Text = "Funcionário:";
             // 
             // metroLabel1
             // 
@@ -1422,50 +1466,6 @@
             this.label12.Size = new System.Drawing.Size(152, 13);
             this.label12.TabIndex = 0;
             this.label12.Text = "EMPRÉSTIMOS DA  CHAVE: ";
-            // 
-            // textFuncionario
-            // 
-            this.textFuncionario.AutoSize = true;
-            this.textFuncionario.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textFuncionario.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textFuncionario.Location = new System.Drawing.Point(79, 109);
-            this.textFuncionario.Name = "textFuncionario";
-            this.textFuncionario.Size = new System.Drawing.Size(10, 15);
-            this.textFuncionario.TabIndex = 65;
-            this.textFuncionario.Text = " ";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label17.Location = new System.Drawing.Point(5, 109);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(76, 15);
-            this.label17.TabIndex = 64;
-            this.label17.Text = "Funcionário:";
-            // 
-            // dataCadastro
-            // 
-            this.dataCadastro.AutoSize = true;
-            this.dataCadastro.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataCadastro.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.dataCadastro.Location = new System.Drawing.Point(472, 109);
-            this.dataCadastro.Name = "dataCadastro";
-            this.dataCadastro.Size = new System.Drawing.Size(10, 15);
-            this.dataCadastro.TabIndex = 67;
-            this.dataCadastro.Text = " ";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(91)))), ((int)(((byte)(115)))));
-            this.label32.Location = new System.Drawing.Point(365, 109);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(108, 15);
-            this.label32.TabIndex = 66;
-            this.label32.Text = "Data de Cadastro:";
             // 
             // Chaves
             // 

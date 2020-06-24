@@ -20,6 +20,7 @@ namespace situacaoChavesGolden
         public string tipo { get; set; }
         public string sitChave { get; set; }
         public string dataCadastro { get; set; }
+        public string ordenacao { get; set; }
 
 
         public override void OnStartPage(PdfWriter writer, Document document)
@@ -83,9 +84,14 @@ namespace situacaoChavesGolden
             Phrase textDataCadastro = new Phrase(dataCadastro + "     ", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 9,
                 iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
 
+            Phrase phOrdenacao = new Phrase("Ordenação: ", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 9,
+                iTextSharp.text.Font.BOLD, BaseColor.BLACK));
+            Phrase textOrdenacao = new Phrase(ordenacao + "     ", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 9,
+                iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
+
             //ADICIONA FRASES NO PARÁGRAFO
             iTextSharp.text.Paragraph pgFuncionarios = new iTextSharp.text.Paragraph() { phFuncionarios, textFuncionarios, phData, textData, phSitChave, textSitChave,
-            phFinalidade, textFinalidade, phTipoImovel, textTipoImovel, phSitImovel, textSitImovel, phDataCadastro, textDataCadastro};
+            phFinalidade, textFinalidade, phTipoImovel, textTipoImovel, phSitImovel, textSitImovel, phDataCadastro, textDataCadastro, phOrdenacao, textOrdenacao};
 
 
 

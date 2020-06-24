@@ -300,6 +300,37 @@ namespace situacaoChavesGolden
             pdf.sitChave = (sitChave == "") ? "TODOS" : sitChave;
             pdf.dataCadastro = (selecData == false) ? "TODOS" : string.Format("{0:dd/MM/yyyy} à {1:dd/MM/yyyy}", dataFrom, dataTo);
 
+            string ordenar = "";
+            string ordem = "";
+
+            if (this.ordenar == "c.cod_chave")
+            {
+                ordenar = "Código da Chave";
+            }
+            else if (this.ordenar == "c.rua")
+            {
+                ordenar = "Endereço";
+            }
+            else if (this.ordenar == "c.cod_imob")
+            {
+                ordenar = "Codigo do Imóvel";
+            }
+            else
+            {
+                ordenar = "Data do Cadastro";
+            }
+
+            if (this.ordem == "ASC")
+            {
+                ordem = "CRESCENTE";
+            }
+            else
+            {
+                ordem = "DECRESCENTE";
+            }
+
+            pdf.ordenacao = string.Format("{0} ({1})", ordenar, ordem);
+
             writer.PageEvent = pdf;
 
             doc.Open();

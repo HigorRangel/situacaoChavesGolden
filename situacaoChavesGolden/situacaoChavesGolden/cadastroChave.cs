@@ -197,7 +197,7 @@ namespace situacaoChavesGolden
 
         bool verificarExistencia(string codImob)
         {
-            string contRegistros = database.selectScalar(string.Format("SELECT COUNT(*) FROM chave WHERE cod_imob ILIKE '%{0}%'", codImob));
+            string contRegistros = database.selectScalar(string.Format("SELECT COUNT(*) FROM chave WHERE (cod_imob ILIKE '{0}%' OR cod_imob ILIKE '/'||'{0}%')", codImob));
             bool verif = false;
 
             if(int.Parse(contRegistros) > 0)
@@ -224,11 +224,17 @@ namespace situacaoChavesGolden
                 erro += "\n- Localização do imóvel (Não pode ficar vazio)";
                 contErro++;
             }
-            if (boxOutraLocalizacao.Text.Length <= 0 && comboLocalizacao.SelectedItem.ToString() == "Outro")
+
+            try
             {
-                erro += "\n- Outra localização (Não pode ficar vazio)";
-                contErro++;
+                if (boxOutraLocalizacao.Text.Length <= 0 && comboLocalizacao.SelectedItem.ToString() == "Outro")
+                {
+                    erro += "\n- Outra localização (Não pode ficar vazio)";
+                    contErro++;
+                }
             }
+            catch { }
+           
             if(boxLogradouro.Text.Length == 0)
             {
                 erro += "\n- Logradouro (Não pode ficar vazio)";
