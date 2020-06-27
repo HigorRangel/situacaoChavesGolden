@@ -1010,7 +1010,8 @@ namespace situacaoChavesGolden
             
 
             tabelaChaves = database.select(string.Format("" +
-                "SELECT c.cod_chave, c.cod_imob,  c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, c.indice_chave, 0, 0 " +
+                "SELECT c.cod_chave, c.cod_imob,  c.rua || ', ' || c.numero ||  (CASE WHEN c.complemento is null OR c.complemento = '' THEN '' ELSE ' - ' || c.complemento END) || " +
+                "' - ' || c.bairro as endereco, c.indice_chave, 0, 0 " +
                 " FROM CHAVE c " +
                 " INNER JOIN proprietario p ON p.cod_proprietario = c.proprietario" +
                 " WHERE c.situacao = 'DISPONIVEL' AND (c.rua ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%' OR (unaccent(lower(c.rua))) ILIKE '%{0}%' OR" +

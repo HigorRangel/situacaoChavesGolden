@@ -40,8 +40,8 @@ namespace situacaoChavesGolden
 
             DataTable tabela = new DataTable();
 
-            tabela = database.select(string.Format("SELECT r.cod_retirado, c.cod_imob, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco,  " +
-                                                    " data_retirada" +
+            tabela = database.select(string.Format("SELECT r.codigo_desativado, c.cod_imob, c.rua || ', ' || c.numero || ' - ' || c.bairro as endereco, " +
+                                                    " data_retirada,  r.cod_retirado" +
                                                     " FROM retirado r " +
                                                     " INNER JOIN chave c ON c.indice_chave = r.cod_chave " +
                                                     " WHERE ({0} c.finalidade ILIKE '%{1}%' AND r.tipo_retirada ILIKE '%{2}%') " +
@@ -55,11 +55,13 @@ namespace situacaoChavesGolden
             gridRetirados.Columns[1].HeaderText = "Cód Imob";
             gridRetirados.Columns[2].HeaderText = "Endereço";
             gridRetirados.Columns[3].HeaderText = "Data Retirada";
+            gridRetirados.Columns[4].Visible = false;
+
 
             gridRetirados.Columns[0].Width = 60;
             gridRetirados.Columns[1].Width = 68;
             gridRetirados.Columns[2].Width = 260;
-            gridRetirados.Columns[3].Width = 220;
+            gridRetirados.Columns[3].Width = 220;                                     
 
 
 
