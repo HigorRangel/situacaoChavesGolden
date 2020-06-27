@@ -180,5 +180,11 @@ namespace situacaoChavesGolden
         {
 
         }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            Form2 f = new Form2();
+            f.ShowDialog();
+        }
     }
 }
