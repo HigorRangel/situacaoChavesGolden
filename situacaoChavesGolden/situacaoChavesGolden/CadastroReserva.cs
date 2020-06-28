@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
+
 
 namespace situacaoChavesGolden
 {
@@ -404,6 +406,31 @@ namespace situacaoChavesGolden
             }
         }
 
+        void PrintImages()
+        {
+
+
+            PrintDialog printDialog = new PrintDialog();
+
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += printDocument1_PrintPage;
+
+            printDialog.Document = printDocument;
+
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDocument.Print();
+            }
+
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImageUnscaled(imagem.BackgroundImage, e.PageBounds.X, e.PageBounds.Y);
+
+
+        }
+
         private void BtnConfirmar_Click(object sender, EventArgs e)
         {
             int contErros = 0;
@@ -481,6 +508,8 @@ namespace situacaoChavesGolden
             }
             if (contErros == 0)
             {
+
+                string proxCod = database.selectScalar("SELECT MAX(cod_reserva) + 1 FROM reserva");
                 try
                 {
                     if (tipo == "proprietario")
@@ -518,8 +547,24 @@ namespace situacaoChavesGolden
                     }
 
 
-                    Message caixaMensagem = new Message("Reserva cadastrada com sucesso!", "", "sucesso", "confirma");
+                    Message caixaMensagem = new Message("Reserva cadastrada com sucesso! Você deseja imprimir a(s) etiqueta(s)?", "", "sucesso", "escolha");
                     caixaMensagem.ShowDialog();
+
+                    try
+                    {
+                        if (caixaMensagem.DialogResult == DialogResult.Yes)
+                        {
+                            GerarRecibos gr = new GerarRecibos();
+                            gr.reciboReserva(imagem, proxCod);
+                            PrintImages();
+                        }
+                    }
+                    catch (Exception erro)
+                    {
+                        Message msg = new Message(string.Format("Não foi possível imprimir a(s) etiqueta(s) no momento. \nErro: {0}", erro.Message), "", "erro", "confirma");
+                        msg.ShowDialog();
+                    }
+                   
 
                     this.Close();
                     this.DialogResult = DialogResult.OK;

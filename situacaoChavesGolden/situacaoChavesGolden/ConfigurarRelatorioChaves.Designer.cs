@@ -442,7 +442,7 @@
             this.panelChaves.Controls.Add(this.btnConfirmChave);
             this.panelChaves.Controls.Add(this.gridPropTotal);
             this.panelChaves.Controls.Add(this.boxBusca);
-            this.panelChaves.Location = new System.Drawing.Point(59, 88);
+            this.panelChaves.Location = new System.Drawing.Point(524, 120);
             this.panelChaves.Name = "panelChaves";
             this.panelChaves.Size = new System.Drawing.Size(391, 225);
             this.panelChaves.TabIndex = 61;

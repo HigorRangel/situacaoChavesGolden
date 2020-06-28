@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
+
 
 namespace situacaoChavesGolden
 {
@@ -685,5 +687,48 @@ namespace situacaoChavesGolden
             localizacao.Text = "";
             codEmprestimo.Text = "";
         }
+
+        private void btnPrintTags_Click(object sender, EventArgs e)
+        {
+            //try
+            //{
+                GerarRecibos gr = new GerarRecibos();
+                gr.reciboReserva(imagem, gridReserva.CurrentRow.Cells[0].Value.ToString());
+                PrintImages();
+            //}
+            //catch (Exception erro)
+            //{
+            //    Message msg = new Message(string.Format("Não foi possível imprimir a(s) etiqueta(s) no momento. \nErro: {0}", erro.Message), "", "erro", "confirma");
+            //    msg.ShowDialog();
+            //}
+
+           
+        }
+
+        void PrintImages()
+        {
+
+
+            PrintDialog printDialog = new PrintDialog();
+
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += printDocument1_PrintPage;
+
+            printDialog.Document = printDocument;
+
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDocument.Print();
+            }
+
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImageUnscaled(imagem.BackgroundImage, e.PageBounds.X, e.PageBounds.Y);
+
+
+        }
+
     }
 }

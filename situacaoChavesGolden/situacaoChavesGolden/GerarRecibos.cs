@@ -164,7 +164,7 @@ namespace situacaoChavesGolden
             
             Bitmap img = new Bitmap(usarMetodo.cmToPixel(21), usarMetodo.cmToPixel(29.7));
             Graphics drawer = Graphics.FromImage(img);
-
+            drawer.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
 
             drawer.Clear(Color.White);
 
@@ -494,20 +494,20 @@ namespace situacaoChavesGolden
         {
             DataTable tabela = new DataTable();
 
-            database.select(string.Format("SELECT r.cod_reserva, " +
-                            " (CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN '[' || u.cod_usuario || '] - ' || u.nome_usuario || ' (' || 'FUNCIONARIO' || ')'" +
-                            " WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN '[' || cl.cod_cliente || '] - ' || cl.nome_cliente || ' (' || 'CLIENTE' || ')'" +
-                            " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN '[' || p.cod_proprietario || '] - ' || p.nome || ' (' || 'PROPRIETÁRIO' || ')' END) as tipo," +
+            tabela = database.select(string.Format("SELECT r.cod_reserva, " +
+                            " \n(CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN '[' || u.cod_usuario || '] - ' || u.nome_usuario || ' (' || 'F' || ')'" +
+                            " \nWHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN '[' || cl.cod_cliente || '] - ' || cl.nome_cliente || ' (' || 'C' || ')'" +
+                            " \nWHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN '[' || p.cod_proprietario || '] - ' || p.nome || ' (' || 'P' || ')' END) as tipo," +
 
-                            " (CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN ''" +
-                            "  WHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN(CASE WHEN cl.contato_secundario is null OR cl.contato_secundario = '' THEN cl.contato_principal ELSE cl.contato_principal || '/' || cl.contato_secundario END)" +
-                            " WHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN p.contato::text END) as contato," +
-                            " r.data_reserva, u.nome_usuario" +
-                            " FROM reserva r" +
-                            " LEFT JOIN usuario u ON r.cod_usuario = u.cod_usuario" +
-                            " LEFT JOIN proprietario p ON r.cod_proprietario = p.cod_proprietario" +
-                            " LEFT JOIN cliente cl ON r.cod_cliente = cl.cod_cliente" +
-                            " WHERE r.cod_reserva = '{0}'", codigo));
+                            " \n(CASE WHEN r.cod_proprietario is null AND r.cod_cliente is null THEN ''" +
+                            "  \nWHEN r.cod_proprietario is null AND r.cod_cliente is not null THEN cl.contato_principal" +
+                            " \nWHEN r.cod_proprietario is not null AND r.cod_cliente is null THEN p.contato::text END) as contato," +
+                            " \nr.data_reserva, u.nome_usuario" +
+                            " \nFROM reserva r" +
+                            " \nLEFT JOIN usuario u ON r.cod_usuario = u.cod_usuario" +
+                            " \nLEFT JOIN proprietario p ON r.cod_proprietario = p.cod_proprietario" +
+                            " \nLEFT JOIN cliente cl ON r.cod_cliente = cl.cod_cliente" +
+                            " \nWHERE r.cod_reserva = '{0}'", codigo));
 
 
             return tabela;
@@ -517,7 +517,9 @@ namespace situacaoChavesGolden
         {
             DataTable tabela = new DataTable();
 
-            database.select(string.Format("SELECT c.cod_chave,  c.cod_imob " +
+
+
+            tabela = database.select(string.Format("SELECT c.cod_chave,  c.cod_imob " +
                                             " FROM reserva r  " +
                                             " INNER JOIN chaves_reserva cr ON cr.cod_reserva = r.cod_reserva " +
                                             " INNER JOIN chave c ON c.indice_chave = cr.cod_chave " +
@@ -533,29 +535,45 @@ namespace situacaoChavesGolden
             Bitmap img = new Bitmap(usarMetodo.cmToPixel(21), usarMetodo.cmToPixel(29.7));
             Graphics drawer = Graphics.FromImage(img);
 
-
+            drawer.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             drawer.Clear(Color.White);
 
+            //========================== BUSCAR DADOS PARA IMPRESSÃO =======================
+
             DataTable tabelaDadosChaves = new DataTable();
+            DataTable tabelaDadosReserva = new DataTable();
 
             tabelaDadosChaves = buscarDadosChavesReserva(codigo);
+            tabelaDadosReserva = buscarDadosReserva(codigo);
+
+            string codReserva = tabelaDadosReserva.Rows[0][0].ToString();
+            string nome = tabelaDadosReserva.Rows[0][1].ToString();
+            string contato = tabelaDadosReserva.Rows[0][2].ToString();
+            DateTime dataReserva = (DateTime)tabelaDadosReserva.Rows[0][3];
+            string funcionario = tabelaDadosReserva.Rows[0][4].ToString();
 
             Pen pen = new Pen(new SolidBrush(Color.Black), 1);
 
             //============== RETÂNGULO DA BASE ===============
 
-            Point pBase = new Point(10, 10);
-            Size sBase = new Size(usarMetodo.cmToPixel(5.8), usarMetodo.cmToPixel(7));
+            Point pBase = new Point(30, 10);
+            Size sBase = new Size(usarMetodo.cmToPixel(5.8), usarMetodo.cmToPixel(7.5));
             Rectangle rectBase = new Rectangle(pBase, sBase);
 
-            MessageBox.Show(tabelaDadosChaves.Rows.Count.ToString());
+           //MessageBox.Show(codigo);
             int cont = 0;
 
             foreach (DataRow row in tabelaDadosChaves.Rows)
             {
-
+                
                 if(cont ==0)
                 {
+                    drawer.DrawRectangle(pen, rectBase);
+
+                }
+                else if (cont % 3 == 0)
+                {
+                    pBase = new Point(30, pBase.Y + sBase.Height + 40);
                     drawer.DrawRectangle(pen, rectBase);
 
                 }
@@ -565,92 +583,130 @@ namespace situacaoChavesGolden
 
                     drawer.DrawRectangle(pen, rectBase);
 
-                    //============= HEADER ================
-
-                    Point pHeader = new Point(pBase.X, pBase.Y);
-                    Size sHeader = new Size(sBase.Width, usarMetodo.cmToPixel(2.8));
-                    Rectangle rectHeader = new Rectangle(pHeader, sHeader);
-
-
-                    drawer.DrawRectangle(pen, rectHeader);
-
-                    //================ IMAGEM ==================
-
-                    Point pImagem = new Point(pHeader.X + 40, pHeader.Y + 4);
-                    Size sImagem = new Size(sHeader.Width - 80, 60);
-                    Rectangle rectImagem = new Rectangle(pImagem, sImagem);
-
-
-                    //drawer.DrawRectangle(pen, rectImagem);
-
-                    Image imagem = Properties.Resources.LogoRelatorio;
-
-                    drawer.DrawImage(imagem, rectImagem);
-
-
-                    //============== TEXT ================
-                    Point pTexto = new Point(pHeader.X + 10, pImagem.Y + sImagem.Height);
-                    Size sTexto = new Size(sHeader.Width - 20, 35);
-
-                    Rectangle rectText = new Rectangle(pTexto, sTexto);
-
-                    //drawer.DrawRectangle(pen, rectText);
-
-                    StringFormat sfTextoHeader = new StringFormat();
-                    sfTextoHeader.Alignment = StringAlignment.Center;
-                    sfTextoHeader.LineAlignment = StringAlignment.Center;
-
-                    drawer.DrawString("Rua Fernando Camargo, 587\n  Centro - Americana/SP - 13477-650\n(19) 3406-2423 / (19) 9 9140-8110", new Font("Arial", 8), new SolidBrush(Color.Gray), rectText, sfTextoHeader);
-
-                    Font fontTitulo = new Font("Arial", 10, FontStyle.Bold);
-                    StringFormat sfTitulo1 = new StringFormat();
-                    StringFormat sfTitulo2 = new StringFormat();
-                    sfTitulo2.LineAlignment = StringAlignment.Center;
-
-
-                    //============= BASE DO CONTEUDO =======================
-                    Point pBaseConteudo = new Point(pHeader.X, pHeader.Y + sHeader.Height);
-                    Size sBaseConteudo = new Size(sHeader.Width, sBase.Height - sHeader.Height);
-                    Rectangle rectBaseConteudo = new Rectangle(pBaseConteudo, sBaseConteudo);
-
-                    drawer.DrawRectangle(pen, rectBaseConteudo);
-
-                    //=============== NOME DA PESSOA ================
-                    Point pNomePessoa = new Point(pBaseConteudo.X + 10, pBaseConteudo.Y + 10);
-                    Size sNomePessoa = new Size(sBaseConteudo.Width - 20, 40);
-                    Rectangle rectNomePessoa = new Rectangle(pNomePessoa, sNomePessoa);
-
-                    drawer.DrawRectangle(pen, rectNomePessoa);
-                    drawer.DrawString("Nome:", fontTitulo, new SolidBrush(Color.Black), rectNomePessoa, sfTitulo1);
-                    //=============== CONTATO DA PESSOA ================
-                    Point pContato = new Point(pNomePessoa.X, pNomePessoa.Y + sNomePessoa.Height);
-                    Size sContato = new Size(sNomePessoa.Width, 25);
-                    Rectangle rectContato = new Rectangle(pContato, sContato);
-
-                    drawer.DrawRectangle(pen, rectContato);
-                    drawer.DrawString("Contato:", fontTitulo, new SolidBrush(Color.Black), rectContato, sfTitulo2);
-                    //=============== CÓDIGO DO IMÓVEL ================
-                    Point pCodImob = new Point(pContato.X, pContato.Y + sContato.Height);
-                    Size sCodImob = new Size(sContato.Width, sContato.Height);
-                    Rectangle rectCodImob = new Rectangle(pCodImob, sCodImob);
-
-                    drawer.DrawRectangle(pen, rectCodImob);
-                    drawer.DrawString("Cód. Imob:", fontTitulo, new SolidBrush(Color.Black), rectCodImob, sfTitulo2);
-                    //=============== CÓDIGO DA CHAVE ================
-                    Point pCodChave = new Point(pCodImob.X, pCodImob.Y + sCodImob.Height);
-                    Size sCodChave = new Size(sCodImob.Width, sCodImob.Height);
-                    Rectangle rectCodChave = new Rectangle(pCodChave, sCodChave);
-
-                    drawer.DrawRectangle(pen, rectCodChave);
-                    drawer.DrawString("Cód. Chave:", fontTitulo, new SolidBrush(Color.Black), rectCodChave, sfTitulo2);
-                    //=============== ATENDENTE ================
-                    Point pAtendente = new Point(pCodChave.X, pCodChave.Y + sCodChave.Height);
-                    Size sAtendente = new Size(sCodChave.Width, sCodChave.Height);
-                    Rectangle rectAtendente = new Rectangle(pAtendente, sAtendente);
-
-                    drawer.DrawRectangle(pen, rectAtendente);
-                    drawer.DrawString("Atendente:", fontTitulo, new SolidBrush(Color.Black), rectAtendente, sfTitulo2);
                 }
+
+
+               
+
+                //============= HEADER ================
+
+                Point pHeader = new Point(pBase.X, pBase.Y);
+                Size sHeader = new Size(sBase.Width, usarMetodo.cmToPixel(2.2));
+                Rectangle rectHeader = new Rectangle(pHeader, sHeader);
+
+
+                drawer.DrawRectangle(pen, rectHeader);
+
+                //================ IMAGEM ==================
+
+                Point pImagem = new Point(pHeader.X + 40, pHeader.Y + 4);
+                Size sImagem = new Size(sHeader.Width - 80, 60);
+                Rectangle rectImagem = new Rectangle(pImagem, sImagem);
+
+
+                //drawer.DrawRectangle(pen, rectImagem);
+
+                Image imagem = Properties.Resources.LogoRelatorio;
+
+                drawer.DrawImage(imagem, rectImagem);
+
+
+                //============== TEXT ================
+                Point pTexto = new Point(pHeader.X + 10, pImagem.Y + sImagem.Height-5);
+                Size sTexto = new Size(sHeader.Width - 20, 35);
+
+                Rectangle rectText = new Rectangle(pTexto, sTexto);
+
+                //drawer.DrawRectangle(pen, rectText);
+
+                StringFormat sfTextoHeader = new StringFormat();
+                sfTextoHeader.Alignment = StringAlignment.Center;
+
+                drawer.DrawString("Rua Fernando Camargo, 587\n  Centro - Americana/SP - 13465-020", new Font("Arial", 8), new SolidBrush(Color.Gray), rectText, sfTextoHeader);
+
+                Font fontTitulo = new Font("Arial", 10, FontStyle.Bold);
+                Font fontConteudo = new Font("Arial", 10, FontStyle.Regular);
+                StringFormat sfConteudo1 = new StringFormat();
+                StringFormat sfConteudo2 = new StringFormat();
+                sfConteudo2.LineAlignment = StringAlignment.Center;
+                StringFormat sfTitulo1 = new StringFormat();
+                StringFormat sfTitulo2 = new StringFormat();
+                sfTitulo2.LineAlignment = StringAlignment.Center;
+
+
+                //============= BASE DO CONTEUDO =======================
+                Point pBaseConteudo = new Point(pHeader.X, pHeader.Y + sHeader.Height);
+                Size sBaseConteudo = new Size(sHeader.Width, sBase.Height - sHeader.Height);
+                Rectangle rectBaseConteudo = new Rectangle(pBaseConteudo, sBaseConteudo);
+
+                drawer.DrawRectangle(pen, rectBaseConteudo);
+
+                //============ Título =================
+                Point pTitulo = new Point(pBaseConteudo.X + 10, pBaseConteudo.Y);
+                Size sTitulo = new Size(sBaseConteudo.Width - 20, 25);
+                Rectangle rectTitulo = new Rectangle(pTitulo, sTitulo);
+
+                //drawer.DrawRectangle(pen, rectTitulo);
+                drawer.DrawString(string.Format("RESERVA DE CHAVE ({0})", codReserva), fontTitulo, new SolidBrush(Color.Black), rectTitulo, new StringFormat() {Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                //=============== NOME DA PESSOA ================
+                Point pNomePessoa = new Point(pTitulo.X, pTitulo.Y + sTitulo.Height + 3);
+                Size sNomePessoa = new Size(sTitulo.Width, 40);
+                Rectangle rectNomePessoa = new Rectangle(pNomePessoa, sNomePessoa);
+
+                Point pNomePessoaCont = new Point(pNomePessoa.X + 45, pNomePessoa.Y);
+                Size sNomePessoaCont = new Size(sNomePessoa.Width - 45, sNomePessoa.Height);
+                Rectangle rectNomePessoaCont = new Rectangle(pNomePessoaCont, sNomePessoaCont);
+
+                drawer.DrawRectangle(pen, rectNomePessoa);
+                //drawer.DrawRectangle(pen, rectNomePessoaCont);
+                drawer.DrawString("Nome:", fontTitulo, new SolidBrush(Color.Black), rectNomePessoa, sfTitulo1);
+                drawer.DrawString( nome, fontConteudo, new SolidBrush(Color.Gray), rectNomePessoaCont, sfConteudo1);
+                //=============== CONTATO DA PESSOA ================
+                Point pContato = new Point(pNomePessoa.X, pNomePessoa.Y + sNomePessoa.Height);
+                Size sContato = new Size(sNomePessoa.Width, 25);
+                Rectangle rectContato = new Rectangle(pContato, sContato);
+
+                drawer.DrawRectangle(pen, rectContato);
+                drawer.DrawString("Contato:", fontTitulo, new SolidBrush(Color.Black), rectContato, sfTitulo2);
+                drawer.DrawString("               " + contato, fontConteudo, new SolidBrush(Color.Gray), rectContato, sfConteudo2);
+
+                //=============== CÓDIGO DO IMÓVEL ================
+                Point pCodImob = new Point(pContato.X, pContato.Y + sContato.Height);
+                Size sCodImob = new Size(sContato.Width, sContato.Height);
+                Rectangle rectCodImob = new Rectangle(pCodImob, sCodImob);
+
+                drawer.DrawRectangle(pen, rectCodImob);
+                drawer.DrawString("Cód. Imob:", fontTitulo, new SolidBrush(Color.Black), rectCodImob, sfTitulo2);
+                drawer.DrawString("                   " + row[1].ToString(), fontConteudo, new SolidBrush(Color.Gray), rectCodImob, sfConteudo2);
+
+                //=============== CÓDIGO DA CHAVE ================
+                Point pCodChave = new Point(pCodImob.X, pCodImob.Y + sCodImob.Height);
+                Size sCodChave = new Size(sCodImob.Width, sCodImob.Height);
+                Rectangle rectCodChave = new Rectangle(pCodChave, sCodChave);
+
+                drawer.DrawRectangle(pen, rectCodChave);
+                drawer.DrawString("Cód. Chave:", fontTitulo, new SolidBrush(Color.Black), rectCodChave, sfTitulo2);
+                drawer.DrawString("                      " + row[0].ToString(), fontConteudo, new SolidBrush(Color.Gray), rectCodChave, sfConteudo2);
+
+                //=============== DATA DE RESERVA ================
+                Point pDataReserva = new Point(pCodChave.X, pCodChave.Y + sCodChave.Height);
+                Size sDataReserva = new Size(sCodChave.Width, sCodChave.Height);
+                Rectangle rectDataReserva = new Rectangle(pDataReserva, sDataReserva);
+
+                drawer.DrawRectangle(pen, rectDataReserva);
+                drawer.DrawString("Data Reserva:", fontTitulo, new SolidBrush(Color.Black), rectDataReserva, sfTitulo2);
+                drawer.DrawString("                         " + dataReserva.ToString("dd/MM/yyyy"), fontConteudo, new SolidBrush(Color.Gray), rectDataReserva, sfConteudo2);
+
+                //=============== ATENDENTE ================
+                Point pAtendente = new Point(pDataReserva.X, pDataReserva.Y + sDataReserva.Height);
+                Size sAtendente = new Size(sDataReserva.Width, sDataReserva.Height);
+                Rectangle rectAtendente = new Rectangle(pAtendente, sAtendente);
+
+                drawer.DrawRectangle(pen, rectAtendente);
+                drawer.DrawString("Atendente:", fontTitulo, new SolidBrush(Color.Black), rectAtendente, sfTitulo2);
+                drawer.DrawString("                   " + funcionario, fontConteudo, new SolidBrush(Color.Gray), rectAtendente, sfConteudo2);
+
 
 
                 cont++;

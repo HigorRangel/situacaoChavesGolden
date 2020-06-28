@@ -81,7 +81,7 @@ namespace situacaoChavesGolden
             {
                 ordenar = "c.cod_chave";
             }
-            else if (ordenar == "ENDEREÇO")
+            else if (ordenar == "RUA")
             {
                 ordenar = "c.rua";
             }

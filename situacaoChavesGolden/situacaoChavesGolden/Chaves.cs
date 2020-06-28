@@ -257,7 +257,7 @@ namespace situacaoChavesGolden
                         sitChave.Text = row[7].ToString();
                         localizacao.Text = row[8].ToString();
                         textFuncionario.Text = row[22].ToString();
-                        dataCadastro.Text = row[19].ToString();
+                        dataCadastro.Text = row[20].ToString();
 
                         if (row[7].ToString() == "INDISPONIVEL")
                         {

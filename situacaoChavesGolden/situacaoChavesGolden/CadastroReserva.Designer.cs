@@ -65,6 +65,7 @@
             this.btnConfirmChave = new System.Windows.Forms.Button();
             this.gridChavesTotal = new System.Windows.Forms.DataGridView();
             this.boxBusca = new System.Windows.Forms.TextBox();
+            this.imagem = new System.Windows.Forms.PictureBox();
             this.painelProp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPessoas)).BeginInit();
             this.groupDadosEmp.SuspendLayout();
@@ -74,6 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridChaves)).BeginInit();
             this.panelChaves.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridChavesTotal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagem)).BeginInit();
             this.SuspendLayout();
             // 
             // painelProp
@@ -549,12 +551,22 @@
             this.boxBusca.TabIndex = 0;
             this.boxBusca.TextChanged += new System.EventHandler(this.boxBusca_TextChanged);
             // 
+            // imagem
+            // 
+            this.imagem.Location = new System.Drawing.Point(-774, 489);
+            this.imagem.Name = "imagem";
+            this.imagem.Size = new System.Drawing.Size(797, 1122);
+            this.imagem.TabIndex = 50;
+            this.imagem.TabStop = false;
+            this.imagem.Visible = false;
+            // 
             // CadastroReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(468, 515);
+            this.Controls.Add(this.imagem);
             this.Controls.Add(this.panelChaves);
             this.Controls.Add(this.painelProp);
             this.Controls.Add(this.groupBox1);
@@ -585,6 +597,7 @@
             this.panelChaves.ResumeLayout(false);
             this.panelChaves.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridChavesTotal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagem)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -626,5 +639,6 @@
         private System.Windows.Forms.Button btnConfirmChave;
         private System.Windows.Forms.DataGridView gridChavesTotal;
         private System.Windows.Forms.TextBox boxBusca;
+        private System.Windows.Forms.PictureBox imagem;
     }
 }

@@ -51,17 +51,17 @@ namespace situacaoChavesGolden
 
             gridRetirados.DataSource = tabela.DefaultView;
 
-            gridRetirados.Columns[0].HeaderText = "Cód";
+            gridRetirados.Columns[0].HeaderText = "Cód Retirado";
             gridRetirados.Columns[1].HeaderText = "Cód Imob";
             gridRetirados.Columns[2].HeaderText = "Endereço";
             gridRetirados.Columns[3].HeaderText = "Data Retirada";
             gridRetirados.Columns[4].Visible = false;
 
 
-            gridRetirados.Columns[0].Width = 60;
+            gridRetirados.Columns[0].Width = 80;
             gridRetirados.Columns[1].Width = 68;
-            gridRetirados.Columns[2].Width = 260;
-            gridRetirados.Columns[3].Width = 220;                                     
+            gridRetirados.Columns[2].Width = 340;
+            gridRetirados.Columns[3].Width = 100;                                     
 
 
 
@@ -124,7 +124,7 @@ namespace situacaoChavesGolden
                                                         " FROM retirado r " +
                                                         " INNER JOIN usuario u ON u.cod_usuario = r.cod_usuario " +
                                                         " LEFT JOIN chave c ON c.indice_chave = r.cod_chave " +
-                                                        " WHERE r.cod_retirado = '{0}'", gridRetirados.CurrentRow.Cells[0].Value.ToString()));
+                                                        " WHERE r.cod_retirado = '{0}'", gridRetirados.CurrentRow.Cells[4].Value.ToString()));
 
                 if (tabela.Rows.Count == 0)
                 {
