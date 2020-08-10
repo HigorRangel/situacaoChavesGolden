@@ -60,7 +60,7 @@ namespace situacaoChavesGolden
                                          " c.complemento  ILIKE '%{0}%' OR c.cod_imob ILIKE '%{0}%') AND " +
                                          " (c.finalidade ILIKE '%{1}%' AND c.situacao ILIKE '{2}%' AND c.situacao_imovel ILIKE '{3}%' AND " +
                                          "  c.tipo_imovel ILIKE '%{4}%')" +
-                                         " ORDER BY c.situacao_imovel, c.rua, c.cod_imob", textoBusca, filtro, filtroSitChave,
+                                         " ORDER BY c.cod_chave", textoBusca, filtroSitChave, filtro,
                                           filtroSitImovel, typeImovel));
 
 
