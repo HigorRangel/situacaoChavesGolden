@@ -661,7 +661,7 @@ namespace situacaoChavesGolden
                 drawer.DrawRectangle(pen, rectNomePessoa);
                 //drawer.DrawRectangle(pen, rectNomePessoaCont);
                 drawer.DrawString("Nome:", fontTitulo, new SolidBrush(Color.Black), rectNomePessoa, sfTitulo1);
-                drawer.DrawString( nome, fontConteudo, new SolidBrush(Color.Gray), rectNomePessoaCont, sfConteudo1);
+                drawer.DrawString( nome, fontConteudo, new SolidBrush(Color.DarkGray), rectNomePessoaCont, sfConteudo1);
                 //=============== CONTATO DA PESSOA ================
                 Point pContato = new Point(pNomePessoa.X, pNomePessoa.Y + sNomePessoa.Height);
                 Size sContato = new Size(sNomePessoa.Width, 25);
@@ -669,7 +669,7 @@ namespace situacaoChavesGolden
 
                 drawer.DrawRectangle(pen, rectContato);
                 drawer.DrawString("Contato:", fontTitulo, new SolidBrush(Color.Black), rectContato, sfTitulo2);
-                drawer.DrawString("               " + contato, fontConteudo, new SolidBrush(Color.Gray), rectContato, sfConteudo2);
+                drawer.DrawString("               " + contato, fontConteudo, new SolidBrush(Color.DarkGray), rectContato, sfConteudo2);
 
                 //=============== CÓDIGO DO IMÓVEL ================
                 Point pCodImob = new Point(pContato.X, pContato.Y + sContato.Height);
@@ -678,7 +678,7 @@ namespace situacaoChavesGolden
 
                 drawer.DrawRectangle(pen, rectCodImob);
                 drawer.DrawString("Cód. Imob:", fontTitulo, new SolidBrush(Color.Black), rectCodImob, sfTitulo2);
-                drawer.DrawString("                   " + row[1].ToString(), fontConteudo, new SolidBrush(Color.Gray), rectCodImob, sfConteudo2);
+                drawer.DrawString("                   " + row[1].ToString(), fontConteudo, new SolidBrush(Color.DarkGray), rectCodImob, sfConteudo2);
 
                 //=============== CÓDIGO DA CHAVE ================
                 Point pCodChave = new Point(pCodImob.X, pCodImob.Y + sCodImob.Height);
@@ -687,7 +687,7 @@ namespace situacaoChavesGolden
 
                 drawer.DrawRectangle(pen, rectCodChave);
                 drawer.DrawString("Cód. Chave:", fontTitulo, new SolidBrush(Color.Black), rectCodChave, sfTitulo2);
-                drawer.DrawString("                      " + row[0].ToString(), fontConteudo, new SolidBrush(Color.Gray), rectCodChave, sfConteudo2);
+                drawer.DrawString("                      " + row[0].ToString(), fontConteudo, new SolidBrush(Color.DarkGray), rectCodChave, sfConteudo2);
 
                 //=============== DATA DE RESERVA ================
                 Point pDataReserva = new Point(pCodChave.X, pCodChave.Y + sCodChave.Height);
@@ -696,7 +696,7 @@ namespace situacaoChavesGolden
 
                 drawer.DrawRectangle(pen, rectDataReserva);
                 drawer.DrawString("Data Reserva:", fontTitulo, new SolidBrush(Color.Black), rectDataReserva, sfTitulo2);
-                drawer.DrawString("                         " + dataReserva.ToString("dd/MM/yyyy"), fontConteudo, new SolidBrush(Color.Gray), rectDataReserva, sfConteudo2);
+                drawer.DrawString("                         " + dataReserva.ToString("dd/MM/yyyy"), fontConteudo, new SolidBrush(Color.DarkGray), rectDataReserva, sfConteudo2);
 
                 //=============== ATENDENTE ================
                 Point pAtendente = new Point(pDataReserva.X, pDataReserva.Y + sDataReserva.Height);
@@ -705,7 +705,7 @@ namespace situacaoChavesGolden
 
                 drawer.DrawRectangle(pen, rectAtendente);
                 drawer.DrawString("Atendente:", fontTitulo, new SolidBrush(Color.Black), rectAtendente, sfTitulo2);
-                drawer.DrawString("                   " + funcionario, fontConteudo, new SolidBrush(Color.Gray), rectAtendente, sfConteudo2);
+                drawer.DrawString("                   " + funcionario, fontConteudo, new SolidBrush(Color.DarkGray), rectAtendente, sfConteudo2);
 
 
 
