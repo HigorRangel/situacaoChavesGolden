@@ -13,6 +13,9 @@ namespace situacaoChavesGolden
     public partial class Retirados : MetroFramework.Forms.MetroForm
     {
         PostgreSQL database = new PostgreSQL();
+        cadastroChave cadChave = new cadastroChave("");
+        string codigoChaveAtual = "";
+
         public Retirados()
         {
             InitializeComponent();
@@ -20,6 +23,8 @@ namespace situacaoChavesGolden
 
         private void atualizarGrid()
         {
+            gridRetirados.Columns.Clear();
+
             string tipoImovel = groupMenuSup.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
             string situacaoQuemRetirou = groupBoxQuemRetirou.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text.ToUpper();
             if (situacaoQuemRetirou == "TODOS") { situacaoQuemRetirou = ""; }
@@ -35,7 +40,11 @@ namespace situacaoChavesGolden
             if (busca == "Buscar") { busca = ""; }
             if(tipoImovel == "TODOS") { tipoImovel = ""; }
 
+            DataGridViewImageColumn cellImageEdit = new DataGridViewImageColumn();
+            cellImageEdit.Image = new Bitmap(Properties.Resources.Back2);
 
+
+            gridRetirados.Columns.Insert(0, cellImageEdit);
 
 
             DataTable tabela = new DataTable();
@@ -51,18 +60,20 @@ namespace situacaoChavesGolden
 
             gridRetirados.DataSource = tabela.DefaultView;
 
-            gridRetirados.Columns[0].HeaderText = "Cód Retirado";
-            gridRetirados.Columns[1].HeaderText = "Cód Imob";
-            gridRetirados.Columns[2].HeaderText = "Endereço";
-            gridRetirados.Columns[3].HeaderText = "Data Retirada";
-            gridRetirados.Columns[4].Visible = false;
+            gridRetirados.Columns[1].HeaderText = "Cód Retirado";
+            gridRetirados.Columns[2].HeaderText = "Cód Imob";
+            gridRetirados.Columns[3].HeaderText = "Endereço";
+            gridRetirados.Columns[4].HeaderText = "Data Retirada";
+            gridRetirados.Columns[5].Visible = false;
+
+           
 
 
-            gridRetirados.Columns[0].Width = 80;
-            gridRetirados.Columns[1].Width = 68;
-            gridRetirados.Columns[2].Width = 340;
-            gridRetirados.Columns[3].Width = 100;                                     
-
+            gridRetirados.Columns[0].Width = 40;
+            gridRetirados.Columns[1].Width = 50;
+            gridRetirados.Columns[2].Width = 68;
+            gridRetirados.Columns[3].Width = 340;
+            gridRetirados.Columns[5].Width = 100;
 
 
         }
@@ -120,11 +131,11 @@ namespace situacaoChavesGolden
                 DataTable tabela = new DataTable();
 
                 tabela = database.select(string.Format("SELECT c.cod_imob, c.cod_chave, r.tipo_retirada, r.quem_retirou, r.descricao, " +
-                                                        " r.data_retirada, (u.cod_usuario || ' - ' || u.nome_usuario) , codigo_desativado " +
+                                                        " r.data_retirada, (u.cod_usuario || ' - ' || u.nome_usuario) , codigo_desativado, r.cod_chave " +
                                                         " FROM retirado r " +
                                                         " INNER JOIN usuario u ON u.cod_usuario = r.cod_usuario " +
                                                         " LEFT JOIN chave c ON c.indice_chave = r.cod_chave " +
-                                                        " WHERE r.cod_retirado = '{0}'", gridRetirados.CurrentRow.Cells[4].Value.ToString()));
+                                                        " WHERE r.cod_retirado = '{0}'", gridRetirados.CurrentRow.Cells[5].Value.ToString()));
 
                 if (tabela.Rows.Count == 0)
                 {
@@ -147,6 +158,7 @@ namespace situacaoChavesGolden
                     dataRetirada.Text = row[5].ToString();
                     funcionario.Text = row[6].ToString();
                     codChave.Text = row[7].ToString();
+                    codigoChaveAtual = row[8].ToString();
                 }
             }
             catch { }
@@ -186,6 +198,88 @@ namespace situacaoChavesGolden
         private void Funcionario_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void gridRetirados_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.ColumnIndex == 0)
+            {
+                gridRetirados.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                gridRetirados.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void gridRetirados_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            
+
+            if (e.ColumnIndex == 0)
+            {
+                Message msg = new Message("Você tem certeza que deseja recadastrar a chave?", "", "info", "escolha");
+                msg.ShowDialog();
+
+                string proxCod = cadChave.proximoCodigo();
+
+
+                
+
+
+                if (msg.DialogResult == DialogResult.Yes)
+                {
+
+
+                    database.update(string.Format("" +
+                   " UPDATE chave " +
+                   " SET situacao = 'DISPONIVEL', localizacao = 'IMOBILIARIA', cod_chave = '{0}' " +
+                   " WHERE indice_chave = '{1}'", proxCod, codigoChaveAtual));
+
+
+                    Message popup = new Message("A chave foi cadastrada com o código " + proxCod + "!" +
+                              "\n Deseja imprimir a etiqueta da chave?", "", "sucesso", "escolha");
+                    popup.ShowDialog();
+
+                    if (popup.DialogResult == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            ImprimirEtiquetas imprimir = new ImprimirEtiquetas(
+                                database.selectScalar(string.Format("SELECT indice_chave" +
+                                                        " FROM chave" +
+                                                        " WHERE cod_chave = '{0}'", proxCod)));
+
+
+                            imprimir.ShowDialog();
+                        }
+                        catch (Exception error)
+                        {
+                            Message erroMsg = new Message("Não foi possível imprimir a etiqueta. \n\nERRO: " + error.Message
+                                , "", "erro", "confirma");
+                            erroMsg.ShowDialog();
+                        }
+
+                    }
+
+
+                    
+
+                    database.delete(string.Format("" +
+                                                  " DELETE FROM  retirado " +
+                                                  " WHERE cod_retirado = '{0}'", gridRetirados.CurrentRow.Cells[5].Value.ToString()));
+
+                    
+
+
+                    atualizarGrid();
+                }
+               
+
+
+            }
+            
         }
     }
 }

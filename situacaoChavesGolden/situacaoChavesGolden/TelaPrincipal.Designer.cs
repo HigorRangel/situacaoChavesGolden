@@ -242,7 +242,6 @@
             this.Controls.Add(this.metroPanel1);
             this.DisplayHeader = false;
             this.MaximizeBox = false;
-            this.Movable = false;
             this.Name = "TelaPrincipal";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Resizable = false;
