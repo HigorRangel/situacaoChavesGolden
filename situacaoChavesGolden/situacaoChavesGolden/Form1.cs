@@ -185,5 +185,11 @@ namespace situacaoChavesGolden
         {
 
         }
+
+        private void btnGerenciarUsuario(object sender, EventArgs e)
+        {
+            GerenciarUsuarios gerUser = new GerenciarUsuarios();
+            gerUser.Show();
+        }
     }
 }

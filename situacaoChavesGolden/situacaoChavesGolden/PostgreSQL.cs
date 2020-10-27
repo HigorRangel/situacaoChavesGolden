@@ -10,9 +10,8 @@ using System.Diagnostics;
 
 namespace situacaoChavesGolden
 {
-    class PostgreSQL
+    class PostgreSQL 
     {
-        
         public string nomeDB = "chaves_golden";
         public string serverBD = Properties.Settings.Default.serverBD;
         NpgsqlConnection conn = new NpgsqlConnection();
@@ -22,22 +21,7 @@ namespace situacaoChavesGolden
             conn.ConnectionString = string.Format("Server={0};Port=5432;UserID=postgres;Password=123456;Database={1};Maximum Pool Size=1000", serverBD, nomeDB);
             conn.Open();
         }
-        //private NpgsqlConnection conectar()
-        //{
-
-        //    string connectionString = "";
-        //    //connectionString = "Server=localhost;Port=5432;UserID=postgres;Password=123456;Database=" + nomeDB; //String para conexão no PostgreSQL
-        //    connectionString = string.Format("Server={0};Port=5432;UserID=postgres;Password=123456;Database={1};Maximum Pool Size=1000", serverBD, nomeDB); //String para conexão no PostgreSQL
-
-        //    NpgsqlConnection conn = new NpgsqlConnection(connectionString); //Cria objeto para conexão
-
-
-        //    conn.Open(); // Inicia conexão
-
-        //    return conn;
-
-        //}
-
+        
 
         public void excluirConn()
         {
@@ -63,8 +47,7 @@ namespace situacaoChavesGolden
         }
         public void insertInto(string comando)
         {
-            //excluirConn();
-           // var conn = conectar();
+           
             NpgsqlCommand cmd = new NpgsqlCommand(); //Cria objeto para utilizar os comandos no PostgreSQL
             cmd.Connection = conn;
 
@@ -73,16 +56,11 @@ namespace situacaoChavesGolden
             cmd.CommandText = comando;
 
             cmd.ExecuteNonQuery();
-            //conn.Close();
         }
 
 
         public DataTable select(string comando)
         {
-            //excluirConn();
-
-           // var conn = conectar();
-
 
 
             DataTable dtTabela = new DataTable(); //Cria tabela de dados
@@ -98,9 +76,6 @@ namespace situacaoChavesGolden
             //conn.Close();
 
             return dtTabela;
-
-            
-
 
         }
 

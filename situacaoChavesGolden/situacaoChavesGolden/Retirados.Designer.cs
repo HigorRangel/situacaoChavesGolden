@@ -67,9 +67,9 @@
             this.radioVenda = new MetroFramework.Controls.MetroRadioButton();
             this.radioLocacao = new MetroFramework.Controls.MetroRadioButton();
             this.radioTodos = new MetroFramework.Controls.MetroRadioButton();
-            this.btnFiltro = new System.Windows.Forms.PictureBox();
             this.textBoxBusca = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.btnFiltro = new System.Windows.Forms.PictureBox();
             this.groupBox5.SuspendLayout();
             this.filtrosPanel.SuspendLayout();
             this.groupBoxSituacaoCh.SuspendLayout();
@@ -490,6 +490,8 @@
             this.gridRetirados.Size = new System.Drawing.Size(609, 194);
             this.gridRetirados.TabIndex = 85;
             this.gridRetirados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridRetirados_CellContentClick);
+            this.gridRetirados.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridRetirados_CellMouseClick);
+            this.gridRetirados.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridRetirados_CellMouseEnter);
             this.gridRetirados.SelectionChanged += new System.EventHandler(this.GridRetirados_SelectionChanged);
             // 
             // groupMenuSup
@@ -541,19 +543,6 @@
             this.radioTodos.UseVisualStyleBackColor = true;
             this.radioTodos.CheckedChanged += new System.EventHandler(this.radioTipo);
             // 
-            // btnFiltro
-            // 
-            this.btnFiltro.BackColor = System.Drawing.Color.White;
-            this.btnFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFiltro.Image = global::situacaoChavesGolden.Properties.Resources.Filter1;
-            this.btnFiltro.Location = new System.Drawing.Point(470, 9);
-            this.btnFiltro.Name = "btnFiltro";
-            this.btnFiltro.Size = new System.Drawing.Size(29, 27);
-            this.btnFiltro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnFiltro.TabIndex = 4;
-            this.btnFiltro.TabStop = false;
-            this.btnFiltro.Click += new System.EventHandler(this.BtnFiltro_Click);
-            // 
             // textBoxBusca
             // 
             this.textBoxBusca.CustomBackground = true;
@@ -582,6 +571,19 @@
             this.metroLabel1.TabIndex = 99;
             this.metroLabel1.Text = "Excluidos";
             this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // btnFiltro
+            // 
+            this.btnFiltro.BackColor = System.Drawing.Color.White;
+            this.btnFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiltro.Image = global::situacaoChavesGolden.Properties.Resources.Filter1;
+            this.btnFiltro.Location = new System.Drawing.Point(470, 9);
+            this.btnFiltro.Name = "btnFiltro";
+            this.btnFiltro.Size = new System.Drawing.Size(29, 27);
+            this.btnFiltro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnFiltro.TabIndex = 4;
+            this.btnFiltro.TabStop = false;
+            this.btnFiltro.Click += new System.EventHandler(this.BtnFiltro_Click);
             // 
             // Retirados
             // 

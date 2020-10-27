@@ -246,6 +246,12 @@
     <Compile Include="FormatarStrings.cs" />
     <Compile Include="GerarRecibos.cs" />
     <Compile Include="GerarRelatorio.cs" />
+    <Compile Include="GerenciarUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GerenciarUsuarios.Designer.cs">
+      <DependentUpon>GerenciarUsuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="HeaderChaves.cs" />
     <Compile Include="ImprimirEtiquetas.cs">
       <SubType>Form</SubType>
@@ -359,6 +365,9 @@
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GerenciarUsuarios.resx">
+      <DependentUpon>GerenciarUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImprimirEtiquetas.resx">
       <DependentUpon>ImprimirEtiquetas.cs</DependentUpon>
     </EmbeddedResource>
@@ -418,6 +427,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\Back1.png" />
+    <None Include="Resources\Back.png" />
+    <None Include="Resources\Return1.png" />
+    <None Include="Resources\Return.png" />
     <None Include="Resources\Add.png" />
     <None Include="Resources\Adicionar1.png" />
     <None Include="Resources\AdicionarGray.png" />

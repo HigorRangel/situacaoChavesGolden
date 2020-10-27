@@ -35,7 +35,7 @@ namespace situacaoChavesGolden
             usuario = user;
         }
 
-        private string proximoCodigo()
+        public string proximoCodigo()
         {
             string proxCodigo = "";
             DataTable codigos = new DataTable();

@@ -191,7 +191,6 @@ namespace situacaoChavesGolden
 
         private void GridChaves_SelectionChanged(object sender, EventArgs e)
         {
-
             try
             {
                 painelInfo.Visible = false;
@@ -302,7 +301,7 @@ namespace situacaoChavesGolden
 
                 }
 
-                mostrarAviso(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[5].Value.ToString());
+               
             }
             catch
             {
@@ -829,6 +828,16 @@ namespace situacaoChavesGolden
             }
 
 
+        }
+
+        private void gridChaves_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                mostrarAviso(gridChaves.Rows[gridChaves.CurrentRow.Index].Cells[5].Value.ToString());
+            }
+            catch { }
+            
         }
     }
 }
