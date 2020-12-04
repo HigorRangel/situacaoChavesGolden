@@ -172,7 +172,11 @@ namespace situacaoChavesGolden
 
         private void TextBoxBusca_Leave(object sender, EventArgs e)
         {
-            textBoxBusca.Text = "Buscar";
+            if(textBoxBusca.Text == "")
+            {
+                textBoxBusca.Text = "Buscar";
+            }
+            
         }
 
         private void TextBoxBusca_TextChanged(object sender, EventArgs e)
